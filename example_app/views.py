@@ -2,21 +2,32 @@ from django.shortcuts import render, redirect
 from SPARQLWrapper import SPARQLWrapper, JSON
 from fuzzywuzzy import fuzz
 from fuzzywuzzy import process
+from django.views.decorators.csrf import csrf_exempt
+from django.http import JsonResponse
 
-sparql = SPARQLWrapper("")
+namespace = "kb"
+# set host dan port pake url blazegraph local/remote
+sparql = SPARQLWrapper("http://192.168.249.48:9999/bigdata/namespace/"+ namespace + "/sparql")
 sparql.setReturnFormat(JSON)
 
 def index(request):
     return render(request, 'index.html')
 
+@csrf_exempt
 def search_result(request):
     response = {}
     search = request.POST['search']
     search = search.lower()
+
+  # set prefix : pake url blazegraph local/remote, ubah juga prefix di ttlnya
     sparql.setQuery("""
-    prefix :      TODO
-    prefix rdf:   <http://www.w3.org/1999/02/22-rdf-syntax-ns#> 
-    prefix rdfs:  <http://www.w3.org/2000/01/rdf-schema#> 
+    prefix :      <http://192.168.249.48:9999/>
+    prefix owl:   <http://www.w3.org/2002/07/owl#>
+    prefix rdf:   <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+    prefix rdfs:  <http://www.w3.org/2000/01/rdf-schema#>
+    prefix vcard: <http://www.w3.org/2006/vcard/ns#>
+    prefix wd:    <http://www.wikidata.org/entity/>
+    prefix xsd:   <http://www.w3.org/2001/XMLSchema#>
 
     SELECT DISTINCT ?film_wiki_uri ?film_name ?year ?film_type ?runtime ?mpa_rating ?desc ?crit_cons ?director (group_concat(distinct ?star;separator=", ") as ?stars) (group_concat(distinct ?distributor;separator=", ") as ?distributors) (group_concat(distinct ?genre;separator=", ") as ?genres) ?imdb_gross ?imdb_rating ?imdb_votes ?tom_aud_score ?tom_ratings ?tomato_meter ?tomato_review 
     WHERE{
@@ -55,10 +66,15 @@ def search_result(request):
     results = sparql.query().convert()
     response['data'] = results["results"]["bindings"]
     
+  # set prefix : pake url blazegraph local/remote, ubah juga prefix di ttlnya
     sparql.setQuery("""
-    prefix :      TODO
-    prefix rdfs:  <http://www.w3.org/2000/01/rdf-schema#>  
-    prefix rdf:  <http://www.w3.org/1999/02/22-rdf-syntax-ns#> 
+    prefix :      <http://192.168.249.48:9999/>
+    prefix owl:   <http://www.w3.org/2002/07/owl#>
+    prefix rdf:   <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+    prefix rdfs:  <http://www.w3.org/2000/01/rdf-schema#>
+    prefix vcard: <http://www.w3.org/2006/vcard/ns#>
+    prefix wd:    <http://www.wikidata.org/entity/>
+    prefix xsd:   <http://www.w3.org/2001/XMLSchema#>
 
     SELECT DISTINCT ?film_name 
     WHERE{
@@ -86,4 +102,7 @@ def search_result(request):
     response['similar'] = sorted_similar
     
     response['search'] = request.POST['search']
-    return render(request, 'search_result.html', response)
+    
+    # return render(request, 'search_result.html', response)
+
+    return JsonResponse(response, status=200)
