@@ -28,36 +28,14 @@ def search_result(request):
     prefix wd:    <http://www.wikidata.org/entity/>
     prefix xsd:   <http://www.w3.org/2001/XMLSchema#>
 
-    SELECT DISTINCT ?film_wiki_uri ?film_name ?year ?film_type ?runtime ?mpa_rating ?desc ?crit_cons ?director (group_concat(distinct ?star;separator=", ") as ?stars) (group_concat(distinct ?distributor;separator=", ") as ?distributors) (group_concat(distinct ?genre;separator=", ") as ?genres) ?imdb_gross ?imdb_rating ?imdb_votes ?tom_aud_score ?tom_ratings ?tomato_meter ?tomato_review 
+    SELECT DISTINCT ?film_wiki_uri ?film_name ?year ?film_type
     WHERE{{
         ?film_wiki_uri rdf:type :Film;
                         rdfs:label ?film_name .
         FILTER contains(LCASE(?film_name),"%s")
         ?film_wiki_uri :year ?year; 
-                       :entity ?film_type; 
-                       :runtime ?runtime;
-                       :mpa_rating ?mpa_rating;
-                       :description ?desc;
-                       :crit_consensus ?crit_cons;
-                       :director ?director_wiki_uri;
-                       :imdb_gross ?imdb_gross;
-                       :imdb_rating ?imdb_rating;
-                       :imdb_votes ?imdb_votes;
-                       :tom_aud_score ?tom_aud_score;
-                       :tom_ratings ?tom_ratings;
-                       :tomato_meter ?tomato_meter;
-                       :tomato_review ?tomato_review.
-        
-        ?film_wiki_uri :genre ?genre .
-        ?film_wiki_uri :distributed_by ?distributor .
-        ?film_wiki_uri :stars ?star_wiki_uri .
-        
-        ?director_wiki_uri rdfs:label ?director.
-        
-        ?star_wiki_uri rdfs:label ?star.
-        
+                       :entity ?film_type;
     }}
-    GROUP BY ?film_wiki_uri ?film_name ?year ?film_type ?runtime ?mpa_rating ?desc ?crit_cons ?director ?imdb_gross ?imdb_rating ?imdb_votes ?tom_aud_score ?tom_ratings ?tomato_meter ?tomato_review 
 	ORDER BY ?film_name
     """ % search)
 
