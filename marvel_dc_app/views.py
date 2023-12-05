@@ -94,12 +94,10 @@ def search_result_film(request):
     response = {}
     return render(request, 'search_film.html', response)
 
-
 @csrf_exempt
 def get_film_detail(request):
     response = {}
     film_wiki_uri = request.POST['film_wiki_uri']
-    film_wiki_uri = film_wiki_uri.replace("http://www.wikidata.org/entity/", "wd:")
 
     sparql.setQuery(f"""
       prefix :      <{host}>
@@ -138,6 +136,35 @@ def get_film_detail(request):
         
     }}
     GROUP BY ?film_name ?year ?film_type ?runtime ?mpa_rating ?desc ?crit_cons ?director ?imdb_gross ?imdb_rating ?imdb_votes ?tom_aud_score ?tom_ratings ?tomato_meter ?tomato_review 
+    """)
+
+    sparql.setReturnFormat(JSON)
+    results = sparql.query().convert()
+    response['data'] = results["results"]["bindings"]
+    # return render(request, 'player_detail.html', response)
+    return JsonResponse(response, status=200)
+
+@csrf_exempt
+def get_person_detail(request):
+    response = {}
+    person_wiki_uri = request.POST['person_wiki_uri']
+
+    sparql.setQuery(f"""
+      prefix :      <{host}>
+      prefix owl:   <http://www.w3.org/2002/07/owl#>
+      prefix rdf:   <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+      prefix rdfs:  <http://www.w3.org/2000/01/rdf-schema#>
+      prefix vcard: <http://www.w3.org/2006/vcard/ns#>
+      prefix wd:    <http://www.wikidata.org/entity/>
+      prefix xsd:   <http://www.w3.org/2001/XMLSchema#>
+
+    SELECT DISTINCT ?person_name ?date_of_birth ?nationality ?sex
+    WHERE{{
+        {person_wiki_uri} rdfs:label ?person_name; 
+                       :date_of_birth ?date_of_birth; 
+                       :nationality ?nationality; 
+                       :sex ?sex .
+    }}
     """)
 
     sparql.setReturnFormat(JSON)
