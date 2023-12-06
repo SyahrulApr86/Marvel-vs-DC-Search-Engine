@@ -165,10 +165,10 @@ def get_person_detail(request):
                        :nationality ?nationality; 
                        :sex ?sex .
         
-        OPTIONAL {{?film_wiki_uri :stars ?person_wiki_uri;
+        OPTIONAL {{?film_wiki_uri :stars {person_wiki_uri} ;
                  				  rdf:type :Film;
                        	          rdfs:label ?film_name.}}
-        OPTIONAL {{?film_wiki_uri :director ?person_wiki_uri;
+        OPTIONAL {{?film_wiki_uri :director {person_wiki_uri} ;
                  				  rdf:type :Film;
                        	          rdfs:label ?film_name.}}
         FILTER(bound(?film_wiki_uri))
