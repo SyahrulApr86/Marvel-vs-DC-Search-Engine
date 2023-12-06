@@ -174,6 +174,7 @@ def get_person_detail(request):
         FILTER(bound(?film_wiki_uri))
     }}
     GROUP BY ?person_name ?date_of_birth ?sex
+    LIMIT 1
     """)
 
     sparql.setReturnFormat(JSON)
