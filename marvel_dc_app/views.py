@@ -158,7 +158,7 @@ def get_person_detail(request):
       prefix wd:    <http://www.wikidata.org/entity/>
       prefix xsd:   <http://www.w3.org/2001/XMLSchema#>
 
-    SELECT DISTINCT ?person_name ?date_of_birth ?sex (group_concat(distinct ?nationality;separator=", ") as ?nationalities) (group_concat(distinct ?film_name;separator=", ") as ?associated_films)
+    SELECT DISTINCT ?person_name ?date_of_birth ?sex (group_concat(distinct ?nationality;separator=", ") as ?nationalities) (group_concat(distinct ?film_name;separator=", ") as ?associated_films) (group_concat(distinct ?film_wiki_uri;separator=", ") as ?associated_films_wiki_uri)
     WHERE{{
         {person_wiki_uri} rdfs:label ?person_name; 
                        :date_of_birth ?date_of_birth; 
