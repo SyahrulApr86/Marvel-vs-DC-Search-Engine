@@ -158,13 +158,22 @@ def get_person_detail(request):
       prefix wd:    <http://www.wikidata.org/entity/>
       prefix xsd:   <http://www.w3.org/2001/XMLSchema#>
 
-    SELECT DISTINCT ?person_name ?date_of_birth ?nationality ?sex
+    SELECT DISTINCT ?person_name ?date_of_birth ?sex (group_concat(distinct ?nationality;separator=", ") as ?nationalities) (group_concat(distinct ?film_name;separator=", ") as ?associated_films)
     WHERE{{
         {person_wiki_uri} rdfs:label ?person_name; 
                        :date_of_birth ?date_of_birth; 
                        :nationality ?nationality; 
                        :sex ?sex .
+        
+        OPTIONAL {{?film_wiki_uri :stars ?person_wiki_uri;
+                 				  rdf:type :Film;
+                       	          rdfs:label ?film_name.}}
+        OPTIONAL {{?film_wiki_uri :director ?person_wiki_uri;
+                 				  rdf:type :Film;
+                       	          rdfs:label ?film_name.}}
+        FILTER(bound(?film_wiki_uri))
     }}
+    GROUP BY ?person_name ?date_of_birth ?sex
     """)
 
     sparql.setReturnFormat(JSON)
