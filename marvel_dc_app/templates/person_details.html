@@ -1,0 +1,77 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block meta %}
+<title>Result of '{{ search }}</title>
+<script>
+  window.onload = function () {
+    var input = document.getElementById("input-box");
+    var btnKeyword = [...document.getElementsByClassName("btn-keyword")];
+    var btnSubmit = document.getElementById("btn-submit");
+    var filmNames = [...document.getElementsByClassName("film-name")];
+    var url = window.location.href;
+    var director = document.getElementById("director_value");
+    var stars = [...document.getElementsByClassName("stars_value")];
+
+    stars.forEach((star) => {
+      star.addEventListener("click", () => {
+        var data = star.getAttribute("data-uri");
+        data = data.split("/");
+        data = data.at(-1);
+        data = data.slice(0, data.length);
+        current_url = url.split("film");
+        current_url = current_url.at("0");
+
+        if (data.length == 0) {
+          $("#myModal").modal("show");
+        } else {
+          window.location.href = current_url + "person/" + data;
+        }
+      });
+    });
+
+    director.addEventListener("click", () => {
+      var data = director.getAttribute("data-uri");
+      data = data.split("/");
+      data = data.at(-1);
+      data = data.slice(0, data.length);
+      current_url = url.split("film");
+      current_url = current_url.at("0");
+
+      if (data.length == 0) {
+        $("#myModal").modal("show");
+      } else {
+        window.location.href = current_url + "person/" + data;
+      }
+    });
+
+    btnKeyword.forEach((btn) => {
+      btn.addEventListener("click", () => {
+        var data = btn.getAttribute("data-pk");
+        input.value = data;
+        btnSubmit.click();
+      });
+    });
+  };
+</script>
+<style>
+
+</style>
+{% endblock meta %}
+
+{% block content %}
+  <header>
+    <div class="container">
+      <div style="padding: 0 10px">
+        <p style="border-bottom: 2.5px solid #4385f6; width: fit-content">
+          Film's Details
+        </p>
+      </div>
+    </div>
+  </header>
+  <div class="container search-result">
+    <div style="display: flex; gap: 25px; margin-top: 20px">
+      
+    </div>
+  </div>
+{% endblock content %}
