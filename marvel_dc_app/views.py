@@ -5,6 +5,7 @@ from fuzzywuzzy import fuzz
 from fuzzywuzzy import process
 from django.views.decorators.csrf import csrf_exempt
 from django.http import JsonResponse
+from datetime import datetime
 
 namespace = "kb"
 # set host pake url blazegraph local/remote
@@ -16,6 +17,8 @@ sparql.setReturnFormat(JSON)
 @csrf_exempt
 def search_result(request):
     response = {}
+    start_time = datetime.now()
+    totalTime = None
 
     if request.method == 'POST':
         search = request.POST.get('search', '').lower()
@@ -89,6 +92,10 @@ def search_result(request):
     response['similar'] = sorted_similar
     
     response['search'] = request.POST['search']
+    end_time = datetime.now()
+    totalTime = end_time - start_time
+    response['totalTime'] = totalTime
+    response['sumDocs'] = len(response['data'])
     
     return render(request, 'search_result.html', response)
 

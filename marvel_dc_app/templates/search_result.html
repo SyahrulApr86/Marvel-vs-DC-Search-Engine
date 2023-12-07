@@ -30,6 +30,11 @@
 
 <!-- list hasil result nya -->
 <div class="container" style="margin-top: 130px;">
+    <div class="text-right text-muted" style="margin-left: 100px;">
+        About {{ sumDocs }} result{% if sumDocs != 1 %}s{% endif %} ({{ totalTime }} seconds)
+    </div>
+    <br>
+
     {% if data %}
         <div class="row">
             {% for movie in data %}
