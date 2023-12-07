@@ -119,7 +119,8 @@ def get_film_detail(request):
     if results["results"]["bindings"] == []:
         response["status_code"] = 404
         response["error_message"] = "URI not found in Marvel DC App Database"
-        return response
+        # return render(request, 'player_detail.html', response)
+        return JsonResponse(response, status=404)
     
     sparql.setQuery(f"""
       prefix :      <{host}>
@@ -227,7 +228,8 @@ def get_person_detail(request):
     if results["results"]["bindings"] == []:
         response["status_code"] = 404
         response["error_message"] = "URI not found in Marvel DC App Database"
-        return response
+        # return render(request, 'player_detail.html', response)
+        return JsonResponse(response, status=404)
     
     sparql.setQuery(f"""
       prefix :      <{host}>
