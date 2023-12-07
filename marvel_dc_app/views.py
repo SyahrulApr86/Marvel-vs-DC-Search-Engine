@@ -5,10 +5,11 @@ from fuzzywuzzy import fuzz
 from fuzzywuzzy import process
 from django.views.decorators.csrf import csrf_exempt
 from django.http import JsonResponse
+from datetime import datetime
 
 namespace = "kb"
 # set host pake url blazegraph local/remote
-host = "http://10.5.88.151:9999/"
+host = "http://192.168.1.2:9999/"
 sparql = SPARQLWrapper(f"{host}bigdata/namespace/"+ namespace + "/sparql")
 sparql.setReturnFormat(JSON)
 
@@ -16,8 +17,18 @@ sparql.setReturnFormat(JSON)
 @csrf_exempt
 def search_result(request):
     response = {}
-    search = request.POST['search']
-    search = search.lower()
+    start_time = datetime.now()
+    totalTime = None
+
+    if request.method == 'POST':
+        search = request.POST.get('search', '').lower()
+    elif request.method == 'GET':
+        search = request.GET.get('search', '').lower()
+    else:
+        return JsonResponse({'error': 'Invalid request method'}, status=400)
+
+    if not search:
+        return render(request, 'index.html', {'error_message': 'No search query'})
 
     sparql.setQuery(f"""
     prefix :      <{host}>
@@ -42,6 +53,9 @@ def search_result(request):
     sparql.setReturnFormat(JSON)
     results = sparql.query().convert()
     response['data'] = results["results"]["bindings"]
+
+    if not response['data']:
+        return render(request, 'index.html', {'error_message': 'Sorry, there is no result :('})
 
     sparql.setQuery(f"""
     prefix :      <{host}>
@@ -78,10 +92,12 @@ def search_result(request):
     response['similar'] = sorted_similar
     
     response['search'] = request.POST['search']
+    end_time = datetime.now()
+    totalTime = end_time - start_time
+    response['totalTime'] = totalTime
+    response['sumDocs'] = len(response['data'])
     
-    # return render(request, 'search_result.html', response)
-
-    return JsonResponse(response, status=200)
+    return render(request, 'search_result.html', response)
 
 def index(request):
     return render(request, 'index.html')

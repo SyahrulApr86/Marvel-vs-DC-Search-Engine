@@ -6,6 +6,22 @@
 {% endblock meta %}
 
 {% block content %}
-  <h1>Hello, world!</h1>
-  <h3>This is example app for Django template</h3>
+<div class="container">
+    <div class="row justify-content-center align-items-center vh-100">
+        <div class="col-md-6 text-center">
+            <span style="color: red; font-size: 70px;">Marvel</span>
+            <span style="color: black; font-size: 70px;">vs</span>
+            <span style="color: blue; font-size: 70px;">DC</span>
+            <form method="POST" action="{% url 'marvel_dc_app:search_result' %}" class="d-flex mt-4">
+                <input name="search" id="search-bar" class="form-control rounded-pill me-2" type="search" placeholder="Search" aria-label="Search" value="{{ query|default_if_none:'' }}">
+                <button class="btn btn-outline-success rounded-pill" >
+                    <i class="fa fa-search" style="font-size:24px"></i>
+                </button>
+            </form>
+            {% if error_message %}
+                <p class="text-danger mt-3">{{ error_message }}</p>
+            {% endif %}
+        </div>
+    </div>
+</div>
 {% endblock content %}
