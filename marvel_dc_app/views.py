@@ -16,8 +16,16 @@ sparql.setReturnFormat(JSON)
 @csrf_exempt
 def search_result(request):
     response = {}
-    search = request.POST['search']
-    search = search.lower()
+
+    if request.method == 'POST':
+        search = request.POST.get('search', '').lower()
+    elif request.method == 'GET':
+        search = request.GET.get('search', '').lower()
+    else:
+        return JsonResponse({'error': 'Invalid request method'}, status=400)
+
+    if not search:
+        return render(request, 'index.html', {'error_message': 'No search query'})
 
     sparql.setQuery(f"""
     prefix :      <{host}>
@@ -42,6 +50,9 @@ def search_result(request):
     sparql.setReturnFormat(JSON)
     results = sparql.query().convert()
     response['data'] = results["results"]["bindings"]
+
+    if not response['data']:
+        return render(request, 'index.html', {'error_message': 'Sorry, there is no result :('})
 
     sparql.setQuery(f"""
     prefix :      <{host}>
@@ -79,9 +90,7 @@ def search_result(request):
     
     response['search'] = request.POST['search']
     
-    # return render(request, 'search_result.html', response)
-
-    return JsonResponse(response, status=200)
+    return render(request, 'search_result.html', response)
 
 def index(request):
     return render(request, 'index.html')
