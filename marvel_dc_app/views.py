@@ -8,7 +8,7 @@ from django.http import JsonResponse
 
 namespace = "kb"
 # set host pake url blazegraph local/remote
-host = "http://10.5.88.151:9999/"
+host = "http://192.168.1.2:9999/"
 sparql = SPARQLWrapper(f"{host}bigdata/namespace/"+ namespace + "/sparql")
 sparql.setReturnFormat(JSON)
 

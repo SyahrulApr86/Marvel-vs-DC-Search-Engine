@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'marvel_dc_app',
+    'bootstrap5',
 ]
 
 MIDDLEWARE = [
