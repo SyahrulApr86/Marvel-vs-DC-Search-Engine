@@ -156,16 +156,17 @@ def get_film_detail(request):
     WHERE {{
         SERVICE <https://query.wikidata.org/sparql> {{
         {{
-    select ?film_wiki_uri ?image (group_concat(distinct ?label_awards;separator=", ") as ?awarded_for) (group_concat(distinct ?label_nominations;separator=", ") as ?nominated_for)
+    select ?image (group_concat(distinct ?label_awards;separator=", ") as ?awarded_for) (group_concat(distinct ?label_nominations;separator=", ") as ?nominated_for)
     where {{
         OPTIONAL{{ {film_wiki_uri} wdt:P1411 ?nominations .
-                    ?nominations rdfs:label ?label_nominations .}}
+                    ?nominations rdfs:label ?label_nominations .
+                    FILTER(lang(?label_nominations) = 'en')}}
         OPTIONAL{{ {film_wiki_uri} wdt:P166 ?awards .
-                    ?awards rdfs:label ?label_awards .}}
+                    ?awards rdfs:label ?label_awards .
+                    FILTER(lang(?label_awards) = 'en')}}
         OPTIONAL{{ {film_wiki_uri} wdt:P154 ?image .}}
-        FILTER (lang(?label_awards) = 'en' || lang(?label_nominations) = 'en')
         }}
-    GROUP BY {film_wiki_uri} ?image                                                               
+    GROUP BY ?image                                                               
         }}
         }}
     }}
@@ -212,5 +213,42 @@ def get_person_detail(request):
     sparql.setReturnFormat(JSON)
     results = sparql.query().convert()
     response['data'] = results["results"]["bindings"]
+    
+    sparql.setQuery(f"""
+    prefix :      <{host}>
+    prefix owl:   <http://www.w3.org/2002/07/owl#>
+    prefix rdf:   <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+    prefix rdfs:  <http://www.w3.org/2000/01/rdf-schema#>
+    prefix vcard: <http://www.w3.org/2006/vcard/ns#>
+    prefix wd:    <http://www.wikidata.org/entity/>
+    prefix wdt:   <http://www.wikidata.org/prop/direct/>
+    prefix xsd:   <http://www.w3.org/2001/XMLSchema#>
+
+    SELECT ?image ?net_worth ?occupations ?awarded_for ?nominated_for 
+    WHERE {{
+        SERVICE <https://query.wikidata.org/sparql> {{
+        {{
+    select ?image ?net_worth (group_concat(distinct ?label_occupation;separator=", ") as ?occupations) (group_concat(distinct ?label_awards;separator=", ") as ?awarded_for) (group_concat(distinct ?label_nominations;separator=", ") as ?nominated_for)
+    where {{
+        OPTIONAL{{ {person_wiki_uri} wdt:P106 ?occupation .
+                    ?occupation rdfs:label ?label_occupation .
+                    FILTER(lang(?label_occupation) = 'en')}}
+        OPTIONAL{{ {person_wiki_uri} wdt:P1411 ?nominations .
+                    ?nominations rdfs:label ?label_nominations .
+                    FILTER(lang(?label_nominations) = 'en')}}            
+        OPTIONAL{{ {person_wiki_uri} wdt:P166 ?awards .
+                    ?awards rdfs:label ?label_awards .
+                    FILTER(lang(?label_awards) = 'en')}}
+        OPTIONAL{{ {person_wiki_uri} wdt:P2218 ?net_worth .}}
+        OPTIONAL{{ {person_wiki_uri} wdt:P18 ?image .}}
+        }}
+    GROUP BY ?image ?net_worth                                                         
+        }}
+        }}
+    }}
+    """)
+
+    results = sparql.query().convert()
+    response['data2'] = results["results"]["bindings"]
     # return render(request, 'player_detail.html', response)
     return JsonResponse(response, status=200)
