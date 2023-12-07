@@ -108,6 +108,29 @@ def get_film_detail(request):
       prefix wd:    <http://www.wikidata.org/entity/>
       prefix xsd:   <http://www.w3.org/2001/XMLSchema#>
 
+    SELECT DISTINCT ?film_name
+    WHERE{{
+        OPTIONAL {{{film_wiki_uri} rdf:type :film;
+                          rdfs:label ?film_name.}}
+    }}
+    """)
+    sparql.setReturnFormat(JSON)
+    results = sparql.query().convert()
+    if results["results"]["bindings"] == []:
+        response["status_code"] = 404
+        response["error_message"] = "URI not found in Marvel DC App Database"
+        # return render(request, 'player_detail.html', response)
+        return JsonResponse(response, status=404)
+    
+    sparql.setQuery(f"""
+      prefix :      <{host}>
+      prefix owl:   <http://www.w3.org/2002/07/owl#>
+      prefix rdf:   <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+      prefix rdfs:  <http://www.w3.org/2000/01/rdf-schema#>
+      prefix vcard: <http://www.w3.org/2006/vcard/ns#>
+      prefix wd:    <http://www.wikidata.org/entity/>
+      prefix xsd:   <http://www.w3.org/2001/XMLSchema#>
+
     SELECT DISTINCT ?film_name ?year ?film_type ?runtime ?mpa_rating ?desc ?crit_cons ?director (group_concat(distinct ?star;separator=", ") as ?stars) (group_concat(distinct ?star_wiki_uri;separator=", ") as ?star_wiki_uris) (group_concat(distinct ?distributor;separator=", ") as ?distributors) (group_concat(distinct ?genre;separator=", ") as ?genres) ?imdb_gross ?imdb_rating ?imdb_votes ?tom_aud_score ?tom_ratings ?tomato_meter ?tomato_review
     WHERE{{
         {film_wiki_uri} rdf:type :Film;
@@ -182,6 +205,32 @@ def get_person_detail(request):
     response = {}
     person_wiki_uri = request.POST['person_wiki_uri']
 
+    sparql.setQuery(f"""
+      prefix :      <{host}>
+      prefix owl:   <http://www.w3.org/2002/07/owl#>
+      prefix rdf:   <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+      prefix rdfs:  <http://www.w3.org/2000/01/rdf-schema#>
+      prefix vcard: <http://www.w3.org/2006/vcard/ns#>
+      prefix wd:    <http://www.wikidata.org/entity/>
+      prefix xsd:   <http://www.w3.org/2001/XMLSchema#>
+
+    SELECT DISTINCT ?person_name
+    WHERE{{
+        OPTIONALA {{{person_wiki_uri} rdf:type :Star;
+                          rdfs:label ?person_name.}}
+                          
+        OPTIONALA {{{person_wiki_uri} rdf:type :Director;
+                          rdfs:label ?person_name.}}
+    }}
+    """)
+    sparql.setReturnFormat(JSON)
+    results = sparql.query().convert()
+    if results["results"]["bindings"] == []:
+        response["status_code"] = 404
+        response["error_message"] = "URI not found in Marvel DC App Database"
+        # return render(request, 'player_detail.html', response)
+        return JsonResponse(response, status=404)
+    
     sparql.setQuery(f"""
       prefix :      <{host}>
       prefix owl:   <http://www.w3.org/2002/07/owl#>
