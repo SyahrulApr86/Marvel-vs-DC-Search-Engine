@@ -63,5 +63,21 @@
     {% else %}
         <p class="text-danger mt-3">Sorry, there is no result :(</p>
     {% endif %}
+    <!-- Similar Results Section -->
+    {% if similar %}
+        <h2 class="mt-4">Similar Results</h2>
+        <hr class="bg-primary mb-4" style="width: 300px; border: 2px solid blue;">
+        <div class="row">
+            {% for movie in similar %}
+                <div class="col-md-4 mb-3">
+                    <div class="card">
+                        <div class="card-body">
+                            <h5 class="card-title">{{ movie }}</h5>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    {% endif %}
 </div>
 {% endblock content %}
