@@ -1,0 +1,294 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block meta %}
+<title>Marvel vs DC App</title>
+<script>
+  // Wrap your code in a function to ensure it runs after the DOM is loaded
+  document.addEventListener("DOMContentLoaded", function () {
+    // Get all the elements you need
+    var input = document.getElementById("input-box");
+    var btnKeyword = document.querySelectorAll(".btn-keyword");
+    var btnSubmit = document.getElementById("btn-submit");
+    var filmNames = document.querySelectorAll(".film-name");
+    var url = window.location.href;
+    var director = document.getElementById("director_value");
+    var starsContainer = document.getElementById("stars-container");
+
+    var starsValue = "{{ data.0.stars.value }}";
+    var starWikiUrisValue = "{{ data.0.star_wiki_uris.value }}";
+
+    var stars = starsValue.split(', ');
+    var starWikiUris = starWikiUrisValue.split(', ');
+
+    // Function to create and append star links
+    function createStarLink(star, uri) {
+      var starLink = document.createElement("a");
+      starLink.href = uri;
+      starLink.target = "_blank";
+      starLink.style.fontWeight = "600";
+      starLink.style.textDecoration = "none";
+      starLink.style.cursor = "pointer";
+      starLink.style.color = "blue";
+      starLink.textContent = star;
+
+      starLink.addEventListener("click", function (e) {
+        // Handle click logic if needed
+        e.preventDefault(); // Prevent default link behavior
+      });
+
+      return starLink;
+    }
+
+    // Append stars to the stars container
+    stars.forEach(function (star, index) {
+      var starLink = createStarLink(star, starWikiUris[index]);
+      starsContainer.appendChild(starLink);
+
+      // Add a comma after each star except the last one
+      if (index < stars.length - 1) {
+        starsContainer.appendChild(document.createTextNode(", "));
+      }
+    });
+
+    // Add click event listeners to btnKeyword elements
+    btnKeyword.forEach(function (btn) {
+      btn.addEventListener("click", function () {
+        var data = btn.getAttribute("data-pk");
+        input.value = data;
+        btnSubmit.click();
+      });
+    });
+
+    // Add click event listener to director element
+    director.addEventListener("click", function () {
+      var data = director.getAttribute("data-uri");
+      data = data.split("/");
+      data = data.at(-1);
+      data = data.slice(0, data.length);
+      current_url = url.split("film");
+      current_url = current_url.at("0");
+
+      if (data.length == 0) {
+        $("#myModal").modal("show");
+      } else {
+        window.location.href = current_url + "person/" + data;
+      }
+    });
+  });
+</script>
+<style>
+.main {
+    width: 100%;
+  }
+
+  header {
+    border-bottom: 0.1px solid #ced4da;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    height: 115px;
+    justify-content: center;
+  }
+
+  .header {
+    display: flex;
+    align-items: center;
+    height: 80px;
+    gap: 3em;
+  }
+
+  form {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+  }
+
+  .form-group,
+  .btn-group {
+    width: 100%;
+    height: 45px;
+  }
+
+  .form-group {
+    border-radius: 1em;
+    box-shadow: 0 0 3px 3px rgba(0, 0, 0, 0.1);
+  }
+
+  .form-group:hover {
+    box-shadow: 0 0 6px 6px rgba(0, 0, 0, 0.1);
+  }
+
+  .form-control {
+    border-radius: 0;
+    border-top-left-radius: 1em;
+    border-bottom-left-radius: 1em;
+    border-right: none;
+  }
+
+  .form-control:active,
+  .form-control:focus {
+    border-color: #ced4da;
+  }
+
+  .btn-submit {
+    border-top-right-radius: 1em;
+    border-bottom-right-radius: 1em;
+    background-color: transparent;
+    border-color: #ced4da !important;
+    border-left: none;
+  }
+
+  .btn-submit:hover {
+    background-color: transparent !important;
+  }
+
+  .btn-submit img {
+    width: 30px;
+    height: 30px;
+  }
+
+  p {
+    margin-bottom: 7px;
+  }
+</style>
+{% endblock meta %}
+
+{% block content %}
+    <nav class="navbar navbar-expand-lg navbar-light fixed-top" style="background-color: rgba(255, 255, 255, 0.7); z-index: 1000;">
+      <div class="container mt-4">
+          <!-- Brand/logo -->
+          <a class="navbar-brand" href="{% url 'marvel_dc_app:index' %}">
+              <span style="color: red; font-size: 20px;">Marvel</span>
+              <span style="color: black; font-size: 20px;">vs</span>
+              <span style="color: blue; font-size: 20px;">DC</span>
+          </a>
+  
+          <!-- Navbar links -->
+          <div class="collapse navbar-collapse justify-content-center" id="collapsibleNavbar">
+              <form method="POST" action="{% url 'marvel_dc_app:search_result' %}" class="d-flex mt-4 w-75">
+                  <input name="search" id="search-bar" class="form-control rounded-pill me-2" type="search" placeholder="Search" aria-label="Search" value="{{ query|default_if_none:'' }}" style="flex-grow: 1; max-width: 80%;">
+                  <button class="btn btn-outline-success rounded-pill">
+                      <i class="fa fa-search" style="font-size:24px"></i>
+                  </button>
+              </form>
+          </div>
+  
+      </div>
+  </nav>
+    <div class="container" style="margin-top: 130px;"">
+      <div style="padding: 0 10px">
+        <p style="border-bottom: 2.5px solid #4385f6; width: fit-content">
+          Film's Details
+        </p>
+      </div>
+    </div>
+  <div class="container search-result">
+    <div style="display: flex; gap: 25px; margin-top: 20px">
+      <div class="left">
+        {% if data2.0.image.value|length > 0 %}
+        <img
+          alt="film-foto"
+          style="
+            width: 200px;
+            height: 250px;
+            object-fit: contain;
+            border-radius: 0.7em;
+            box-shadow: 0px 0px 10px 10px rgba(0, 0, 0, 0.1);
+          "
+          src="{{data2.0.image.value}}"
+        />
+        {% else %}
+        <img
+          alt="film-foto"
+          style="
+            width: 200px;
+            height: 250px;
+            object-fit: cover;
+            border-radius: 0.7em;
+            box-shadow: 0px 0px 10px 10px rgba(0, 0, 0, 0.1);
+          "
+          src="https://media.discordapp.net/attachments/827827671991582730/1050115537843261581/default-profile-picture-avatar-photo-placeholder-vector-illustration-default-profile-picture-avatar-photo-placeholder-vector-189495158.png?width=656&height=656"
+        />
+        {% endif %}{% if data.0.imdb_gross.value|length > 0 %}
+        <p>Gross Profit: {{data.0.imdb_gross.value}}</p>
+        {% endif%} {% if data.0.imdb_rating.value|length > 0 %}
+        <p>IMDB Rating: {{data.0.imdb_rating.value}}</p>
+        {% endif%} {% if data.0.imdb_votes.value|length > 0 %}
+        <p>IMDB Votes: {{data.0.imdb_votes.value}}</p>
+        {% endif%} {% if data.0.tom_aud_score.value|length > 0 %}
+        <p>Regular User Movie Score: {{data.0.tom_aud_score.value}}%</p>
+        {% endif%} {% if data.0.tom_ratings.value|length > 0 %}
+        <p>Number of Regular User Votes: {{data.0.tom_ratings.value}}</p>
+        {% endif%} {% if data.0.tomato_meter.value|length > 0 %}
+        <p>Percentage of PROFESSIONAL critic reviews: {{data.0.tomato_meter.value}}</p>
+        {% endif%} {% if data.0.tomato_review.value|length > 0 %}
+        <p>Number of PROFESSIONAL reviews: {{data.0.tomato_review.value}}</p>
+        {% endif %}
+      </div>
+      <div class="right">
+        <h5>{{data.0.film_name.value}}</h5>
+        {% if data.0.year.value|length > 0%}
+        <p>Year: {{data.0.year.value}}</p>
+        {% endif%} {% if data.0.film_type.value|length > 0%}
+        <p>Film Type: {{data.0.film_type.value}}</p>
+        {% endif%} {% if data.0.runtime.value|length > 0 %}
+        <p>Runtime: {{data.0.runtime.value}}</p>
+        {% endif%} {% if data.0.mpa_rating.value|length > 0 %}
+        <p>MPA Rating: {{data.0.mpa_rating.value}}</p>
+        {% endif%} {% if data.0.desc.value|length > 0 %}
+        <p>Description: {{data.0.desc.value}}</p>
+        {% endif%} {% if data.0.crit_cons.value|length > 0 %}
+        <p>Critics Consensus: {{data.0.crit_cons.value}}</p>
+        {% endif%} {% if data.0.director.value|length > 0%}
+        <p>
+          Director:
+          <a
+            style="font-weight: 600; text-decoration: none; cursor: pointer; color: blue;"
+            id="director_value"
+            data-uri="{{ data.0.director_wiki_uri.value }}"
+          >{{ data.0.director.value }}</a>
+        </p>
+        {% endif%}{% if data.0.stars.value|length > 0 %}
+        <p>Stars: <span id="stars-container"></span></p>
+        {% endif%}{% if data.0.distributors.value|length > 0 %}
+        <p>Distributors: {{data.0.distributors.value}}</p>
+        {% endif%} {% if data.0.genres.value|length > 0 %}
+        <p>Genres: {{data.0.genres.value}}</p>
+        {% endif%} {% if data2.0.awarded_for.value|length > 0 %}
+        <p>Winning Award: {{data2.0.awarded_for.value}}</p>
+        {% endif %}{% if data2.0.nominated_for.value|length > 0 %}
+        <p>Nominated Award: {{data2.0.nominated_for.value}}</p>
+        {% endif %}
+      </div>
+    </div>
+  </div>
+  <!-- Modal -->
+<div
+  class="modal fade"
+  id="myModal"
+  tabindex="-1"
+  aria-labelledby="exampleModalLabel"
+  aria-hidden="true"
+>
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="exampleModalLabel">Error</h1>
+        <button
+          type="button"
+          class="btn-close"
+          data-bs-dismiss="modal"
+          aria-label="Close"
+        ></button>
+      </div>
+      <div class="modal-body">No Data in Wikidata and Local</div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+          Close
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock content %}

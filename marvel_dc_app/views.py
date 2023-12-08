@@ -127,8 +127,8 @@ def get_film_detail(request):
     if results["results"]["bindings"] == []:
         response["status_code"] = 404
         response["error_message"] = "URI not found in Marvel DC App Database"
-        # return render(request, 'player_detail.html', response)
-        return JsonResponse(response, status=404)
+        # return render(request, 'film_details.html', response)
+        # return JsonResponse(response, status=404)
     
     sparql.setQuery(f"""
       prefix :      <{host}>
@@ -205,8 +205,8 @@ def get_film_detail(request):
 
     results = sparql.query().convert()
     response['data2'] = results["results"]["bindings"]
-    # return render(request, 'player_detail.html', response)
-    return JsonResponse(response, status=200)
+    return render(request, 'film_details.html', response)
+    # return JsonResponse(response, status=200)
 
 @csrf_exempt
 def get_person_detail(request):
@@ -236,7 +236,7 @@ def get_person_detail(request):
     if results["results"]["bindings"] == []:
         response["status_code"] = 404
         response["error_message"] = "URI not found in Marvel DC App Database"
-        # return render(request, 'player_detail.html', response)
+        # return render(request, 'person_details.html', response)
         return JsonResponse(response, status=404)
     
     sparql.setQuery(f"""
@@ -307,5 +307,5 @@ def get_person_detail(request):
 
     results = sparql.query().convert()
     response['data2'] = results["results"]["bindings"]
-    # return render(request, 'player_detail.html', response)
+    # return render(request, 'person_details.html', response)
     return JsonResponse(response, status=200)
