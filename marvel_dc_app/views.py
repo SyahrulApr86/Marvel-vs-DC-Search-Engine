@@ -45,7 +45,7 @@ def search_result(request):
                         rdfs:label ?film_name .
         FILTER contains(LCASE(?film_name),"%s")
         ?film_wiki_uri :year ?year; 
-                       :entity ?film_type;
+                       :entity ?film_type.
     }}
 	ORDER BY ?film_name
     """ % search)
@@ -54,35 +54,45 @@ def search_result(request):
     results = sparql.query().convert()
     response['data'] = results["results"]["bindings"]
 
-    sparql.setQuery(f"""
-    prefix :      <{host}>
-    prefix owl:   <http://www.w3.org/2002/07/owl#>
-    prefix rdf:   <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
-    prefix rdfs:  <http://www.w3.org/2000/01/rdf-schema#>
-    prefix vcard: <http://www.w3.org/2006/vcard/ns#>
-    prefix wd:    <http://www.wikidata.org/entity/>
-    prefix xsd:   <http://www.w3.org/2001/XMLSchema#>
+    if not response['data']:
+        sparql.setQuery(f"""
+        prefix :      <{host}>
+        prefix owl:   <http://www.w3.org/2002/07/owl#>
+        prefix rdf:   <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+        prefix rdfs:  <http://www.w3.org/2000/01/rdf-schema#>
+        prefix vcard: <http://www.w3.org/2006/vcard/ns#>
+        prefix wd:    <http://www.wikidata.org/entity/>
+        prefix xsd:   <http://www.w3.org/2001/XMLSchema#>
 
-    SELECT DISTINCT ?film_name 
-    WHERE{{
-        ?film rdf:type :Film;
-                rdfs:label ?film_name .
-    }}
-    """)
-    results_2 = sparql.query().convert()
-    data_2 = results_2["results"]["bindings"]
-    similar_res = {}
-    
-    for i in range(len(data_2)):
-        ratio = fuzz.ratio(search, data_2[i]["film_name"]["value"].lower())
-        if ratio >= 50:
-            similar_res[data_2[i]["film_name"]["value"]] = ratio
+        SELECT DISTINCT ?film_wiki_uri ?film_name ?year ?film_type
+        WHERE{{
+            ?film rdf:type :Film;
+                    rdfs:label ?film_name;
+                    :year ?year; 
+                    :entity ?film_type.
+                    
+        }}
+        """)
+        results_2 = sparql.query().convert()
+        data_2 = results_2["results"]["bindings"]
+        similar_res = {}
+        
+        for i in range(len(data_2)):
+            ratio = fuzz.ratio(search, data_2[i]["film_name"]["value"].lower())
+            if ratio >= 50:
+                similar_res[data_2[i]["film_name"]["value"]] = ratio
 
-    sorted_similar = sorted(similar_res.items(), key=lambda x: x[1], reverse=True)
-    if len(sorted_similar) > 5:
-        sorted_similar = sorted_similar[0:5]
+        sorted_similar = sorted(similar_res.items(), key=lambda x: x[1], reverse=True)
+        if len(sorted_similar) > 5:
+            sorted_similar = sorted_similar[0:5]
 
-    response['similar'] = [movie[0] for movie in sorted_similar]
+        final_similar_result = {}
+        for i in range(len(data_2)):
+            for similar_movie in sorted_similar:
+                if similar_movie[0] == data_2[i]["film_name"]["value"]:
+                    final_similar_result[i] = data_2[i] 
+                    
+        response['similar'] = final_similar_result
     
     response['search'] = request.POST['search']
     end_time = datetime.now()
