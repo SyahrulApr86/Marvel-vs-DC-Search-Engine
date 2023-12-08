@@ -68,18 +68,18 @@
         <h2 class="mt-4">Similar Results</h2>
         <hr class="bg-primary mb-4" style="width: 300px; border: 2px solid blue;">
         <div class="row">
-            {% for movie in similar %}
+            {% for sim in similar %}
                 <div class="col-md-4 mb-3">
                     <div class="card">
                         <div class="card-body">
-                            <h5 class="card-title">{{ movie.film_name.value }}</h5>
+                            <h5 class="card-title">{{ sim.film_name.value }}</h5>
                             <p class="card-text">
-                                <strong>Year:</strong> {{ movie.year.value }}<br>
-                                <strong>Type:</strong> {{ movie.film_type.value }}
+                                <strong>Year:</strong> {{ sim.year.value }}<br>
+                                <strong>Type:</strong> {{ sim.film_type.value }}<br>
                             </p>
                             <form method="post" action="{% url 'marvel_dc_app:get_film_detail' %}">
-                                {% if movie.film_wiki_uri.value|length > 0 %}
-                                    {% with wiki_parts=movie.film_wiki_uri.value|slice:"31:" %}
+                                {% if sim.film_wiki_uri.value|length > 0 %}
+                                    {% with wiki_parts=sim.film_wiki_uri.value|slice:"31:" %}
                                         <input type="hidden" name="film_wiki_uri" value="wd:{{ wiki_parts }}">
                                     {% endwith %}
                                 {% endif %}
