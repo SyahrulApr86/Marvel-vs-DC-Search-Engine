@@ -54,9 +54,6 @@ def search_result(request):
     results = sparql.query().convert()
     response['data'] = results["results"]["bindings"]
 
-    if not response['data']:
-        return render(request, 'index.html', {'error_message': 'Sorry, there is no result :('})
-
     sparql.setQuery(f"""
     prefix :      <{host}>
     prefix owl:   <http://www.w3.org/2002/07/owl#>
