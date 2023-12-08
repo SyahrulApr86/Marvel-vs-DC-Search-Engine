@@ -75,21 +75,17 @@ def search_result(request):
     results_2 = sparql.query().convert()
     data_2 = results_2["results"]["bindings"]
     similar_res = {}
+    
     for i in range(len(data_2)):
         ratio = fuzz.ratio(search, data_2[i]["film_name"]["value"].lower())
-    if ratio >= 50:
-        similar_res[data_2[i]["player_name"]["value"]] = ratio
+        if ratio >= 50:
+            similar_res[data_2[i]["film_name"]["value"]] = ratio
 
-    sorted_similar = sorted(similar_res.items(), key=lambda x:x[1], reverse=True)
+    sorted_similar = sorted(similar_res.items(), key=lambda x: x[1], reverse=True)
     if len(sorted_similar) > 5:
         sorted_similar = sorted_similar[0:5]
 
-    for i in range(0, len(sorted_similar)):
-        for j in sorted_similar[i]:
-            if (type(j) == str):
-                sorted_similar[i] = j
-
-    response['similar'] = sorted_similar
+    response['similar'] = [movie[0] for movie in sorted_similar]
     
     response['search'] = request.POST['search']
     end_time = datetime.now()
