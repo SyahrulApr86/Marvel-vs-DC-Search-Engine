@@ -53,7 +53,7 @@ def search_result(request):
     sparql.setReturnFormat(JSON)
     results = sparql.query().convert()
     response['data'] = results["results"]["bindings"]
-
+    response['sumDocs'] = len(response['data'])
     # If there are no exact match results, try to find similar movies
     if not response['data']:
         sparql.setQuery(f"""
@@ -87,12 +87,13 @@ def search_result(request):
             sorted_similar = sorted_similar[0:5]
 
         response['similar'] = [movie[1] for movie in sorted_similar]
+        response['sumDocs'] = len(response['data'])
     
     response['search'] = request.POST['search']
     end_time = datetime.now()
     totalTime = end_time - start_time
     response['totalTime'] = totalTime
-    response['sumDocs'] = len(response['data'])
+    
     
     return render(request, 'search_result.html', response)
 
