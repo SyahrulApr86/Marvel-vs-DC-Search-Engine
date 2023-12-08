@@ -54,6 +54,7 @@ def search_result(request):
     results = sparql.query().convert()
     response['data'] = results["results"]["bindings"]
 
+    # If there are no exact match results, try to find similar movies
     if not response['data']:
         sparql.setQuery(f"""
         prefix :      <{host}>
@@ -66,11 +67,10 @@ def search_result(request):
 
         SELECT DISTINCT ?film_wiki_uri ?film_name ?year ?film_type
         WHERE{{
-            ?film rdf:type :Film;
-                    rdfs:label ?film_name;
-                    :year ?year; 
-                    :entity ?film_type.
-                    
+            ?film_wiki_uri rdf:type :Film;
+                            rdfs:label ?film_name;
+                            :year ?year; 
+                            :entity ?film_type.
         }}
         """)
         results_2 = sparql.query().convert()
@@ -80,19 +80,13 @@ def search_result(request):
         for i in range(len(data_2)):
             ratio = fuzz.ratio(search, data_2[i]["film_name"]["value"].lower())
             if ratio >= 50:
-                similar_res[data_2[i]["film_name"]["value"]] = ratio
+                similar_res[data_2[i]["film_name"]["value"]] = data_2[i]
 
-        sorted_similar = sorted(similar_res.items(), key=lambda x: x[1], reverse=True)
+        sorted_similar = sorted(similar_res.items(), key=lambda x: fuzz.ratio(search, x[0].lower()), reverse=True)
         if len(sorted_similar) > 5:
             sorted_similar = sorted_similar[0:5]
 
-        final_similar_result = {}
-        for i in range(len(data_2)):
-            for similar_movie in sorted_similar:
-                if similar_movie[0] == data_2[i]["film_name"]["value"]:
-                    final_similar_result[i] = data_2[i] 
-                    
-        response['similar'] = final_similar_result
+        response['similar'] = [movie[1] for movie in sorted_similar]
     
     response['search'] = request.POST['search']
     end_time = datetime.now()
