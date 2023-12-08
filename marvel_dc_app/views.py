@@ -87,7 +87,7 @@ def search_result(request):
             sorted_similar = sorted_similar[0:5]
 
         response['similar'] = [movie[1] for movie in sorted_similar]
-        response['sumDocs'] = len(response['data'])
+        response['sumDocs'] = len(response['similar'])
     
     response['search'] = request.POST['search']
     end_time = datetime.now()
