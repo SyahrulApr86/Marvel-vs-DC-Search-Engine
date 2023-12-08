@@ -127,7 +127,7 @@ def get_film_detail(request):
     if results["results"]["bindings"] == []:
         response["status_code"] = 404
         response["error_message"] = "URI not found in Marvel DC App Database"
-        # return render(request, 'film_details.html', response)
+        return render(request, 'film_details.html', response)
         # return JsonResponse(response, status=404)
     
     sparql.setQuery(f"""
@@ -139,7 +139,7 @@ def get_film_detail(request):
       prefix wd:    <http://www.wikidata.org/entity/>
       prefix xsd:   <http://www.w3.org/2001/XMLSchema#>
 
-    SELECT DISTINCT ?film_name ?year ?film_type ?runtime ?mpa_rating ?desc ?crit_cons ?director (group_concat(distinct ?star;separator=", ") as ?stars) (group_concat(distinct ?star_wiki_uri;separator=", ") as ?star_wiki_uris) (group_concat(distinct ?distributor;separator=", ") as ?distributors) (group_concat(distinct ?genre;separator=", ") as ?genres) ?imdb_gross ?imdb_rating ?imdb_votes ?tom_aud_score ?tom_ratings ?tomato_meter ?tomato_review
+    SELECT DISTINCT ?film_name ?year ?film_type ?runtime ?mpa_rating ?desc ?crit_cons ?director ?director_wiki_uri (group_concat(distinct ?star;separator=", ") as ?stars) (group_concat(distinct ?star_wiki_uri;separator=", ") as ?star_wiki_uris) (group_concat(distinct ?distributor;separator=", ") as ?distributors) (group_concat(distinct ?genre;separator=", ") as ?genres) ?imdb_gross ?imdb_rating ?imdb_votes ?tom_aud_score ?tom_ratings ?tomato_meter ?tomato_review
     WHERE{{
         {film_wiki_uri} rdf:type :Film;
                        rdfs:label ?film_name; 
@@ -166,7 +166,7 @@ def get_film_detail(request):
         ?star_wiki_uri rdfs:label ?star.
         
     }}
-    GROUP BY ?film_name ?year ?film_type ?runtime ?mpa_rating ?desc ?crit_cons ?director ?imdb_gross ?imdb_rating ?imdb_votes ?tom_aud_score ?tom_ratings ?tomato_meter ?tomato_review 
+    GROUP BY ?film_name ?year ?film_type ?runtime ?mpa_rating ?desc ?crit_cons ?director ?director_wiki_uri ?imdb_gross ?imdb_rating ?imdb_votes ?tom_aud_score ?tom_ratings ?tomato_meter ?tomato_review 
     """)
 
     sparql.setReturnFormat(JSON)
@@ -224,10 +224,10 @@ def get_person_detail(request):
 
     SELECT DISTINCT ?person_name
     WHERE{{
-        OPTIONALA {{{person_wiki_uri} rdf:type :Star;
+        OPTIONAL {{{person_wiki_uri} rdf:type :Star;
                           rdfs:label ?person_name.}}
                           
-        OPTIONALA {{{person_wiki_uri} rdf:type :Director;
+        OPTIONAL {{{person_wiki_uri} rdf:type :Director;
                           rdfs:label ?person_name.}}
     }}
     """)
@@ -236,8 +236,8 @@ def get_person_detail(request):
     if results["results"]["bindings"] == []:
         response["status_code"] = 404
         response["error_message"] = "URI not found in Marvel DC App Database"
-        # return render(request, 'person_details.html', response)
-        return JsonResponse(response, status=404)
+        return render(request, 'person_details.html', response)
+        # return JsonResponse(response, status=404)
     
     sparql.setQuery(f"""
       prefix :      <{host}>
@@ -307,5 +307,5 @@ def get_person_detail(request):
 
     results = sparql.query().convert()
     response['data2'] = results["results"]["bindings"]
-    # return render(request, 'person_details.html', response)
-    return JsonResponse(response, status=200)
+    return render(request, 'person_details.html', response)
+    # return JsonResponse(response, status=200)

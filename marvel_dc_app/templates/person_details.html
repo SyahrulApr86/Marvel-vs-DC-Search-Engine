@@ -2,66 +2,315 @@
 {% load static %}
 
 {% block meta %}
-<title>Marvel vs DC WebApp</title>
+<title>Marvel vs DC App</title>
+<script>
+  // JavaScript code
+  document.addEventListener("DOMContentLoaded", function () {
+    // Get a reference to the dateOfBirth element
+    var dateOfBirthElement = document.getElementById("dateOfBirth");
+    var dateOfBirthValue = dateOfBirthElement.getAttribute("data-dob");
+
+    // Check if the dateOfBirth element and its data-dob attribute exist
+    if (dateOfBirthElement && dateOfBirthValue) {
+      var dateParts = dateOfBirthValue.split("T")[0].split("-");
+      if (dateParts.length === 3) {
+        var year = dateParts[0];
+        var month = dateParts[1];
+        var day = dateParts[2];
+        var monthNames = [
+          "January", "February", "March", "April", "May", "June",
+          "July", "August", "September", "October", "November", "December"
+        ];
+        var formattedDate = day + " " + monthNames[parseInt(month) - 1] + " " + year;
+        dateOfBirthElement.textContent = formattedDate;
+      }
+    }
+
+    // Get all the elements you need
+    var input = document.getElementById("input-box");
+    var btnKeyword = document.querySelectorAll(".btn-keyword");
+    var btnSubmit = document.getElementById("btn-submit");
+    var filmNames = document.querySelectorAll(".film-name");
+    var url = window.location.href;
+    var filmsContainer = document.getElementById("films-container");
+  
+    var filmsValue = filmsContainer.getAttribute("data-films");
+    var filmWikiUrisValue = filmsContainer.getAttribute("data-film-wiki-uris");
+  
+    var films = filmsValue.split(', ');
+    var filmWikiUris = filmWikiUrisValue.split(', ');
+    console.log(filmWikiUris)
+  
+    // Function to create and append film links
+    function createfilmLink(film, uri) {
+      var filmLink = document.createElement("a");
+      filmLink.href = "#"; // Use "#" as a placeholder for now
+      filmLink.target = "_blank";
+      filmLink.style.fontWeight = "600";
+      filmLink.style.textDecoration = "none";
+      filmLink.style.cursor = "pointer";
+      filmLink.style.color = "blue";
+      filmLink.textContent = film;
+  
+      filmLink.addEventListener("click", function (e) {
+        // Handle click logic if needed
+        e.preventDefault(); // Prevent default link behavior
+  
+        // Perform an HTTP POST request with the person_wiki_uri
+        var filmWikiUri = uri;
+        // Replace "#" with the actual endpoint URL
+        var endpointUrl = "{% url 'marvel_dc_app:get_film_detail' %}"; // Replace with your endpoint URL
+        performHttpPost(endpointUrl, filmWikiUri);
+      });
+  
+      return filmLink;
+    }
+  
+    // Append films to the films container
+    films.forEach(function (film, index) {
+      var filmLink = createfilmLink(film, filmWikiUris[index]);
+      filmsContainer.appendChild(filmLink);
+  
+      // Add a comma after each film except the last one
+      if (index < films.length - 1) {
+        filmsContainer.appendChild(document.createTextNode(", "));
+      }
+    });
+  
+    // Add click event listeners to btnKeyword elements
+    btnKeyword.forEach(function (btn) {
+      btn.addEventListener("click", function () {
+        var data = btn.getAttribute("data-pk");
+        input.value = data;
+        btnSubmit.click();
+      });
+    });
+  });
+  
+  // Function to perform an HTTP POST request
+  function performHttpPost(url, data) {
+    // Create a form element
+    var form = document.createElement("form");
+    form.action = url;
+    form.method = "post";
+    form.target = "_blank";
+  
+    // Create an input field for person_wiki_uri
+    var input = document.createElement("input");
+    input.type = "hidden";
+    input.name = "film_wiki_uri";
+    input.value = "wd:" + data.slice(31); // Assuming data is the person_wiki_uri
+    console.log(input.value)
+  
+    // Append the input field to the form
+    form.appendChild(input);
+  
+    // Append the form to the document and submit it
+    document.body.appendChild(form);
+    form.submit();
+  }
+  </script>
+<style>
+.main {
+    width: 100%;
+  }
+
+  header {
+    border-bottom: 0.1px solid #ced4da;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-filmt;
+    height: 115px;
+    justify-content: center;
+  }
+
+  .header {
+    display: flex;
+    align-items: center;
+    height: 80px;
+    gap: 3em;
+  }
+
+  form {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+  }
+
+  .form-group,
+  .btn-group {
+    width: 100%;
+    height: 45px;
+  }
+
+  .form-group {
+    border-radius: 1em;
+    box-shadow: 0 0 3px 3px rgba(0, 0, 0, 0.1);
+  }
+
+  .form-group:hover {
+    box-shadow: 0 0 6px 6px rgba(0, 0, 0, 0.1);
+  }
+
+  .form-control {
+    border-radius: 0;
+    border-top-left-radius: 1em;
+    border-bottom-left-radius: 1em;
+    border-right: none;
+  }
+
+  .form-control:active,
+  .form-control:focus {
+    border-color: #ced4da;
+  }
+
+  .btn-submit {
+    border-top-right-radius: 1em;
+    border-bottom-right-radius: 1em;
+    background-color: transparent;
+    border-color: #ced4da !important;
+    border-left: none;
+  }
+
+  .btn-submit:hover {
+    background-color: transparent !important;
+  }
+
+  .btn-submit img {
+    width: 30px;
+    height: 30px;
+  }
+
+  p {
+    margin-bottom: 7px;
+  }
+
+  .image-frame {
+    width: 200px; /* Set the width and height to your desired fixed size */
+    height: 200px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden; /* This ensures the image doesn't overflow the frame */
+  }
+
+  .image-frame img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* This makes the image fill the frame */
+  }
+</style>
 {% endblock meta %}
 
 {% block content %}
-<nav class="navbar navbar-expand-lg navbar-light fixed-top" style="background-color: rgba(255, 255, 255, 0.7); z-index: 1000;">
-    <div class="container mt-4">
-        <!-- Brand/logo -->
-        <a class="navbar-brand" href="{% url 'marvel_dc_app:index' %}">
-            <span style="color: red; font-size: 20px;">Marvel</span>
-            <span style="color: black; font-size: 20px;">vs</span>
-            <span style="color: blue; font-size: 20px;">DC</span>
-        </a>
-
-        <!-- Navbar links -->
-        <div class="collapse navbar-collapse justify-content-center" id="collapsibleNavbar">
-            <form method="POST" action="{% url 'marvel_dc_app:search_result' %}" class="d-flex mt-4 w-75">
-                <input name="search" id="search-bar" class="form-control rounded-pill me-2" type="search" placeholder="Search" aria-label="Search" value="{{ query|default_if_none:'' }}" style="flex-grow: 1; max-width: 80%;">
-                <button class="btn btn-outline-success rounded-pill">
-                    <i class="fa fa-search" style="font-size:24px"></i>
-                </button>
-            </form>
+    <nav class="navbar navbar-expand-lg navbar-light fixed-top" style="background-color: rgba(255, 255, 255, 0.7); z-index: 1000;">
+      <div class="container mt-4">
+          <!-- Brand/logo -->
+          <a class="navbar-brand" href="{% url 'marvel_dc_app:index' %}" style="font-weight: bold;">
+            <span style="color: red; font-size: 30px;">Marvel</span>
+            <span style="color: black; font-size: 30px;">vs</span>
+            <span style="color: blue; font-size: 30px;">DC</span>
+          </a>
+  
+          <!-- Navbar links -->
+          <div class="collapse navbar-collapse justify-content-center" id="collapsibleNavbar">
+              <form method="POST" action="{% url 'marvel_dc_app:search_result' %}" class="d-flex mt-4 w-75">
+                  <input name="search" id="search-bar" class="form-control rounded-pill me-2" type="search" placeholder="Search" aria-label="Search" value="{{ query|default_if_none:'' }}" style="flex-grow: 1; max-width: 80%;">
+                  <button class="btn btn-outline-success rounded-pill">
+                      <i class="fa fa-search" style="font-size:24px"></i>
+                  </button>
+              </form>
+          </div>
+  
+      </div>
+  </nav>
+  <div class="container" style="margin-top: 130px;">
+    <h2 class="mt-5">Person's Details</h2>
+    <hr class="bg-primary mb-4" style="width: 300px; border: 2px solid blue;">
+  </div>
+  <div class="container search-result">
+    <div style="display: flex; gap: 25px; margin-top: 20px">
+      <div class="left">
+        {% if data2.0.image.value|length > 0 %}
+        <div class="card">
+          <div class="image-frame" style="width: 300px; height: 375px;">
+            <img src="{{ data2.0.image.value }}" class="card-img-top film-image" alt="film-foto">
+          </div>
         </div>
-
-    </div>
-</nav>
-
-<!-- list hasil result nya -->
-<div class="container" style="margin-top: 130px;">
-    <div class="text-right text-muted" style="margin-left: 100px;">
-        About {{ sumDocs }} result{% if sumDocs != 1 %}s{% endif %} ({{ totalTime }} seconds)
-    </div>
-    <br>
-
-    {% if data %}
-        <div class="row">
-            {% for movie in data %}
-                <div class="col-md-4 mb-3">
-                    <div class="card">
-                        <div class="card-body">
-                            <h5 class="card-title">{{ movie.film_name.value }}</h5>
-                            <p class="card-text">
-                                <strong>Year:</strong> {{ movie.year.value }}<br>
-                                <strong>Type:</strong> {{ movie.film_type.value }}
-                            </p>
-                            <form method="post" action="{% url 'marvel_dc_app:get_film_detail' %}">
-                                {% if movie.film_wiki_uri.value|length > 0 %}
-                                    {% with wiki_parts=movie.film_wiki_uri.value|slice:"31:" %}
-                                        <input type="hidden" name="film_wiki_uri" value="wd:{{ wiki_parts }}">
-                                    {% endwith %}
-                                {% endif %}
-                                <button type="submit" class="btn btn-primary">More Details</button>
-                            </form>
-                            
-                        </div>
-                    </div>
-                </div>
-            {% endfor %}
+        {% else %}
+        <div class="card">
+          <div class="image-frame" style="width: 150px; height: 200px;">
+            <img src="https://media.discordapp.net/attachments/827827671991582730/1050115537843261581/default-profile-picture-avatar-photo-placeholder-vector-illustration-default-profile-picture-avatar-photo-placeholder-vector-189495158.png?width=656&height=656" class="card-img-top film-image" alt="film-foto">
+          </div>
         </div>
-    {% else %}
-        <p class="text-danger mt-3">Sorry, there is no result :(</p>
-    {% endif %}
+        {% endif %}
+      </div>
+      <div class="right">
+        <h3>{{ data.0.person_name.value }}</h3>
+        <div class="d-flex flex-wrap">
+          {% if data.0.date_of_birth.value|length > 0 %}
+            <p class="me-4">
+              <i class="bi bi-calendar"></i> <strong>Date of Birth:</strong>
+              <span id="dateOfBirth" data-dob="{{data.0.date_of_birth.value}}"> </span>
+            </p>
+          {% endif %}
+          {% if data.0.sex.value|length > 0 %}
+          <p class="me-4">
+            <i class="bi bi-gender-ambiguous"></i> <strong>Sex:</strong> {{ data.0.sex.value }}
+          </p>
+          {% endif %}
+          {% if data.0.nationalities.value|length > 0 %}
+          <p class="me-4">
+            <i class="bi bi-flag"></i> <strong>Nationalities:</strong> {{ data.0.nationalities.value }}
+          </p>
+          {% endif %}
+          {% if data.0.associated_films.value|length > 0 %}
+          <div style="width: 100%;">
+            <p class="me-4">
+              <i class="bi bi-film"></i> <strong>Associated films:</strong>
+            </p>
+            <div id="films-container"
+                 data-films="{{ data.0.associated_films.value }}"
+                 data-film-wiki-uris="{{ data.0.associated_films_wiki_uri.value }}"></div>
+          </div>
+          {% endif %}
+        </div>
+        {% if data2.0.awarded_for.value|length > 0 %}
+        <p><strong>Winning Award:</strong> {{data2.0.awarded_for.value}}</p>
+        {% endif%} {% if data2.0.nominated_for.value|length > 0 %}
+        <p><strong>Nominated Award:</strong> {{data2.0.nominated_for.value}}</p>
+        {% endif%} {% if data2.0.occupations.value|length > 0 %}
+        <p><strong>Occupations:</strong> {{data2.0.occupations.value}}</p>
+        {% endif%}
+      </div>
+    </div>
+  </div>
+  <!-- Modal -->
+<div
+  class="modal fade"
+  id="myModal"
+  tabindex="-1"
+  aria-labelledby="exampleModalLabel"
+  aria-hidden="true"
+>
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="exampleModalLabel">Error</h1>
+        <button
+          type="button"
+          class="btn-close"
+          data-bs-dismiss="modal"
+          aria-label="Close"
+        ></button>
+      </div>
+      <div class="modal-body">No Data in Wikidata and Local</div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+          Close
+        </button>
+      </div>
+    </div>
+  </div>
 </div>
 {% endblock content %}
