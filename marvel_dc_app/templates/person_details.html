@@ -6,6 +6,26 @@
 <script>
   // JavaScript code
   document.addEventListener("DOMContentLoaded", function () {
+    // Get a reference to the dateOfBirth element
+    var dateOfBirthElement = document.getElementById("dateOfBirth");
+    var dateOfBirthValue = dateOfBirthElement.getAttribute("data-dob");
+
+    // Check if the dateOfBirth element and its data-dob attribute exist
+    if (dateOfBirthElement && dateOfBirthValue) {
+      var dateParts = dateOfBirthValue.split("T")[0].split("-");
+      if (dateParts.length === 3) {
+        var year = dateParts[0];
+        var month = dateParts[1];
+        var day = dateParts[2];
+        var monthNames = [
+          "January", "February", "March", "April", "May", "June",
+          "July", "August", "September", "October", "November", "December"
+        ];
+        var formattedDate = day + " " + monthNames[parseInt(month) - 1] + " " + year;
+        dateOfBirthElement.textContent = formattedDate;
+      }
+    }
+
     // Get all the elements you need
     var input = document.getElementById("input-box");
     var btnKeyword = document.querySelectorAll(".btn-keyword");
@@ -164,6 +184,21 @@
   p {
     margin-bottom: 7px;
   }
+
+  .image-frame {
+    width: 200px; /* Set the width and height to your desired fixed size */
+    height: 200px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden; /* This ensures the image doesn't overflow the frame */
+  }
+
+  .image-frame img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* This makes the image fill the frame */
+  }
 </style>
 {% endblock meta %}
 
@@ -171,10 +206,10 @@
     <nav class="navbar navbar-expand-lg navbar-light fixed-top" style="background-color: rgba(255, 255, 255, 0.7); z-index: 1000;">
       <div class="container mt-4">
           <!-- Brand/logo -->
-          <a class="navbar-brand" href="{% url 'marvel_dc_app:index' %}">
-              <span style="color: red; font-size: 20px;">Marvel</span>
-              <span style="color: black; font-size: 20px;">vs</span>
-              <span style="color: blue; font-size: 20px;">DC</span>
+          <a class="navbar-brand" href="{% url 'marvel_dc_app:index' %}" style="font-weight: bold;">
+            <span style="color: red; font-size: 30px;">Marvel</span>
+            <span style="color: black; font-size: 30px;">vs</span>
+            <span style="color: blue; font-size: 30px;">DC</span>
           </a>
   
           <!-- Navbar links -->
@@ -189,63 +224,63 @@
   
       </div>
   </nav>
-    <div class="container" style="margin-top: 130px;"">
-      <div style="padding: 0 10px">
-        <p style="border-bottom: 2.5px solid #4385f6; width: fit-content">
-          Person's Details
-        </p>
-      </div>
-    </div>
+  <div class="container" style="margin-top: 130px;">
+    <h2 class="mt-5">Person's Details</h2>
+    <hr class="bg-primary mb-4" style="width: 300px; border: 2px solid blue;">
+  </div>
   <div class="container search-result">
     <div style="display: flex; gap: 25px; margin-top: 20px">
       <div class="left">
         {% if data2.0.image.value|length > 0 %}
-        <img
-          alt="film-foto"
-          style="
-            width: 200px;
-            height: 250px;
-            object-fit: contain;
-            border-radius: 0.7em;
-            box-shadow: 0px 0px 10px 10px rgba(0, 0, 0, 0.1);
-          "
-          src="{{data2.0.image.value}}"
-        />
+        <div class="card">
+          <div class="image-frame" style="width: 300px; height: 375px;">
+            <img src="{{ data2.0.image.value }}" class="card-img-top film-image" alt="film-foto">
+          </div>
+        </div>
         {% else %}
-        <img
-          alt="film-foto"
-          style="
-            width: 200px;
-            height: 250px;
-            object-fit: cover;
-            border-radius: 0.7em;
-            box-shadow: 0px 0px 10px 10px rgba(0, 0, 0, 0.1);
-          "
-          src="https://media.discordapp.net/attachments/827827671991582730/1050115537843261581/default-profile-picture-avatar-photo-placeholder-vector-illustration-default-profile-picture-avatar-photo-placeholder-vector-189495158.png?width=656&height=656"
-        />
+        <div class="card">
+          <div class="image-frame" style="width: 150px; height: 200px;">
+            <img src="https://media.discordapp.net/attachments/827827671991582730/1050115537843261581/default-profile-picture-avatar-photo-placeholder-vector-illustration-default-profile-picture-avatar-photo-placeholder-vector-189495158.png?width=656&height=656" class="card-img-top film-image" alt="film-foto">
+          </div>
+        </div>
         {% endif %}
       </div>
       <div class="right">
-        <h5>{{data.0.person_name.value}}</h5>
-        {% if data.0.date_of_birth.value|length > 0%}
-        <p>Date of Birth: {{data.0.date_of_birth.value}}</p>
-        {% endif%} {% if data.0.sex.value|length > 0%}
-        <p>Sex: {{data.0.sex.value}}</p>
-        {% endif%} {% if data.0.nationalities.value|length > 0 %}
-        <p>Nationalities: {{data.0.nationalities.value}}</p>
-        {% endif%} {% if data.0.associated_films.value|length > 0 %}
-        <div style="width: 100%;">
-          <p>Associated films:</p>
-          <div id="films-container"
-               data-films="{{ data.0.associated_films.value }}"
-               data-film-wiki-uris="{{ data.0.associated_films_wiki_uri.value }}"></div>
+        <h3>{{ data.0.person_name.value }}</h3>
+        <div class="d-flex flex-wrap">
+          {% if data.0.date_of_birth.value|length > 0 %}
+            <p class="me-4">
+              <i class="bi bi-calendar"></i> <strong>Date of Birth:</strong>
+              <span id="dateOfBirth" data-dob="{{data.0.date_of_birth.value}}"> </span>
+            </p>
+          {% endif %}
+          {% if data.0.sex.value|length > 0 %}
+          <p class="me-4">
+            <i class="bi bi-gender-ambiguous"></i> <strong>Sex:</strong> {{ data.0.sex.value }}
+          </p>
+          {% endif %}
+          {% if data.0.nationalities.value|length > 0 %}
+          <p class="me-4">
+            <i class="bi bi-flag"></i> <strong>Nationalities:</strong> {{ data.0.nationalities.value }}
+          </p>
+          {% endif %}
+          {% if data.0.associated_films.value|length > 0 %}
+          <div style="width: 100%;">
+            <p class="me-4">
+              <i class="bi bi-film"></i> <strong>Associated films:</strong>
+            </p>
+            <div id="films-container"
+                 data-films="{{ data.0.associated_films.value }}"
+                 data-film-wiki-uris="{{ data.0.associated_films_wiki_uri.value }}"></div>
+          </div>
+          {% endif %}
         </div>
-        {% endif%} {% if data2.0.awarded_for.value|length > 0 %}
-        <p>Winning Award: {{data2.0.awarded_for.value}}</p>
+        {% if data2.0.awarded_for.value|length > 0 %}
+        <p><strong>Winning Award:</strong> {{data2.0.awarded_for.value}}</p>
         {% endif%} {% if data2.0.nominated_for.value|length > 0 %}
-        <p>Nominated Award: {{data2.0.nominated_for.value}}</p>
+        <p><strong>Nominated Award:</strong> {{data2.0.nominated_for.value}}</p>
         {% endif%} {% if data2.0.occupations.value|length > 0 %}
-        <p>Occupations: {{data2.0.occupations.value}}</p>
+        <p><strong>Occupations:</strong> {{data2.0.occupations.value}}</p>
         {% endif%}
       </div>
     </div>

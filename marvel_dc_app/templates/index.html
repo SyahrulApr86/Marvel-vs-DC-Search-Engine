@@ -9,9 +9,9 @@
 <div class="container">
     <div class="row justify-content-center align-items-center vh-100">
         <div class="col-md-6 text-center">
-            <span style="color: red; font-size: 70px;">Marvel</span>
-            <span style="color: black; font-size: 70px;">vs</span>
-            <span style="color: blue; font-size: 70px;">DC</span>
+            <span style="color: red; font-size: 70px; font-weight: bold;">Marvel</span>
+            <span style="color: black; font-size: 70px; font-weight: bold;">vs</span>
+            <span style="color: blue; font-size: 70px; font-weight: bold;">DC</span>
             <form method="POST" action="{% url 'marvel_dc_app:search_result' %}" class="d-flex mt-4">
                 <input name="search" id="search-bar" class="form-control rounded-pill me-2" type="search" placeholder="Search" aria-label="Search" value="{{ query|default_if_none:'' }}">
                 <button class="btn btn-outline-success rounded-pill" >
