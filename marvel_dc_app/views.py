@@ -9,7 +9,7 @@ from datetime import datetime
 
 namespace = "kb"
 # set host pake url blazegraph local/remote
-host = "http://192.168.1.2:9999/"
+host = "http://192.168.1.8:9999/"
 sparql = SPARQLWrapper(f"{host}bigdata/namespace/"+ namespace + "/sparql")
 sparql.setReturnFormat(JSON)
 
@@ -102,14 +102,6 @@ def search_result(request):
 def index(request):
     return render(request, 'index.html')
 
-def search_result_person(request):
-    response = {}
-    return render(request, 'search_person.html', response)
-
-def search_result_film(request):
-    response = {}
-    return render(request, 'search_film.html', response)
-
 @csrf_exempt
 def get_film_detail(request):
     response = {}
@@ -135,8 +127,8 @@ def get_film_detail(request):
     if results["results"]["bindings"] == []:
         response["status_code"] = 404
         response["error_message"] = "URI not found in Marvel DC App Database"
-        # return render(request, 'player_detail.html', response)
-        return JsonResponse(response, status=404)
+        return render(request, 'film_details.html', response)
+        # return JsonResponse(response, status=404)
     
     sparql.setQuery(f"""
       prefix :      <{host}>
@@ -147,7 +139,7 @@ def get_film_detail(request):
       prefix wd:    <http://www.wikidata.org/entity/>
       prefix xsd:   <http://www.w3.org/2001/XMLSchema#>
 
-    SELECT DISTINCT ?film_name ?year ?film_type ?runtime ?mpa_rating ?desc ?crit_cons ?director (group_concat(distinct ?star;separator=", ") as ?stars) (group_concat(distinct ?star_wiki_uri;separator=", ") as ?star_wiki_uris) (group_concat(distinct ?distributor;separator=", ") as ?distributors) (group_concat(distinct ?genre;separator=", ") as ?genres) ?imdb_gross ?imdb_rating ?imdb_votes ?tom_aud_score ?tom_ratings ?tomato_meter ?tomato_review
+    SELECT DISTINCT ?film_name ?year ?film_type ?runtime ?mpa_rating ?desc ?crit_cons ?director ?director_wiki_uri (group_concat(distinct ?star;separator=", ") as ?stars) (group_concat(distinct ?star_wiki_uri;separator=", ") as ?star_wiki_uris) (group_concat(distinct ?distributor;separator=", ") as ?distributors) (group_concat(distinct ?genre;separator=", ") as ?genres) ?imdb_gross ?imdb_rating ?imdb_votes ?tom_aud_score ?tom_ratings ?tomato_meter ?tomato_review
     WHERE{{
         {film_wiki_uri} rdf:type :Film;
                        rdfs:label ?film_name; 
@@ -174,7 +166,7 @@ def get_film_detail(request):
         ?star_wiki_uri rdfs:label ?star.
         
     }}
-    GROUP BY ?film_name ?year ?film_type ?runtime ?mpa_rating ?desc ?crit_cons ?director ?imdb_gross ?imdb_rating ?imdb_votes ?tom_aud_score ?tom_ratings ?tomato_meter ?tomato_review 
+    GROUP BY ?film_name ?year ?film_type ?runtime ?mpa_rating ?desc ?crit_cons ?director ?director_wiki_uri ?imdb_gross ?imdb_rating ?imdb_votes ?tom_aud_score ?tom_ratings ?tomato_meter ?tomato_review 
     """)
 
     sparql.setReturnFormat(JSON)
@@ -213,8 +205,8 @@ def get_film_detail(request):
 
     results = sparql.query().convert()
     response['data2'] = results["results"]["bindings"]
-    # return render(request, 'player_detail.html', response)
-    return JsonResponse(response, status=200)
+    return render(request, 'film_details.html', response)
+    # return JsonResponse(response, status=200)
 
 @csrf_exempt
 def get_person_detail(request):
@@ -244,7 +236,7 @@ def get_person_detail(request):
     if results["results"]["bindings"] == []:
         response["status_code"] = 404
         response["error_message"] = "URI not found in Marvel DC App Database"
-        # return render(request, 'player_detail.html', response)
+        # return render(request, 'person_details.html', response)
         return JsonResponse(response, status=404)
     
     sparql.setQuery(f"""
@@ -315,5 +307,5 @@ def get_person_detail(request):
 
     results = sparql.query().convert()
     response['data2'] = results["results"]["bindings"]
-    # return render(request, 'player_detail.html', response)
+    # return render(request, 'person_details.html', response)
     return JsonResponse(response, status=200)

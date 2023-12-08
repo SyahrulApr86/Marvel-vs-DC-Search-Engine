@@ -46,7 +46,15 @@
                                 <strong>Year:</strong> {{ movie.year.value }}<br>
                                 <strong>Type:</strong> {{ movie.film_type.value }}
                             </p>
-                            <a href="{{ movie.film_wiki_uri.value }}" class="btn btn-primary">More Details</a>
+                            <form method="post" action="{% url 'marvel_dc_app:get_film_detail' %}">
+                                {% if movie.film_wiki_uri.value|length > 0 %}
+                                    {% with wiki_parts=movie.film_wiki_uri.value|slice:"31:" %}
+                                        <input type="hidden" name="film_wiki_uri" value="wd:{{ wiki_parts }}">
+                                    {% endwith %}
+                                {% endif %}
+                                <button type="submit" class="btn btn-primary">More Details</button>
+                            </form>
+                            
                         </div>
                     </div>
                 </div>

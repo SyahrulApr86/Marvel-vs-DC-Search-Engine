@@ -2,16 +2,18 @@
 {% load static %}
 
 {% block meta %}
-<title>Result of '{{ search }}</title>
+<title>Marvel vs DC App</title>
 <script>
-  window.onload = function () {
+  // Wrap your code in a function to ensure it runs after the DOM is loaded
+  document.addEventListener("DOMContentLoaded", function () {
+    // Get all the elements you need
     var input = document.getElementById("input-box");
-    var btnKeyword = [...document.getElementsByClassName("btn-keyword")];
+    var btnKeyword = document.querySelectorAll(".btn-keyword");
     var btnSubmit = document.getElementById("btn-submit");
-    var filmNames = [...document.getElementsByClassName("film-name")];
+    var filmNames = document.querySelectorAll(".film-name");
     var url = window.location.href;
     var director = document.getElementById("director_value");
-    var stars = [...document.getElementsByClassName("stars_value")];
+    var starsContainer = document.getElementById("stars-container");
 
     var starsValue = "{{ data.0.stars.value }}";
     var starWikiUrisValue = "{{ data.0.star_wiki_uris.value }}";
@@ -19,30 +21,47 @@
     var stars = starsValue.split(', ');
     var starWikiUris = starWikiUrisValue.split(', ');
 
-    stars.forEach((star, index) => {
+    // Function to create and append star links
+    function createStarLink(star, uri) {
       var starLink = document.createElement("a");
-      starLink.href = starWikiUris[index];
+      starLink.href = uri;
       starLink.target = "_blank";
       starLink.style.fontWeight = "600";
       starLink.style.textDecoration = "none";
       starLink.style.cursor = "pointer";
       starLink.style.color = "blue";
-      starLink.innerHTML = star;
+      starLink.textContent = star;
 
-      starLink.addEventListener("click", () => {
+      starLink.addEventListener("click", function (e) {
         // Handle click logic if needed
+        e.preventDefault(); // Prevent default link behavior
       });
 
-      // Append the hyperlink to the document
-      document.getElementById("stars-container").appendChild(starLink);
+      return starLink;
+    }
+
+    // Append stars to the stars container
+    stars.forEach(function (star, index) {
+      var starLink = createStarLink(star, starWikiUris[index]);
+      starsContainer.appendChild(starLink);
 
       // Add a comma after each star except the last one
       if (index < stars.length - 1) {
-        document.getElementById("stars-container").appendChild(document.createTextNode(", "));
+        starsContainer.appendChild(document.createTextNode(", "));
       }
     });
 
-    director.addEventListener("click", () => {
+    // Add click event listeners to btnKeyword elements
+    btnKeyword.forEach(function (btn) {
+      btn.addEventListener("click", function () {
+        var data = btn.getAttribute("data-pk");
+        input.value = data;
+        btnSubmit.click();
+      });
+    });
+
+    // Add click event listener to director element
+    director.addEventListener("click", function () {
       var data = director.getAttribute("data-uri");
       data = data.split("/");
       data = data.at(-1);
@@ -56,15 +75,7 @@
         window.location.href = current_url + "person/" + data;
       }
     });
-
-    btnKeyword.forEach((btn) => {
-      btn.addEventListener("click", () => {
-        var data = btn.getAttribute("data-pk");
-        input.value = data;
-        btnSubmit.click();
-      });
-    });
-  };
+  });
 </script>
 <style>
 .main {
@@ -144,15 +155,34 @@
 {% endblock meta %}
 
 {% block content %}
-  <header>
-    <div class="container">
+    <nav class="navbar navbar-expand-lg navbar-light fixed-top" style="background-color: rgba(255, 255, 255, 0.7); z-index: 1000;">
+      <div class="container mt-4">
+          <!-- Brand/logo -->
+          <a class="navbar-brand" href="{% url 'marvel_dc_app:index' %}">
+              <span style="color: red; font-size: 20px;">Marvel</span>
+              <span style="color: black; font-size: 20px;">vs</span>
+              <span style="color: blue; font-size: 20px;">DC</span>
+          </a>
+  
+          <!-- Navbar links -->
+          <div class="collapse navbar-collapse justify-content-center" id="collapsibleNavbar">
+              <form method="POST" action="{% url 'marvel_dc_app:search_result' %}" class="d-flex mt-4 w-75">
+                  <input name="search" id="search-bar" class="form-control rounded-pill me-2" type="search" placeholder="Search" aria-label="Search" value="{{ query|default_if_none:'' }}" style="flex-grow: 1; max-width: 80%;">
+                  <button class="btn btn-outline-success rounded-pill">
+                      <i class="fa fa-search" style="font-size:24px"></i>
+                  </button>
+              </form>
+          </div>
+  
+      </div>
+  </nav>
+    <div class="container" style="margin-top: 130px;"">
       <div style="padding: 0 10px">
         <p style="border-bottom: 2.5px solid #4385f6; width: fit-content">
           Film's Details
         </p>
       </div>
     </div>
-  </header>
   <div class="container search-result">
     <div style="display: flex; gap: 25px; margin-top: 20px">
       <div class="left">
@@ -180,6 +210,20 @@
           "
           src="https://media.discordapp.net/attachments/827827671991582730/1050115537843261581/default-profile-picture-avatar-photo-placeholder-vector-illustration-default-profile-picture-avatar-photo-placeholder-vector-189495158.png?width=656&height=656"
         />
+        {% endif %}{% if data.0.imdb_gross.value|length > 0 %}
+        <p>Gross Profit: {{data.0.imdb_gross.value}}</p>
+        {% endif%} {% if data.0.imdb_rating.value|length > 0 %}
+        <p>IMDB Rating: {{data.0.imdb_rating.value}}</p>
+        {% endif%} {% if data.0.imdb_votes.value|length > 0 %}
+        <p>IMDB Votes: {{data.0.imdb_votes.value}}</p>
+        {% endif%} {% if data.0.tom_aud_score.value|length > 0 %}
+        <p>Regular User Movie Score: {{data.0.tom_aud_score.value}}%</p>
+        {% endif%} {% if data.0.tom_ratings.value|length > 0 %}
+        <p>Number of Regular User Votes: {{data.0.tom_ratings.value}}</p>
+        {% endif%} {% if data.0.tomato_meter.value|length > 0 %}
+        <p>Percentage of PROFESSIONAL critic reviews: {{data.0.tomato_meter.value}}</p>
+        {% endif%} {% if data.0.tomato_review.value|length > 0 %}
+        <p>Number of PROFESSIONAL reviews: {{data.0.tomato_review.value}}</p>
         {% endif %}
       </div>
       <div class="right">
@@ -200,16 +244,10 @@
         <p>
           Director:
           <a
-            style="
-              font-weight: 600;
-              text-decoration: none;
-              cursor: pointer;
-              color: blue;
-            "
+            style="font-weight: 600; text-decoration: none; cursor: pointer; color: blue;"
             id="director_value"
-            data-uri="{{data.0.director_wiki_uri.value}}"
-            >{{data.0.director.value}}</a
-          >
+            data-uri="{{ data.0.director_wiki_uri.value }}"
+          >{{ data.0.director.value }}</a>
         </p>
         {% endif%}{% if data.0.stars.value|length > 0 %}
         <p>Stars: <span id="stars-container"></span></p>
@@ -217,20 +255,10 @@
         <p>Distributors: {{data.0.distributors.value}}</p>
         {% endif%} {% if data.0.genres.value|length > 0 %}
         <p>Genres: {{data.0.genres.value}}</p>
-        {% endif%} {% if data.0.imdb_gross.value|length > 0 %}
-        <p>Gross Profit: {{data.0.imdb_gross.value}}</p>
-        {% endif%} {% if data.0.imdb_rating.value|length > 0 %}
-        <p>IMDB Rating: {{data.0.imdb_rating.value}}</p>
-        {% endif%} {% if data.0.imdb_votes.value|length > 0 %}
-        <p>IMDB Votes: {{data.0.imdb_votes.value}}</p>
-        {% endif%} {% if data.0.tom_aud_score.value|length > 0 %}
-        <p>Regular User Movie Score: {{data.0.tom_aud_score.value}}%</p>
-        {% endif%} {% if data.0.tom_ratings.value|length > 0 %}
-        <p>Number of Regular User Votes: {{data.0.tom_ratings.value}}</p>
-        {% endif%} {% if data.0.tomato_meter.value|length > 0 %}
-        <p>Percentage of PROFESSIONAL critic reviews: {{data.0.tomato_meter.value}}</p>
-        {% endif%} {% if data.0.tomato_review.value|length > 0 %}
-        <p>Number of PROFESSIONAL reviews: {{data.0.tomato_review.value}}</p>
+        {% endif%} {% if data2.0.awarded_for.value|length > 0 %}
+        <p>Winning Award: {{data2.0.awarded_for.value}}</p>
+        {% endif %}{% if data2.0.nominated_for.value|length > 0 %}
+        <p>Nominated Award: {{data2.0.nominated_for.value}}</p>
         {% endif %}
       </div>
     </div>
