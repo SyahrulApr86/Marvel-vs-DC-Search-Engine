@@ -4,78 +4,89 @@
 {% block meta %}
 <title>Marvel vs DC App</title>
 <script>
-  // Wrap your code in a function to ensure it runs after the DOM is loaded
-  document.addEventListener("DOMContentLoaded", function () {
-    // Get all the elements you need
-    var input = document.getElementById("input-box");
-    var btnKeyword = document.querySelectorAll(".btn-keyword");
-    var btnSubmit = document.getElementById("btn-submit");
-    var filmNames = document.querySelectorAll(".film-name");
-    var url = window.location.href;
-    var director = document.getElementById("director_value");
-    var starsContainer = document.getElementById("stars-container");
+// JavaScript code
+document.addEventListener("DOMContentLoaded", function () {
+  // Get all the elements you need
+  var input = document.getElementById("input-box");
+  var btnKeyword = document.querySelectorAll(".btn-keyword");
+  var btnSubmit = document.getElementById("btn-submit");
+  var filmNames = document.querySelectorAll(".film-name");
+  var url = window.location.href;
+  var starsContainer = document.getElementById("stars-container");
 
-    var starsValue = "{{ data.0.stars.value }}";
-    var starWikiUrisValue = "{{ data.0.star_wiki_uris.value }}";
+  var starsValue = starsContainer.getAttribute("data-stars");
+  var starWikiUrisValue = starsContainer.getAttribute("data-star-wiki-uris");
 
-    var stars = starsValue.split(', ');
-    var starWikiUris = starWikiUrisValue.split(', ');
+  var stars = starsValue.split(', ');
+  var starWikiUris = starWikiUrisValue.split(', ');
 
-    // Function to create and append star links
-    function createStarLink(star, uri) {
-      var starLink = document.createElement("a");
-      starLink.href = uri;
-      starLink.target = "_blank";
-      starLink.style.fontWeight = "600";
-      starLink.style.textDecoration = "none";
-      starLink.style.cursor = "pointer";
-      starLink.style.color = "blue";
-      starLink.textContent = star;
+  // Function to create and append star links
+  function createStarLink(star, uri) {
+    var starLink = document.createElement("a");
+    starLink.href = "#"; // Use "#" as a placeholder for now
+    starLink.target = "_blank";
+    starLink.style.fontWeight = "600";
+    starLink.style.textDecoration = "none";
+    starLink.style.cursor = "pointer";
+    starLink.style.color = "blue";
+    starLink.textContent = star;
 
-      starLink.addEventListener("click", function (e) {
-        // Handle click logic if needed
-        e.preventDefault(); // Prevent default link behavior
-      });
+    starLink.addEventListener("click", function (e) {
+      // Handle click logic if needed
+      e.preventDefault(); // Prevent default link behavior
 
-      return starLink;
+      // Perform an HTTP POST request with the person_wiki_uri
+      var personWikiUri = uri;
+      // Replace "#" with the actual endpoint URL
+      var endpointUrl = "{% url 'marvel_dc_app:get_person_detail' %}"; // Replace with your endpoint URL
+      performHttpPost(endpointUrl, personWikiUri);
+    });
+
+    return starLink;
+  }
+
+  // Append stars to the stars container
+  stars.forEach(function (star, index) {
+    var starLink = createStarLink(star, starWikiUris[index]);
+    starsContainer.appendChild(starLink);
+
+    // Add a comma after each star except the last one
+    if (index < stars.length - 1) {
+      starsContainer.appendChild(document.createTextNode(", "));
     }
+  });
 
-    // Append stars to the stars container
-    stars.forEach(function (star, index) {
-      var starLink = createStarLink(star, starWikiUris[index]);
-      starsContainer.appendChild(starLink);
-
-      // Add a comma after each star except the last one
-      if (index < stars.length - 1) {
-        starsContainer.appendChild(document.createTextNode(", "));
-      }
-    });
-
-    // Add click event listeners to btnKeyword elements
-    btnKeyword.forEach(function (btn) {
-      btn.addEventListener("click", function () {
-        var data = btn.getAttribute("data-pk");
-        input.value = data;
-        btnSubmit.click();
-      });
-    });
-
-    // Add click event listener to director element
-    director.addEventListener("click", function () {
-      var data = director.getAttribute("data-uri");
-      data = data.split("/");
-      data = data.at(-1);
-      data = data.slice(0, data.length);
-      current_url = url.split("film");
-      current_url = current_url.at("0");
-
-      if (data.length == 0) {
-        $("#myModal").modal("show");
-      } else {
-        window.location.href = current_url + "person/" + data;
-      }
+  // Add click event listeners to btnKeyword elements
+  btnKeyword.forEach(function (btn) {
+    btn.addEventListener("click", function () {
+      var data = btn.getAttribute("data-pk");
+      input.value = data;
+      btnSubmit.click();
     });
   });
+});
+
+// Function to perform an HTTP POST request
+function performHttpPost(url, data) {
+  // Create a form element
+  var form = document.createElement("form");
+  form.action = url;
+  form.method = "post";
+  form.target = "_blank";
+
+  // Create an input field for person_wiki_uri
+  var input = document.createElement("input");
+  input.type = "hidden";
+  input.name = "person_wiki_uri";
+  input.value = "wd:" + data.slice(31); // Assuming data is the person_wiki_uri
+
+  // Append the input field to the form
+  form.appendChild(input);
+
+  // Append the form to the document and submit it
+  document.body.appendChild(form);
+  form.submit();
+}
 </script>
 <style>
 .main {
@@ -143,12 +154,8 @@
     background-color: transparent !important;
   }
 
-  .btn-submit img {
-    width: 30px;
-    height: 30px;
-  }
 
-  p {
+  p{
     margin-bottom: 7px;
   }
 </style>
@@ -241,16 +248,26 @@
         {% endif%} {% if data.0.crit_cons.value|length > 0 %}
         <p>Critics Consensus: {{data.0.crit_cons.value}}</p>
         {% endif%} {% if data.0.director.value|length > 0%}
-        <p>
-          Director:
-          <a
-            style="font-weight: 600; text-decoration: none; cursor: pointer; color: blue;"
-            id="director_value"
-            data-uri="{{ data.0.director_wiki_uri.value }}"
-          >{{ data.0.director.value }}</a>
-        </p>
+        <div style="width: 100%;">
+          <p>
+            Director:
+              <form action="{% url 'marvel_dc_app:get_person_detail' %}" method="post" id="director_form" target="_blank" style="display: inline-block;">
+                {% with wiki_parts=data.0.director_wiki_uri.value|slice:"31:" %}
+                <input type="hidden" name="person_wiki_uri" value="wd:{{ wiki_parts }}">
+                {% endwith %}
+                <button id="" type="submit" style="font-weight: 600; text-decoration: none; cursor: pointer; color: blue; background: none; border: none;">
+                  {{ data.0.director.value }}
+                </button>
+              </form>
+          </p>
+        </div>     
         {% endif%}{% if data.0.stars.value|length > 0 %}
-        <p>Stars: <span id="stars-container"></span></p>
+        <div style="width: 100%;">
+          <p>Stars:</p>
+          <div id="stars-container"
+               data-stars="{{ data.0.stars.value }}"
+               data-star-wiki-uris="{{ data.0.star_wiki_uris.value }}"></div>
+        </div>
         {% endif%}{% if data.0.distributors.value|length > 0 %}
         <p>Distributors: {{data.0.distributors.value}}</p>
         {% endif%} {% if data.0.genres.value|length > 0 %}
