@@ -303,7 +303,8 @@ def get_person_detail(request):
                     ?awards rdfs:label ?label_awards .
                     FILTER(lang(?label_awards) = 'en')}}
         OPTIONAL{{ {person_wiki_uri} wdt:P2218 ?net_worth .}}
-        OPTIONAL{{ {person_wiki_uri} wdt:P18 ?image .}}
+        OPTIONAL{{ {person_wiki_uri} wdt:P18 ?image_raw .
+                   BIND(REPLACE(STR(?image_raw), "http://commons.wikimedia.org/wiki/Special:FilePath/", "https://commons.wikimedia.org/wiki/File:") as ?image) }}
         }}
     GROUP BY ?image ?net_worth                                                         
         }}
