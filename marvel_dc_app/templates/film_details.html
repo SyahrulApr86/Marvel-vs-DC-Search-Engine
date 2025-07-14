@@ -104,7 +104,10 @@
   <div class="row g-4">
     <!-- Film Poster -->
     <div class="col-lg-4">
-      <div class="enhanced-card p-0 position-sticky" style="top: 120px">
+      <div
+        class="enhanced-card p-0 position-sticky poster-container"
+        style="top: 120px"
+      >
         {% if data2.0.image.value|length > 0 %}
         <img
           src="{{ data2.0.image.value }}"

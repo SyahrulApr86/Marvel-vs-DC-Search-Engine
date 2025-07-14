@@ -219,6 +219,26 @@
         object-position: center !important;
         background-color: #f8f9fa !important;
         border-radius: var(--border-radius-sm) var(--border-radius-sm) 0 0 !important;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1) !important;
+        transition: transform 0.2s ease !important;
+      }
+
+      /* Hover effect untuk poster */
+      .card-img-top:hover,
+      .poster-image:hover {
+        transform: scale(1.02) !important;
+      }
+
+      /* Container untuk poster di film details */
+      .poster-container {
+        background: linear-gradient(
+          135deg,
+          #f8f9fa 0%,
+          #e9ecef 100%
+        ) !important;
+        border-radius: var(--border-radius-sm) !important;
+        overflow: hidden !important;
+        box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1) !important;
       }
 
       .placeholder-image {
@@ -233,6 +253,27 @@
         display: flex !important;
         align-items: center !important;
         justify-content: center !important;
+        position: relative !important;
+      }
+
+      .placeholder-image::before {
+        content: "" !important;
+        position: absolute !important;
+        top: 0 !important;
+        left: 0 !important;
+        right: 0 !important;
+        bottom: 0 !important;
+        background: linear-gradient(
+          45deg,
+          rgba(255, 255, 255, 0.1) 25%,
+          transparent 25%,
+          transparent 50%,
+          rgba(255, 255, 255, 0.1) 50%,
+          rgba(255, 255, 255, 0.1) 75%,
+          transparent 75%
+        ) !important;
+        background-size: 20px 20px !important;
+        opacity: 0.3 !important;
       }
 
       .badge-enhanced {
@@ -355,6 +396,16 @@
         .detail-container {
           padding: 1.5rem;
           margin: 1rem 0;
+        }
+
+        /* Responsif untuk poster */
+        .poster-image {
+          height: 300px !important;
+          min-height: 300px !important;
+        }
+
+        .poster-container {
+          margin-bottom: 2rem !important;
         }
       }
 
