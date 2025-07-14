@@ -29,10 +29,7 @@ services:
     networks:
       - marvel-dc-network
     command: >
-      sh -c "
-        chmod +x /scripts/init-graphdb.sh &&
-        /scripts/init-graphdb.sh
-      "
+      sh -c "/scripts/init-graphdb.sh"
     restart: "no"
 
   # Optional: Web app service untuk development
