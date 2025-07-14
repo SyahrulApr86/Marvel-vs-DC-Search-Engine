@@ -116,7 +116,7 @@
             src="{{ data2.0.image.value }}"
             class="w-100 h-100"
             alt="{{ data.0.person_name.value }}"
-            style="object-fit: cover"
+            style="object-fit: contain"
             onerror="this.src='data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTUwIiBoZWlnaHQ9IjE4NyIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KICA8cmVjdCB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiBmaWxsPSIjZjhmOWZhIi8+CiAgPHRleHQgeD0iNTAlIiB5PSI1MCUiIGZvbnQtZmFtaWx5PSJBcmlhbCwgc2Fucy1zZXJpZiIgZm9udC1zaXplPSIxNCIgZmlsbD0iIzZjNzU3ZCIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZHk9Ii4zZW0iPk5vIFBob3RvPC90ZXh0Pgo8L3N2Zz4K'"
           />
         </div>
@@ -134,7 +134,7 @@
             src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTUwIiBoZWlnaHQ9IjE4NyIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KICA8cmVjdCB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiBmaWxsPSIjZjhmOWZhIi8+CiAgPHRleHQgeD0iNTAlIiB5PSI1MCUiIGZvbnQtZmFtaWx5PSJBcmlhbCwgc2Fucy1zZXJpZiIgZm9udC1zaXplPSIxNCIgZmlsbD0iIzZjNzU3ZCIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZHk9Ii4zZW0iPk5vIFBob3RvPC90ZXh0Pgo8L3N2Zz4K"
             class="w-100 h-100"
             alt="No photo available"
-            style="object-fit: cover"
+            style="object-fit: contain"
           />
         </div>
         {% endif %}
@@ -358,7 +358,7 @@
     // Films container functionality
     var filmsContainer = document.getElementById("films-container");
     if (filmsContainer) {
-    var filmsValue = filmsContainer.getAttribute("data-films");
+      var filmsValue = filmsContainer.getAttribute("data-films");
       var filmWikiUrisValue = filmsContainer.getAttribute(
         "data-film-wiki-uris"
       );
@@ -366,8 +366,8 @@
       if (filmsValue && filmWikiUrisValue) {
         var films = filmsValue.split(", ");
         var filmWikiUris = filmWikiUrisValue.split(", ");
-  
-    // Function to create and append film links
+
+        // Function to create and append film links
         function createFilmLink(film, uri) {
           var filmCol = document.createElement("div");
           filmCol.className = "col-md-6 col-lg-4";
@@ -384,20 +384,20 @@
 
           filmCard.addEventListener("click", function (e) {
             e.preventDefault();
-        var filmWikiUri = uri;
+            var filmWikiUri = uri;
             var endpointUrl = "{% url 'marvel_dc_app:get_film_detail' %}";
             performHttpPost(endpointUrl, filmWikiUri, "film_wiki_uri");
-      });
-  
+          });
+
           filmCol.appendChild(filmCard);
           return filmCol;
-    }
-  
-    // Append films to the films container
-    films.forEach(function (film, index) {
+        }
+
+        // Append films to the films container
+        films.forEach(function (film, index) {
           if (film.trim() && filmWikiUris[index]) {
             var filmLink = createFilmLink(film.trim(), filmWikiUris[index]);
-      filmsContainer.appendChild(filmLink);
+            filmsContainer.appendChild(filmLink);
           }
         });
       }
@@ -554,9 +554,9 @@
 
     .table-enhanced {
       font-size: 0.9rem;
-  }
+    }
 
-  .image-frame {
+    .image-frame {
       height: 300px !important;
     }
   }
