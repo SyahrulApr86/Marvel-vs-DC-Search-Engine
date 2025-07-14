@@ -52,12 +52,12 @@ Cara menjalankan aplikasi:
 
 1. **Jalankan hanya GraphDB:**
    ```shell
-   docker-compose up graphdb -d
+   docker compose up graphdb -d
    ```
 
 2. **Jalankan semua services (GraphDB + Web App):**
    ```shell
-   docker-compose up -d
+   docker compose up -d
    ```
 
 3. **Akses aplikasi:**
@@ -97,5 +97,5 @@ python manage.py runserver
 **Production (Docker):**
 ```shell
 export GRAPHDB_HOST=http://graphdb:7200/
-docker-compose up -d
+docker compose up -d
 ```

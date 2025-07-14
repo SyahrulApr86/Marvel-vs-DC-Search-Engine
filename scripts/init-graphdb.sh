@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/sh
 
 # GraphDB Initialization Script
 # Script ini akan membuat repository 'kb' dan import data secara otomatis

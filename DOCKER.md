@@ -18,13 +18,13 @@ cd Marvel-vs-DC-Search-Engine
 **Hanya GraphDB:**
 ```bash
 # Jalankan hanya service GraphDB
-docker-compose up graphdb -d
+docker compose up graphdb -d
 ```
 
 **Full Stack (GraphDB + Web App):**
 ```bash
 # Jalankan semua services
-docker-compose up -d
+docker compose up -d
 ```
 
 ### 3. Akses Aplikasi
@@ -45,7 +45,7 @@ Anda bisa mengatur environment variables berikut:
 
 ### Automatic Setup
 
-**GraphDB sekarang setup secara otomatis!** Ketika menjalankan `docker-compose up` pertama kali:
+**GraphDB sekarang setup secara otomatis!** Ketika menjalankan `docker compose up` pertama kali:
 
 1. **Repository Creation**: Repository `kb` dibuat otomatis
 2. **Data Import**: File `data/mdc_processed_csv_csv.ttl` di-import otomatis
@@ -54,13 +54,13 @@ Anda bisa mengatur environment variables berikut:
 **Proses Initialization:**
 ```bash
 # Start GraphDB
-docker-compose up -d graphdb
+docker compose up -d graphdb
 
 # Auto-setup (berjalan otomatis)
-docker-compose up graphdb-init
+docker compose up graphdb-init
 
 # Logs untuk monitoring
-docker-compose logs graphdb-init
+docker compose logs graphdb-init
 ```
 
 **Manual Setup (jika diperlukan):**
@@ -86,27 +86,27 @@ Jika auto-setup gagal, bisa setup manual:
 
 ### Membangun ulang images
 ```bash
-docker-compose build
+docker compose build
 ```
 
 ### Melihat logs
 ```bash
 # Semua services
-docker-compose logs -f
+docker compose logs -f
 
 # Service tertentu
-docker-compose logs -f graphdb
-docker-compose logs -f web
+docker compose logs -f graphdb
+docker compose logs -f web
 ```
 
 ### Menghentikan services
 ```bash
-docker-compose down
+docker compose down
 ```
 
 ### Menghapus volumes (hapus data)
 ```bash
-docker-compose down -v
+docker compose down -v
 ```
 
 ## Development dengan Docker
@@ -114,16 +114,16 @@ docker-compose down -v
 ### Mode Development
 ```bash
 # Jalankan dengan hot reload
-docker-compose -f docker-compose.yml -f docker-compose.dev.yml up
+docker compose -f docker compose.yml -f docker compose.dev.yml up
 ```
 
 ### Akses shell container
 ```bash
 # Web application
-docker-compose exec web bash
+docker compose exec web bash
 
 # GraphDB
-docker-compose exec graphdb bash
+docker compose exec graphdb bash
 ```
 
 ## Production Setup
@@ -137,14 +137,14 @@ export DJANGO_DEBUG=False
 
 ### 2. Build dan Deploy
 ```bash
-docker-compose -f docker-compose.yml -f docker-compose.prod.yml up -d
+docker compose -f docker compose.yml -f docker compose.prod.yml up -d
 ```
 
 ## Troubleshooting
 
 ### GraphDB tidak bisa diakses
-- Periksa apakah container berjalan: `docker-compose ps`
-- Cek logs: `docker-compose logs graphdb`
+- Periksa apakah container berjalan: `docker compose ps`
+- Cek logs: `docker compose logs graphdb`
 - Pastikan port 7200 tidak digunakan aplikasi lain
 
 ### Web app tidak bisa connect ke GraphDB
@@ -154,7 +154,7 @@ docker-compose -f docker-compose.yml -f docker-compose.prod.yml up -d
 
 ### Performance Issues
 - Sesuaikan memory allocation di `graphdb.properties`
-- Tingkatkan `GDB_HEAP_SIZE` di docker-compose.yml
+- Tingkatkan `GDB_HEAP_SIZE` di docker compose.yml
 - Monitor resource usage: `docker stats`
 
 ## Backup dan Restore
@@ -162,14 +162,14 @@ docker-compose -f docker-compose.yml -f docker-compose.prod.yml up -d
 ### Backup Data
 ```bash
 # Backup GraphDB data
-docker-compose exec graphdb tar -czf /tmp/backup.tar.gz /opt/graphdb/home
-docker cp $(docker-compose ps -q graphdb):/tmp/backup.tar.gz ./graphdb-backup.tar.gz
+docker compose exec graphdb tar -czf /tmp/backup.tar.gz /opt/graphdb/home
+docker cp $(docker compose ps -q graphdb):/tmp/backup.tar.gz ./graphdb-backup.tar.gz
 ```
 
 ### Restore Data
 ```bash
 # Restore GraphDB data
-docker cp ./graphdb-backup.tar.gz $(docker-compose ps -q graphdb):/tmp/backup.tar.gz
-docker-compose exec graphdb tar -xzf /tmp/backup.tar.gz -C /
-docker-compose restart graphdb
+docker cp ./graphdb-backup.tar.gz $(docker compose ps -q graphdb):/tmp/backup.tar.gz
+docker compose exec graphdb tar -xzf /tmp/backup.tar.gz -C /
+docker compose restart graphdb
 ``` 

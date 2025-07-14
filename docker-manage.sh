@@ -59,34 +59,34 @@ show_help() {
 # Function untuk start services
 start_services() {
     print_info "Starting Marvel vs DC Search Engine..."
-    docker-compose up -d graphdb
+    docker compose up -d graphdb
     print_info "Waiting for GraphDB to be ready..."
     sleep 10
     
     print_info "Running GraphDB initialization..."
-    docker-compose up graphdb-init
+    docker compose up graphdb-init
     
     print_info "Starting web application..."
-    docker-compose up -d web
+    docker compose up -d web
     
     print_success "Services started successfully!"
     print_info "Web App: http://localhost:8000"
     print_info "GraphDB: http://localhost:7200"
-    print_warning "Check graphdb-init logs if there are any issues: docker-compose logs graphdb-init"
+    print_warning "Check graphdb-init logs if there are any issues: docker compose logs graphdb-init"
 }
 
 # Function untuk start development mode
 start_dev() {
     print_info "Starting in development mode..."
-    docker-compose up -d graphdb
+    docker compose up -d graphdb
     print_info "Waiting for GraphDB to be ready..."
     sleep 10
     
     print_info "Running GraphDB initialization..."
-    docker-compose up graphdb-init
+    docker compose up graphdb-init
     
     print_info "Starting web application in development mode..."
-    docker-compose -f docker-compose.yml -f docker-compose.dev.yml up -d web
+    docker compose -f docker compose.yml -f docker compose.dev.yml up -d web
     
     print_success "Development services started!"
     print_info "GraphDB setup completed automatically!"
@@ -95,12 +95,12 @@ start_dev() {
 # Function untuk start hanya GraphDB
 start_graphdb() {
     print_info "Starting GraphDB only..."
-    docker-compose up -d graphdb
+    docker compose up -d graphdb
     print_info "Waiting for GraphDB to be ready..."
     sleep 10
     
     print_info "Running GraphDB initialization..."
-    docker-compose up graphdb-init
+    docker compose up graphdb-init
     
     print_success "GraphDB started and initialized!"
     print_info "GraphDB Workbench: http://localhost:7200"
@@ -110,39 +110,39 @@ start_graphdb() {
 # Function untuk stop services
 stop_services() {
     print_info "Stopping services..."
-    docker-compose down
+    docker compose down
     print_success "Services stopped!"
 }
 
 # Function untuk restart services
 restart_services() {
     print_info "Restarting services..."
-    docker-compose restart
+    docker compose restart
     print_success "Services restarted!"
 }
 
 # Function untuk build images
 build_images() {
     print_info "Building Docker images..."
-    docker-compose build --no-cache
+    docker compose build --no-cache
     print_success "Images built successfully!"
 }
 
 # Function untuk show logs
 show_logs() {
-    docker-compose logs -f
+    docker compose logs -f
 }
 
 show_web_logs() {
-    docker-compose logs -f web
+    docker compose logs -f web
 }
 
 show_graphdb_logs() {
-    docker-compose logs -f graphdb
+    docker compose logs -f graphdb
 }
 
 show_init_logs() {
-    docker-compose logs graphdb-init
+    docker compose logs graphdb-init
 }
 
 # Function untuk test setup
@@ -160,18 +160,18 @@ test_setup() {
 # Function untuk akses shell
 web_shell() {
     print_info "Accessing web container shell..."
-    docker-compose exec web bash
+    docker compose exec web bash
 }
 
 graphdb_shell() {
     print_info "Accessing GraphDB container shell..."
-    docker-compose exec graphdb bash
+    docker compose exec graphdb bash
 }
 
 # Function untuk status
 show_status() {
     print_info "Container status:"
-    docker-compose ps
+    docker compose ps
     echo ""
     print_info "Resource usage:"
     docker stats --no-stream
@@ -184,7 +184,7 @@ clean_up() {
     echo
     if [[ $REPLY =~ ^[Yy]$ ]]; then
         print_info "Cleaning up..."
-        docker-compose down -v --rmi all --remove-orphans
+        docker compose down -v --rmi all --remove-orphans
         print_success "Clean up completed!"
     else
         print_info "Clean up cancelled"
@@ -197,8 +197,8 @@ backup_data() {
     TIMESTAMP=$(date +%Y%m%d_%H%M%S)
     BACKUP_FILE="graphdb-backup-${TIMESTAMP}.tar.gz"
     
-    docker-compose exec graphdb tar -czf /tmp/backup.tar.gz /opt/graphdb/home
-    docker cp $(docker-compose ps -q graphdb):/tmp/backup.tar.gz ./${BACKUP_FILE}
+    docker compose exec graphdb tar -czf /tmp/backup.tar.gz /opt/graphdb/home
+    docker cp $(docker compose ps -q graphdb):/tmp/backup.tar.gz ./${BACKUP_FILE}
     
     print_success "Backup created: ${BACKUP_FILE}"
 }
@@ -220,9 +220,9 @@ restore_data() {
     echo
     if [[ $REPLY =~ ^[Yy]$ ]]; then
         print_info "Restoring from backup: $1"
-        docker cp $1 $(docker-compose ps -q graphdb):/tmp/backup.tar.gz
-        docker-compose exec graphdb tar -xzf /tmp/backup.tar.gz -C /
-        docker-compose restart graphdb
+        docker cp $1 $(docker compose ps -q graphdb):/tmp/backup.tar.gz
+        docker compose exec graphdb tar -xzf /tmp/backup.tar.gz -C /
+        docker compose restart graphdb
         print_success "Restore completed!"
     else
         print_info "Restore cancelled"
@@ -241,7 +241,7 @@ setup_repository() {
     fi
     
     print_info "Running initialization script..."
-    docker-compose up graphdb-init
+    docker compose up graphdb-init
     
     if [ $? -eq 0 ]; then
         print_success "Repository setup completed automatically!"
