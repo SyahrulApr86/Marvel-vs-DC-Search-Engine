@@ -6,9 +6,7 @@
   name="description"
   content="Detailed information about {{ data.0.film_name.value|default:'this film' }} including cast, crew, ratings and more."
 />
-{% endblock meta %}
-
-{% block content %}
+{% endblock meta %} {% block content %}
 <!-- Enhanced Navbar -->
 <nav class="navbar navbar-expand-lg navbar-enhanced fixed-top">
   <div class="container">
@@ -110,18 +108,21 @@
         {% if data2.0.image.value|length > 0 %}
         <img
           src="{{ data2.0.image.value }}"
-          class="w-100 rounded-top"
+          class="poster-image w-100 rounded-top"
           alt="{{ data.0.film_name.value }}"
-          style="height: 500px; object-fit: cover"
+          style="height: 500px; min-height: 500px"
           onerror="this.src='data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjAwIiBoZWlnaHQ9IjMwMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KICA8cmVjdCB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiBmaWxsPSIjZjhmOWZhIi8+CiAgPHRleHQgeD0iNTAlIiB5PSI1MCUiIGZvbnQtZmFtaWx5PSJBcmlhbCwgc2Fucy1zZXJpZiIgZm9udC1zaXplPSIxOCIgZmlsbD0iIzZjNzU3ZCIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZHk9Ii4zZW0iPk5vIEltYWdlPC90ZXh0Pgo8L3N2Zz4K'"
         />
         {% else %}
-        <img
-          src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjAwIiBoZWlnaHQ9IjMwMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KICA8cmVjdCB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiBmaWxsPSIjZjhmOWZhIi8+CiAgPHRleHQgeD0iNTAlIiB5PSI1MCUiIGZvbnQtZmFtaWx5PSJBcmlhbCwgc2Fucy1zZXJpZiIgZm9udC1zaXplPSIxOCIgZmlsbD0iIzZjNzU3ZCIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZHk9Ii4zZW0iPk5vIEltYWdlPC90ZXh0Pgo8L3N2Zz4K"
-          class="w-100 rounded-top"
-          alt="No poster available"
-          style="height: 500px; object-fit: cover"
-        />
+        <div
+          class="placeholder-image d-flex align-items-center justify-content-center"
+          style="height: 500px; min-height: 500px"
+        >
+          <div class="text-center">
+            <i class="fas fa-film text-secondary fs-1 mb-3"></i>
+            <p class="mb-0 text-secondary">No Poster Available</p>
+          </div>
+        </div>
         {% endif %}
 
         <!-- Quick Stats -->
@@ -135,8 +136,7 @@
                 <small class="text-muted">IMDB Rating</small>
               </div>
             </div>
-            {% endif %}
-              {% if data.0.imdb_votes.value|length > 0 %}
+            {% endif %} {% if data.0.imdb_votes.value|length > 0 %}
             <div class="col-6">
               <div class="d-flex flex-column">
                 <i class="fas fa-users text-primary fs-4 mb-2"></i>
@@ -146,8 +146,7 @@
                 <small class="text-muted">Votes</small>
               </div>
             </div>
-            {% endif %}
-              {% if data.0.audience_score.value|length > 0 %}
+            {% endif %} {% if data.0.audience_score.value|length > 0 %}
             <div class="col-6">
               <div class="d-flex flex-column">
                 <i class="fas fa-heart text-danger fs-4 mb-2"></i>
@@ -155,8 +154,7 @@
                 <small class="text-muted">Audience</small>
               </div>
             </div>
-            {% endif %}
-              {% if data.0.prof_reviews.value|length > 0 %}
+            {% endif %} {% if data.0.prof_reviews.value|length > 0 %}
             <div class="col-6">
               <div class="d-flex flex-column">
                 <i class="fas fa-pen-fancy text-success fs-4 mb-2"></i>
@@ -190,8 +188,7 @@
               </div>
             </div>
           </div>
-          {% endif %}
-              {% if data.0.runtime.value|length > 0 %}
+          {% endif %} {% if data.0.runtime.value|length > 0 %}
           <div class="col-md-6">
             <div class="d-flex align-items-center">
               <i class="icon-enhanced fas fa-clock"></i>
@@ -201,8 +198,7 @@
               </div>
             </div>
           </div>
-          {% endif %}
-              {% if data.0.mpa_rating.value|length > 0 %}
+          {% endif %} {% if data.0.mpa_rating.value|length > 0 %}
           <div class="col-md-6">
             <div class="d-flex align-items-center">
               <i class="icon-enhanced fas fa-certificate"></i>
@@ -212,8 +208,7 @@
               </div>
             </div>
           </div>
-          {% endif %}
-              {% if data.0.genres.value|length > 0 %}
+          {% endif %} {% if data.0.genres.value|length > 0 %}
           <div class="col-md-6">
             <div class="d-flex align-items-center">
               <i class="icon-enhanced fas fa-list"></i>
@@ -253,7 +248,8 @@
       </div>
 
       <!-- Detailed Statistics -->
-      {% if data.0.imdb_gross.value|length > 0 or data.0.imdb_votes.value|length > 0 %}
+      {% if data.0.imdb_gross.value|length > 0 or data.0.imdb_votes.value|length
+      > 0 %}
       <div class="enhanced-card p-4 mb-4">
         <h5 class="fw-bold mb-4">
           <i class="fas fa-chart-line me-2 text-gradient"></i>Box Office &
@@ -272,8 +268,7 @@
                   ${{ data.0.imdb_gross.value }}
                 </td>
               </tr>
-              {% endif %}
-              {% if data.0.imdb_rating.value|length > 0 %}
+              {% endif %} {% if data.0.imdb_rating.value|length > 0 %}
               <tr>
                 <td class="fw-semibold">
                   <i class="fas fa-star me-2 text-warning"></i>IMDB Rating
@@ -282,8 +277,7 @@
                   {{ data.0.imdb_rating.value }}/10
                 </td>
               </tr>
-              {% endif %}
-              {% if data.0.imdb_votes.value|length > 0 %}
+              {% endif %} {% if data.0.imdb_votes.value|length > 0 %}
               <tr>
                 <td class="fw-semibold">
                   <i class="fas fa-users me-2 text-primary"></i>IMDB Votes
@@ -292,8 +286,7 @@
                   {{ data.0.imdb_votes.value|floatformat:0 }}
                 </td>
               </tr>
-              {% endif %}
-              {% if data.0.audience_score.value|length > 0 %}
+              {% endif %} {% if data.0.audience_score.value|length > 0 %}
               <tr>
                 <td class="fw-semibold">
                   <i class="fas fa-heart me-2 text-danger"></i>Audience Score
@@ -302,8 +295,7 @@
                   {{ data.0.audience_score.value }}
                 </td>
               </tr>
-              {% endif %}
-              {% if data.0.audience_votes.value|length > 0 %}
+              {% endif %} {% if data.0.audience_votes.value|length > 0 %}
               <tr>
                 <td class="fw-semibold">
                   <i class="fas fa-poll me-2 text-info"></i>Audience Votes
@@ -312,8 +304,7 @@
                   {{ data.0.audience_votes.value|floatformat:0 }}
                 </td>
               </tr>
-              {% endif %}
-              {% if data.0.prof_reviews.value|length > 0 %}
+              {% endif %} {% if data.0.prof_reviews.value|length > 0 %}
               <tr>
                 <td class="fw-semibold">
                   <i class="fas fa-pen-fancy me-2 text-success"></i>Professional
@@ -323,8 +314,7 @@
                   {{ data.0.prof_reviews.value }}
                 </td>
               </tr>
-              {% endif %}
-              {% if data.0.num_prof_reviews.value|length > 0 %}
+              {% endif %} {% if data.0.num_prof_reviews.value|length > 0 %}
               <tr>
                 <td class="fw-semibold">
                   <i class="fas fa-list-ol me-2 text-secondary"></i>Number of

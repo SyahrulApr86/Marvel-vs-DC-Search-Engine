@@ -1,16 +1,11 @@
-{% extends 'base.html' %}
-{% load static %}
-{% load math_extras %}
-
-{% block meta %}
+{% extends 'base.html' %} {% load static %} {% load math_extras %} {% block meta
+%}
 <title>Search Results - Marvel vs DC</title>
 <meta
   name="description"
   content="Search results for your Marvel and DC query. Discover movies."
 />
-{% endblock meta %}
-
-{% block content %}
+{% endblock meta %} {% block content %}
 <!-- Enhanced Navbar -->
 <nav class="navbar navbar-expand-lg navbar-enhanced fixed-top">
   <div class="container">
@@ -68,8 +63,7 @@
         <p class="mb-0 text-muted">
           {% if search_query %} Results for:
           <strong>"{{ search_query }}"</strong>
-          {% endif %}
-          {% if data %}
+          {% endif %} {% if data %}
           <span class="badge bg-primary ms-2"
             >{{ data|length }} result{{ data|length|pluralize }}</span
           >
@@ -99,13 +93,19 @@
           {% if movie.image.value %}
           <img
             src="{{ movie.image.value }}"
-            class="card-img-top w-100 h-100 object-fit-cover"
+            class="card-img-top w-100 h-100"
             alt="{{ movie.film_name.value }}"
             loading="lazy"
+            style="
+              object-fit: cover;
+              object-position: center;
+              background-color: #f8f9fa;
+            "
           />
           {% else %}
           <div
-            class="placeholder-image d-flex align-items-center justify-content-center bg-secondary"
+            class="placeholder-image d-flex align-items-center justify-content-center bg-secondary h-100"
+            style="background-color: #f8f9fa"
           >
             <i class="bi bi-film text-white fs-1"></i>
           </div>
@@ -154,14 +154,12 @@
               <i class="bi bi-calendar"></i>
               {{ movie.year.value }}
             </span>
-            {% endif %}
-          {% if movie.mpa_rating.value %}
+            {% endif %} {% if movie.mpa_rating.value %}
             <span class="badge bg-warning text-dark me-2">
               <i class="bi bi-shield-check"></i>
               {{ movie.mpa_rating.value }}
             </span>
-            {% endif %}
-          {% if movie.runtime.value %}
+            {% endif %} {% if movie.runtime.value %}
             <span class="badge bg-info text-dark me-2">
               <i class="bi bi-clock"></i>
               {{ movie.runtime.value }} min
@@ -176,8 +174,7 @@
               {{ movie.genre.value }}
             </small>
           </div>
-          {% endif %}
-          {% if movie.description.value %}
+          {% endif %} {% if movie.description.value %}
           <p class="card-text mt-3">
             {{ movie.description.value|truncatewords:20 }}
           </p>

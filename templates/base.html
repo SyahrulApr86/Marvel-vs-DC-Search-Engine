@@ -210,6 +210,31 @@
         transform: scale(1.05);
       }
 
+      /* Enhanced image styling untuk cover film */
+      .card-img-top,
+      .poster-image {
+        width: 100% !important;
+        height: 100% !important;
+        object-fit: cover !important;
+        object-position: center !important;
+        background-color: #f8f9fa !important;
+        border-radius: var(--border-radius-sm) var(--border-radius-sm) 0 0 !important;
+      }
+
+      .placeholder-image {
+        width: 100% !important;
+        height: 100% !important;
+        background: linear-gradient(
+          135deg,
+          #f8f9fa 0%,
+          #e9ecef 100%
+        ) !important;
+        border-radius: var(--border-radius-sm) var(--border-radius-sm) 0 0 !important;
+        display: flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+      }
+
       .badge-enhanced {
         background: var(--primary-gradient);
         color: white;
