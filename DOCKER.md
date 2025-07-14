@@ -43,7 +43,7 @@ Anda bisa mengatur environment variables berikut:
 
 ## Konfigurasi GraphDB
 
-### Automatic Setup ✨
+### Automatic Setup
 
 **GraphDB sekarang setup secara otomatis!** Ketika menjalankan `docker-compose up` pertama kali:
 

@@ -42,7 +42,7 @@ Cara menjalankan aplikasi:
 
 5. Bukalah `http://localhost:8000` pada browser favoritmu untuk melihat apakah aplikasi sudah berjalan dengan benar.
 
-## 🐳 Menjalankan dengan Docker
+## Menjalankan dengan Docker
 
 ### Prasyarat
 - Docker
@@ -64,12 +64,12 @@ Cara menjalankan aplikasi:
    - Web Application: http://localhost:8000
    - GraphDB Workbench: http://localhost:7200
 
-### Setup Otomatis ✨
+### Setup Otomatis
 
 GraphDB akan setup secara **otomatis** ketika pertama kali dijalankan:
-- ✅ Repository `kb` dibuat otomatis
-- ✅ Data Marvel DC di-import otomatis dari `data/mdc_processed_csv_csv.ttl` 
-- ✅ Siap langsung digunakan!
+- Repository `kb` dibuat otomatis
+- Data Marvel DC di-import otomatis dari `data/mdc_processed_csv_csv.ttl` 
+- Siap langsung digunakan!
 
 **Manual Setup (jika diperlukan):**
 1. `./docker-manage.sh setup-repository` - Run setup script manual
@@ -77,7 +77,7 @@ GraphDB akan setup secara **otomatis** ketika pertama kali dijalankan:
 
 Untuk dokumentasi lengkap Docker setup, lihat [DOCKER.md](DOCKER.md)
 
-## ⚙️ Konfigurasi
+## Konfigurasi
 
 ### Environment Variables
 

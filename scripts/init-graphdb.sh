@@ -10,22 +10,22 @@ REPOSITORY_ID="kb"
 DATA_FILE="/data/mdc_processed_csv_csv.ttl"
 MAX_WAIT=300  # 5 minutes max wait
 
-echo "🚀 Starting GraphDB initialization..."
+echo "Starting GraphDB initialization..."
 
 # Function untuk menunggu GraphDB ready
 wait_for_graphdb() {
-    echo "⏳ Waiting for GraphDB to be ready..."
+    echo "Waiting for GraphDB to be ready..."
     local count=0
     while [ $count -lt $MAX_WAIT ]; do
         if curl -s -f "${GRAPHDB_HOST}/rest/repositories" > /dev/null 2>&1; then
-            echo "✅ GraphDB is ready!"
+            echo "GraphDB is ready!"
             return 0
         fi
         echo "   GraphDB not ready yet... waiting ($count/$MAX_WAIT)"
         sleep 2
         count=$((count + 2))
     done
-    echo "❌ GraphDB failed to start within $MAX_WAIT seconds"
+    echo "ERROR: GraphDB failed to start within $MAX_WAIT seconds"
     return 1
 }
 
@@ -41,7 +41,7 @@ repository_exists() {
 
 # Function untuk membuat repository
 create_repository() {
-    echo "📦 Creating repository '$REPOSITORY_ID'..."
+    echo "Creating repository '$REPOSITORY_ID'..."
     
     # JSON configuration untuk repository
     local config='{
@@ -94,10 +94,10 @@ create_repository() {
         "${GRAPHDB_HOST}/rest/repositories")
     
     if [ "$response" = "201" ] || [ "$response" = "200" ]; then
-        echo "✅ Repository '$REPOSITORY_ID' created successfully!"
+        echo "Repository '$REPOSITORY_ID' created successfully!"
         return 0
     else
-        echo "❌ Failed to create repository. HTTP status: $response"
+        echo "ERROR: Failed to create repository. HTTP status: $response"
         return 1
     fi
 }
@@ -105,12 +105,12 @@ create_repository() {
 # Function untuk import data
 import_data() {
     if [ ! -f "$DATA_FILE" ]; then
-        echo "⚠️  Data file not found: $DATA_FILE"
+        echo "WARNING: Data file not found: $DATA_FILE"
         echo "   Skipping data import..."
         return 0
     fi
     
-    echo "📥 Importing data from $DATA_FILE..."
+    echo "Importing data from $DATA_FILE..."
     
     local response=$(curl -s -o /dev/null -w "%{http_code}" \
         -X POST \
@@ -119,7 +119,7 @@ import_data() {
         "${GRAPHDB_HOST}/repositories/${REPOSITORY_ID}/statements")
     
     if [ "$response" = "204" ] || [ "$response" = "200" ]; then
-        echo "✅ Data imported successfully!"
+        echo "Data imported successfully!"
         
         # Get count of triples
         local count=$(curl -s \
@@ -128,24 +128,24 @@ import_data() {
             | grep -o '"value":"[0-9]*"' | cut -d'"' -f4)
         
         if [ ! -z "$count" ]; then
-            echo "📊 Total triples imported: $count"
+            echo "Total triples imported: $count"
         fi
         return 0
     else
-        echo "❌ Failed to import data. HTTP status: $response"
+        echo "ERROR: Failed to import data. HTTP status: $response"
         return 1
     fi
 }
 
 # Function untuk verify setup
 verify_setup() {
-    echo "🔍 Verifying setup..."
+    echo "Verifying setup..."
     
     # Check repository
     if repository_exists; then
-        echo "✅ Repository '$REPOSITORY_ID' exists"
+        echo "Repository '$REPOSITORY_ID' exists"
     else
-        echo "❌ Repository verification failed"
+        echo "ERROR: Repository verification failed"
         return 1
     fi
     
@@ -155,42 +155,42 @@ verify_setup() {
         "${GRAPHDB_HOST}/repositories/${REPOSITORY_ID}?query=SELECT%20?s%20WHERE%20{%20?s%20?p%20?o%20}%20LIMIT%201")
     
     if [ "$response" = "200" ]; then
-        echo "✅ SPARQL endpoint is working"
+        echo "SPARQL endpoint is working"
     else
-        echo "❌ SPARQL endpoint test failed"
+        echo "ERROR: SPARQL endpoint test failed"
         return 1
     fi
 }
 
 # Main execution
 main() {
-    echo "🎯 GraphDB Auto-Setup for Marvel vs DC Search Engine"
+    echo "GraphDB Auto-Setup for Marvel vs DC Search Engine"
     echo "================================================="
     
     # Wait for GraphDB to be ready
     if ! wait_for_graphdb; then
-        echo "❌ GraphDB initialization failed - GraphDB not ready"
+        echo "ERROR: GraphDB initialization failed - GraphDB not ready"
         exit 1
     fi
     
     # Check if repository already exists
     if repository_exists; then
-        echo "ℹ️  Repository '$REPOSITORY_ID' already exists"
+        echo "INFO: Repository '$REPOSITORY_ID' already exists"
         echo "   Skipping repository creation..."
     else
         # Create repository
         if ! create_repository; then
-            echo "❌ GraphDB initialization failed - could not create repository"
+            echo "ERROR: GraphDB initialization failed - could not create repository"
             exit 1
         fi
         
         # Wait a bit for repository to be fully ready
-        echo "⏳ Waiting for repository to be ready..."
+        echo "Waiting for repository to be ready..."
         sleep 5
         
         # Import data
         if ! import_data; then
-            echo "⚠️  Data import failed, but repository was created"
+            echo "WARNING: Data import failed, but repository was created"
             echo "   You can manually import data later"
         fi
     fi
@@ -198,12 +198,12 @@ main() {
     # Verify setup
     if verify_setup; then
         echo ""
-        echo "🎉 GraphDB initialization completed successfully!"
-        echo "🌐 GraphDB Workbench: http://localhost:7200"
-        echo "📊 Repository: $REPOSITORY_ID"
-        echo "🔍 Ready for Marvel vs DC Search queries!"
+        echo "GraphDB initialization completed successfully!"
+        echo "GraphDB Workbench: http://localhost:7200"
+        echo "Repository: $REPOSITORY_ID"
+        echo "Ready for Marvel vs DC Search queries!"
     else
-        echo "❌ Setup verification failed"
+        echo "ERROR: Setup verification failed"
         exit 1
     fi
 }
