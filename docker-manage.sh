@@ -44,7 +44,7 @@ show_help() {
     echo "  logs            - Tampilkan logs semua services"
     echo "  logs-web        - Tampilkan logs web application"
     echo "  logs-graphdb    - Tampilkan logs GraphDB"
-    echo "  logs-init       - Tampilkan logs initialization"
+    echo ""
     echo "  shell-web       - Akses shell web container"
     echo "  shell-graphdb   - Akses shell GraphDB container"
     echo "  status          - Tampilkan status containers"
@@ -63,16 +63,13 @@ start_services() {
     print_info "Waiting for GraphDB to be ready..."
     sleep 10
     
-    print_info "Running GraphDB initialization..."
-    docker compose up graphdb-init
-    
     print_info "Starting web application..."
     docker compose up -d web
     
     print_success "Services started successfully!"
     print_info "Web App: http://localhost:8000"
     print_info "GraphDB: http://localhost:7200"
-    print_warning "Check graphdb-init logs if there are any issues: docker compose logs graphdb-init"
+    print_info "Note: Setup repository 'kb' manually via GraphDB Workbench"
 }
 
 # Function untuk start development mode
@@ -82,14 +79,11 @@ start_dev() {
     print_info "Waiting for GraphDB to be ready..."
     sleep 10
     
-    print_info "Running GraphDB initialization..."
-    docker compose up graphdb-init
-    
     print_info "Starting web application in development mode..."
     docker compose -f docker compose.yml -f docker compose.dev.yml up -d web
     
     print_success "Development services started!"
-    print_info "GraphDB setup completed automatically!"
+    print_info "Note: Setup repository 'kb' manually via GraphDB Workbench"
 }
 
 # Function untuk start hanya GraphDB
@@ -99,12 +93,10 @@ start_graphdb() {
     print_info "Waiting for GraphDB to be ready..."
     sleep 10
     
-    print_info "Running GraphDB initialization..."
-    docker compose up graphdb-init
-    
-    print_success "GraphDB started and initialized!"
+    print_success "GraphDB started!"
     print_info "GraphDB Workbench: http://localhost:7200"
-    print_info "Repository 'kb' created with Marvel DC data imported"
+    print_info "Manual setup required: Create repository 'kb' via workbench"
+    print_info "See GRAPHDB_SETUP.md for detailed instructions"
 }
 
 # Function untuk stop services
@@ -141,9 +133,7 @@ show_graphdb_logs() {
     docker compose logs -f graphdb
 }
 
-show_init_logs() {
-    docker compose logs graphdb-init
-}
+
 
 # Function untuk test setup
 test_setup() {
@@ -229,34 +219,26 @@ restore_data() {
     fi
 }
 
-# Function untuk setup repository (manual fallback)
+# Function untuk setup repository (manual instructions)
 setup_repository() {
-    print_info "Running manual GraphDB repository setup..."
-    print_warning "This will run the initialization script manually"
-    
-    if [ ! -f "./scripts/init-graphdb.sh" ]; then
-        print_error "Initialization script not found!"
-        print_info "Please ensure scripts/init-graphdb.sh exists"
-        return 1
-    fi
-    
-    print_info "Running initialization script..."
-    docker compose up graphdb-init
-    
-    if [ $? -eq 0 ]; then
-        print_success "Repository setup completed automatically!"
-        print_info "Repository 'kb' created with Marvel DC data imported"
-    else
-        print_error "Automatic setup failed!"
-        print_info "Manual setup instructions:"
-        print_info "1. Open http://localhost:7200"
-        print_info "2. Go to 'Setup' > 'Repositories'"
-        print_info "3. Click 'Create new repository'"
-        print_info "4. Select 'GraphDB Repository'"
-        print_info "5. Enter Repository ID: kb"
-        print_info "6. Enter Repository title: Marvel DC Knowledge Base"
-        print_info "7. Click 'Create'"
-    fi
+    print_info "GraphDB Repository Setup Instructions"
+    print_info "====================================="
+    print_info ""
+    print_info "Manual setup required via GraphDB Workbench:"
+    print_info "1. Open http://localhost:7200"
+    print_info "2. Go to 'Setup' > 'Repositories'"
+    print_info "3. Click 'Create new repository'"
+    print_info "4. Select 'GraphDB Free' repository type"
+    print_info "5. Enter Repository ID: kb"
+    print_info "6. Enter Repository title: Marvel DC Knowledge Base"
+    print_info "7. Click 'Create'"
+    print_info ""
+    print_info "After creating repository, import data:"
+    print_info "8. Go to 'Import' > 'RDF'"
+    print_info "9. Upload mdc_processed_csv_csv.ttl file"
+    print_info "10. Click 'Import'"
+    print_info ""
+    print_info "See GRAPHDB_SETUP.md for detailed instructions"
 }
 
 # Main script logic
@@ -288,9 +270,7 @@ case "$1" in
     "logs-graphdb")
         show_graphdb_logs
         ;;
-    "logs-init")
-        show_init_logs
-        ;;
+
     "shell-web")
         web_shell
         ;;

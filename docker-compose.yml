@@ -15,42 +15,27 @@ services:
     networks:
       - marvel-dc-network
 
-  # GraphDB Initialization Service
-  graphdb-init:
-    image: curlimages/curl:latest
-    container_name: marvel-dc-graphdb-init
-    volumes:
-      - ./scripts:/scripts:ro
-      - ./data:/data:ro
-    environment:
-      - GRAPHDB_HOST=http://graphdb:7200
-    depends_on:
-      - graphdb
-    networks:
-      - marvel-dc-network
-    command: >
-      sh -c "/scripts/init-graphdb.sh"
-    restart: "no"
 
-  # Optional: Web app service untuk development
-  web:
-    build: .
-    container_name: marvel-dc-webapp
-    ports:
-      - "8000:8000"
-    volumes:
-      - .:/app
-      - /app/env
-    environment:
-      - GRAPHDB_HOST=http://graphdb:7200
-      - DJANGO_DEBUG=True
-    depends_on:
-      - graphdb
-    networks:
-      - marvel-dc-network
-    command: >
-      sh -c "pip install -r requirements.txt &&
-             python manage.py runserver 0.0.0.0:8000"
+
+  # # Optional: Web app service untuk development
+  # web:
+  #   build: .
+  #   container_name: marvel-dc-webapp
+  #   ports:
+  #     - "8000:8000"
+  #   volumes:
+  #     - .:/app
+  #     - /app/env
+  #   environment:
+  #     - GRAPHDB_HOST=http://graphdb:7200
+  #     - DJANGO_DEBUG=True
+  #   depends_on:
+  #     - graphdb
+  #   networks:
+  #     - marvel-dc-network
+  #   command: >
+  #     sh -c "pip install -r requirements.txt &&
+  #            python manage.py runserver 0.0.0.0:8000"
 
 volumes:
   graphdb_data:
