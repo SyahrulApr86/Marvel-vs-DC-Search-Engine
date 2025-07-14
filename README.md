@@ -2,8 +2,6 @@
 
 Jejaring Semantik (CSCE604131) - Gasal 2023/2024
 
-Aplikasi ini dapat diakses melalui link: [https://marvel-dc-7.vercel.app/](https://marvel-dc-7.vercel.app/)
-
 ## Tim Pengembang
 
 - Dianisa Wulandari - 2106702150
