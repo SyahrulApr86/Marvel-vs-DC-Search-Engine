@@ -211,10 +211,22 @@
       }
 
       /* Enhanced image styling untuk cover film */
-      .card-img-top,
-      .poster-image {
+      .card-img-top {
         width: 100% !important;
         height: 100% !important;
+        object-fit: contain !important;
+        object-position: center !important;
+        background-color: #f8f9fa !important;
+        border-radius: var(--border-radius-sm) var(--border-radius-sm) 0 0 !important;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1) !important;
+        transition: transform 0.2s ease !important;
+      }
+
+      /* Styling khusus untuk poster image di film details */
+      .poster-image {
+        width: 100% !important;
+        height: auto !important;
+        max-height: 600px !important;
         object-fit: contain !important;
         object-position: center !important;
         background-color: #f8f9fa !important;
@@ -239,6 +251,15 @@
         border-radius: var(--border-radius-sm) !important;
         overflow: hidden !important;
         box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1) !important;
+        width: fit-content !important;
+        max-width: 100% !important;
+      }
+
+      /* Wrapper untuk centering poster */
+      .poster-wrapper {
+        display: flex !important;
+        justify-content: center !important;
+        align-items: flex-start !important;
       }
 
       .placeholder-image {
@@ -400,11 +421,15 @@
 
         /* Responsif untuk poster */
         .poster-image {
-          height: 300px !important;
-          min-height: 300px !important;
+          max-height: 400px !important;
         }
 
         .poster-container {
+          margin-bottom: 2rem !important;
+        }
+
+        .poster-wrapper {
+          justify-content: center !important;
           margin-bottom: 2rem !important;
         }
       }

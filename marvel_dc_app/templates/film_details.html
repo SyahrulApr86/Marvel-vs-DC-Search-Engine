@@ -104,68 +104,69 @@
   <div class="row g-4">
     <!-- Film Poster -->
     <div class="col-lg-4">
-      <div
-        class="enhanced-card p-0 position-sticky poster-container"
-        style="top: 120px"
-      >
-        {% if data2.0.image.value|length > 0 %}
-        <img
-          src="{{ data2.0.image.value }}"
-          class="poster-image w-100 rounded-top"
-          alt="{{ data.0.film_name.value }}"
-          style="height: 500px; min-height: 500px"
-          onerror="this.src='data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjAwIiBoZWlnaHQ9IjMwMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KICA8cmVjdCB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiBmaWxsPSIjZjhmOWZhIi8+CiAgPHRleHQgeD0iNTAlIiB5PSI1MCUiIGZvbnQtZmFtaWx5PSJBcmlhbCwgc2Fucy1zZXJpZiIgZm9udC1zaXplPSIxOCIgZmlsbD0iIzZjNzU3ZCIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZHk9Ii4zZW0iPk5vIEltYWdlPC90ZXh0Pgo8L3N2Zz4K'"
-        />
-        {% else %}
-        <div
-          class="placeholder-image d-flex align-items-center justify-content-center"
-          style="height: 500px; min-height: 500px"
-        >
-          <div class="text-center">
-            <i class="fas fa-film text-secondary fs-1 mb-3"></i>
-            <p class="mb-0 text-secondary">No Poster Available</p>
+      <div class="poster-wrapper">
+        <div class="enhanced-card p-0 poster-container mb-4">
+          {% if data2.0.image.value|length > 0 %}
+          <img
+            src="{{ data2.0.image.value }}"
+            class="poster-image w-100 rounded-top"
+            alt="{{ data.0.film_name.value }}"
+            style="width: 100%; height: auto; max-height: 600px"
+            onerror="this.src='data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjAwIiBoZWlnaHQ9IjMwMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KICA8cmVjdCB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiBmaWxsPSIjZjhmOWZhIi8+CiAgPHRleHQgeD0iNTAlIiB5PSI1MCUiIGZvbnQtZmFtaWx5PSJBcmlhbCwgc2Fucy1zZXJpZiIgZm9udC1zaXplPSIxOCIgZmlsbD0iIzZjNzU3ZCIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZHk9Ii4zZW0iPk5vIEltYWdlPC90ZXh0Pgo8L3N2Zz4K'"
+          />
+          {% else %}
+          <div
+            class="placeholder-image d-flex align-items-center justify-content-center"
+            style="height: 300px; min-height: 300px"
+          >
+            <div class="text-center">
+              <i class="fas fa-film text-secondary fs-1 mb-3"></i>
+              <p class="mb-0 text-secondary">No Poster Available</p>
+            </div>
           </div>
-        </div>
-        {% endif %}
+          {% endif %}
 
-        <!-- Quick Stats -->
-        <div class="p-4">
-          <div class="row g-3 text-center">
-            {% if data.0.imdb_rating.value|length > 0 %}
-            <div class="col-6">
-              <div class="d-flex flex-column">
-                <i class="fas fa-star text-warning fs-4 mb-2"></i>
-                <strong class="fs-5">{{ data.0.imdb_rating.value }}</strong>
-                <small class="text-muted">IMDB Rating</small>
+          <!-- Quick Stats -->
+          <div class="p-4">
+            <div class="row g-3 text-center">
+              {% if data.0.imdb_rating.value|length > 0 %}
+              <div class="col-6">
+                <div class="d-flex flex-column">
+                  <i class="fas fa-star text-warning fs-4 mb-2"></i>
+                  <strong class="fs-5">{{ data.0.imdb_rating.value }}</strong>
+                  <small class="text-muted">IMDB Rating</small>
+                </div>
               </div>
-            </div>
-            {% endif %} {% if data.0.imdb_votes.value|length > 0 %}
-            <div class="col-6">
-              <div class="d-flex flex-column">
-                <i class="fas fa-users text-primary fs-4 mb-2"></i>
-                <strong class="fs-5"
-                  >{{ data.0.imdb_votes.value|floatformat:0 }}</strong
-                >
-                <small class="text-muted">Votes</small>
+              {% endif %} {% if data.0.imdb_votes.value|length > 0 %}
+              <div class="col-6">
+                <div class="d-flex flex-column">
+                  <i class="fas fa-users text-primary fs-4 mb-2"></i>
+                  <strong class="fs-5"
+                    >{{ data.0.imdb_votes.value|floatformat:0 }}</strong
+                  >
+                  <small class="text-muted">Votes</small>
+                </div>
               </div>
-            </div>
-            {% endif %} {% if data.0.audience_score.value|length > 0 %}
-            <div class="col-6">
-              <div class="d-flex flex-column">
-                <i class="fas fa-heart text-danger fs-4 mb-2"></i>
-                <strong class="fs-5">{{ data.0.audience_score.value }}</strong>
-                <small class="text-muted">Audience</small>
+              {% endif %} {% if data.0.audience_score.value|length > 0 %}
+              <div class="col-6">
+                <div class="d-flex flex-column">
+                  <i class="fas fa-heart text-danger fs-4 mb-2"></i>
+                  <strong class="fs-5"
+                    >{{ data.0.audience_score.value }}</strong
+                  >
+                  <small class="text-muted">Audience</small>
+                </div>
               </div>
-            </div>
-            {% endif %} {% if data.0.prof_reviews.value|length > 0 %}
-            <div class="col-6">
-              <div class="d-flex flex-column">
-                <i class="fas fa-pen-fancy text-success fs-4 mb-2"></i>
-                <strong class="fs-5">{{ data.0.prof_reviews.value }}</strong>
-                <small class="text-muted">Critics</small>
+              {% endif %} {% if data.0.prof_reviews.value|length > 0 %}
+              <div class="col-6">
+                <div class="d-flex flex-column">
+                  <i class="fas fa-pen-fancy text-success fs-4 mb-2"></i>
+                  <strong class="fs-5">{{ data.0.prof_reviews.value }}</strong>
+                  <small class="text-muted">Critics</small>
+                </div>
               </div>
+              {% endif %}
             </div>
-            {% endif %}
           </div>
         </div>
       </div>
@@ -173,385 +174,388 @@
 
     <!-- Film Information -->
     <div class="col-lg-8">
-      <!-- Film Title & Basic Info -->
-      <div class="enhanced-card p-4 mb-4">
-        <h2 class="fw-bold mb-4" style="font-size: 2.5rem; line-height: 1.2">
-          {{ data.0.film_name.value }}
-        </h2>
+        <!-- Film Title & Basic Info -->
+        <div class="enhanced-card p-4 mb-4">
+          <h2 class="fw-bold mb-4" style="font-size: 2.5rem; line-height: 1.2">
+            {{ data.0.film_name.value }}
+          </h2>
 
-        <!-- Film Metadata -->
-        <div class="row g-3 mb-4">
-          {% if data.0.year.value|length > 0 %}
-          <div class="col-md-6">
-            <div class="d-flex align-items-center">
-              <i class="icon-enhanced fas fa-calendar-alt"></i>
-              <div>
-                <strong>Year:</strong>
-                <span class="ms-2">{{ data.0.year.value }}</span>
+          <!-- Film Metadata -->
+          <div class="row g-3 mb-4">
+            {% if data.0.year.value|length > 0 %}
+            <div class="col-md-6">
+              <div class="d-flex align-items-center">
+                <i class="icon-enhanced fas fa-calendar-alt"></i>
+                <div>
+                  <strong>Year:</strong>
+                  <span class="ms-2">{{ data.0.year.value }}</span>
+                </div>
               </div>
             </div>
+            {% endif %} {% if data.0.runtime.value|length > 0 %}
+            <div class="col-md-6">
+              <div class="d-flex align-items-center">
+                <i class="icon-enhanced fas fa-clock"></i>
+                <div>
+                  <strong>Runtime:</strong>
+                  <span class="ms-2">{{ data.0.runtime.value }} minutes</span>
+                </div>
+              </div>
+            </div>
+            {% endif %} {% if data.0.mpa_rating.value|length > 0 %}
+            <div class="col-md-6">
+              <div class="d-flex align-items-center">
+                <i class="icon-enhanced fas fa-certificate"></i>
+                <div>
+                  <strong>MPA Rating:</strong>
+                  <span class="ms-2">{{ data.0.mpa_rating.value }}</span>
+                </div>
+              </div>
+            </div>
+            {% endif %} {% if data.0.genres.value|length > 0 %}
+            <div class="col-md-6">
+              <div class="d-flex align-items-center">
+                <i class="icon-enhanced fas fa-list"></i>
+                <div>
+                  <strong>Genres:</strong>
+                  <span class="ms-2">{{ data.0.genres.value }}</span>
+                </div>
+              </div>
+            </div>
+            {% endif %}
           </div>
-          {% endif %} {% if data.0.runtime.value|length > 0 %}
-          <div class="col-md-6">
-            <div class="d-flex align-items-center">
-              <i class="icon-enhanced fas fa-clock"></i>
-              <div>
-                <strong>Runtime:</strong>
-                <span class="ms-2">{{ data.0.runtime.value }} minutes</span>
-              </div>
-            </div>
+
+          <!-- Description -->
+          {% if data.0.desc.value|length > 0 %}
+          <div class="mb-4">
+            <h5 class="fw-bold mb-3">
+              <i class="fas fa-book-open me-2 text-gradient"></i>Description
+            </h5>
+            <p class="lead" style="line-height: 1.7">{{ data.0.desc.value }}</p>
           </div>
-          {% endif %} {% if data.0.mpa_rating.value|length > 0 %}
-          <div class="col-md-6">
-            <div class="d-flex align-items-center">
-              <i class="icon-enhanced fas fa-certificate"></i>
-              <div>
-                <strong>MPA Rating:</strong>
-                <span class="ms-2">{{ data.0.mpa_rating.value }}</span>
-              </div>
-            </div>
-          </div>
-          {% endif %} {% if data.0.genres.value|length > 0 %}
-          <div class="col-md-6">
-            <div class="d-flex align-items-center">
-              <i class="icon-enhanced fas fa-list"></i>
-              <div>
-                <strong>Genres:</strong>
-                <span class="ms-2">{{ data.0.genres.value }}</span>
-              </div>
-            </div>
+          {% endif %}
+
+          <!-- Critics Consensus -->
+          {% if data.0.crit_cons.value|length > 0 %}
+          <div class="mb-4">
+            <h5 class="fw-bold mb-3">
+              <i class="fas fa-quote-left me-2 text-gradient"></i>Critics
+              Consensus
+            </h5>
+            <blockquote class="blockquote">
+              <p class="mb-0" style="line-height: 1.7">
+                {{ data.0.crit_cons.value }}
+              </p>
+            </blockquote>
           </div>
           {% endif %}
         </div>
 
-        <!-- Description -->
-        {% if data.0.desc.value|length > 0 %}
-        <div class="mb-4">
-          <h5 class="fw-bold mb-3">
-            <i class="fas fa-book-open me-2 text-gradient"></i>Description
+        <!-- Detailed Statistics -->
+        {% if data.0.imdb_gross.value|length > 0 or
+        data.0.imdb_votes.value|length > 0 %}
+        <div class="enhanced-card p-4 mb-4">
+          <h5 class="fw-bold mb-4">
+            <i class="fas fa-chart-line me-2 text-gradient"></i>Box Office &
+            Statistics
           </h5>
-          <p class="lead" style="line-height: 1.7">{{ data.0.desc.value }}</p>
+          <div class="table-enhanced">
+            <table class="table table-enhanced mb-0">
+              <tbody>
+                {% if data.0.imdb_gross.value|length > 0 %}
+                <tr>
+                  <td class="fw-semibold">
+                    <i class="fas fa-dollar-sign me-2 text-success"></i>Gross
+                    Profit
+                  </td>
+                  <td class="text-end fw-bold text-success">
+                    ${{ data.0.imdb_gross.value }}
+                  </td>
+                </tr>
+                {% endif %} {% if data.0.imdb_rating.value|length > 0 %}
+                <tr>
+                  <td class="fw-semibold">
+                    <i class="fas fa-star me-2 text-warning"></i>IMDB Rating
+                  </td>
+                  <td class="text-end fw-bold">
+                    {{ data.0.imdb_rating.value }}/10
+                  </td>
+                </tr>
+                {% endif %} {% if data.0.imdb_votes.value|length > 0 %}
+                <tr>
+                  <td class="fw-semibold">
+                    <i class="fas fa-users me-2 text-primary"></i>IMDB Votes
+                  </td>
+                  <td class="text-end fw-bold">
+                    {{ data.0.imdb_votes.value|floatformat:0 }}
+                  </td>
+                </tr>
+                {% endif %} {% if data.0.audience_score.value|length > 0 %}
+                <tr>
+                  <td class="fw-semibold">
+                    <i class="fas fa-heart me-2 text-danger"></i>Audience Score
+                  </td>
+                  <td class="text-end fw-bold">
+                    {{ data.0.audience_score.value }}
+                  </td>
+                </tr>
+                {% endif %} {% if data.0.audience_votes.value|length > 0 %}
+                <tr>
+                  <td class="fw-semibold">
+                    <i class="fas fa-poll me-2 text-info"></i>Audience Votes
+                  </td>
+                  <td class="text-end fw-bold">
+                    {{ data.0.audience_votes.value|floatformat:0 }}
+                  </td>
+                </tr>
+                {% endif %} {% if data.0.prof_reviews.value|length > 0 %}
+                <tr>
+                  <td class="fw-semibold">
+                    <i class="fas fa-pen-fancy me-2 text-success"></i
+                    >Professional Reviews
+                  </td>
+                  <td class="text-end fw-bold">
+                    {{ data.0.prof_reviews.value }}
+                  </td>
+                </tr>
+                {% endif %} {% if data.0.num_prof_reviews.value|length > 0 %}
+                <tr>
+                  <td class="fw-semibold">
+                    <i class="fas fa-list-ol me-2 text-secondary"></i>Number of
+                    Professional Reviews
+                  </td>
+                  <td class="text-end fw-bold">
+                    {{ data.0.num_prof_reviews.value }}
+                  </td>
+                </tr>
+                {% endif %}
+              </tbody>
+            </table>
+          </div>
         </div>
         {% endif %}
 
-        <!-- Critics Consensus -->
-        {% if data.0.crit_cons.value|length > 0 %}
-        <div class="mb-4">
-          <h5 class="fw-bold mb-3">
-            <i class="fas fa-quote-left me-2 text-gradient"></i>Critics
-            Consensus
+        <!-- Cast & Crew -->
+        <div class="enhanced-card p-4 mb-4">
+          <h5 class="fw-bold mb-4">
+            <i class="fas fa-users me-2 text-gradient"></i>Cast & Crew
           </h5>
-          <blockquote class="blockquote">
-            <p class="mb-0" style="line-height: 1.7">
-              {{ data.0.crit_cons.value }}
-            </p>
-          </blockquote>
-        </div>
-        {% endif %}
-      </div>
 
-      <!-- Detailed Statistics -->
-      {% if data.0.imdb_gross.value|length > 0 or data.0.imdb_votes.value|length > 0 %}
-      <div class="enhanced-card p-4 mb-4">
-        <h5 class="fw-bold mb-4">
-          <i class="fas fa-chart-line me-2 text-gradient"></i>Box Office &
-          Statistics
-        </h5>
-        <div class="table-enhanced">
-          <table class="table table-enhanced mb-0">
-            <tbody>
-              {% if data.0.imdb_gross.value|length > 0 %}
-              <tr>
-                <td class="fw-semibold">
-                  <i class="fas fa-dollar-sign me-2 text-success"></i>Gross
-                  Profit
-                </td>
-                <td class="text-end fw-bold text-success">
-                  ${{ data.0.imdb_gross.value }}
-                </td>
-              </tr>
-              {% endif %} {% if data.0.imdb_rating.value|length > 0 %}
-              <tr>
-                <td class="fw-semibold">
-                  <i class="fas fa-star me-2 text-warning"></i>IMDB Rating
-                </td>
-                <td class="text-end fw-bold">
-                  {{ data.0.imdb_rating.value }}/10
-                </td>
-              </tr>
-              {% endif %} {% if data.0.imdb_votes.value|length > 0 %}
-              <tr>
-                <td class="fw-semibold">
-                  <i class="fas fa-users me-2 text-primary"></i>IMDB Votes
-                </td>
-                <td class="text-end fw-bold">
-                  {{ data.0.imdb_votes.value|floatformat:0 }}
-                </td>
-              </tr>
-              {% endif %} {% if data.0.audience_score.value|length > 0 %}
-              <tr>
-                <td class="fw-semibold">
-                  <i class="fas fa-heart me-2 text-danger"></i>Audience Score
-                </td>
-                <td class="text-end fw-bold">
-                  {{ data.0.audience_score.value }}
-                </td>
-              </tr>
-              {% endif %} {% if data.0.audience_votes.value|length > 0 %}
-              <tr>
-                <td class="fw-semibold">
-                  <i class="fas fa-poll me-2 text-info"></i>Audience Votes
-                </td>
-                <td class="text-end fw-bold">
-                  {{ data.0.audience_votes.value|floatformat:0 }}
-                </td>
-              </tr>
-              {% endif %} {% if data.0.prof_reviews.value|length > 0 %}
-              <tr>
-                <td class="fw-semibold">
-                  <i class="fas fa-pen-fancy me-2 text-success"></i>Professional
-                  Reviews
-                </td>
-                <td class="text-end fw-bold">
-                  {{ data.0.prof_reviews.value }}
-                </td>
-              </tr>
-              {% endif %} {% if data.0.num_prof_reviews.value|length > 0 %}
-              <tr>
-                <td class="fw-semibold">
-                  <i class="fas fa-list-ol me-2 text-secondary"></i>Number of
-                  Professional Reviews
-                </td>
-                <td class="text-end fw-bold">
-                  {{ data.0.num_prof_reviews.value }}
-                </td>
-              </tr>
-              {% endif %}
-            </tbody>
-          </table>
-        </div>
-      </div>
-      {% endif %}
-
-      <!-- Cast & Crew -->
-      <div class="enhanced-card p-4 mb-4">
-        <h5 class="fw-bold mb-4">
-          <i class="fas fa-users me-2 text-gradient"></i>Cast & Crew
-        </h5>
-
-        <!-- Director -->
-        {% if data.0.director.value|length > 0 %}
-        <div class="mb-4">
-          <h6 class="fw-bold mb-3">
-            <i class="fas fa-video me-2"></i>Director
-          </h6>
-          <form
-            action="{% url 'marvel_dc_app:get_person_detail' %}"
-            method="post"
-            class="d-inline"
-          >
-            <input
-              type="hidden"
-              name="person_wiki_uri"
-              value="{{ data.0.director_wiki_uri.value }}"
-            />
-            <button
-              type="submit"
-              class="btn btn-outline-primary btn-sm rounded-pill"
+          <!-- Director -->
+          {% if data.0.director.value|length > 0 %}
+          <div class="mb-4">
+            <h6 class="fw-bold mb-3">
+              <i class="fas fa-video me-2"></i>Director
+            </h6>
+            <form
+              action="{% url 'marvel_dc_app:get_person_detail' %}"
+              method="post"
+              class="d-inline"
             >
-              <i class="fas fa-user me-1"></i>{{ data.0.director.value }}
-            </button>
-          </form>
-        </div>
-        {% endif %}
+              <input
+                type="hidden"
+                name="person_wiki_uri"
+                value="{{ data.0.director_wiki_uri.value }}"
+              />
+              <button
+                type="submit"
+                class="btn btn-outline-primary btn-sm rounded-pill"
+              >
+                <i class="fas fa-user me-1"></i>{{ data.0.director.value }}
+              </button>
+            </form>
+          </div>
+          {% endif %}
 
-        <!-- Stars -->
-        {% if data.0.stars.value|length > 0 %}
-        <div class="mb-4">
-          <h6 class="fw-bold mb-3"><i class="fas fa-star me-2"></i>Stars</h6>
-          <div
-            id="stars-container"
-            data-stars="{{ data.0.stars.value }}"
-            data-star-wiki-uris="{{ data.0.star_wiki_uris.value }}"
-            class="d-flex flex-wrap gap-2"
-          ></div>
-        </div>
-        {% endif %}
+          <!-- Stars -->
+          {% if data.0.stars.value|length > 0 %}
+          <div class="mb-4">
+            <h6 class="fw-bold mb-3"><i class="fas fa-star me-2"></i>Stars</h6>
+            <div
+              id="stars-container"
+              data-stars="{{ data.0.stars.value }}"
+              data-star-wiki-uris="{{ data.0.star_wiki_uris.value }}"
+              class="d-flex flex-wrap gap-2"
+            ></div>
+          </div>
+          {% endif %}
 
-        <!-- Distributors -->
-        {% if data.0.distributors.value|length > 0 %}
-        <div class="mb-4">
-          <h6 class="fw-bold mb-3">
-            <i class="fas fa-building me-2"></i>Distributors
-          </h6>
-          <p class="mb-0">{{ data.0.distributors.value }}</p>
+          <!-- Distributors -->
+          {% if data.0.distributors.value|length > 0 %}
+          <div class="mb-4">
+            <h6 class="fw-bold mb-3">
+              <i class="fas fa-building me-2"></i>Distributors
+            </h6>
+            <p class="mb-0">{{ data.0.distributors.value }}</p>
+          </div>
+          {% endif %}
         </div>
-        {% endif %}
       </div>
     </div>
   </div>
-</div>
 
-<!-- Enhanced JavaScript untuk interactivity -->
-<script>
-  document.addEventListener("DOMContentLoaded", function () {
-    // Stars container functionality
-    var starsContainer = document.getElementById("stars-container");
-    if (starsContainer) {
-      var starsValue = starsContainer.getAttribute("data-stars");
-      var starWikiUrisValue = starsContainer.getAttribute(
-        "data-star-wiki-uris"
-      );
+  <!-- Enhanced JavaScript untuk interactivity -->
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+      // Stars container functionality
+      var starsContainer = document.getElementById("stars-container");
+      if (starsContainer) {
+        var starsValue = starsContainer.getAttribute("data-stars");
+        var starWikiUrisValue = starsContainer.getAttribute(
+          "data-star-wiki-uris"
+        );
 
-      if (starsValue && starWikiUrisValue) {
-        var stars = starsValue.split(", ");
-        var starWikiUris = starWikiUrisValue.split(", ");
+        if (starsValue && starWikiUrisValue) {
+          var stars = starsValue.split(", ");
+          var starWikiUris = starWikiUrisValue.split(", ");
 
-        // Function to create and append star links
-        function createStarLink(star, uri) {
-          var starLink = document.createElement("button");
-          starLink.className = "btn btn-outline-secondary btn-sm rounded-pill";
-          starLink.innerHTML = '<i class="fas fa-user me-1"></i>' + star;
+          // Function to create and append star links
+          function createStarLink(star, uri) {
+            var starLink = document.createElement("button");
+            starLink.className =
+              "btn btn-outline-secondary btn-sm rounded-pill";
+            starLink.innerHTML = '<i class="fas fa-user me-1"></i>' + star;
 
-          starLink.addEventListener("click", function (e) {
-            e.preventDefault();
-            var personWikiUri = uri;
-            var endpointUrl = "{% url 'marvel_dc_app:get_person_detail' %}";
-            performHttpPost(endpointUrl, personWikiUri);
+            starLink.addEventListener("click", function (e) {
+              e.preventDefault();
+              var personWikiUri = uri;
+              var endpointUrl = "{% url 'marvel_dc_app:get_person_detail' %}";
+              performHttpPost(endpointUrl, personWikiUri);
+            });
+
+            return starLink;
+          }
+
+          // Append stars to the stars container
+          stars.forEach(function (star, index) {
+            if (star.trim() && starWikiUris[index]) {
+              var starLink = createStarLink(star.trim(), starWikiUris[index]);
+              starsContainer.appendChild(starLink);
+            }
           });
+        }
+      }
 
-          return starLink;
+      // HTTP POST function
+      function performHttpPost(url, personWikiUri) {
+        var form = document.createElement("form");
+        form.method = "post";
+        form.action = url;
+
+        var csrfToken = document.querySelector("[name=csrfmiddlewaretoken]");
+        if (csrfToken) {
+          var csrfInput = document.createElement("input");
+          csrfInput.type = "hidden";
+          csrfInput.name = "csrfmiddlewaretoken";
+          csrfInput.value = csrfToken.value;
+          form.appendChild(csrfInput);
         }
 
-        // Append stars to the stars container
-        stars.forEach(function (star, index) {
-          if (star.trim() && starWikiUris[index]) {
-            var starLink = createStarLink(star.trim(), starWikiUris[index]);
-            starsContainer.appendChild(starLink);
+        var input = document.createElement("input");
+        input.type = "hidden";
+        input.name = "person_wiki_uri";
+        input.value = personWikiUri;
+        form.appendChild(input);
+
+        document.body.appendChild(form);
+        form.submit();
+      }
+
+      // Enhanced scroll animations
+      const observerOptions = {
+        threshold: 0.1,
+        rootMargin: "0px 0px -50px 0px",
+      };
+
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.style.opacity = "1";
+            entry.target.style.transform = "translateY(0)";
           }
         });
-      }
+      }, observerOptions);
+
+      // Observe enhanced cards
+      document.querySelectorAll(".enhanced-card").forEach((card) => {
+        card.style.opacity = "0";
+        card.style.transform = "translateY(30px)";
+        card.style.transition = "opacity 0.6s ease, transform 0.6s ease";
+        observer.observe(card);
+      });
+
+      // Image loading enhancement
+      document.querySelectorAll("img").forEach((img) => {
+        img.addEventListener("load", function () {
+          this.style.opacity = "1";
+        });
+        img.style.opacity = "0";
+        img.style.transition = "opacity 0.3s ease";
+      });
+
+      // Search functionality
+      document
+        .getElementById("search-bar")
+        .addEventListener("keypress", function (e) {
+          if (e.key === "Enter") {
+            e.preventDefault();
+            this.closest("form").submit();
+          }
+        });
+    });
+  </script>
+
+  <!-- Enhanced CSS untuk detail page -->
+  <style>
+    .blockquote {
+      border-left: 4px solid var(--primary-gradient);
+      padding-left: 1rem;
+      background: rgba(0, 0, 0, 0.02);
+      border-radius: 0 8px 8px 0;
+      padding: 1rem 1rem 1rem 2rem;
+      margin: 0;
     }
 
-    // HTTP POST function
-    function performHttpPost(url, personWikiUri) {
-      var form = document.createElement("form");
-      form.method = "post";
-      form.action = url;
-
-      var csrfToken = document.querySelector("[name=csrfmiddlewaretoken]");
-      if (csrfToken) {
-        var csrfInput = document.createElement("input");
-        csrfInput.type = "hidden";
-        csrfInput.name = "csrfmiddlewaretoken";
-        csrfInput.value = csrfToken.value;
-        form.appendChild(csrfInput);
-      }
-
-      var input = document.createElement("input");
-      input.type = "hidden";
-      input.name = "person_wiki_uri";
-      input.value = personWikiUri;
-      form.appendChild(input);
-
-      document.body.appendChild(form);
-      form.submit();
+    .table-enhanced tbody tr:hover {
+      background-color: rgba(237, 29, 36, 0.05);
     }
 
-    // Enhanced scroll animations
-    const observerOptions = {
-      threshold: 0.1,
-      rootMargin: "0px 0px -50px 0px",
-    };
+    .breadcrumb-item + .breadcrumb-item::before {
+      content: "→";
+      color: var(--text-secondary);
+    }
 
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-          entry.target.style.opacity = "1";
-          entry.target.style.transform = "translateY(0)";
-        }
-      });
-    }, observerOptions);
+    .breadcrumb-item a:hover {
+      color: var(--marvel-red) !important;
+    }
 
-    // Observe enhanced cards
-    document.querySelectorAll(".enhanced-card").forEach((card) => {
-      card.style.opacity = "0";
-      card.style.transform = "translateY(30px)";
-      card.style.transition = "opacity 0.6s ease, transform 0.6s ease";
-      observer.observe(card);
-    });
-
-    // Image loading enhancement
-    document.querySelectorAll("img").forEach((img) => {
-      img.addEventListener("load", function () {
-        this.style.opacity = "1";
-      });
-      img.style.opacity = "0";
-      img.style.transition = "opacity 0.3s ease";
-    });
-
-    // Search functionality
-    document
-      .getElementById("search-bar")
-      .addEventListener("keypress", function (e) {
-        if (e.key === "Enter") {
-          e.preventDefault();
-          this.closest("form").submit();
-        }
-      });
-  });
-</script>
-
-<!-- Enhanced CSS untuk detail page -->
-<style>
-  .blockquote {
-    border-left: 4px solid var(--primary-gradient);
-    padding-left: 1rem;
-    background: rgba(0, 0, 0, 0.02);
-    border-radius: 0 8px 8px 0;
-    padding: 1rem 1rem 1rem 2rem;
-    margin: 0;
-  }
-
-  .table-enhanced tbody tr:hover {
-    background-color: rgba(237, 29, 36, 0.05);
-  }
-
-  .breadcrumb-item + .breadcrumb-item::before {
-    content: "→";
-    color: var(--text-secondary);
-  }
-
-  .breadcrumb-item a:hover {
-    color: var(--marvel-red) !important;
-  }
-
-  /* Sticky poster enhancement */
-  .position-sticky {
-    top: 120px !important;
-  }
-
-  /* Enhanced button hover effects */
-  .btn-outline-primary:hover,
-  .btn-outline-secondary:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
-  }
-
-  /* Mobile optimizations */
-  @media (max-width: 768px) {
+    /* Sticky poster enhancement */
     .position-sticky {
-      position: relative !important;
-      top: auto !important;
+      top: 120px !important;
     }
 
-    h2 {
-      font-size: 2rem !important;
+    /* Enhanced button hover effects */
+    .btn-outline-primary:hover,
+    .btn-outline-secondary:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
     }
 
-    .table-enhanced {
-      font-size: 0.9rem;
+    /* Mobile optimizations */
+    @media (max-width: 768px) {
+      .position-sticky {
+        position: relative !important;
+        top: auto !important;
+      }
+
+      h2 {
+        font-size: 2rem !important;
+      }
+
+      .table-enhanced {
+        font-size: 0.9rem;
+      }
     }
-  }
-</style>
-{% endblock content %}
+  </style>
+  {% endblock content %}
+</div>
