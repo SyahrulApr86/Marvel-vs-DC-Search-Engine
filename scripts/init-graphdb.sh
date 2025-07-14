@@ -43,62 +43,74 @@ repository_exists() {
 create_repository() {
     echo "Creating repository '$REPOSITORY_ID'..."
     
-    # JSON configuration untuk repository
-    local config='{
-        "id": "'$REPOSITORY_ID'",
-        "title": "Marvel DC Knowledge Base",
-        "type": "file-repository",
-        "params": {
-            "ruleset": {
-                "label": "Ruleset",
-                "name": "ruleset",
-                "value": "empty"
-            },
-            "disableSameAs": {
-                "label": "Disable same as",
-                "name": "disableSameAs",
-                "value": "true"
-            },
-            "checkForInconsistencies": {
-                "label": "Check for inconsistencies",
-                "name": "checkForInconsistencies",
-                "value": "false"
-            },
-            "enableContextIndex": {
-                "label": "Enable context index",
-                "name": "enableContextIndex",
-                "value": "false"
-            },
-            "enablePredicateList": {
-                "label": "Enable predicate list",
-                "name": "enablePredicateList",
-                "value": "true"
-            },
-            "cacheMemory": {
-                "label": "Cache memory",
-                "name": "cacheMemory",
-                "value": "80m"
-            },
-            "tupleIndexMemory": {
-                "label": "Tuple index memory", 
-                "name": "tupleIndexMemory",
-                "value": "80m"
-            }
-        }
-    }'
-    
+    # Buat config file TTL untuk repository
+    local config_file="/tmp/repo-config.ttl"
+    cat > "$config_file" << 'EOF'
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix rep: <http://www.openrdf.org/config/repository#> .
+@prefix sr: <http://www.openrdf.org/config/repository/sail#> .
+@prefix sail: <http://www.openrdf.org/config/sail#> .
+@prefix owlim: <http://www.ontotext.com/config/owlim#> .
+
+[] a rep:Repository ;
+   rep:repositoryID "kb" ;
+   rdfs:label "Marvel DC Knowledge Base" ;
+   rep:repositoryImpl [
+      rep:repositoryType "graphdb:SailRepository" ;
+      sr:sailImpl [
+         sail:sailType "graphdb:Sail" ;
+         owlim:repository-type "file-repository" ;
+         owlim:entity-index-size "10000000" ;
+         owlim:entity-id-size "32" ;
+         owlim:imports "" ;
+         owlim:cache-memory "80m" ;
+         owlim:tuple-index-memory "80m" ;
+         owlim:enable-context-index "false" ;
+         owlim:enablePredicateList "true" ;
+         owlim:in-memory-literal-properties "true" ;
+         owlim:enable-literal-index "true" ;
+         owlim:check-for-inconsistencies "false" ;
+         owlim:disable-sameAs "true" ;
+         owlim:query-timeout "0" ;
+         owlim:query-limit-results "0" ;
+         owlim:throw-QueryEvaluationException-on-timeout "false" ;
+         owlim:read-only "false" ;
+         owlim:ruleset "empty" ;
+         owlim:storage-folder "storage"
+      ]
+   ] .
+EOF
+
+    # Upload config file untuk membuat repository
     local response=$(curl -s -o /dev/null -w "%{http_code}" \
         -X POST \
-        -H "Content-Type: application/json" \
-        -d "$config" \
+        -H "Content-Type: text/turtle" \
+        --data-binary "@$config_file" \
         "${GRAPHDB_HOST}/rest/repositories")
+    
+    # Cleanup temp file
+    rm -f "$config_file"
     
     if [ "$response" = "201" ] || [ "$response" = "200" ]; then
         echo "Repository '$REPOSITORY_ID' created successfully!"
         return 0
     else
         echo "ERROR: Failed to create repository. HTTP status: $response"
-        return 1
+        # Mari coba method alternatif dengan JSON sederhana
+        echo "Trying alternative method..."
+        local json_response=$(curl -s -o /dev/null -w "%{http_code}" \
+            -X POST \
+            -H "Content-Type: application/json" \
+            -d '{"id":"'$REPOSITORY_ID'","title":"Marvel DC Knowledge Base","type":"free"}' \
+            "${GRAPHDB_HOST}/rest/repositories")
+        
+        if [ "$json_response" = "201" ] || [ "$json_response" = "200" ]; then
+            echo "Repository '$REPOSITORY_ID' created successfully with alternative method!"
+            return 0
+        else
+            echo "ERROR: Alternative method also failed. HTTP status: $json_response"
+            return 1
+        fi
     fi
 }
 
