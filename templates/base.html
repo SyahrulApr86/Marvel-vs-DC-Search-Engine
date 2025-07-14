@@ -4,18 +4,464 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/font-awesome.min.css">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css">
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
-    <link rel="icon" href="{% static 'images/marvel_vs_dc.png' %}">
+
+    <!-- Google Fonts untuk typography yang lebih baik -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Poppins:wght@300;400;500;600;700;800;900&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- Icons -->
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css"
+    />
+
+    <!-- Bootstrap CSS -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN"
+      crossorigin="anonymous"
+    />
+
+    <!-- Favicon -->
+    <link rel="icon" href="{% static 'images/marvel_vs_dc.png' %}" />
+
+    <!-- Custom CSS untuk enhanced UI/UX -->
+    <style>
+      :root {
+        --marvel-red: #ed1d24;
+        --marvel-red-dark: #c41e3a;
+        --dc-blue: #0074d9;
+        --dc-blue-dark: #0056b3;
+        --primary-gradient: linear-gradient(
+          135deg,
+          var(--marvel-red) 0%,
+          var(--dc-blue) 100%
+        );
+        --card-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+        --card-shadow-hover: 0 12px 48px rgba(0, 0, 0, 0.15);
+        --border-radius: 16px;
+        --border-radius-sm: 8px;
+        --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        --backdrop-blur: blur(20px);
+        --text-primary: #1a1a1a;
+        --text-secondary: #6b7280;
+        --bg-primary: #ffffff;
+        --bg-secondary: #f8fafc;
+        --success-green: #10b981;
+        --warning-yellow: #f59e0b;
+      }
+
+      * {
+        transition: var(--transition);
+      }
+
+      body {
+        font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI",
+          Roboto, sans-serif;
+        line-height: 1.6;
+        color: var(--text-primary);
+        background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
+        min-height: 100vh;
+      }
+
+      .hero-title {
+        font-family: "Poppins", sans-serif;
+        font-weight: 800;
+        letter-spacing: -0.02em;
+        text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+      }
+
+      .marvel-text {
+        color: var(--marvel-red);
+        background: linear-gradient(
+          45deg,
+          var(--marvel-red),
+          var(--marvel-red-dark)
+        );
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+      }
+
+      .dc-text {
+        color: var(--dc-blue);
+        background: linear-gradient(45deg, var(--dc-blue), var(--dc-blue-dark));
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+      }
+
+      .vs-text {
+        color: var(--text-primary);
+        font-weight: 900;
+        position: relative;
+      }
+
+      .vs-text::after {
+        content: "";
+        position: absolute;
+        bottom: -8px;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 40px;
+        height: 4px;
+        background: var(--primary-gradient);
+        border-radius: 2px;
+      }
+
+      .enhanced-card {
+        background: rgba(255, 255, 255, 0.95);
+        backdrop-filter: var(--backdrop-blur);
+        border: 1px solid rgba(255, 255, 255, 0.2);
+        border-radius: var(--border-radius);
+        box-shadow: var(--card-shadow);
+        transition: var(--transition);
+        overflow: hidden;
+      }
+
+      .enhanced-card:hover {
+        transform: translateY(-8px);
+        box-shadow: var(--card-shadow-hover);
+        border-color: rgba(255, 255, 255, 0.3);
+      }
+
+      .btn-enhanced {
+        border-radius: 50px;
+        padding: 12px 24px;
+        font-weight: 600;
+        font-size: 0.95rem;
+        border: none;
+        position: relative;
+        overflow: hidden;
+        z-index: 1;
+      }
+
+      .btn-search {
+        background: var(--primary-gradient);
+        color: white;
+        box-shadow: 0 4px 16px rgba(237, 29, 36, 0.3);
+      }
+
+      .btn-search:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 8px 24px rgba(237, 29, 36, 0.4);
+        color: white;
+      }
+
+      .search-container {
+        position: relative;
+        max-width: 600px;
+        margin: 0 auto;
+      }
+
+      .search-input {
+        border-radius: 50px;
+        padding: 16px 24px;
+        border: 2px solid rgba(255, 255, 255, 0.3);
+        background: rgba(255, 255, 255, 0.9);
+        backdrop-filter: var(--backdrop-blur);
+        font-size: 1.1rem;
+        box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+        transition: var(--transition);
+      }
+
+      .search-input:focus {
+        border-color: var(--marvel-red);
+        box-shadow: 0 0 0 4px rgba(237, 29, 36, 0.1),
+          0 8px 24px rgba(0, 0, 0, 0.15);
+        background: rgba(255, 255, 255, 0.95);
+      }
+
+      .navbar-enhanced {
+        background: rgba(255, 255, 255, 0.95) !important;
+        backdrop-filter: var(--backdrop-blur);
+        border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+        box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
+      }
+
+      .result-card {
+        border-radius: var(--border-radius);
+        border: none;
+        box-shadow: var(--card-shadow);
+        transition: var(--transition);
+        overflow: hidden;
+        background: var(--bg-primary);
+      }
+
+      .result-card:hover {
+        transform: translateY(-4px);
+        box-shadow: var(--card-shadow-hover);
+      }
+
+      .result-card img {
+        transition: var(--transition);
+      }
+
+      .result-card:hover img {
+        transform: scale(1.05);
+      }
+
+      .badge-enhanced {
+        background: var(--primary-gradient);
+        color: white;
+        padding: 8px 16px;
+        border-radius: 50px;
+        font-weight: 600;
+        font-size: 0.85rem;
+        box-shadow: 0 2px 8px rgba(237, 29, 36, 0.3);
+      }
+
+      .stats-badge {
+        background: rgba(255, 255, 255, 0.9);
+        backdrop-filter: var(--backdrop-blur);
+        border: 1px solid rgba(255, 255, 255, 0.3);
+        color: var(--text-secondary);
+        padding: 12px 20px;
+        border-radius: var(--border-radius-sm);
+        font-weight: 500;
+        box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
+      }
+
+      .detail-container {
+        background: rgba(255, 255, 255, 0.95);
+        backdrop-filter: var(--backdrop-blur);
+        border-radius: var(--border-radius);
+        box-shadow: var(--card-shadow);
+        padding: 2rem;
+        margin: 2rem 0;
+      }
+
+      .icon-enhanced {
+        width: 20px;
+        height: 20px;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        margin-right: 8px;
+        color: var(--text-secondary);
+      }
+
+      .text-gradient {
+        background: var(--primary-gradient);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+        font-weight: 700;
+      }
+
+      .loading-spinner {
+        border: 3px solid rgba(237, 29, 36, 0.1);
+        border-top: 3px solid var(--marvel-red);
+        border-radius: 50%;
+        width: 24px;
+        height: 24px;
+        animation: spin 1s linear infinite;
+      }
+
+      @keyframes spin {
+        0% {
+          transform: rotate(0deg);
+        }
+        100% {
+          transform: rotate(360deg);
+        }
+      }
+
+      @keyframes fadeInUp {
+        from {
+          opacity: 0;
+          transform: translateY(30px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      .fade-in-up {
+        animation: fadeInUp 0.6s ease-out;
+      }
+
+      .table-enhanced {
+        background: var(--bg-primary);
+        border-radius: var(--border-radius-sm);
+        overflow: hidden;
+        box-shadow: 0 4px 16px rgba(0, 0, 0, 0.05);
+      }
+
+      .table-enhanced th {
+        background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
+        font-weight: 600;
+        color: var(--text-primary);
+        border: none;
+        padding: 1rem;
+      }
+
+      .table-enhanced td {
+        border: none;
+        padding: 1rem;
+        vertical-align: middle;
+      }
+
+      /* Responsive improvements */
+      @media (max-width: 768px) {
+        .hero-title {
+          font-size: 2.5rem !important;
+        }
+
+        .search-input {
+          font-size: 1rem;
+          padding: 14px 20px;
+        }
+
+        .btn-enhanced {
+          padding: 10px 20px;
+        }
+
+        .detail-container {
+          padding: 1.5rem;
+          margin: 1rem 0;
+        }
+      }
+
+      /* Custom scrollbar */
+      ::-webkit-scrollbar {
+        width: 8px;
+      }
+
+      ::-webkit-scrollbar-track {
+        background: #f1f1f1;
+      }
+
+      ::-webkit-scrollbar-thumb {
+        background: var(--primary-gradient);
+        border-radius: 4px;
+      }
+
+      ::-webkit-scrollbar-thumb:hover {
+        background: var(--marvel-red-dark);
+      }
+    </style>
+
+    <!-- jQuery -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+
     {% block meta %} {% endblock meta %}
   </head>
 
   <body>
-    <div>{% block content %} {% endblock content %}</div>
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js" integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+    <div class="fade-in-up">{% block content %} {% endblock content %}</div>
+
+    <!-- Bootstrap JS -->
+    <script
+      src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"
+      integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
+      crossorigin="anonymous"
+    ></script>
+
+    <!-- Enhanced JavaScript untuk interactivity -->
+    <script>
+      // Smooth scroll untuk anchor links
+      document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
+        anchor.addEventListener("click", function (e) {
+          e.preventDefault();
+          document.querySelector(this.getAttribute("href")).scrollIntoView({
+            behavior: "smooth",
+          });
+        });
+      });
+
+      // Loading state untuk form submissions
+      document.querySelectorAll("form").forEach((form) => {
+        form.addEventListener("submit", function () {
+          const submitBtn = this.querySelector('button[type="submit"]');
+          if (submitBtn) {
+            const originalHTML = submitBtn.innerHTML;
+            submitBtn.innerHTML =
+              '<div class="loading-spinner me-2"></div>Searching...';
+            submitBtn.disabled = true;
+
+            // Re-enable setelah 5 detik sebagai fallback
+            setTimeout(() => {
+              submitBtn.innerHTML = originalHTML;
+              submitBtn.disabled = false;
+            }, 5000);
+          }
+        });
+      });
+
+      // Parallax effect untuk hero section
+      window.addEventListener("scroll", () => {
+        const scrolled = window.pageYOffset;
+        const heroElements = document.querySelectorAll(".hero-parallax");
+        heroElements.forEach((element) => {
+          const speed = element.dataset.speed || 0.5;
+          element.style.transform = `translateY(${scrolled * speed}px)`;
+        });
+      });
+
+      // Enhanced hover effects
+      document.addEventListener("DOMContentLoaded", function () {
+        // Add ripple effect untuk buttons
+        document.querySelectorAll(".btn-enhanced").forEach((button) => {
+          button.addEventListener("click", function (e) {
+            const ripple = document.createElement("span");
+            const rect = this.getBoundingClientRect();
+            const size = Math.max(rect.width, rect.height);
+            const x = e.clientX - rect.left - size / 2;
+            const y = e.clientY - rect.top - size / 2;
+
+            ripple.style.width = ripple.style.height = size + "px";
+            ripple.style.left = x + "px";
+            ripple.style.top = y + "px";
+            ripple.classList.add("ripple");
+
+            this.appendChild(ripple);
+
+            setTimeout(() => {
+              ripple.remove();
+            }, 600);
+          });
+        });
+      });
+    </script>
+
+    <!-- CSS untuk ripple effect -->
+    <style>
+      .btn-enhanced {
+        position: relative;
+        overflow: hidden;
+      }
+
+      .ripple {
+        position: absolute;
+        border-radius: 50%;
+        background: rgba(255, 255, 255, 0.3);
+        transform: scale(0);
+        animation: ripple-animation 0.6s linear;
+        pointer-events: none;
+      }
+
+      @keyframes ripple-animation {
+        to {
+          transform: scale(2);
+          opacity: 0;
+        }
+      }
+    </style>
   </body>
 </html>

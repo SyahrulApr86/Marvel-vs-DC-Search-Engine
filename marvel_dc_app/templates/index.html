@@ -1,27 +1,333 @@
-{% extends 'base.html' %}
-{% load static %}
+{% extends 'base.html' %} {% load static %} {% block meta %}
+<title>Marvel vs DC - Ultimate Superhero Search Engine</title>
+<meta
+  name="description"
+  content="Discover and explore your favorite Marvel and DC characters, movies, and stories in one powerful search engine."
+/>
+{% endblock meta %} {% block content %}
+<div
+  class="min-vh-100 d-flex align-items-center position-relative overflow-hidden"
+>
+  <!-- Background decorative elements -->
+  <div class="position-absolute w-100 h-100" style="z-index: -1">
+    <div
+      class="position-absolute top-0 start-0 w-25 h-25 bg-gradient-danger rounded-circle opacity-10 hero-parallax"
+      data-speed="0.3"
+      style="transform: translate(-50%, -50%)"
+    ></div>
+    <div
+      class="position-absolute bottom-0 end-0 w-25 h-25 bg-gradient-primary rounded-circle opacity-10 hero-parallax"
+      data-speed="0.2"
+      style="transform: translate(50%, 50%)"
+    ></div>
+  </div>
 
-{% block meta %}
-<title>Marvel vs DC WebApp</title>
-{% endblock meta %}
-
-{% block content %}
-<div class="container">
-    <div class="row justify-content-center align-items-center vh-100">
-        <div class="col-md-6 text-center">
-            <span style="color: red; font-size: 70px; font-weight: bold;">Marvel</span>
-            <span style="color: black; font-size: 70px; font-weight: bold;">vs</span>
-            <span style="color: blue; font-size: 70px; font-weight: bold;">DC</span>
-            <form method="POST" action="{% url 'marvel_dc_app:search_result' %}" class="d-flex mt-4">
-                <input name="search" id="search-bar" class="form-control rounded-pill me-2" type="search" placeholder="Search" aria-label="Search" value="{{ query|default_if_none:'' }}">
-                <button class="btn btn-outline-success rounded-pill" >
-                    <i class="fa fa-search" style="font-size:24px"></i>
-                </button>
-            </form>
-            {% if error_message %}
-                <p class="text-danger mt-3">{{ error_message }}</p>
-            {% endif %}
+  <div class="container">
+    <div class="row justify-content-center align-items-center">
+      <div class="col-xl-8 col-lg-10 text-center">
+        <!-- Hero Title dengan enhanced typography -->
+        <div class="mb-5 hero-parallax" data-speed="0.1">
+          <h1
+            class="hero-title mb-3"
+            style="font-size: 4.5rem; line-height: 1.1"
+          >
+            <span class="marvel-text">Marvel</span>
+            <span class="vs-text mx-3">vs</span>
+            <span class="dc-text">DC</span>
+          </h1>
+          <p
+            class="lead text-muted fs-4 mb-0"
+            style="font-weight: 400; letter-spacing: 0.01em"
+          >
+            Ultimate Superhero Search Engine
+          </p>
+          <p
+            class="text-secondary fs-6 mt-2"
+            style="max-width: 500px; margin: 0 auto"
+          >
+            Discover characters, movies, and stories from your favorite
+            superhero universes
+          </p>
         </div>
+
+        <!-- Enhanced Search Container -->
+        <div class="search-container mb-4">
+          <form
+            method="POST"
+            action="{% url 'marvel_dc_app:search_result' %}"
+            class="position-relative"
+          >
+            <div class="d-flex align-items-center gap-3">
+              <div class="flex-grow-1 position-relative">
+                <input
+                  name="search"
+                  id="search-bar"
+                  class="form-control search-input w-100"
+                  type="search"
+                  placeholder="Search for heroes, movies, or stories..."
+                  aria-label="Search"
+                  value="{{ query|default_if_none:'' }}"
+                  autocomplete="off"
+                  required
+                />
+                <div
+                  class="position-absolute top-50 end-0 translate-middle-y me-3"
+                  style="pointer-events: none"
+                >
+                  <i class="fas fa-search text-muted fs-5"></i>
+                </div>
+              </div>
+              <button
+                type="submit"
+                class="btn btn-enhanced btn-search px-4 py-3"
+              >
+                <i class="fas fa-rocket me-2"></i>
+                <span class="d-none d-sm-inline">Search</span>
+              </button>
+            </div>
+          </form>
+        </div>
+
+        <!-- Error Message dengan enhanced styling -->
+        {% if error_message %}
+        <div
+          class="alert alert-danger border-0 rounded-4 shadow-sm fade-in-up"
+          role="alert"
+          style="
+            background: rgba(220, 53, 69, 0.1);
+            backdrop-filter: blur(10px);
+          "
+        >
+          <div class="d-flex align-items-center">
+            <i class="fas fa-exclamation-triangle me-3 text-danger"></i>
+            <div><strong>Oops!</strong> {{ error_message }}</div>
+          </div>
+        </div>
+        {% endif %}
+
+        <!-- Quick search suggestions -->
+        <div class="mt-5 fade-in-up">
+          <p class="text-muted small mb-3">Popular searches:</p>
+          <div class="d-flex flex-wrap justify-content-center gap-2">
+            <button
+              type="button"
+              class="btn btn-outline-secondary btn-sm rounded-pill px-3 py-2"
+              onclick="quickSearch('Batman')"
+              style="
+                border-color: rgba(108, 117, 125, 0.3);
+                backdrop-filter: blur(10px);
+              "
+            >
+              <i class="fab fa-dev me-1"></i> Batman
+            </button>
+            <button
+              type="button"
+              class="btn btn-outline-secondary btn-sm rounded-pill px-3 py-2"
+              onclick="quickSearch('Spider-Man')"
+              style="
+                border-color: rgba(108, 117, 125, 0.3);
+                backdrop-filter: blur(10px);
+              "
+            >
+              <i class="fas fa-spider me-1"></i> Spider-Man
+            </button>
+            <button
+              type="button"
+              class="btn btn-outline-secondary btn-sm rounded-pill px-3 py-2"
+              onclick="quickSearch('Superman')"
+              style="
+                border-color: rgba(108, 117, 125, 0.3);
+                backdrop-filter: blur(10px);
+              "
+            >
+              <i class="fas fa-user-shield me-1"></i> Superman
+            </button>
+            <button
+              type="button"
+              class="btn btn-outline-secondary btn-sm rounded-pill px-3 py-2"
+              onclick="quickSearch('Avengers')"
+              style="
+                border-color: rgba(108, 117, 125, 0.3);
+                backdrop-filter: blur(10px);
+              "
+            >
+              <i class="fas fa-users me-1"></i> Avengers
+            </button>
+          </div>
+        </div>
+
+        <!-- Features showcase -->
+        <div class="row mt-5 g-4">
+          <div class="col-md-4">
+            <div class="enhanced-card p-4 h-100 text-center">
+              <div class="text-gradient fs-2 mb-3">
+                <i class="fas fa-search"></i>
+              </div>
+              <h5 class="fw-bold mb-2">Smart Search</h5>
+              <p class="text-muted small mb-0">
+                Advanced search algorithms to find exactly what you're looking
+                for
+              </p>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="enhanced-card p-4 h-100 text-center">
+              <div class="text-gradient fs-2 mb-3">
+                <i class="fas fa-database"></i>
+              </div>
+              <h5 class="fw-bold mb-2">Rich Database</h5>
+              <p class="text-muted small mb-0">
+                Comprehensive information about characters, movies, and
+                storylines
+              </p>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="enhanced-card p-4 h-100 text-center">
+              <div class="text-gradient fs-2 mb-3">
+                <i class="fas fa-bolt"></i>
+              </div>
+              <h5 class="fw-bold mb-2">Lightning Fast</h5>
+              <p class="text-muted small mb-0">
+                Get instant results with our optimized search engine
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
+  </div>
 </div>
+
+<!-- Enhanced JavaScript untuk interactivity -->
+<script>
+  // Quick search functionality
+  function quickSearch(query) {
+    const searchInput = document.getElementById("search-bar");
+    searchInput.value = query;
+
+    // Add highlight animation
+    searchInput.style.transform = "scale(1.02)";
+    searchInput.style.boxShadow = "0 0 0 4px rgba(237, 29, 36, 0.2)";
+
+    setTimeout(() => {
+      searchInput.style.transform = "";
+      searchInput.style.boxShadow = "";
+      // Auto submit
+      searchInput.closest("form").submit();
+    }, 300);
+  }
+
+  // Enhanced typing animation untuk placeholder
+  document.addEventListener("DOMContentLoaded", function () {
+    const searchInput = document.getElementById("search-bar");
+    const placeholders = [
+      "Search for heroes, movies, or stories...",
+      'Try searching "Batman"...',
+      "Find your favorite Marvel characters...",
+      "Discover DC universe secrets...",
+      "Explore superhero movies...",
+    ];
+
+    let currentIndex = 0;
+    let charIndex = 0;
+    let isDeleting = false;
+
+    function typeWriter() {
+      const currentText = placeholders[currentIndex];
+
+      if (isDeleting) {
+        searchInput.placeholder = currentText.substring(0, charIndex - 1);
+        charIndex--;
+      } else {
+        searchInput.placeholder = currentText.substring(0, charIndex + 1);
+        charIndex++;
+      }
+
+      if (!isDeleting && charIndex === currentText.length) {
+        setTimeout(() => (isDeleting = true), 2000);
+      } else if (isDeleting && charIndex === 0) {
+        isDeleting = false;
+        currentIndex = (currentIndex + 1) % placeholders.length;
+      }
+
+      const speed = isDeleting ? 50 : 100;
+      setTimeout(typeWriter, speed);
+    }
+
+    // Start typing animation after a delay
+    setTimeout(typeWriter, 1000);
+  });
+
+  // Keyboard shortcuts
+  document.addEventListener("keydown", function (e) {
+    // Focus search dengan "/" key
+    if (e.key === "/" && document.activeElement.tagName !== "INPUT") {
+      e.preventDefault();
+      document.getElementById("search-bar").focus();
+    }
+  });
+
+  // Enhanced hover effects untuk feature cards
+  document.querySelectorAll(".enhanced-card").forEach((card) => {
+    card.addEventListener("mouseenter", function () {
+      this.style.transform = "translateY(-12px) scale(1.02)";
+    });
+
+    card.addEventListener("mouseleave", function () {
+      this.style.transform = "";
+    });
+  });
+
+  // Search input enhancements
+  document.getElementById("search-bar").addEventListener("focus", function () {
+    this.closest(".search-container").style.transform = "scale(1.02)";
+  });
+
+  document.getElementById("search-bar").addEventListener("blur", function () {
+    this.closest(".search-container").style.transform = "";
+  });
+</script>
+
+<!-- Additional CSS untuk enhanced effects -->
+<style>
+  .search-container {
+    transition: transform 0.3s ease;
+  }
+
+  .quick-search-btn {
+    transition: all 0.2s ease;
+    backdrop-filter: blur(10px);
+  }
+
+  .quick-search-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  }
+
+  /* Enhanced placeholder animation */
+  .search-input::placeholder {
+    transition: color 0.3s ease;
+  }
+
+  .search-input:focus::placeholder {
+    color: transparent;
+  }
+
+  /* Responsive improvements */
+  @media (max-width: 576px) {
+    .hero-title {
+      font-size: 3rem !important;
+    }
+
+    .vs-text {
+      display: block;
+      margin: 0.5rem 0 !important;
+    }
+
+    .search-input {
+      font-size: 16px; /* Prevent zoom on iOS */
+    }
+  }
+</style>
 {% endblock content %}
