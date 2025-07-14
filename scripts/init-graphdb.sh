@@ -107,11 +107,17 @@ EOF
         if [ "$json_response" = "201" ] || [ "$json_response" = "200" ]; then
             echo "Repository '$REPOSITORY_ID' created successfully with alternative method!"
             return 0
-        else
-            echo "ERROR: Alternative method also failed. HTTP status: $json_response"
-            return 1
-        fi
-    fi
+                 else
+             echo "WARN: Auto repository creation failed. HTTP status: $json_response"
+             echo "INFO: You can create repository manually via GraphDB Workbench:"
+             echo "      1. Go to http://localhost:7200"
+             echo "      2. Setup -> Repositories -> Create new repository"
+             echo "      3. Repository ID: kb"
+             echo "      4. Type: GraphDB Free"
+             echo "      5. Click Create"
+             return 0
+         fi
+     fi
 }
 
 # Function untuk import data
@@ -144,8 +150,10 @@ import_data() {
         fi
         return 0
     else
-        echo "ERROR: Failed to import data. HTTP status: $response"
-        return 1
+        echo "WARN: Failed to import data. HTTP status: $response"
+        echo "INFO: This might be because repository doesn't exist yet"
+        echo "      Create repository manually and import data later"
+        return 0
     fi
 }
 
@@ -157,8 +165,8 @@ verify_setup() {
     if repository_exists; then
         echo "Repository '$REPOSITORY_ID' exists"
     else
-        echo "ERROR: Repository verification failed"
-        return 1
+        echo "WARN: Repository '$REPOSITORY_ID' not found"
+        echo "INFO: Create repository manually via GraphDB Workbench"
     fi
     
     # Simple SPARQL query test
@@ -191,10 +199,10 @@ main() {
         echo "   Skipping repository creation..."
     else
         # Create repository
-        if ! create_repository; then
-            echo "ERROR: GraphDB initialization failed - could not create repository"
-            exit 1
-        fi
+if ! create_repository; then
+    echo "WARN: Auto repository creation failed, but continuing..."
+    echo "INFO: Please create repository manually if needed"
+fi
         
         # Wait a bit for repository to be fully ready
         echo "Waiting for repository to be ready..."
@@ -208,15 +216,20 @@ main() {
     fi
     
     # Verify setup
-    if verify_setup; then
-        echo ""
-        echo "GraphDB initialization completed successfully!"
-        echo "GraphDB Workbench: http://localhost:7200"
-        echo "Repository: $REPOSITORY_ID"
+    verify_setup
+    
+    echo ""
+    echo "GraphDB initialization completed!"
+    echo "GraphDB Workbench: http://localhost:7200"
+    echo "Repository: $REPOSITORY_ID"
+    echo ""
+    if repository_exists; then
         echo "Ready for Marvel vs DC Search queries!"
     else
-        echo "ERROR: Setup verification failed"
-        exit 1
+        echo "Manual setup required:"
+        echo "1. Create repository 'kb' via GraphDB Workbench"
+        echo "2. Import data: /data/mdc_processed_csv_csv.ttl"
+        echo "3. Then start the web application"
     fi
 }
 
