@@ -124,13 +124,13 @@
           <!-- Hover overlay -->
           <div class="card-hover-overlay">
             <div class="d-flex align-items-center justify-content-center h-100">
-              <a
-                href="{% url 'marvel_dc_app:film_details' movie.film_name.value %}"
+              <button
+                onclick="viewFilmDetail('{{ movie.film_wiki_uri.value }}')"
                 class="btn btn-primary btn-lg"
               >
                 <i class="bi bi-eye"></i>
                 View Details
-              </a>
+              </button>
             </div>
           </div>
         </div>
@@ -139,7 +139,8 @@
         <div class="card-body">
           <h5 class="card-title mb-2">
             <a
-              href="{% url 'marvel_dc_app:film_details' movie.film_name.value %}"
+              href="javascript:void(0)"
+              onclick="viewFilmDetail('{{ movie.film_wiki_uri.value }}')"
               class="text-decoration-none"
             >
               {{ movie.film_name.value }}
@@ -273,6 +274,29 @@
     const searchInput = document.querySelector(".navbar .form-control");
     searchInput.value = query;
     searchInput.closest("form").submit();
+  }
+
+  // View film detail functionality
+  function viewFilmDetail(filmWikiUri) {
+    const form = document.createElement("form");
+    form.method = "POST";
+    form.action = "{% url 'marvel_dc_app:get_film_detail' %}";
+
+    const csrfInput = document.createElement("input");
+    csrfInput.type = "hidden";
+    csrfInput.name = "csrfmiddlewaretoken";
+    csrfInput.value = "{{ csrf_token }}";
+
+    const filmUriInput = document.createElement("input");
+    filmUriInput.type = "hidden";
+    filmUriInput.name = "film_wiki_uri";
+    filmUriInput.value = filmWikiUri;
+
+    form.appendChild(csrfInput);
+    form.appendChild(filmUriInput);
+
+    document.body.appendChild(form);
+    form.submit();
   }
 
   // Auto-hide navbar on scroll

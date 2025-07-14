@@ -345,7 +345,7 @@
     // Films container functionality
     var filmsContainer = document.getElementById("films-container");
     if (filmsContainer) {
-      var filmsValue = filmsContainer.getAttribute("data-films");
+    var filmsValue = filmsContainer.getAttribute("data-films");
       var filmWikiUrisValue = filmsContainer.getAttribute(
         "data-film-wiki-uris"
       );
@@ -353,8 +353,8 @@
       if (filmsValue && filmWikiUrisValue) {
         var films = filmsValue.split(", ");
         var filmWikiUris = filmWikiUrisValue.split(", ");
-
-        // Function to create and append film links
+  
+    // Function to create and append film links
         function createFilmLink(film, uri) {
           var filmCol = document.createElement("div");
           filmCol.className = "col-md-6 col-lg-4";
@@ -371,20 +371,20 @@
 
           filmCard.addEventListener("click", function (e) {
             e.preventDefault();
-            var filmWikiUri = uri;
+        var filmWikiUri = uri;
             var endpointUrl = "{% url 'marvel_dc_app:get_film_detail' %}";
             performHttpPost(endpointUrl, filmWikiUri, "film_wiki_uri");
-          });
-
+      });
+  
           filmCol.appendChild(filmCard);
           return filmCol;
-        }
-
-        // Append films to the films container
-        films.forEach(function (film, index) {
+    }
+  
+    // Append films to the films container
+    films.forEach(function (film, index) {
           if (film.trim() && filmWikiUris[index]) {
             var filmLink = createFilmLink(film.trim(), filmWikiUris[index]);
-            filmsContainer.appendChild(filmLink);
+      filmsContainer.appendChild(filmLink);
           }
         });
       }
@@ -541,9 +541,9 @@
 
     .table-enhanced {
       font-size: 0.9rem;
-    }
+  }
 
-    .image-frame {
+  .image-frame {
       height: 300px !important;
     }
   }
