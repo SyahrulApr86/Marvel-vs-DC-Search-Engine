@@ -6,10 +6,15 @@ from fuzzywuzzy import process
 from django.views.decorators.csrf import csrf_exempt
 from django.http import JsonResponse
 from datetime import datetime
+import os
 
 namespace = "kb"
 # set host pake url blazegraph local/remote
-host = "http://34.124.187.20:8889/"
+# Gunakan environment variable atau fallback ke remote server
+host = os.getenv('BLAZEGRAPH_HOST', "http://34.124.187.20:8889/")
+if not host.endswith('/'):
+    host += '/'
+    
 sparql = SPARQLWrapper(f"{host}bigdata/namespace/"+ namespace + "/sparql")
 sparql.setReturnFormat(JSON)
 

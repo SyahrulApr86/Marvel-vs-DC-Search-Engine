@@ -1,0 +1,44 @@
+version: '3.8'
+
+services:
+  blazegraph:
+    image: nawer/blazegraph:2.1.5
+    container_name: marvel-dc-blazegraph
+    ports:
+      - "9999:9999"
+    volumes:
+      - blazegraph_data:/var/lib/blazegraph
+      - ./blazegraph.properties:/var/lib/blazegraph/conf/blazegraph.properties
+    environment:
+      - JAVA_OPTS=-server -Xmx4g -Djava.awt.headless=true
+    restart: unless-stopped
+    networks:
+      - marvel-dc-network
+
+  # Optional: Web app service untuk development
+  web:
+    build: .
+    container_name: marvel-dc-webapp
+    ports:
+      - "8000:8000"
+    volumes:
+      - .:/app
+      - /app/env
+    environment:
+      - BLAZEGRAPH_HOST=http://blazegraph:9999
+      - DJANGO_DEBUG=True
+    depends_on:
+      - blazegraph
+    networks:
+      - marvel-dc-network
+    command: >
+      sh -c "pip install -r requirements.txt &&
+             python manage.py runserver 0.0.0.0:8000"
+
+volumes:
+  blazegraph_data:
+    driver: local
+
+networks:
+  marvel-dc-network:
+    driver: bridge 

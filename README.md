@@ -39,4 +39,59 @@ Cara menjalankan aplikasi:
    ```shell
    python manage.py runserver
    ```
-7. Bukalah `http://localhost:8000` pada browser favoritmu untuk melihat apakah aplikasi sudah berjalan dengan benar.
+
+5. Bukalah `http://localhost:8000` pada browser favoritmu untuk melihat apakah aplikasi sudah berjalan dengan benar.
+
+## 🐳 Menjalankan dengan Docker
+
+### Prasyarat
+- Docker
+- Docker Compose
+
+### Quick Start dengan Docker
+
+1. **Jalankan hanya Blazegraph:**
+   ```shell
+   docker-compose up blazegraph -d
+   ```
+
+2. **Jalankan semua services (Blazegraph + Web App):**
+   ```shell
+   docker-compose up -d
+   ```
+
+3. **Akses aplikasi:**
+   - Web Application: http://localhost:8000
+   - Blazegraph Admin: http://localhost:9999/blazegraph
+
+### Setup Namespace Blazegraph
+
+1. Buka http://localhost:9999/blazegraph
+2. Pergi ke tab "Namespaces"
+3. Buat namespace baru dengan nama `kb`
+4. Import data RDF/TTL melalui tab "Update"
+
+Untuk dokumentasi lengkap Docker setup, lihat [DOCKER.md](DOCKER.md)
+
+## ⚙️ Konfigurasi
+
+### Environment Variables
+
+| Variable | Default | Deskripsi |
+|----------|---------|-----------|
+| `BLAZEGRAPH_HOST` | `http://34.124.187.20:8889/` | URL Blazegraph server |
+| `DJANGO_DEBUG` | `True` | Mode debug Django |
+
+### Mode Development vs Production
+
+**Development (lokal):**
+```shell
+export BLAZEGRAPH_HOST=http://localhost:9999/
+python manage.py runserver
+```
+
+**Production (Docker):**
+```shell
+export BLAZEGRAPH_HOST=http://blazegraph:9999/
+docker-compose up -d
+```

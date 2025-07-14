@@ -1,0 +1,19 @@
+version: '3.8'
+
+services:
+  web:
+    build: 
+      context: .
+      dockerfile: Dockerfile
+    volumes:
+      - .:/app
+      - /app/env
+    environment:
+      - BLAZEGRAPH_HOST=http://blazegraph:9999/
+      - DJANGO_DEBUG=True
+      - PYTHONUNBUFFERED=1
+    command: >
+      sh -c "python manage.py collectstatic --noinput --clear &&
+             python manage.py runserver 0.0.0.0:8000"
+    stdin_open: true
+    tty: true 

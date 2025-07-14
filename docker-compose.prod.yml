@@ -1,0 +1,32 @@
+version: '3.8'
+
+services:
+  web:
+    environment:
+      - DJANGO_DEBUG=False
+      - BLAZEGRAPH_HOST=http://blazegraph:9999/
+    command: >
+      sh -c "python manage.py collectstatic --noinput &&
+             python manage.py migrate &&
+             gunicorn project_django.wsgi:application --bind 0.0.0.0:8000 --workers 3"
+    restart: unless-stopped
+
+  blazegraph:
+    environment:
+      - JAVA_OPTS=-server -Xmx8g -Djava.awt.headless=true
+    restart: unless-stopped
+
+  # Optional: Nginx reverse proxy untuk production
+  nginx:
+    image: nginx:alpine
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - ./nginx.conf:/etc/nginx/nginx.conf:ro
+      - ./static:/var/www/static:ro
+    depends_on:
+      - web
+    restart: unless-stopped
+    networks:
+      - marvel-dc-network 
