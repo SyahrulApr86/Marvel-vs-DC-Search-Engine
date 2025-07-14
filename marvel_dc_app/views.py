@@ -124,7 +124,7 @@ def get_film_detail(request):
 
     SELECT DISTINCT ?film_name
     WHERE{{
-        OPTIONAL {{{film_wiki_uri} rdf:type :Film;
+        OPTIONAL {{<{film_wiki_uri}> rdf:type :Film;
                           rdfs:label ?film_name.}}
     }}
     """)
@@ -147,7 +147,7 @@ def get_film_detail(request):
 
     SELECT DISTINCT ?film_name ?year ?film_type ?runtime ?mpa_rating ?desc ?crit_cons ?director ?director_wiki_uri (group_concat(distinct ?star;separator=", ") as ?stars) (group_concat(distinct ?star_wiki_uri;separator=", ") as ?star_wiki_uris) (group_concat(distinct ?distributor;separator=", ") as ?distributors) (group_concat(distinct ?genre;separator=", ") as ?genres) ?imdb_gross ?imdb_rating ?imdb_votes ?tom_aud_score ?tom_ratings ?tomato_meter ?tomato_review
     WHERE{{
-        {film_wiki_uri} rdf:type :Film;
+        <{film_wiki_uri}> rdf:type :Film;
                        rdfs:label ?film_name; 
                        :year ?year; 
                        :entity ?film_type; 
@@ -195,13 +195,13 @@ def get_film_detail(request):
         {{
     select ?image (group_concat(distinct ?label_awards;separator=", ") as ?awarded_for) (group_concat(distinct ?label_nominations;separator=", ") as ?nominated_for)
     where {{
-        OPTIONAL{{ {film_wiki_uri} wdt:P1411 ?nominations .
+        OPTIONAL{{ <{film_wiki_uri}> wdt:P1411 ?nominations .
                     ?nominations rdfs:label ?label_nominations .
                     FILTER(lang(?label_nominations) = 'en')}}
-        OPTIONAL{{ {film_wiki_uri} wdt:P166 ?awards .
+        OPTIONAL{{ <{film_wiki_uri}> wdt:P166 ?awards .
                     ?awards rdfs:label ?label_awards .
                     FILTER(lang(?label_awards) = 'en')}}
-        OPTIONAL{{ {film_wiki_uri} wdt:P154 ?image .}}
+        OPTIONAL{{ <{film_wiki_uri}> wdt:P154 ?image .}}
         }}
     GROUP BY ?image                                                               
         }}
@@ -230,10 +230,10 @@ def get_person_detail(request):
 
     SELECT DISTINCT ?person_name
     WHERE{{
-        OPTIONAL {{{person_wiki_uri} rdf:type :Star;
+        OPTIONAL {{<{person_wiki_uri}> rdf:type :Star;
                           rdfs:label ?person_name.}}
                           
-        OPTIONAL {{{person_wiki_uri} rdf:type :Director;
+        OPTIONAL {{<{person_wiki_uri}> rdf:type :Director;
                           rdfs:label ?person_name.}}
     }}
     """)
@@ -256,15 +256,15 @@ def get_person_detail(request):
 
     SELECT DISTINCT ?person_name ?date_of_birth ?sex (group_concat(distinct ?nationality;separator=", ") as ?nationalities) (group_concat(distinct ?film_name;separator=", ") as ?associated_films) (group_concat(distinct ?film_wiki_uri;separator=", ") as ?associated_films_wiki_uri)
     WHERE{{
-        {person_wiki_uri} rdfs:label ?person_name; 
+        <{person_wiki_uri}> rdfs:label ?person_name; 
                        :date_of_birth ?date_of_birth; 
                        :nationality ?nationality; 
                        :sex ?sex .
         
-        OPTIONAL {{?film_wiki_uri :stars {person_wiki_uri} ;
+        OPTIONAL {{?film_wiki_uri :stars <{person_wiki_uri}> ;
                  				  rdf:type :Film;
                        	          rdfs:label ?film_name.}}
-        OPTIONAL {{?film_wiki_uri :director {person_wiki_uri} ;
+        OPTIONAL {{?film_wiki_uri :director <{person_wiki_uri}> ;
                  				  rdf:type :Film;
                        	          rdfs:label ?film_name.}}
         FILTER(bound(?film_wiki_uri))
@@ -293,17 +293,17 @@ def get_person_detail(request):
         {{
     select ?image ?net_worth (group_concat(distinct ?label_occupation;separator=", ") as ?occupations) (group_concat(distinct ?label_awards;separator=", ") as ?awarded_for) (group_concat(distinct ?label_nominations;separator=", ") as ?nominated_for)
     where {{
-        OPTIONAL{{ {person_wiki_uri} wdt:P106 ?occupation .
+                OPTIONAL{{ <{person_wiki_uri}> wdt:P106 ?occupation .
                     ?occupation rdfs:label ?label_occupation .
                     FILTER(lang(?label_occupation) = 'en')}}
-        OPTIONAL{{ {person_wiki_uri} wdt:P1411 ?nominations .
+        OPTIONAL{{ <{person_wiki_uri}> wdt:P1411 ?nominations .
                     ?nominations rdfs:label ?label_nominations .
-                    FILTER(lang(?label_nominations) = 'en')}}            
-        OPTIONAL{{ {person_wiki_uri} wdt:P166 ?awards .
+                    FILTER(lang(?label_nominations) = 'en')}}
+        OPTIONAL{{ <{person_wiki_uri}> wdt:P166 ?awards .
                     ?awards rdfs:label ?label_awards .
                     FILTER(lang(?label_awards) = 'en')}}
-        OPTIONAL{{ {person_wiki_uri} wdt:P2218 ?net_worth .}}
-        OPTIONAL{{ {person_wiki_uri} wdt:P18 ?image_raw .
+        OPTIONAL{{ <{person_wiki_uri}> wdt:P2218 ?net_worth .}}
+        OPTIONAL{{ <{person_wiki_uri}> wdt:P18 ?image_raw .
                    BIND(REPLACE(STR(?image_raw), "http://commons.wikimedia.org/wiki/Special:FilePath/", "https://commons.wikimedia.org/wiki/File:") as ?image) }}
         }}
     GROUP BY ?image ?net_worth                                                         
