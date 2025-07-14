@@ -1,0 +1,3710 @@
+@prefix :      <http://192.168.31.138:9999/blazegraph/> .
+@prefix owl:   <http://www.w3.org/2002/07/owl#> .
+@prefix rdf:   <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs:  <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix vcard: <http://www.w3.org/2006/vcard/ns#> .
+@prefix wd:    <http://www.wikidata.org/entity/> .
+@prefix xsd:   <http://www.w3.org/2001/XMLSchema#> .
+
+wd:Q318158  rdf:type    :Star ;
+        rdfs:label      "Goran Višnjić" ;
+        :date_of_birth  "1972-09-09T00:00Z"^^xsd:date ;
+        :nationality    "United States of America" , "Croatia" ;
+        :sex            "male" .
+
+wd:Q306403  rdf:type    :Star ;
+        rdfs:label      "James Franco" ;
+        :date_of_birth  "1978-04-19T00:00Z"^^xsd:date ;
+        :nationality    "United States of America" ;
+        :sex            "male" .
+
+wd:Q36301  rdf:type     :Star ;
+        rdfs:label      "Anne Hathaway" ;
+        :date_of_birth  "1982-11-12T00:00Z"^^xsd:date ;
+        :nationality    "United States of America" ;
+        :sex            "female" .
+
+wd:Q267672  rdf:type     :Film ;
+        rdfs:label       "Superman II" ;
+        :crit_consensus  "The humor occasionally stumbles into slapstick territory, and the special effects are dated, but Superman II meets, if not exceeds, the standard set by its predecessor." ;
+        :description     "Superman agrees to sacrifice his powers to start a relationship with Lois Lane, unaware that three Kryptonian criminals he inadvertently released are conquering Earth." ;
+        :director        wd:Q346508 ;
+        :distributed_by  "Netflix" , "Warner Bros." ;
+        :entity          "DC" ;
+        :genre           " Adventure" , " Sci-Fi" , "Action" ;
+        :id              "61" ;
+        :imdb_gross      "108190000" ;
+        :imdb_rating     "6.8" ;
+        :imdb_votes      "100030" ;
+        :mpa_rating      "PG" ;
+        :runtime         "127" ;
+        :stars           wd:Q4212 , wd:Q234471 , wd:Q174311 , wd:Q150943 ;
+        :tom_aud_score   "76" ;
+        :tom_ratings     "100000" ;
+        :tomato_meter    "86" ;
+        :tomato_review   "51" ;
+        :year            "1980" .
+
+wd:Q123351  rdf:type    :Star ;
+        rdfs:label      "Michael Caine" ;
+        :date_of_birth  "1933-03-14T00:00Z"^^xsd:date ;
+        :nationality    "United Kingdom" ;
+        :sex            "male" .
+
+wd:Q197491  rdf:type     :Film ;
+        rdfs:label       "The Wolverine" ;
+        :crit_consensus  "Although its final act succumbs to the usual cartoonish antics, The Wolverine is one superhero movie that manages to stay true to the comics while keeping casual viewers entertained." ;
+        :description     "Wolverine comes to Japan to meet an old friend whose life he saved years ago, and gets embroiled in a conspiracy involving yakuza and mutants." ;
+        :director        wd:Q433893 ;
+        :distributed_by  "20th Century Studios" , "Netflix" , "Disney+" , "InterCom" ;
+        :entity          "MARVEL" ;
+        :genre           "Action" , " Sci-Fi" ;
+        :id              "31" ;
+        :imdb_gross      "132560000" ;
+        :imdb_rating     "6.7" ;
+        :imdb_votes      "437712" ;
+        :mpa_rating      "PG-13" ;
+        :runtime         "126" ;
+        :stars           wd:Q4353280 , wd:Q974139 , wd:Q7334155 , wd:Q433893 , wd:Q129591 ;
+        :tom_aud_score   "69" ;
+        :tom_ratings     "250000" ;
+        :tomato_meter    "71" ;
+        :tomato_review   "258" ;
+        :year            "2013" .
+
+wd:Q1123006  rdf:type    :Film ;
+        rdfs:label       "Superman IV: The Quest for Peace" ;
+        :crit_consensus  "The Superman series bottoms out here: the action is boring, the special effects look cheaper, and none of the actors appear interested in where the plot's going." ;
+        :description     "The Man of Steel crusades for nuclear disarmament and meets Lex Luthor's latest creation, Nuclear Man." ;
+        :director        wd:Q1359422 ;
+        :distributed_by  "Netflix" , "Warner Bros." ;
+        :entity          "DC" ;
+        :genre           " Adventure" , " Sci-Fi" , "Action" ;
+        :id              "65" ;
+        :imdb_gross      "15680000" ;
+        :imdb_rating     "3.7" ;
+        :imdb_votes      "44082" ;
+        :mpa_rating      "PG" ;
+        :runtime         "90" ;
+        :stars           wd:Q372073 , wd:Q234471 , wd:Q174311 , wd:Q150943 ;
+        :tom_aud_score   "16" ;
+        :tom_ratings     "50000" ;
+        :tomato_meter    "11" ;
+        :tomato_review   "45" ;
+        :year            "1987" .
+
+wd:Q4254026  rdf:type    :Film ;
+        rdfs:label       "The Amazing Spider-Man 2" ;
+        :crit_consensus  "While the cast is outstanding and the special effects are top-notch, the latest installment of the Spidey saga suffers from an unfocused narrative and an overabundance of characters." ;
+        :description     "When New York is put under siege by Oscorp, it is up to Spider-Man to save the city he swore to protect as well as his loved ones." ;
+        :director        wd:Q357998 ;
+        :distributed_by  "InterCom" , "Netflix" , "Sony Pictures" ;
+        :entity          "MARVEL" ;
+        :genre           " Adventure" , " Fantasy" , "Action" ;
+        :id              "34" ;
+        :imdb_gross      "202850000" ;
+        :imdb_rating     "6.6" ;
+        :imdb_votes      "425691" ;
+        :mpa_rating      "PG-13" ;
+        :runtime         "142" ;
+        :stars           wd:Q208649 , wd:Q23891 , wd:Q357998 , wd:Q147077 , wd:Q171905 ;
+        :tom_aud_score   "64" ;
+        :tom_ratings     "100000" ;
+        :tomato_meter    "51" ;
+        :tomato_review   "309" ;
+        :year            "2014" .
+
+wd:Q364083  rdf:type    :Star ;
+        rdfs:label      "Louis Jourdan" ;
+        :date_of_birth  "1921-06-19T00:00Z"^^xsd:date ;
+        :nationality    "France" ;
+        :sex            "male" .
+
+wd:Q262130  rdf:type    :Director ;
+        rdfs:label      "Richard Donner" ;
+        :date_of_birth  "1930-04-24T00:00Z"^^xsd:date ;
+        :nationality    "United States of America" ;
+        :sex            "male" .
+
+wd:Q23006268  rdf:type   :Film ;
+        rdfs:label       "Venom" ;
+        :crit_consensus  "Venom's first standalone movie turns out to be like the comics character in all the wrong ways - chaotic, noisy, and in desperate need of a stronger attachment to Spider-Man." ;
+        :description     "A failed reporter is bonded to an alien entity, one of many symbiotes who have invaded Earth. But the being takes a liking to Earth and decides to protect it." ;
+        :director        wd:Q521691 ;
+        :distributed_by  "InterCom" , "Netflix" , "Sony Pictures Releasing" ;
+        :entity          "MARVEL" ;
+        :genre           " Adventure" , "Action" , " Sci-Fi" ;
+        :id              "52" ;
+        :imdb_gross      "213520000" ;
+        :imdb_rating     "6.7" ;
+        :imdb_votes      "383743" ;
+        :mpa_rating      "PG-13" ;
+        :runtime         "112" ;
+        :stars           wd:Q521691 , wd:Q7436480 , wd:Q208026 , wd:Q1861917 , wd:Q156796 ;
+        :tom_aud_score   "81" ;
+        :tom_ratings     "25000" ;
+        :tomato_meter    "29" ;
+        :tomato_review   "354" ;
+        :year            "2018" .
+
+wd:Q106182  rdf:type     :Film ;
+        rdfs:label       "X-Men" ;
+        :crit_consensus  "Faithful to the comics and filled with action, X-Men brings a crowded slate of classic Marvel characters to the screen with a talented ensemble cast and surprisingly sharp narrative focus." ;
+        :description     "In a world where mutants (evolved super-powered humans) exist and are discriminated against, two groups form for an inevitable clash: the supremacist Brotherhood, and the pacifist X-Men." ;
+        :director        wd:Q220751 ;
+        :distributed_by  "InterCom" , "Disney+" , "20th Century Studios" , "Netflix" ;
+        :entity          "MARVEL" ;
+        :genre           "Action" , " Adventure" , " Sci-Fi" ;
+        :id              "4" ;
+        :imdb_gross      "157300000" ;
+        :imdb_rating     "7.4" ;
+        :imdb_votes      "580354" ;
+        :mpa_rating      "PG-13" ;
+        :runtime         "104" ;
+        :stars           wd:Q190794 , wd:Q16296 , wd:Q220751 , wd:Q129591 , wd:Q170510 ;
+        :tom_aud_score   "83" ;
+        :tom_ratings     "250000" ;
+        :tomato_meter    "82" ;
+        :tomato_review   "174" ;
+        :year            "2000" .
+
+wd:Q234363  rdf:type    :Star ;
+        rdfs:label      "Maisie Williams" ;
+        :date_of_birth  "1997-04-15T00:00Z"^^xsd:date ;
+        :nationality    "United Kingdom" ;
+        :sex            "female" .
+
+wd:Q150943  rdf:type    :Star ;
+        rdfs:label      "Gene Hackman" ;
+        :date_of_birth  "1930-01-30T00:00Z"^^xsd:date ;
+        :nationality    "United States of America" ;
+        :sex            "male" .
+
+wd:Q42833024  rdf:type  :Star ;
+        rdfs:label      "Asher Angel" ;
+        :date_of_birth  "2002-09-06T00:00Z"^^xsd:date ;
+        :nationality    "United States of America" ;
+        :sex            "male" .
+
+wd:Q1320761  rdf:type   :Star , :Director ;
+        rdfs:label      "Mark Steven Johnson" ;
+        :date_of_birth  "1964-10-30T00:00Z"^^xsd:date ;
+        :nationality    "United States of America" ;
+        :sex            "male" .
+
+wd:Q191828  rdf:type    :Star ;
+        rdfs:label      "Marisa Tomei" ;
+        :date_of_birth  "1964-12-04T00:00Z"^^xsd:date ;
+        :nationality    "United States of America" ;
+        :sex            "female" .
+
+wd:Q283134  rdf:type     :Film ;
+        rdfs:label       "Supergirl" ;
+        :crit_consensus  "The effects are cheesy and Supergirl's wide-eyed, cheery heroine simply isn't interesting to watch for an hour and a half." ;
+        :description     "After losing a powerful orb, Kara Zor-El, Superman's cousin, comes to Earth to retrieve it and instead finds herself up against a wicked witch." ;
+        :director        wd:Q336024 ;
+        :distributed_by  "Columbia Pictures" , "Netflix" ;
+        :entity          "DC" ;
+        :genre           " Adventure" , "Action" , " Fantasy" ;
+        :id              "64" ;
+        :imdb_gross      "13600000" ;
+        :imdb_rating     "4.4" ;
+        :imdb_votes      "19361" ;
+        :mpa_rating      "PG" ;
+        :runtime         "124" ;
+        :stars           wd:Q168721 , wd:Q103876 , wd:Q241879 , wd:Q202725 ;
+        :tom_aud_score   "26" ;
+        :tom_ratings     "25000" ;
+        :tomato_meter    "9" ;
+        :tomato_review   "32" ;
+        :year            "1984" .
+
+wd:Q443585  rdf:type    :Star ;
+        rdfs:label      "Cesar Romero" ;
+        :date_of_birth  "1907-02-15T00:00Z"^^xsd:date ;
+        :nationality    "United States of America" ;
+        :sex            "male" .
+
+wd:Q131380  rdf:type    :Star ;
+        rdfs:label      "Kim Basinger" ;
+        :date_of_birth  "1953-12-08T00:00Z"^^xsd:date ;
+        :nationality    "United States of America" ;
+        :sex            "female" .
+
+wd:Q95048  rdf:type     :Star ;
+        rdfs:label      "Tim Robbins" ;
+        :date_of_birth  "1958-10-16T00:00Z"^^xsd:date ;
+        :nationality    "United States of America" ;
+        :sex            "male" .
+
+wd:Q223596  rdf:type     :Film ;
+        rdfs:label       "X-Men: First Class" ;
+        :crit_consensus  "With a strong script, stylish direction, and powerful performances from its well-rounded cast, X-Men: First Class is a welcome return to form for the franchise." ;
+        :description     "In the 1960s, superpowered humans Charles Xavier and Erik Lensherr work together to find others like them, but Erik's vengeful pursuit of an ambitious mutant who ruined his life causes a schism to divide them." ;
+        :director        wd:Q2593 ;
+        :distributed_by  "20th Century Studios" , "Disney+" , "Netflix" ;
+        :entity          "MARVEL" ;
+        :genre           "Action" , " Adventure" , " Sci-Fi" ;
+        :id              "25" ;
+        :imdb_gross      "146410000" ;
+        :imdb_rating     "7.7" ;
+        :imdb_votes      "655399" ;
+        :mpa_rating      "PG-13" ;
+        :runtime         "131" ;
+        :stars           wd:Q3454165 , wd:Q193659 , wd:Q189490 , wd:Q2593 , wd:Q57147 ;
+        :tom_aud_score   "87" ;
+        :tom_ratings     "100000" ;
+        :tomato_meter    "86" ;
+        :tomato_review   "298" ;
+        :year            "2011" .
+
+wd:Q219150  rdf:type     :Film ;
+        rdfs:label       "Constantine" ;
+        :crit_consensus  "Despite solid production values and an intriguing premise, Constantine lacks the focus of another spiritual shoot-em-up: The Matrix." ;
+        :description     "Supernatural exorcist and demonologist John Constantine helps a policewoman prove her sister's death was not a suicide, but something more." ;
+        :director        wd:Q561387 ;
+        :distributed_by  "InterCom" , "Warner Bros." , "Netflix" ;
+        :entity          "DC" ;
+        :genre           "Action" , " Fantasy" , " Horror" ;
+        :id              "73" ;
+        :imdb_gross      "75980000" ;
+        :imdb_rating     "7.0" ;
+        :imdb_votes      "315617" ;
+        :mpa_rating      "R" ;
+        :runtime         "121" ;
+        :stars           wd:Q134077 , wd:Q298682 , wd:Q43416 , wd:Q180942 ;
+        :tom_aud_score   "72" ;
+        :tom_ratings     "250000" ;
+        :tomato_meter    "46" ;
+        :tomato_review   "230" ;
+        :year            "2005" .
+
+wd:Q18406872  rdf:type   :Film ;
+        rdfs:label       "Doctor Strange" ;
+        :crit_consensus  "Doctor Strange artfully balances its outré source material against the blockbuster constraints of the MCU, delivering a thoroughly entertaining superhero origin story in the bargain." ;
+        :description     "While on a journey of physical and spiritual healing, a brilliant neurosurgeon is drawn into the world of the mystic arts." ;
+        :director        wd:Q558806 ;
+        :distributed_by  "The Walt Disney Company Iberia, S.L." , "Disney+" , "Walt Disney Studios Motion Pictures" , "Netflix" ;
+        :entity          "MARVEL" ;
+        :genre           " Adventure" , " Fantasy" , "Action" ;
+        :id              "43" ;
+        :imdb_gross      "232640000" ;
+        :imdb_rating     "7.5" ;
+        :imdb_votes      "623361" ;
+        :mpa_rating      "PG-13" ;
+        :runtime         "115" ;
+        :stars           wd:Q190386 , wd:Q317343 , wd:Q3329808 , wd:Q244674 , wd:Q558806 ;
+        :tom_aud_score   "85" ;
+        :tom_ratings     "100000" ;
+        :tomato_meter    "89" ;
+        :tomato_review   "382" ;
+        :year            "2016" .
+
+wd:Q219512  rdf:type    :Star ;
+        rdfs:label      "Jesse Eisenberg" ;
+        :date_of_birth  "1983-10-05T00:00Z"^^xsd:date ;
+        :nationality    "United States of America" ;
+        :sex            "male" .
+
+wd:Q913128  rdf:type    :Star ;
+        rdfs:label      "Brian Taylor" ;
+        :date_of_birth  "2000-01-01T00:00Z"^^xsd:date ;
+        :nationality    "United States of America" ;
+        :sex            "male" .
+
+wd:Q165219  rdf:type    :Star ;
+        rdfs:label      "Robert Downey Jr." ;
+        :date_of_birth  "1965-04-04T00:00Z"^^xsd:date ;
+        :nationality    "United States of America" ;
+        :sex            "male" .
+
+wd:Q4440  rdf:type      :Star ;
+        rdfs:label      "Eric Bana" ;
+        :date_of_birth  "1968-08-09T00:00Z"^^xsd:date ;
+        :nationality    "Australia" ;
+        :sex            "male" .
+
+wd:Q205028  rdf:type     :Film ;
+        rdfs:label       "Iron Man 2" ;
+        :crit_consensus  "It isn't quite the breath of fresh air that Iron Man was, but this sequel comes close with solid performances and an action-packed plot. " ;
+        :description     "With the world now aware of his identity as Iron Man, Tony Stark must contend with both his declining health and a vengeful mad man with ties to his father's legacy." ;
+        :director        wd:Q295964 ;
+        :distributed_by  "Walt Disney Studios Motion Pictures" , "Disney+" , "Paramount Pictures" ;
+        :entity          "MARVEL" ;
+        :genre           " Adventure" , "Action" , " Sci-Fi" ;
+        :id              "23" ;
+        :imdb_gross      "312430000" ;
+        :imdb_rating     "7.0" ;
+        :imdb_votes      "742416" ;
+        :mpa_rating      "PG-13" ;
+        :runtime         "124" ;
+        :stars           wd:Q295964 , wd:Q178552 , wd:Q34460 , wd:Q165219 , wd:Q272019 ;
+        :tom_aud_score   "71" ;
+        :tom_ratings     "250000" ;
+        :tomato_meter    "72" ;
+        :tomato_review   "304" ;
+        :year            "2010" .
+
+wd:Q20001199  rdf:type   :Film ;
+        rdfs:label       "Guardians of the Galaxy Vol. 2" ;
+        :crit_consensus  "Guardians of the Galaxy Vol. 2's action-packed plot, dazzling visuals, and irreverent humor add up to a sequel that's almost as fun -- if not quite as thrillingly fresh -- as its predecessor." ;
+        :description     "The Guardians struggle to keep together as a team while dealing with their personal family issues, notably Star-Lord's encounter with his father the ambitious celestial being Ego." ;
+        :director        wd:Q715505 ;
+        :distributed_by  "Disney+" , "Walt Disney Studios Motion Pictures" , "Netflix" ;
+        :entity          "MARVEL" ;
+        :genre           "Action" , " Comedy" , " Adventure" ;
+        :id              "45" ;
+        :imdb_gross      "389810000" ;
+        :imdb_rating     "7.6" ;
+        :imdb_votes      "592260" ;
+        :mpa_rating      "PG-13" ;
+        :runtime         "136" ;
+        :stars           wd:Q503706 , wd:Q715505 , wd:Q44158 , wd:Q178166 , wd:Q190162 ;
+        :tom_aud_score   "87" ;
+        :tom_ratings     "100000" ;
+        :tomato_meter    "85" ;
+        :tomato_review   "421" ;
+        :year            "2017" .
+
+wd:Q229808  rdf:type     :Film ;
+        rdfs:label       "The Amazing Spider-Man" ;
+        :crit_consensus  "A well-chosen cast and sure-handed direction allow The Amazing Spider-Man to thrill, despite revisiting many of the same plot points from 2002's Spider-Man." ;
+        :description     "After Peter Parker is bitten by a genetically altered spider, he gains newfound, spider-like powers and ventures out to save the city from the machinations of a mysterious reptilian foe." ;
+        :director        wd:Q357998 ;
+        :distributed_by  "InterCom" , "Netflix" , "Columbia Pictures" ;
+        :entity          "MARVEL" ;
+        :genre           "Action" , " Adventure" , " Fantasy" ;
+        :id              "29" ;
+        :imdb_gross      "262030000" ;
+        :imdb_rating     "6.9" ;
+        :imdb_votes      "569274" ;
+        :mpa_rating      "PG-13" ;
+        :runtime         "136" ;
+        :stars           wd:Q360927 , wd:Q357998 , wd:Q23891 , wd:Q215017 , wd:Q147077 ;
+        :tom_aud_score   "77" ;
+        :tom_ratings     "250000" ;
+        :tomato_meter    "72" ;
+        :tomato_review   "334" ;
+        :year            "2012" .
+
+wd:Q1115677  rdf:type    :Film ;
+        rdfs:label       "Superman and the Mole Men" ;
+        :crit_consensus  "Even at under an hour, this children's fantasy is sluggishly paced by today's standards...but it does have its charms and a relevant social message at its core." ;
+        :description     "When underground beings explore the surface world from a deep oil well and inadvertantly cause a panic, only Superman can prevent a tragedy." ;
+        :director        wd:Q6515055 ;
+        :distributed_by  "Netflix" ;
+        :entity          "DC" ;
+        :genre           " Adventure" , " Drama" , "Action" ;
+        :id              "58" ;
+        :imdb_gross      "0" ;
+        :imdb_rating     "5.7" ;
+        :imdb_votes      "1828" ;
+        :mpa_rating      "Passed" ;
+        :runtime         "58" ;
+        :stars           wd:Q448430 , wd:Q342537 , wd:Q1311138 , wd:Q613136 ;
+        :tom_aud_score   "83" ;
+        :tom_ratings     "250" ;
+        :tomato_meter    "0" ;
+        :tomato_review   "2" ;
+        :year            "1951" .
+
+wd:Q217552  rdf:type     :Film ;
+        rdfs:label       "X-Men Origins: Wolverine" ;
+        :crit_consensus  "Though Hugh Jackman gives his all, he can't help X-Men Origins: Wolverine overcome a cliche-ridden script and familiar narrative." ;
+        :description     "The early years of James Logan, featuring his rivalry with his brother Victor Creed, his service in the special forces team Weapon X, and his experimentation into the metal-lined mutant Wolverine." ;
+        :director        wd:Q443106 ;
+        :distributed_by  "Disney+" , "Netflix" , "InterCom" ;
+        :entity          "MARVEL" ;
+        :genre           "Action" , " Sci-Fi" ;
+        :id              "22" ;
+        :imdb_gross      "179880000" ;
+        :imdb_rating     "6.6" ;
+        :imdb_votes      "475561" ;
+        :mpa_rating      "PG-13" ;
+        :runtime         "107" ;
+        :stars           wd:Q129591 , wd:Q443106 , wd:Q357762 , wd:Q192682 , wd:Q298368 ;
+        :tom_aud_score   "58" ;
+        :tom_ratings     "250000" ;
+        :tomato_meter    "37" ;
+        :tomato_review   "263" ;
+        :year            "2009" .
+
+wd:Q229181  rdf:type    :Star ;
+        rdfs:label      "Viola Davis" ;
+        :date_of_birth  "1965-08-11T00:00Z"^^xsd:date ;
+        :nationality    "United States of America" ;
+        :sex            "female" .
+
+wd:Q229669  rdf:type    :Star ;
+        rdfs:label      "Malin Åkerman" ;
+        :date_of_birth  "1978-05-12T00:00Z"^^xsd:date ;
+        :nationality    "United States of America" , "Sweden" ;
+        :sex            "female" .
+
+wd:Q610159  rdf:type     :Film ;
+        rdfs:label       "Elektra" ;
+        :crit_consensus  "Jennifer Garner inhabits her role with earnest gusto, but Elektra's tone deaf script is too self-serious and bereft of intelligent dialogue to provide engaging thrills." ;
+        :description     "Elektra the warrior survives a near-death experience, becomes an assassin-for-hire, and tries to protect her two latest targets, a single father and his young daughter, from a group of supernatural assassins." ;
+        :director        wd:Q693016 ;
+        :distributed_by  "Netflix" , "Xfinity Streampix" , "InterCom" ;
+        :entity          "MARVEL" ;
+        :genre           " Crime" , " Adventure" , "Action" ;
+        :id              "13" ;
+        :imdb_gross      "24410000" ;
+        :imdb_rating     "4.7" ;
+        :imdb_votes      "88518" ;
+        :mpa_rating      "PG-13" ;
+        :runtime         "97" ;
+        :stars           wd:Q974139 , wd:Q235701 , wd:Q172044 , wd:Q693016 , wd:Q318158 ;
+        :tom_aud_score   "29" ;
+        :tom_ratings     "250000" ;
+        :tomato_meter    "11" ;
+        :tomato_review   "166" ;
+        :year            "2005" .
+
+wd:Q276523  rdf:type     :Film ;
+        rdfs:label       "Batman & Robin" ;
+        :crit_consensus  "Joel Schumacher's tongue-in-cheek attitude hits an unbearable limit in Batman & Robin resulting in a frantic and mindless movie that's too jokey to care much for." ;
+        :description     "Batman and Robin try to keep their relationship together even as they must stop Mr. Freeze and Poison Ivy from freezing Gotham City." ;
+        :director        wd:Q295207 ;
+        :distributed_by  "Warner Bros." , "Netflix" , "Xfinity Streampix" ;
+        :entity          "DC" ;
+        :genre           "Action" , " Sci-Fi" ;
+        :id              "70" ;
+        :imdb_gross      "107330000" ;
+        :imdb_rating     "3.8" ;
+        :imdb_votes      "237759" ;
+        :mpa_rating      "PG-13" ;
+        :runtime         "125" ;
+        :stars           wd:Q107069 , wd:Q2685 , wd:Q125017 , wd:Q23844 ;
+        :tom_aud_score   "16" ;
+        :tom_ratings     "250000" ;
+        :tomato_meter    "12" ;
+        :tomato_review   "93" ;
+        :year            "1997" .
+
+wd:Q456910  rdf:type    :Director ;
+        rdfs:label      "Patty Jenkins" ;
+        :date_of_birth  "1971-07-24T00:00Z"^^xsd:date ;
+        :nationality    "United States of America" ;
+        :sex            "female" .
+
+wd:Q536025  rdf:type    :Star ;
+        rdfs:label      "N'Bushe Wright" ;
+        :date_of_birth  "1970-09-20T00:00Z"^^xsd:date ;
+        :nationality    "United States of America" ;
+        :sex            "female" .
+
+wd:Q575668  rdf:type    :Star ;
+        rdfs:label      "Lionel Atwill" ;
+        :date_of_birth  "1885-03-01T00:00Z"^^xsd:date ;
+        :nationality    "United Kingdom of Great Britain and Ireland" , "United Kingdom" ;
+        :sex            "male" .
+
+wd:Q5272862  rdf:type   :Star ;
+        rdfs:label      "Dick Durock" ;
+        :date_of_birth  "1937-01-18T00:00Z"^^xsd:date ;
+        :nationality    "United States of America" ;
+        :sex            "male" .
+
+wd:Q213053  rdf:type     :Film ;
+        rdfs:label       "Superman" ;
+        :crit_consensus  "Superman deftly blends humor and gravitas, taking advantage of the perfectly cast Christopher Reeve to craft a loving, nostalgic tribute to an American pop culture icon." ;
+        :description     "An alien orphan is sent from his dying planet to Earth, where he grows up to become his adoptive home's first and greatest superhero." ;
+        :director        wd:Q262130 ;
+        :distributed_by  "Netflix" , "Warner Bros." ;
+        :entity          "DC" ;
+        :genre           " Adventure" , "Action" , " Drama" ;
+        :id              "60" ;
+        :imdb_gross      "134220000" ;
+        :imdb_rating     "7.3" ;
+        :imdb_votes      "162395" ;
+        :mpa_rating      "PG" ;
+        :runtime         "143" ;
+        :stars           wd:Q34012 , wd:Q174311 , wd:Q234471 , wd:Q150943 ;
+        :tom_aud_score   "86" ;
+        :tom_ratings     "250000" ;
+        :tomato_meter    "94" ;
+        :tomato_review   "68" ;
+        :year            "1978" .
+
+wd:Q485901  rdf:type    :Star ;
+        rdfs:label      "James Marsden" ;
+        :date_of_birth  "1973-09-18T00:00Z"^^xsd:date ;
+        :nationality    "United States of America" ;
+        :sex            "male" .
+
+wd:Q693016  rdf:type    :Star , :Director ;
+        rdfs:label      "Rob Bowman" ;
+        :date_of_birth  "1960-05-15T00:00Z"^^xsd:date ;
+        :nationality    "United States of America" ;
+        :sex            "male" .
+
+wd:Q5236475  rdf:type   :Star , :Director ;
+        rdfs:label      "David Leitch" ;
+        :date_of_birth  "1975-01-01T00:00Z"^^xsd:date , "1975-02-07T00:00Z"^^xsd:date ;
+        :nationality    "United States of America" ;
+        :sex            "male" .
+
+wd:Q40096  rdf:type     :Star ;
+        rdfs:label      "Will Smith" ;
+        :date_of_birth  "1968-09-25T00:00Z"^^xsd:date ;
+        :nationality    "United States of America" ;
+        :sex            "male" .
+
+wd:Q192643  rdf:type    :Star ;
+        rdfs:label      "Aaron Eckhart" ;
+        :date_of_birth  "1968-03-12T00:00Z"^^xsd:date ;
+        :nationality    "United States of America" ;
+        :sex            "male" .
+
+wd:Q751805  rdf:type     :Film ;
+        rdfs:label       "Daredevil" ;
+        :crit_consensus  "While Ben Affleck fits the role and the story is sporadically interesting, Daredevil is ultimately a dull, brooding origin story that fails to bring anything new to the genre." ;
+        :description     "A man blinded by toxic waste which also enhanced his remaining senses fights crime as an acrobatic martial arts superhero." ;
+        :director        wd:Q1320761 ;
+        :distributed_by  "20th Century Studios" , "Xfinity Streampix" , "InterCom" , "Netflix" ;
+        :entity          "MARVEL" ;
+        :genre           "Action" , " Crime" ;
+        :id              "7" ;
+        :imdb_gross      "102540000" ;
+        :imdb_rating     "5.3" ;
+        :imdb_votes      "208847" ;
+        :mpa_rating      "PG-13" ;
+        :runtime         "103" ;
+        :stars           wd:Q483148 , wd:Q172044 , wd:Q172035 , wd:Q483118 , wd:Q1320761 ;
+        :tom_aud_score   "35" ;
+        :tom_ratings     "250000" ;
+        :tomato_meter    "44" ;
+        :tomato_review   "229" ;
+        :year            "2003" .
+
+wd:Q810857  rdf:type     :Film ;
+        rdfs:label       "Batman" ;
+        :crit_consensus  "Batman: The Movie elevates camp to an art form -- and has a blast doing it, every gloriously tongue-in-cheek inch of the way." ;
+        :description     "The Dynamic Duo faces four supervillains who plan to hold the world for ransom with the help of a secret invention that instantly dehydrates people." ;
+        :director        wd:Q2067465 ;
+        :distributed_by  "20th Century Studios" , "Netflix" ;
+        :entity          "DC" ;
+        :genre           " Crime" , " Comedy" , "Adventure" ;
+        :id              "59" ;
+        :imdb_gross      "0" ;
+        :imdb_rating     "6.5" ;
+        :imdb_votes      "30289" ;
+        :mpa_rating      "PG" ;
+        :runtime         "105" ;
+        :stars           wd:Q537747 , wd:Q267175 , wd:Q443585 , wd:Q351156 ;
+        :tom_aud_score   "62" ;
+        :tom_ratings     "100000" ;
+        :tomato_meter    "79" ;
+        :tomato_review   "33" ;
+        :year            "1966" .
+
+wd:Q295964  rdf:type    :Star , :Director ;
+        rdfs:label      "Jon Favreau" ;
+        :date_of_birth  "1966-10-19T00:00Z"^^xsd:date ;
+        :nationality    "United States of America" ;
+        :sex            "male" .
+
+wd:Q139890  rdf:type    :Director ;
+        rdfs:label      "Zack Snyder" ;
+        :date_of_birth  "1966-03-01T00:00Z"^^xsd:date ;
+        :nationality    "United States of America" ;
+        :sex            "male" .
+
+wd:Q145422  rdf:type    :Director ;
+        rdfs:label      "Jim Wynorski" ;
+        :date_of_birth  "1950-08-14T00:00Z"^^xsd:date ;
+        :nationality    "United States of America" ;
+        :sex            "male" .
+
+wd:Q65932  rdf:type     :Star ;
+        rdfs:label      "Anthony Hopkins" ;
+        :date_of_birth  "1937-12-31T00:00Z"^^xsd:date ;
+        :nationality    "United Kingdom" , "United States of America" ;
+        :sex            "male" .
+
+wd:Q58444  rdf:type     :Star ;
+        rdfs:label      "Liam Neeson" ;
+        :date_of_birth  "1952-06-07T00:00Z"^^xsd:date ;
+        :nationality    "United Kingdom" , "United States of America" , "Republic of Ireland" ;
+        :sex            "male" .
+
+wd:Q1306771  rdf:type   :Director ;
+        rdfs:label      "Pitof" ;
+        :date_of_birth  "1957-07-04T00:00Z"^^xsd:date ;
+        :nationality    "France" ;
+        :sex            "male" .
+
+wd:Q18519749  rdf:type  :Star , :Director ;
+        rdfs:label      "Jon Watts" ;
+        :date_of_birth  "1981-06-28T00:00Z"^^xsd:date ;
+        :nationality    "United States of America" ;
+        :sex            "male" .
+
+wd:Q57147  rdf:type     :Star ;
+        rdfs:label      "Michael Fassbender" ;
+        :date_of_birth  "1977-04-02T00:00Z"^^xsd:date ;
+        :nationality    "West Germany" , "Germany" , "Republic of Ireland" ;
+        :sex            "male" .
+
+wd:Q2685  rdf:type      :Star ;
+        rdfs:label      "Arnold Schwarzenegger" ;
+        :date_of_birth  "1947-07-30T00:00Z"^^xsd:date ;
+        :nationality    "United States of America" , "Austria" ;
+        :sex            "male" .
+
+wd:Q530646  rdf:type    :Star ;
+        rdfs:label      "Ray Wise" ;
+        :date_of_birth  "1947-08-20T00:00Z"^^xsd:date ;
+        :nationality    "United States of America" ;
+        :sex            "male" .
+
+wd:Q20882479  rdf:type  :Star ;
+        rdfs:label      "Anya Taylor-Joy" ;
+        :date_of_birth  "1996-04-16T00:00Z"^^xsd:date ;
+        :nationality    "Argentina" , "United States of America" , "United Kingdom" ;
+        :sex            "female" .
+
+wd:Q208026  rdf:type    :Star ;
+        rdfs:label      "Tom Hardy" ;
+        :date_of_birth  "1977-09-15T00:00Z"^^xsd:date ;
+        :nationality    "United Kingdom" ;
+        :sex            "male" .
+
+wd:Q159638  rdf:type     :Film ;
+        rdfs:label       "Blade II" ;
+        :crit_consensus  "Though Blade II offers more of what worked in the original, its plot and character development appear to have been left on the cutting room floor." ;
+        :description     "Blade forms an uneasy alliance with the vampire council in order to combat the Reapers, who are feeding on vampires." ;
+        :director        wd:Q219124 ;
+        :distributed_by  "InterCom" , "Microsoft Store" , "New Line Cinema" , "Netflix" ;
+        :entity          "MARVEL" ;
+        :genre           " Fantasy" , "Action" , " Horror" ;
+        :id              "5" ;
+        :imdb_gross      "82350000" ;
+        :imdb_rating     "6.7" ;
+        :imdb_votes      "203813" ;
+        :mpa_rating      "R" ;
+        :runtime         "117" ;
+        :stars           wd:Q208681 , wd:Q220698 , wd:Q219124 , wd:Q189694 , wd:Q235913 ;
+        :tom_aud_score   "68" ;
+        :tom_ratings     "250000" ;
+        :tomato_meter    "57" ;
+        :tomato_review   "150" ;
+        :year            "2002" .
+
+wd:Q160432  rdf:type    :Star ;
+        rdfs:label      "Jude Law" ;
+        :date_of_birth  "1972-12-29T00:00Z"^^xsd:date ;
+        :nationality    "United Kingdom" ;
+        :sex            "male" .
+
+wd:Q180942  rdf:type    :Star ;
+        rdfs:label      "Shia LaBeouf" ;
+        :date_of_birth  "1986-06-11T00:00Z"^^xsd:date ;
+        :nationality    "United States of America" ;
+        :sex            "male" .
+
+wd:Q23466  rdf:type     :Star ;
+        rdfs:label      "Chris Pine" ;
+        :date_of_birth  "1980-08-26T00:00Z"^^xsd:date ;
+        :nationality    "United States of America" ;
+        :sex            "male" .
+
+wd:Q19347291  rdf:type   :Film ;
+        rdfs:label       "Deadpool" ;
+        :crit_consensus  "Fast, funny, and gleefully profane, the fourth-wall-busting Deadpool subverts superhero film formula with wildly entertaining -- and decidedly non-family-friendly -- results." ;
+        :description     "A wisecracking mercenary gets experimented on and becomes immortal but ugly, and sets out to track down the man who ruined his looks." ;
+        :director        wd:Q7803979 ;
+        :distributed_by  "InterCom" , "Netflix" , "20th Century Studios" ;
+        :entity          "MARVEL" ;
+        :genre           " Comedy" , " Adventure" , "Action" ;
+        :id              "40" ;
+        :imdb_gross      "363070000" ;
+        :imdb_rating     "8.0" ;
+        :imdb_votes      "927737" ;
+        :mpa_rating      "R" ;
+        :runtime         "108" ;
+        :stars           wd:Q192682 , wd:Q5335413 , wd:Q7803979 , wd:Q540422 , wd:Q231091 ;
+        :tom_aud_score   "90" ;
+        :tom_ratings     "100000" ;
+        :tomato_meter    "85" ;
+        :tomato_review   "347" ;
+        :year            "2016" .
+
+wd:Q220751  rdf:type    :Star , :Director ;
+        rdfs:label      "Bryan Singer" ;
+        :date_of_birth  "1965-09-17T00:00Z"^^xsd:date ;
+        :nationality    "United States of America" ;
+        :sex            "male" .
+
+wd:Q315271  rdf:type    :Star ;
+        rdfs:label      "Jason Momoa" ;
+        :date_of_birth  "1979-08-01T00:00Z"^^xsd:date ;
+        :nationality    "United States of America" ;
+        :sex            "male" .
+
+wd:Q45772  rdf:type     :Star ;
+        rdfs:label      "Christian Bale" ;
+        :date_of_birth  "1974-01-30T00:00Z"^^xsd:date ;
+        :nationality    "United States of America" , "United Kingdom" ;
+        :sex            "male" .
+
+wd:Q455945  rdf:type    :Star ;
+        rdfs:label      "Violante Placido" ;
+        :date_of_birth  "1976-05-01T00:00Z"^^xsd:date ;
+        :nationality    "Italy" ;
+        :sex            "female" .
+
+wd:Q362824  rdf:type    :Director ;
+        rdfs:label      "Todd Phillips" ;
+        :date_of_birth  "1970-12-20T00:00Z"^^xsd:date ;
+        :nationality    "United States of America" ;
+        :sex            "male" .
+
+wd:Q37459  rdf:type     :Star ;
+        rdfs:label      "Nicole Kidman" ;
+        :date_of_birth  "1967-06-20T00:00Z"^^xsd:date ;
+        :nationality    "United States of America" , "Australia" ;
+        :sex            "female" .
+
+wd:Q24053263  rdf:type   :Film ;
+        rdfs:label       "Logan" ;
+        :crit_consensus  "Hugh Jackman makes the most of his final outing as Wolverine with a gritty, nuanced performance in a violent but surprisingly thoughtful superhero action film that defies genre conventions." ;
+        :description     "In a future where mutants are nearly extinct, an elderly and weary Logan leads a quiet life. But when Laura, a mutant child pursued by scientists, comes to him for help, he must get her to safety." ;
+        :director        wd:Q433893 ;
+        :distributed_by  "InterCom" , "Netflix" , "Microsoft Store" , "20th Century Studios" ;
+        :entity          "MARVEL" ;
+        :genre           "Action" , " Sci-Fi" , " Drama" ;
+        :id              "44" ;
+        :imdb_gross      "226280000" ;
+        :imdb_rating     "8.1" ;
+        :imdb_votes      "670710" ;
+        :mpa_rating      "R" ;
+        :runtime         "137" ;
+        :stars           wd:Q16296 , wd:Q433893 , wd:Q27560621 , wd:Q129591 , wd:Q611096 ;
+        :tom_aud_score   "90" ;
+        :tom_ratings     "50000" ;
+        :tomato_meter    "93" ;
+        :tomato_review   "420" ;
+        :year            "2017" .
+
+wd:Q42759035  rdf:type   :Film ;
+        rdfs:label       "Joker" ;
+        :crit_consensus  "Joker gives its infamous central character a chillingly plausible origin story that serves as a brilliant showcase for its star -- and a dark evolution for comics-inspired cinema." ;
+        :description     "In Gotham City, mentally troubled comedian Arthur Fleck is disregarded and mistreated by society. He then embarks on a downward spiral of revolution and bloody crime. This path brings him face-to-face with his alter-ego: the Joker." ;
+        :director        wd:Q362824 ;
+        :distributed_by  "Warner Bros." , "InterCom" ;
+        :entity          "DC" ;
+        :genre           " Drama" , " Thriller" , "Crime" ;
+        :id              "88" ;
+        :imdb_gross      "335450000" ;
+        :imdb_rating     "8.4" ;
+        :imdb_votes      "1014748" ;
+        :mpa_rating      "R" ;
+        :runtime         "122" ;
+        :stars           wd:Q26997611 , wd:Q185140 , wd:Q36949 , wd:Q233882 ;
+        :tom_aud_score   "88" ;
+        :tom_ratings     "50000" ;
+        :tomato_meter    "68" ;
+        :tomato_review   "585" ;
+        :year            "2019" .
+
+wd:Q275402  rdf:type    :Star , :Director ;
+        rdfs:label      "Sam Raimi" ;
+        :date_of_birth  "1959-10-23T00:00Z"^^xsd:date ;
+        :nationality    "United States of America" ;
+        :sex            "male" .
+
+wd:Q26806  rdf:type     :Star ;
+        rdfs:label      "Danny DeVito" ;
+        :date_of_birth  "1944-11-17T00:00Z"^^xsd:date ;
+        :nationality    "United States of America" ;
+        :sex            "male" .
+
+wd:Q23781129  rdf:type   :Film ;
+        rdfs:label       "Captain Marvel" ;
+        :crit_consensus  "Packed with action, humor, and visual thrills, Captain Marvel introduces the MCU's latest hero with an origin story that makes effective use of the franchise's signature formula." ;
+        :description     "Carol Danvers becomes one of the universe's most powerful heroes when Earth is caught in the middle of a galactic war between two alien races." ;
+        :director        wd:Q4766862 ;
+        :distributed_by  "Walt Disney Studios Motion Pictures" , "Disney+" ;
+        :entity          "MARVEL" ;
+        :genre           " Adventure" , " Sci-Fi" , "Action" ;
+        :id              "53" ;
+        :imdb_gross      "426830000" ;
+        :imdb_rating     "6.8" ;
+        :imdb_votes      "473437" ;
+        :mpa_rating      "PG-13" ;
+        :runtime         "123" ;
+        :stars           wd:Q816565 , wd:Q160432 , wd:Q29328 , wd:Q4766862 , wd:Q172678 ;
+        :tom_aud_score   "45" ;
+        :tom_ratings     "100000" ;
+        :tomato_meter    "79" ;
+        :tomato_review   "537" ;
+        :year            "2019" .
+
+wd:Q102411425  rdf:type  :Director ;
+        rdfs:label  "James G. Wan" ;
+        :sex        "male" .
+
+wd:Q503706  rdf:type    :Star ;
+        rdfs:label      "Chris Pratt" ;
+        :date_of_birth  "1976-06-21T00:00Z"^^xsd:date ;
+        :nationality    "United States of America" ;
+        :sex            "male" .
+
+wd:Q342537  rdf:type    :Star ;
+        rdfs:label      "George Reeves" ;
+        :date_of_birth  "1914-01-06T00:00Z"^^xsd:date , "1914-01-05T00:00Z"^^xsd:date ;
+        :nationality    "United States of America" ;
+        :sex            "male" .
+
+wd:Q85487  rdf:type     :Star , :Director ;
+        rdfs:label      "Lexi Alexander" ;
+        :date_of_birth  "1974-08-23T00:00Z"^^xsd:date ;
+        :nationality    "Germany" ;
+        :sex            "female" .
+
+wd:Q433893  rdf:type    :Star , :Director ;
+        rdfs:label      "James Mangold" ;
+        :date_of_birth  "1963-12-16T00:00Z"^^xsd:date ;
+        :nationality    "United States of America" ;
+        :sex            "male" .
+
+wd:Q244674  rdf:type    :Star ;
+        rdfs:label      "Benedict Cumberbatch" ;
+        :date_of_birth  "1976-07-19T00:00Z"^^xsd:date ;
+        :nationality    "United Kingdom" ;
+        :sex            "male" .
+
+wd:Q174311  rdf:type    :Star ;
+        rdfs:label      "Christopher Reeve" ;
+        :date_of_birth  "1952-09-25T00:00Z"^^xsd:date ;
+        :nationality    "United States of America" ;
+        :sex            "male" .
+
+wd:Q446493  rdf:type    :Star ;
+        rdfs:label      "Richard Roundtree" ;
+        :date_of_birth  "1942-07-09T00:00Z"^^xsd:date ;
+        :nationality    "United States of America" ;
+        :sex            "male" .
+
+wd:Q107069  rdf:type    :Star ;
+        rdfs:label      "Chris O'Donnell" ;
+        :date_of_birth  "1970-06-26T00:00Z"^^xsd:date ;
+        :nationality    "United States of America" ;
+        :sex            "male" .
+
+wd:Q7334155  rdf:type   :Star ;
+        rdfs:label      "Rila Fukushima" ;
+        :date_of_birth  "1980-01-09T00:00Z"^^xsd:date ;
+        :nationality    "Japan" ;
+        :sex            "female" .
+
+wd:Q1033016  rdf:type   :Star ;
+        rdfs:label      "Halle Berry" ;
+        :date_of_birth  "1966-08-14T00:00Z"^^xsd:date ;
+        :nationality    "United States of America" ;
+        :sex            "female" .
+
+wd:Q231091  rdf:type    :Star ;
+        rdfs:label      "Morena Baccarin" ;
+        :date_of_birth  "1979-06-02T00:00Z"^^xsd:date ;
+        :nationality    "United States of America" , "Brazil" ;
+        :sex            "female" .
+
+wd:Q233882  rdf:type    :Star ;
+        rdfs:label      "Frances Conroy" ;
+        :date_of_birth  "1953-11-13T00:00Z"^^xsd:date ;
+        :nationality    "United States of America" ;
+        :sex            "female" .
+
+wd:Q80966  rdf:type     :Star ;
+        rdfs:label      "Cate Blanchett" ;
+        :date_of_birth  "1969-05-14T00:00Z"^^xsd:date ;
+        :nationality    "United States of America" , "Australia" ;
+        :sex            "female" .
+
+wd:Q342604  rdf:type    :Star ;
+        rdfs:label      "Idris Elba" ;
+        :date_of_birth  "1972-09-06T00:00Z"^^xsd:date ;
+        :nationality    "Sierra Leone" , "United Kingdom" ;
+        :sex            "male" .
+
+wd:Q14752155  rdf:type  :Star ;
+        rdfs:label      "Pedro Pascal" ;
+        :date_of_birth  "1975-04-02T00:00Z"^^xsd:date ;
+        :nationality    "United States of America" , "Chile" ;
+        :sex            "male" .
+
+wd:Q960170  rdf:type    :Star ;
+        rdfs:label      "Matt Long" ;
+        :date_of_birth  "1980-05-18T00:00Z"^^xsd:date ;
+        :nationality    "United States of America" ;
+        :sex            "male" .
+
+wd:Q44077  rdf:type     :Star ;
+        rdfs:label      "Jessica Alba" ;
+        :date_of_birth  "1981-04-28T00:00Z"^^xsd:date ;
+        :nationality    "United States of America" ;
+        :sex            "female" .
+
+wd:Q103343  rdf:type    :Star ;
+        rdfs:label      "Jennifer Connelly" ;
+        :date_of_birth  "1970-12-12T00:00Z"^^xsd:date ;
+        :nationality    "United States of America" ;
+        :sex            "female" .
+
+wd:Q272972  rdf:type    :Star ;
+        rdfs:label      "Robin Wright" ;
+        :date_of_birth  "1966-04-08T00:00Z"^^xsd:date ;
+        :nationality    "United States of America" ;
+        :sex            "female" .
+
+wd:Q25431158  rdf:type   :Film ;
+        rdfs:label       "Deadpool 2" ;
+        :crit_consensus  "Though it threatens to buckle under the weight of its meta gags, Deadpool 2 is a gory, gleeful lampoon of the superhero genre buoyed by Ryan Reynolds' undeniable charm." ;
+        :description     "Foul-mouthed mutant mercenary Wade Wilson (a.k.a. Deadpool) assembles a team of fellow mutant rogues to protect a young boy with supernatural abilities from the brutal, time-traveling cyborg Cable." ;
+        :director        wd:Q5236475 ;
+        :distributed_by  "20th Century Studios" ;
+        :entity          "MARVEL" ;
+        :genre           " Adventure" , " Comedy" , "Action" ;
+        :id              "50" ;
+        :imdb_gross      "324590000" ;
+        :imdb_rating     "7.7" ;
+        :imdb_votes      "501971" ;
+        :mpa_rating      "R" ;
+        :runtime         "119" ;
+        :stars           wd:Q192682 , wd:Q5236475 , wd:Q231091 , wd:Q24189388 , wd:Q41396 ;
+        :tom_aud_score   "85" ;
+        :tom_ratings     "25000" ;
+        :tomato_meter    "84" ;
+        :tomato_review   "419" ;
+        :year            "2018" .
+
+wd:Q484442  rdf:type     :Film ;
+        rdfs:label       "Spider-Man" ;
+        :crit_consensus  "Not only does Spider-Man provide a good dose of web-swinging fun, it also has a heart, thanks to the combined charms of director Sam Raimi and star Tobey Maguire." ;
+        :description     "When bitten by a genetically modified spider, a nerdy, shy, and awkward high school student gains spider-like abilities that he eventually must use to fight evil as a superhero after tragedy befalls his family." ;
+        :director        wd:Q275402 ;
+        :distributed_by  "Netflix" , "InterCom" , "Columbia Pictures" , "Sony Pictures Releasing" ;
+        :entity          "MARVEL" ;
+        :genre           " Sci-Fi" , " Adventure" , "Action" ;
+        :id              "6" ;
+        :imdb_gross      "403710000" ;
+        :imdb_rating     "7.3" ;
+        :imdb_votes      "702986" ;
+        :mpa_rating      "PG-13" ;
+        :runtime         "121" ;
+        :stars           wd:Q306403 , wd:Q188772 , wd:Q275402 , wd:Q76478 , wd:Q165524 ;
+        :tom_aud_score   "67" ;
+        :tom_ratings     "250000" ;
+        :tomato_meter    "90" ;
+        :tomato_review   "244" ;
+        :year            "2002" .
+
+wd:Q37876  rdf:type     :Star ;
+        rdfs:label      "Natalie Portman" ;
+        :date_of_birth  "1981-06-09T00:00Z"^^xsd:date ;
+        :nationality    "Israel" , "United States of America" ;
+        :sex            "female" .
+
+wd:Q525332  rdf:type    :Star , :Director ;
+        rdfs:label      "Louis Leterrier" ;
+        :date_of_birth  "1973-06-17T00:00Z"^^xsd:date ;
+        :nationality    "France" ;
+        :sex            "male" .
+
+wd:Q5335413  rdf:type   :Star ;
+        rdfs:label      "Ed Skrein" ;
+        :date_of_birth  "1983-03-29T00:00Z"^^xsd:date ;
+        :nationality    "United Kingdom" ;
+        :sex            "male" .
+
+wd:Q267330  rdf:type    :Star ;
+        rdfs:label      "Miles Teller" ;
+        :date_of_birth  "1987-02-20T00:00Z"^^xsd:date ;
+        :nationality    "United States of America" ;
+        :sex            "male" .
+
+wd:Q171905  rdf:type    :Star ;
+        rdfs:label      "Jamie Foxx" ;
+        :date_of_birth  "1967-12-13T00:00Z"^^xsd:date ;
+        :nationality    "United States of America" ;
+        :sex            "male" .
+
+wd:Q56008  rdf:type     :Director ;
+        rdfs:label      "Tim Burton" ;
+        :date_of_birth  "1958-08-25T00:00Z"^^xsd:date ;
+        :nationality    "United States of America" ;
+        :sex            "male" .
+
+wd:Q162959  rdf:type    :Star ;
+        rdfs:label      "Blake Lively" ;
+        :date_of_birth  "1987-08-25T00:00Z"^^xsd:date ;
+        :nationality    "United States of America" ;
+        :sex            "female" .
+
+wd:Q4212  rdf:type      :Star ;
+        rdfs:label      "Ned Beatty" ;
+        :date_of_birth  "1937-07-06T00:00Z"^^xsd:date ;
+        :nationality    "United States of America" ;
+        :sex            "male" .
+
+wd:Q299324  rdf:type    :Star ;
+        rdfs:label      "Brandon Routh" ;
+        :date_of_birth  "1979-10-09T00:00Z"^^xsd:date ;
+        :nationality    "United States of America" ;
+        :sex            "male" .
+
+wd:Q54314  rdf:type     :Star ;
+        rdfs:label      "Chris Hemsworth" ;
+        :date_of_birth  "1983-08-11T00:00Z"^^xsd:date ;
+        :nationality    "Australia" ;
+        :sex            "male" .
+
+wd:Q4353280  rdf:type   :Star ;
+        rdfs:label      "Tao Okamoto" ;
+        :date_of_birth  "1985-05-22T00:00Z"^^xsd:date ;
+        :nationality    "Japan" ;
+        :sex            "female" .
+
+wd:Q189330  rdf:type     :Film ;
+        rdfs:label       "The Dark Knight Rises" ;
+        :crit_consensus  "The Dark Knight Rises is an ambitious, thoughtful, and potent action film that concludes Christopher Nolan's franchise in spectacular fashion." ;
+        :description     "Eight years after the Joker's reign of anarchy, Batman, with the help of the enigmatic Catwoman, is forced from his exile to save Gotham City from the brutal guerrilla terrorist Bane." ;
+        :director        wd:Q25191 ;
+        :distributed_by  "InterCom" , "Netflix" ;
+        :entity          "DC" ;
+        :genre           "Action" , " Adventure" ;
+        :id              "80" ;
+        :imdb_gross      "448140000" ;
+        :imdb_rating     "8.4" ;
+        :imdb_votes      "1552223" ;
+        :mpa_rating      "PG-13" ;
+        :runtime         "164" ;
+        :stars           wd:Q36301 , wd:Q208026 , wd:Q83492 , wd:Q45772 ;
+        :tom_aud_score   "90" ;
+        :tom_ratings     "250000" ;
+        :tomato_meter    "87" ;
+        :tomato_review   "371" ;
+        :year            "2012" .
+
+wd:Q334195  rdf:type    :Star ;
+        rdfs:label      "Stephen Dorff" ;
+        :date_of_birth  "1973-07-29T00:00Z"^^xsd:date ;
+        :nationality    "United States of America" ;
+        :sex            "male" .
+
+wd:Q18407657  rdf:type   :Film ;
+        rdfs:label       "Captain America: Civil War" ;
+        :crit_consensus  "Captain America: Civil War begins the next wave of Marvel movies with an action-packed superhero blockbuster boasting a decidedly non-cartoonish plot and the courage to explore thought-provoking themes." ;
+        :description     "Political involvement in the Avengers' affairs causes a rift between Captain America and Iron Man." ;
+        :director        wd:Q2852941 ;
+        :distributed_by  "Disney+" , "Walt Disney Studios Motion Pictures" ;
+        :entity          "MARVEL" ;
+        :genre           " Adventure" , "Action" , " Sci-Fi" ;
+        :id              "41" ;
+        :imdb_gross      "408080000" ;
+        :imdb_rating     "7.8" ;
+        :imdb_votes      "689763" ;
+        :mpa_rating      "PG-13" ;
+        :runtime         "147" ;
+        :stars           wd:Q165219 , wd:Q178348 , wd:Q455898 , wd:Q34436 , wd:Q1691583 ;
+        :tom_aud_score   "89" ;
+        :tom_ratings     "100000" ;
+        :tomato_meter    "90" ;
+        :tomato_review   "421" ;
+        :year            "2016" .
+
+wd:Q219507  rdf:type    :Star , :Director ;
+        rdfs:label      "Simon Kinberg" ;
+        :date_of_birth  "1973-08-02T00:00Z"^^xsd:date ;
+        :nationality    "United States of America" ;
+        :sex            "male" .
+
+wd:Q230320  rdf:type    :Star ;
+        rdfs:label      "Julie Benz" ;
+        :date_of_birth  "1972-05-01T00:00Z"^^xsd:date ;
+        :nationality    "United States of America" ;
+        :sex            "female" .
+
+wd:Q17042878  rdf:type   :Film ;
+        rdfs:label       "X-Men: Apocalypse" ;
+        :crit_consensus  "Overloaded action and a cliched villain take the focus away from otherwise strong performers and resonant themes, making X-Men: Apocalypse a middling chapter of the venerable superhero franchise." ;
+        :description     "In the 1980s the X-Men must defeat an ancient all-powerful mutant, En Sabah Nur, who intends to thrive through bringing destruction to the world." ;
+        :director        wd:Q220751 ;
+        :distributed_by  "InterCom" , "Netflix" , "Disney+" ;
+        :entity          "MARVEL" ;
+        :genre           "Action" , " Adventure" , " Sci-Fi" ;
+        :id              "42" ;
+        :imdb_gross      "155440000" ;
+        :imdb_rating     "6.9" ;
+        :imdb_votes      "402935" ;
+        :mpa_rating      "PG-13" ;
+        :runtime         "144" ;
+        :stars           wd:Q193659 , wd:Q298347 , wd:Q189490 , wd:Q57147 , wd:Q220751 ;
+        :tom_aud_score   "65" ;
+        :tom_ratings     "100000" ;
+        :tomato_meter    "47" ;
+        :tomato_review   "343" ;
+        :year            "2016" .
+
+wd:Q53651  rdf:type     :Star ;
+        rdfs:label      "Josh Lucas" ;
+        :date_of_birth  "1971-06-20T00:00Z"^^xsd:date ;
+        :nationality    "United States of America" ;
+        :sex            "male" .
+
+wd:Q314892  rdf:type    :Star ;
+        rdfs:label      "Ciarán Hinds" ;
+        :date_of_birth  "1953-02-09T00:00Z"^^xsd:date ;
+        :nationality    "United Kingdom" ;
+        :sex            "male" .
+
+wd:Q172261  rdf:type    :Star ;
+        rdfs:label      "John Malkovich" ;
+        :date_of_birth  "1953-12-09T00:00Z"^^xsd:date ;
+        :nationality    "United States of America" ;
+        :sex            "male" .
+
+wd:Q83492  rdf:type     :Star ;
+        rdfs:label      "Gary Oldman" ;
+        :date_of_birth  "1958-03-21T00:00Z"^^xsd:date ;
+        :nationality    "United States of America" , "United Kingdom" ;
+        :sex            "male" .
+
+wd:Q448430  rdf:type    :Star ;
+        rdfs:label      "Jeff Corey" ;
+        :date_of_birth  "1914-08-10T00:00Z"^^xsd:date ;
+        :nationality    "United States of America" ;
+        :sex            "male" .
+
+wd:Q125904  rdf:type    :Star ;
+        rdfs:label      "Edward Norton" ;
+        :date_of_birth  "1969-08-18T00:00Z"^^xsd:date ;
+        :nationality    "United States of America" ;
+        :sex            "male" .
+
+wd:Q229749  rdf:type    :Star ;
+        rdfs:label      "Heather Locklear" ;
+        :date_of_birth  "1961-09-25T00:00Z"^^xsd:date ;
+        :nationality    "United States of America" ;
+        :sex            "female" .
+
+wd:Q352010  rdf:type    :Star , :Director ;
+        rdfs:label      "David S. Goyer" ;
+        :date_of_birth  "1965-12-22T00:00Z"^^xsd:date ;
+        :nationality    "United States of America" ;
+        :sex            "male" .
+
+wd:Q1691583  rdf:type   :Star ;
+        rdfs:label      "Joe Russo" ;
+        :date_of_birth  "1976-12-18T00:00Z"^^xsd:date ;
+        :nationality    "United States of America" ;
+        :sex            "male" .
+
+wd:Q721446  rdf:type    :Star , :Director ;
+        rdfs:label      "Jonathan Hensleigh" ;
+        :date_of_birth  "1959-02-13T00:00Z"^^xsd:date ;
+        :nationality    "United States of America" ;
+        :sex            "male" .
+
+wd:Q57177410  rdf:type   :Film ;
+        rdfs:label       "Birds of Prey" ;
+        :crit_consensus  "With a fresh perspective, some new friends, and loads of fast-paced action, Birds of Prey captures the colorfully anarchic spirit of Margot Robbie's Harley Quinn." ;
+        :description     "After splitting with the Joker, Harley Quinn joins superheroes Black Canary, Huntress and Renee Montoya to save a young girl from an evil crime lord." ;
+        :director        wd:Q51923835 ;
+        :distributed_by  "Warner Bros." , "InterCom" , "Netflix" ;
+        :entity          "DC" ;
+        :genre           "Action" , " Adventure" , " Comedy" ;
+        :id              "89" ;
+        :imdb_gross      "84160000" ;
+        :imdb_rating     "6.1" ;
+        :imdb_votes      "186805" ;
+        :mpa_rating      "R" ;
+        :runtime         "109" ;
+        :stars           wd:Q207873 , wd:Q1924847 , wd:Q2350967 , wd:Q234076 ;
+        :tom_aud_score   "78" ;
+        :tom_ratings     "10000" ;
+        :tomato_meter    "79" ;
+        :tomato_review   "430" ;
+        :year            "2020" .
+
+wd:Q2350967  rdf:type   :Star ;
+        rdfs:label      "Jurnee Smollett" ;
+        :date_of_birth  "1986-10-01T00:00Z"^^xsd:date ;
+        :nationality    "United States of America" ;
+        :sex            "female" .
+
+wd:Q5901134  rdf:type    :Film ;
+        rdfs:label       "Ant-Man" ;
+        :crit_consensus  "Led by a charming performance from Paul Rudd, Ant-Man offers Marvel thrills on an appropriately smaller scale -- albeit not as smoothly as its most successful predecessors." ;
+        :description     "Armed with a super-suit with the astonishing ability to shrink in scale but increase in strength, cat burglar Scott Lang must embrace his inner hero and help his mentor, Dr. Hank Pym, plan and pull off a heist that will save the world." ;
+        :director        wd:Q944763 ;
+        :distributed_by  "Walt Disney Studios Motion Pictures" , "Fórum Hungary" , "Disney+" ;
+        :entity          "MARVEL" ;
+        :genre           " Adventure" , " Comedy" , "Action" ;
+        :id              "38" ;
+        :imdb_gross      "180200000" ;
+        :imdb_rating     "7.3" ;
+        :imdb_votes      "590834" ;
+        :mpa_rating      "PG-13" ;
+        :runtime         "117" ;
+        :stars           wd:Q944763 , wd:Q26231 , wd:Q160392 , wd:Q276525 , wd:Q119798 ;
+        :tom_aud_score   "86" ;
+        :tom_ratings     "100000" ;
+        :tomato_meter    "83" ;
+        :tomato_review   "334" ;
+        :year            "2015" .
+
+wd:Q319204  rdf:type    :Star , :Director ;
+        rdfs:label      "Brett Ratner" ;
+        :date_of_birth  "1969-03-28T00:00Z"^^xsd:date ;
+        :nationality    "United States of America" ;
+        :sex            "male" .
+
+wd:Q298347  rdf:type    :Star ;
+        rdfs:label      "Nicholas Hoult" ;
+        :date_of_birth  "1989-12-07T00:00Z"^^xsd:date ;
+        :nationality    "United Kingdom" ;
+        :sex            "male" .
+
+wd:Q211553  rdf:type    :Star ;
+        rdfs:label      "Ken Watanabe" ;
+        :date_of_birth  "1959-10-21T00:00Z"^^xsd:date ;
+        :nationality    "Japan" ;
+        :sex            "male" .
+
+wd:Q1201853  rdf:type    :Film ;
+        rdfs:label       "Thor: The Dark World" ;
+        :crit_consensus  "It may not be the finest film to come from the Marvel Universe, but Thor: The Dark World still offers plenty of the humor and high-stakes action that fans have come to expect." ;
+        :description     "When the Dark Elves attempt to plunge the universe into darkness, Thor must embark on a perilous and personal journey that will reunite him with doctor Jane Foster." ;
+        :director        wd:Q1113146 ;
+        :distributed_by  "Walt Disney Studios Motion Pictures" , "Disney+" ;
+        :entity          "MARVEL" ;
+        :genre           " Fantasy" , " Adventure" , "Action" ;
+        :id              "32" ;
+        :imdb_gross      "206360000" ;
+        :imdb_rating     "6.9" ;
+        :imdb_votes      "614115" ;
+        :mpa_rating      "PG-13" ;
+        :runtime         "112" ;
+        :stars           wd:Q295803 , wd:Q37876 , wd:Q208667 , wd:Q1113146 , wd:Q54314 ;
+        :tom_aud_score   "75" ;
+        :tom_ratings     "250000" ;
+        :tomato_meter    "66" ;
+        :tomato_review   "284" ;
+        :year            "2013" .
+
+wd:Q22665878  rdf:type   :Film ;
+        rdfs:label       "Thor: Ragnarok" ;
+        :crit_consensus  "Exciting, funny, and above all fun, Thor: Ragnarok is a colorful cosmic adventure that sets a new standard for its franchise -- and the rest of the Marvel Cinematic Universe." ;
+        :description     "Imprisoned on the planet Sakaar, Thor must race against time to return to Asgard and stop Ragnarök, the destruction of his world, at the hands of the powerful and ruthless villain Hela." ;
+        :director        wd:Q2388576 ;
+        :distributed_by  "Netflix" , "Walt Disney Studios Motion Pictures" , "Disney+" ;
+        :entity          "MARVEL" ;
+        :genre           " Adventure" , "Action" , " Comedy" ;
+        :id              "47" ;
+        :imdb_gross      "315060000" ;
+        :imdb_rating     "7.9" ;
+        :imdb_votes      "620623" ;
+        :mpa_rating      "PG-13" ;
+        :runtime         "130" ;
+        :stars           wd:Q54314 , wd:Q2388576 , wd:Q80966 , wd:Q41422 , wd:Q295803 ;
+        :tom_aud_score   "87" ;
+        :tom_ratings     "50000" ;
+        :tomato_meter    "93" ;
+        :tomato_review   "434" ;
+        :year            "2017" .
+
+wd:Q1146570  rdf:type    :Film ;
+        rdfs:label       "Howard the Duck" ;
+        :crit_consensus  "While it has its moments, Howard the Duck suffers from an uneven tone and mediocre performances" ;
+        :description     "A sarcastic humanoid duck is pulled from his homeworld to Earth where he must stop an alien invasion with the help of a nerdy scientist and a struggling female rock singer." ;
+        :director        wd:Q1383657 ;
+        :distributed_by  "Universal Pictures" ;
+        :entity          "MARVEL" ;
+        :genre           " Adventure" , " Comedy" , "Action" ;
+        :id              "2" ;
+        :imdb_gross      "16300000" ;
+        :imdb_rating     "4.7" ;
+        :imdb_votes      "44073" ;
+        :mpa_rating      "PG" ;
+        :runtime         "110" ;
+        :stars           wd:Q768685 , wd:Q1383657 , wd:Q81649 , wd:Q230605 , wd:Q95048 ;
+        :tom_aud_score   "38" ;
+        :tom_ratings     "50000" ;
+        :tomato_meter    "13" ;
+        :tomato_review   "78" ;
+        :year            "1986" .
+
+wd:Q974139  rdf:type    :Star ;
+        rdfs:label      "Will Yun Lee" ;
+        :date_of_birth  "1971-03-22T00:00Z"^^xsd:date ;
+        :nationality    "United States of America" ;
+        :sex            "male" .
+
+wd:Q14171368  rdf:type   :Film ;
+        rdfs:label       "Avengers: Age of Ultron" ;
+        :crit_consensus  "Exuberant and eye-popping, Avengers: Age of Ultron serves as an overstuffed but mostly satisfying sequel, reuniting its predecessor's unwieldy cast with a few new additions and a worthy foe." ;
+        :description     "When Tony Stark and Bruce Banner try to jump-start a dormant peacekeeping program called Ultron, things go horribly wrong and it's up to Earth's mightiest heroes to stop the villainous Ultron from enacting his terrible plan." ;
+        :director        wd:Q298025 ;
+        :distributed_by  "Disney+" , "Walt Disney Studios Motion Pictures" , "Fórum Hungary" ;
+        :entity          "MARVEL" ;
+        :genre           "Action" , " Sci-Fi" , " Adventure" ;
+        :id              "37" ;
+        :imdb_gross      "459010000" ;
+        :imdb_rating     "7.3" ;
+        :imdb_votes      "772476" ;
+        :mpa_rating      "PG-13" ;
+        :runtime         "141" ;
+        :stars           wd:Q54314 , wd:Q298025 , wd:Q178348 , wd:Q41422 , wd:Q165219 ;
+        :tom_aud_score   "83" ;
+        :tom_ratings     "250000" ;
+        :tomato_meter    "76" ;
+        :tomato_review   "372" ;
+        :year            "2015" .
+
+wd:Q125017  rdf:type    :Star ;
+        rdfs:label      "Uma Thurman" ;
+        :date_of_birth  "1970-04-29T00:00Z"^^xsd:date ;
+        :nationality    "United States of America" ;
+        :sex            "female" .
+
+wd:Q22957393  rdf:type   :Film ;
+        rdfs:label       "Ant-Man and the Wasp" ;
+        :crit_consensus  "A lighter, brighter superhero movie powered by the effortless charisma of Paul Rudd and Evangeline Lilly, Ant-Man and The Wasp offers a much-needed MCU palate cleanser." ;
+        :description     "As Scott Lang balances being both a superhero and a father, Hope van Dyne and Dr. Hank Pym present an urgent new mission that finds the Ant-Man fighting alongside The Wasp to uncover secrets from their past." ;
+        :director        wd:Q944763 ;
+        :distributed_by  "Disney+" , "Walt Disney Studios Motion Pictures" ;
+        :entity          "MARVEL" ;
+        :genre           " Adventure" , " Comedy" , "Action" ;
+        :id              "51" ;
+        :imdb_gross      "216650000" ;
+        :imdb_rating     "7.0" ;
+        :imdb_votes      "329600" ;
+        :mpa_rating      "PG-13" ;
+        :runtime         "118" ;
+        :stars           wd:Q160392 , wd:Q944763 , wd:Q516690 , wd:Q276525 , wd:Q359488 ;
+        :tom_aud_score   "75" ;
+        :tom_ratings     "25000" ;
+        :tomato_meter    "87" ;
+        :tomato_review   "435" ;
+        :year            "2018" .
+
+wd:Q1765358  rdf:type    :Film ;
+        rdfs:label       "Captain America: The Winter Soldier" ;
+        :crit_consensus  "Suspenseful and politically astute, Captain America: The Winter Soldier is a superior entry in the Avengers canon and is sure to thrill Marvel diehards." ;
+        :description     "As Steve Rogers struggles to embrace his role in the modern world, he teams up with a fellow Avenger and S.H.I.E.L.D agent, Black Widow, to battle a new threat from history: an assassin known as the Winter Soldier." ;
+        :director        wd:Q2852941 ;
+        :distributed_by  "Walt Disney Studios Motion Pictures" , "Disney+" ;
+        :entity          "MARVEL" ;
+        :genre           "Action" , " Adventure" , " Sci-Fi" ;
+        :id              "33" ;
+        :imdb_gross      "259770000" ;
+        :imdb_rating     "7.7" ;
+        :imdb_votes      "759721" ;
+        :mpa_rating      "PG-13" ;
+        :runtime         "136" ;
+        :stars           wd:Q59215 , wd:Q178348 , wd:Q172678 , wd:Q1691583 , wd:Q34436 ;
+        :tom_aud_score   "92" ;
+        :tom_ratings     "250000" ;
+        :tomato_meter    "90" ;
+        :tomato_review   "306" ;
+        :year            "2014" .
+
+wd:Q14772351  rdf:type   :Film ;
+        rdfs:label       "Batman v Superman: Dawn of Justice" ;
+        :crit_consensus  "Batman v Superman: Dawn of Justice smothers a potentially powerful story -- and some of America's most iconic superheroes -- in a grim whirlwind of effects-driven action." ;
+        :description     "Fearing that the actions of Superman are left unchecked, Batman takes on the Man of Steel, while the world wrestles with what kind of a hero it really needs." ;
+        :director        wd:Q139890 ;
+        :distributed_by  "Warner Bros." , "Netflix" , "InterCom" ;
+        :entity          "DC" ;
+        :genre           "Action" , " Sci-Fi" , " Adventure" ;
+        :id              "82" ;
+        :imdb_gross      "330360000" ;
+        :imdb_rating     "6.4" ;
+        :imdb_votes      "653270" ;
+        :mpa_rating      "PG-13" ;
+        :runtime         "152" ;
+        :stars           wd:Q483118 , wd:Q481832 , wd:Q295498 , wd:Q219512 ;
+        :tom_aud_score   "63" ;
+        :tom_ratings     "100000" ;
+        :tomato_meter    "28" ;
+        :tomato_review   "432" ;
+        :year            "2016" .
+
+wd:Q2852941  rdf:type   :Director ;
+        rdfs:label      "Anthony Rosano" ;
+        :date_of_birth  "1977-01-31T00:00Z"^^xsd:date ;
+        :nationality    "United States of America" ;
+        :sex            "male" .
+
+wd:Q726126  rdf:type    :Star , :Director ;
+        rdfs:label      "Shane Black" ;
+        :date_of_birth  "1961-12-16T00:00Z"^^xsd:date ;
+        :nationality    "United States of America" ;
+        :sex            "male" .
+
+wd:Q272019  rdf:type    :Star ;
+        rdfs:label      "Don Cheadle" ;
+        :date_of_birth  "1964-11-29T00:00Z"^^xsd:date ;
+        :nationality    "United States of America" ;
+        :sex            "male" .
+
+wd:Q357762  rdf:type    :Star ;
+        rdfs:label      "Danny Huston" ;
+        :date_of_birth  "1962-05-14T00:00Z"^^xsd:date ;
+        :nationality    "United States of America" , "Italy" ;
+        :sex            "male" .
+
+wd:Q295803  rdf:type    :Star ;
+        rdfs:label      "Tom Hiddleston" ;
+        :date_of_birth  "1981-02-09T00:00Z"^^xsd:date ;
+        :nationality    "United Kingdom" ;
+        :sex            "male" .
+
+wd:Q944763  rdf:type    :Star , :Director ;
+        rdfs:label      "Peyton Reed" ;
+        :date_of_birth  "1964-07-03T00:00Z"^^xsd:date ;
+        :nationality    "United States of America" ;
+        :sex            "male" .
+
+wd:Q134077  rdf:type    :Star ;
+        rdfs:label      "Rachel Weisz" ;
+        :date_of_birth  "1970-03-07T00:00Z"^^xsd:date ;
+        :nationality    "United States of America" , "United Kingdom" ;
+        :sex            "female" .
+
+wd:Q2388576  rdf:type   :Star , :Director ;
+        rdfs:label      "Taika Waititi" ;
+        :date_of_birth  "1975-08-16T00:00Z"^^xsd:date ;
+        :nationality    "New Zealand" ;
+        :sex            "male" .
+
+wd:Q172044  rdf:type    :Star ;
+        rdfs:label      "Jennifer Garner" ;
+        :date_of_birth  "1972-04-17T00:00Z"^^xsd:date ;
+        :nationality    "United States of America" ;
+        :sex            "female" .
+
+wd:Q1113146  rdf:type   :Star , :Director ;
+        rdfs:label      "Alan Taylor" ;
+        :date_of_birth  "1965-01-01T00:00Z"^^xsd:date ;
+        :nationality    "United States of America" ;
+        :sex            "male" .
+
+wd:Q6515055  rdf:type   :Director ;
+        rdfs:label      "Lee Sholem" ;
+        :date_of_birth  "1913-05-25T00:00Z"^^xsd:date ;
+        :nationality    "United States of America" ;
+        :sex            "male" .
+
+wd:Q3840847  rdf:type   :Star ;
+        rdfs:label      "Lupita Nyong'o" ;
+        :date_of_birth  "1983-03-01T00:00Z"^^xsd:date ;
+        :nationality    "Kenya" , "Mexico" ;
+        :sex            "female" .
+
+wd:Q159778  rdf:type    :Star ;
+        rdfs:label      "Michelle Pfeiffer" ;
+        :date_of_birth  "1958-04-29T00:00Z"^^xsd:date ;
+        :nationality    "United States of America" ;
+        :sex            "female" .
+
+wd:Q162182  rdf:type     :Film ;
+        rdfs:label       "Watchmen" ;
+        :crit_consensus  "Gritty and visually striking, Watchmen is a faithful adaptation of Alan Moore's graphic novel, but its complex narrative structure may make it difficult for it to appeal to viewers not already familiar with the source material." ;
+        :description     "In 1985 where former superheroes exist, the murder of a colleague sends active vigilante Rorschach into his own sprawling investigation, uncovering something that could completely change the course of history as we know it." ;
+        :director        wd:Q139890 ;
+        :distributed_by  "Netflix" , "Warner Bros." , "UIP-Dunafilm" ;
+        :entity          "DC" ;
+        :genre           "Action" , " Drama" , " Mystery" ;
+        :id              "77" ;
+        :imdb_gross      "107510000" ;
+        :imdb_rating     "7.6" ;
+        :imdb_votes      "518415" ;
+        :mpa_rating      "R" ;
+        :runtime         "162" ;
+        :stars           wd:Q351290 , wd:Q229669 , wd:Q228871 , wd:Q314841 ;
+        :tom_aud_score   "71" ;
+        :tom_ratings     "250000" ;
+        :tomato_meter    "65" ;
+        :tomato_review   "312" ;
+        :year            "2009" .
+
+wd:Q561387  rdf:type    :Director ;
+        rdfs:label      "Francis Lawrence" ;
+        :date_of_birth  "1971-03-26T00:00Z"^^xsd:date ;
+        :nationality    "United States of America" ;
+        :sex            "male" .
+
+wd:Q23780914  rdf:type   :Film ;
+        rdfs:label       "Avengers: Infinity War" ;
+        :crit_consensus  "Avengers: Infinity War ably juggles a dizzying array of MCU heroes in the fight against their gravest threat yet, and the result is a thrilling, emotionally resonant blockbuster that (mostly) realizes its gargantuan ambitions." ;
+        :description     "The Avengers and their allies must be willing to sacrifice all in an attempt to defeat the powerful Thanos before his blitz of devastation and ruin puts an end to the universe." ;
+        :director        wd:Q2852941 ;
+        :distributed_by  "Disney+" , "Walt Disney Studios Motion Pictures" , "Warner Bros." , "United International Pictures" , "SamFilm" ;
+        :entity          "MARVEL" ;
+        :genre           " Adventure" , "Action" , " Sci-Fi" ;
+        :id              "49" ;
+        :imdb_gross      "678820000" ;
+        :imdb_rating     "8.4" ;
+        :imdb_votes      "888104" ;
+        :mpa_rating      "PG-13" ;
+        :runtime         "149" ;
+        :stars           wd:Q178348 , wd:Q54314 , wd:Q1691583 , wd:Q41422 , wd:Q165219 ;
+        :tom_aud_score   "91" ;
+        :tom_ratings     "50000" ;
+        :tomato_meter    "85" ;
+        :tomato_review   "480" ;
+        :year            "2018" .
+
+wd:Q5066520  rdf:type   :Star ;
+        rdfs:label      "Chadwick Boseman" ;
+        :date_of_birth  "1976-11-29T00:00Z"^^xsd:date ;
+        :nationality    "United States of America" ;
+        :sex            "male" .
+
+wd:Q466611  rdf:type     :Film ;
+        rdfs:label       "The Incredible Hulk" ;
+        :crit_consensus  "The Incredible Hulk may not be quite the smashing success that fans of Marvel's raging behemoth might hope for, but it offers more than enough big green action to make up for its occasionally puny narrative." ;
+        :description     "Bruce Banner, a scientist on the run from the U.S. Government, must find a cure for the monster he turns into whenever he loses his temper." ;
+        :director        wd:Q525332 ;
+        :distributed_by  "Sony Pictures" , "Netflix" , "UIP-Dunafilm" , "Universal Subscription" ;
+        :entity          "MARVEL" ;
+        :genre           " Adventure" , "Action" , " Sci-Fi" ;
+        :id              "20" ;
+        :imdb_gross      "134520000" ;
+        :imdb_rating     "6.7" ;
+        :imdb_votes      "445822" ;
+        :mpa_rating      "PG-13" ;
+        :runtime         "112" ;
+        :stars           wd:Q168763 , wd:Q525332 , wd:Q203804 , wd:Q125904 , wd:Q105825 ;
+        :tom_aud_score   "70" ;
+        :tom_ratings     "250000" ;
+        :tomato_meter    "67" ;
+        :tomato_review   "238" ;
+        :year            "2008" .
+
+wd:Q25191  rdf:type     :Director ;
+        rdfs:label      "Christopher Nolan" ;
+        :date_of_birth  "1970-07-30T00:00Z"^^xsd:date ;
+        :nationality    "United States of America" , "United Kingdom" ;
+        :sex            "male" .
+
+wd:Q23365  rdf:type     :Star ;
+        rdfs:label      "Jeremy Renner" ;
+        :date_of_birth  "1971-01-07T00:00Z"^^xsd:date ;
+        :nationality    "United States of America" ;
+        :sex            "male" .
+
+wd:Q27985819  rdf:type   :Film ;
+        rdfs:label       "Spider-Man: Far from Home" ;
+        :crit_consensus  "A breezily unpredictable blend of teen romance and superhero action, Spider-Man: Far from Home stylishly sets the stage for the next era of the MCU." ;
+        :description     "Following the events of Avengers: Endgame (2019), Spider-Man must step up to take on new threats in a world that has changed forever." ;
+        :director        wd:Q18519749 ;
+        :distributed_by  "Sony Pictures" , "InterCom" , "Sony Pictures Releasing France" ;
+        :entity          "MARVEL" ;
+        :genre           " Sci-Fi" , " Adventure" , "Action" ;
+        :id              "56" ;
+        :imdb_gross      "390530000" ;
+        :imdb_rating     "7.5" ;
+        :imdb_votes      "353385" ;
+        :mpa_rating      "PG-13" ;
+        :runtime         "129" ;
+        :stars           wd:Q191828 , wd:Q18519749 , wd:Q133313 , wd:Q1236243 , wd:Q172678 ;
+        :tom_aud_score   "95" ;
+        :tom_ratings     "50000" ;
+        :tomato_meter    "90" ;
+        :tomato_review   "449" ;
+        :year            "2019" .
+
+wd:Q20974088  rdf:type  :Star ;
+        rdfs:label      "Charlie Heaton" ;
+        :date_of_birth  "1994-02-06T00:00Z"^^xsd:date ;
+        :nationality    "United Kingdom" ;
+        :sex            "male" .
+
+wd:Q275120  rdf:type     :Film ;
+        rdfs:label       "Captain America: The First Avenger" ;
+        :crit_consensus  "With plenty of pulpy action, a pleasantly retro vibe, and a handful of fine performances, Captain America is solidly old-fashioned blockbuster entertainment." ;
+        :description     "Steve Rogers, a rejected military soldier, transforms into Captain America after taking a dose of a \"Super-Soldier serum\". But being Captain America comes at a price as he attempts to take down a war monger and a terrorist organization." ;
+        :director        wd:Q352948 ;
+        :distributed_by  "Disney+" , "Walt Disney Studios Motion Pictures" , "Paramount Pictures" ;
+        :entity          "MARVEL" ;
+        :genre           "Action" , " Sci-Fi" , " Adventure" ;
+        :id              "26" ;
+        :imdb_gross      "176650000" ;
+        :imdb_rating     "6.9" ;
+        :imdb_votes      "764786" ;
+        :mpa_rating      "PG-13" ;
+        :runtime         "124" ;
+        :stars           wd:Q352948 , wd:Q172678 , wd:Q178348 , wd:Q42204 , wd:Q234959 ;
+        :tom_aud_score   "74" ;
+        :tom_ratings     "100000" ;
+        :tomato_meter    "80" ;
+        :tomato_review   "273" ;
+        :year            "2011" .
+
+wd:Q611096  rdf:type    :Star ;
+        rdfs:label      "Boyd Holbrook" ;
+        :date_of_birth  "1981-09-01T00:00Z"^^xsd:date ;
+        :nationality    "United States of America" ;
+        :sex            "male" .
+
+wd:Q208667  rdf:type    :Star ;
+        rdfs:label      "Stellan Skarsgård" ;
+        :date_of_birth  "1951-06-13T00:00Z"^^xsd:date ;
+        :nationality    "Sweden" ;
+        :sex            "male" .
+
+wd:Q481832  rdf:type    :Star ;
+        rdfs:label      "Amy Adams" ;
+        :date_of_birth  "1974-08-20T00:00Z"^^xsd:date ;
+        :nationality    "Italy" , "United States of America" ;
+        :sex            "female" .
+
+wd:Q174843  rdf:type    :Star ;
+        rdfs:label      "Jeff Bridges" ;
+        :date_of_birth  "1949-12-04T00:00Z"^^xsd:date ;
+        :nationality    "United States of America" ;
+        :sex            "male" .
+
+wd:Q20501835  rdf:type   :Film ;
+        rdfs:label       "Justice League" ;
+        :crit_consensus  "Justice League leaps over a number of DC movies, but its single bound isn't enough to shed the murky aesthetic, thin characters, and chaotic action that continue to dog the franchise." ;
+        :description     "Fueled by his restored faith in humanity and inspired by Superman's selfless act, Bruce Wayne enlists the help of his new-found ally, Diana Prince, to face an even greater enemy." ;
+        :director        wd:Q139890 ;
+        :distributed_by  "Netflix" , "Warner Bros." , "InterCom" , "Max" ;
+        :entity          "DC" ;
+        :genre           " Adventure" , " Fantasy" , "Action" ;
+        :id              "85" ;
+        :imdb_gross      "229020000" ;
+        :imdb_rating     "6.1" ;
+        :imdb_votes      "416837" ;
+        :mpa_rating      "PG-13" ;
+        :runtime         "120" ;
+        :stars           wd:Q483118 , wd:Q185654 , wd:Q315271 , wd:Q508049 ;
+        :tom_aud_score   "69" ;
+        :tom_ratings     "100000" ;
+        :tomato_meter    "40" ;
+        :tomato_review   "402" ;
+        :year            "2017" .
+
+wd:Q139638  rdf:type    :Star ;
+        rdfs:label      "Zachary Levi" ;
+        :date_of_birth  "1980-09-29T00:00Z"^^xsd:date ;
+        :nationality    "United States of America" ;
+        :sex            "male" .
+
+wd:Q3454165  rdf:type   :Star ;
+        rdfs:label      "Kevin Bacon" ;
+        :date_of_birth  "1958-07-08T00:00Z"^^xsd:date ;
+        :nationality    "United States of America" ;
+        :sex            "male" .
+
+wd:Q276525  rdf:type    :Star ;
+        rdfs:label      "Paul Rudd" ;
+        :date_of_birth  "1969-04-06T00:00Z"^^xsd:date ;
+        :nationality    "United States of America" ;
+        :sex            "male" .
+
+wd:Q23781155  rdf:type   :Film ;
+        rdfs:label       "Avengers: Endgame" ;
+        :crit_consensus  "Exciting, entertaining, and emotionally impactful, Avengers: Endgame does whatever it takes to deliver a satisfying finale to Marvel's epic Infinity Saga." ;
+        :description     "After the devastating events of Avengers: Infinity War (2018), the universe is in ruins. With the help of remaining allies, the Avengers assemble once more in order to reverse Thanos' actions and restore balance to the universe." ;
+        :director        wd:Q2852941 ;
+        :distributed_by  "Vudu" , "Walt Disney Studios Motion Pictures" , "Disney+" ;
+        :entity          "MARVEL" ;
+        :genre           " Drama" , " Adventure" , "Action" ;
+        :id              "54" ;
+        :imdb_gross      "858370000" ;
+        :imdb_rating     "8.4" ;
+        :imdb_votes      "890937" ;
+        :mpa_rating      "PG-13" ;
+        :runtime         "181" ;
+        :stars           wd:Q41422 , wd:Q178348 , wd:Q165219 , wd:Q54314 , wd:Q1691583 ;
+        :tom_aud_score   "90" ;
+        :tom_ratings     "50000" ;
+        :tomato_meter    "94" ;
+        :tomato_review   "541" ;
+        :year            "2019" .
+
+wd:Q1340718  rdf:type   :Director ;
+        rdfs:label      "Mark Neveldine" ;
+        :date_of_birth  "1973-05-11T00:00Z"^^xsd:date ;
+        :nationality    "United States of America" ;
+        :sex            "male" .
+
+wd:Q253561  rdf:type    :Star ;
+        rdfs:label      "Adrienne Barbeau" ;
+        :date_of_birth  "1945-06-11T00:00Z"^^xsd:date ;
+        :nationality    "United States of America" ;
+        :sex            "female" .
+
+wd:Q29328  rdf:type     :Star ;
+        rdfs:label      "Brie Larson" ;
+        :date_of_birth  "1989-10-01T00:00Z"^^xsd:date ;
+        :nationality    "Canada" , "United States of America" ;
+        :sex            "female" .
+
+wd:Q282033  rdf:type    :Director ;
+        rdfs:label      "Martin Campbell" ;
+        :date_of_birth  "1943-10-24T00:00Z"^^xsd:date ;
+        :nationality    "New Zealand" ;
+        :sex            "male" .
+
+wd:Q41449  rdf:type     :Star ;
+        rdfs:label      "Michael Shannon" ;
+        :date_of_birth  "1974-08-07T00:00Z"^^xsd:date ;
+        :nationality    "United States of America" ;
+        :sex            "male" .
+
+wd:Q508049  rdf:type    :Star ;
+        rdfs:label      "Ezra Miller" ;
+        :date_of_birth  "1992-09-30T00:00Z"^^xsd:date ;
+        :nationality    "United States of America" ;
+        :sex            "non-binary" .
+
+wd:Q455898  rdf:type    :Star ;
+        rdfs:label      "Sebastian Stan" ;
+        :date_of_birth  "1982-08-13T00:00Z"^^xsd:date ;
+        :nationality    "Romania" , "United States of America" ;
+        :sex            "male" .
+
+wd:Q178552  rdf:type    :Star ;
+        rdfs:label      "Mickey Rourke" ;
+        :date_of_birth  "1952-09-16T00:00Z"^^xsd:date ;
+        :nationality    "United States of America" ;
+        :sex            "male" .
+
+wd:Q231382  rdf:type    :Star ;
+        rdfs:label      "Kristen Wiig" ;
+        :date_of_birth  "1973-08-22T00:00Z"^^xsd:date ;
+        :nationality    "United States of America" ;
+        :sex            "female" .
+
+wd:Q208649  rdf:type    :Star ;
+        rdfs:label      "Paul Giamatti" ;
+        :date_of_birth  "1967-06-06T00:00Z"^^xsd:date ;
+        :nationality    "United States of America" ;
+        :sex            "male" .
+
+wd:Q22998395  rdf:type   :Film ;
+        rdfs:label       "Aquaman" ;
+        :crit_consensus  "Aquaman swims with its entertainingly ludicrous tide, offering up CGI superhero spectacle that delivers energetic action with an emphasis on good old-fashioned fun." ;
+        :description     "Arthur Curry, the human-born heir to the underwater kingdom of Atlantis, goes on a quest to prevent a war between the worlds of ocean and land." ;
+        :director        wd:Q102411425 ;
+        :distributed_by  "InterCom" , "Netflix" , "Warner Bros. Pictures" ;
+        :entity          "DC" ;
+        :genre           " Adventure" , " Fantasy" , "Action" ;
+        :id              "86" ;
+        :imdb_gross      "335060000" ;
+        :imdb_rating     "6.9" ;
+        :imdb_votes      "400424" ;
+        :mpa_rating      "PG-13" ;
+        :runtime         "143" ;
+        :stars           wd:Q229166 , wd:Q315271 , wd:Q351290 , wd:Q188772 ;
+        :tom_aud_score   "74" ;
+        :tom_ratings     "25000" ;
+        :tomato_meter    "65" ;
+        :tomato_review   "406" ;
+        :year            "2018" .
+
+wd:Q221168  rdf:type     :Film ;
+        rdfs:label       "X-Men: The Last Stand" ;
+        :crit_consensus  "X-Men: The Last Stand provides plenty of mutant action for fans of the franchise, even if it does so at the expense of its predecessors' deeper character moments." ;
+        :description     "The human government develops a cure for mutations, and Jean Gray becomes a darker uncontrollable persona called the Phoenix who allies with Magneto, causing escalation into an all-out battle for the X-Men." ;
+        :director        wd:Q319204 ;
+        :distributed_by  "InterCom" , "20th Century Studios" , "Netflix" , "Disney+" ;
+        :entity          "MARVEL" ;
+        :genre           "Action" , " Sci-Fi" , " Adventure" ;
+        :id              "15" ;
+        :imdb_gross      "234360000" ;
+        :imdb_rating     "6.7" ;
+        :imdb_votes      "490269" ;
+        :mpa_rating      "PG-13" ;
+        :runtime         "104" ;
+        :stars           wd:Q1033016 , wd:Q129591 , wd:Q16296 , wd:Q319204 , wd:Q190794 ;
+        :tom_aud_score   "61" ;
+        :tom_ratings     "250000" ;
+        :tomato_meter    "57" ;
+        :tomato_review   "240" ;
+        :year            "2006" .
+
+wd:Q636653  rdf:type    :Star ;
+        rdfs:label      "Danai Gurira" ;
+        :date_of_birth  "1978-01-01T00:00Z"^^xsd:date , "1978-02-14T00:00Z"^^xsd:date ;
+        :nationality    "United States of America" ;
+        :sex            "female" .
+
+wd:Q1371295  rdf:type   :Director ;
+        rdfs:label      "Kenny Johnson" ;
+        :date_of_birth  "1963-07-13T00:00Z"^^xsd:date ;
+        :nationality    "United States of America" ;
+        :sex            "male" .
+
+wd:Q224130  rdf:type     :Film ;
+        rdfs:label       "Fantastic Four" ;
+        :crit_consensus  "Dull and downbeat, this Fantastic Four proves a woefully misguided attempt to translate a classic comic series without the humor, joy, or colorful thrills that made it great." , "Marred by goofy attempts at wit, subpar acting, and bland storytelling, Fantastic Four is a mediocre attempt to bring Marvel's oldest hero team to the big screen." ;
+        :description     "A group of astronauts gain superpowers after a cosmic radiation exposure and must use them to oppose the plans of their enemy, Doctor Victor Von Doom." , "Four young outsiders teleport to an alternate and dangerous universe which alters their physical form in shocking ways. The four must learn to harness their new abilities and work together to save Earth from a former friend turned enemy." ;
+        :director        wd:Q2005037 , wd:Q3186007 ;
+        :distributed_by  "InterCom" , "20th Century Studios" , "Disney+" , "Netflix" , "Vudu" ;
+        :entity          "MARVEL" ;
+        :genre           " Adventure" , " Sci-Fi" , " Fantasy" , "Action" ;
+        :id              "14" , "39" ;
+        :imdb_gross      "56120000" , "154700000" ;
+        :imdb_rating     "5.7" , "4.2" ;
+        :imdb_votes      "155942" , "315297" ;
+        :mpa_rating      "PG-13" ;
+        :runtime         "100" , "106" ;
+        :stars           wd:Q178348 , wd:Q3186007 , wd:Q44077 , wd:Q231249 , wd:Q3308007 , wd:Q295974 , wd:Q313653 , wd:Q267330 , wd:Q2005037 , wd:Q297071 ;
+        :tom_aud_score   "18" , "45" ;
+        :tom_ratings     "250000" , "100000" ;
+        :tomato_meter    "27" , "9" ;
+        :tomato_review   "214" , "260" ;
+        :year            "2015" , "2005" .
+
+wd:Q204586  rdf:type    :Star ;
+        rdfs:label      "Parker Posey" ;
+        :date_of_birth  "1968-11-08T00:00Z"^^xsd:date ;
+        :nationality    "United States of America" ;
+        :sex            "female" .
+
+wd:Q372947  rdf:type    :Star ;
+        rdfs:label      "Ray Stevenson" ;
+        :date_of_birth  "1964-05-25T00:00Z"^^xsd:date ;
+        :nationality    "United Kingdom" ;
+        :sex            "male" .
+
+wd:Q34012  rdf:type     :Star ;
+        rdfs:label      "Marlon Brando" ;
+        :date_of_birth  "1924-04-03T00:00Z"^^xsd:date ;
+        :nationality    "United States of America" ;
+        :sex            "male" .
+
+wd:Q1346611  rdf:type   :Star , :Director ;
+        rdfs:label      "Stephen Norrington" ;
+        :date_of_birth  "1964-02-01T00:00Z"^^xsd:date ;
+        :nationality    "United Kingdom" ;
+        :sex            "male" .
+
+wd:Q521691  rdf:type    :Star , :Director ;
+        rdfs:label      "Ruben Fleischer" ;
+        :date_of_birth  "1974-10-31T00:00Z"^^xsd:date ;
+        :nationality    "United States of America" ;
+        :sex            "male" .
+
+wd:Q41854  rdf:type      :Film ;
+        rdfs:label       "Ghost Rider: Spirit of Vengeance" ;
+        :crit_consensus  "With a weak script, uneven CG work, and a Nic Cage performance so predictably loony it's no longer amusing, Ghost Rider: Spirit of Vengeance aims to be trashy fun but ends up as plain trash." ;
+        :description     "Johnny Blaze, tortured by the Ghost Rider's curse, gets a chance of redemption through protecting the Devil's son, whose father is pursuing him." ;
+        :director        wd:Q1340718 ;
+        :distributed_by  "Big Bang Media" , "Netflix" , "Columbia Pictures" ;
+        :entity          "MARVEL" ;
+        :genre           " Fantasy" , "Action" , " Thriller" ;
+        :id              "27" ;
+        :imdb_gross      "51770000" ;
+        :imdb_rating     "4.3" ;
+        :imdb_votes      "112898" ;
+        :mpa_rating      "PG-13" ;
+        :runtime         "96" ;
+        :stars           wd:Q42869 , wd:Q455945 , wd:Q913128 , wd:Q342604 , wd:Q314892 ;
+        :tom_aud_score   "31" ;
+        :tom_ratings     "100000" ;
+        :tomato_meter    "18" ;
+        :tomato_review   "114" ;
+        :year            "2011" .
+
+wd:Q234076  rdf:type    :Star ;
+        rdfs:label      "Rosie Perez" ;
+        :date_of_birth  "1964-09-06T00:00Z"^^xsd:date ;
+        :nationality    "United States of America" ;
+        :sex            "female" .
+
+wd:Q1359422  rdf:type   :Director ;
+        rdfs:label      "Sidney J. Furie" ;
+        :date_of_birth  "1933-02-25T00:00Z"^^xsd:date ;
+        :nationality    "Canada" ;
+        :sex            "male" .
+
+wd:Q231249  rdf:type    :Star ;
+        rdfs:label      "Kate Mara" ;
+        :date_of_birth  "1983-02-27T00:00Z"^^xsd:date ;
+        :nationality    "United States of America" ;
+        :sex            "female" .
+
+wd:Q458305  rdf:type    :Star ;
+        rdfs:label      "Sarah Douglas" ;
+        :date_of_birth  "1952-12-12T00:00Z"^^xsd:date ;
+        :nationality    "United Kingdom" ;
+        :sex            "female" .
+
+wd:Q220698  rdf:type    :Star ;
+        rdfs:label      "Ron Perlman" ;
+        :date_of_birth  "1950-04-13T00:00Z"^^xsd:date ;
+        :nationality    "United States of America" ;
+        :sex            "male" .
+
+wd:Q165524  rdf:type    :Star ;
+        rdfs:label      "Tobey Maguire" ;
+        :date_of_birth  "1975-06-27T00:00Z"^^xsd:date ;
+        :nationality    "United States of America" ;
+        :sex            "male" .
+
+wd:Q336024  rdf:type    :Director ;
+        rdfs:label      "Jeannot Szwarc" ;
+        :date_of_birth  "1939-11-21T00:00Z"^^xsd:date ;
+        :nationality    "United States of America" , "France" ;
+        :sex            "male" .
+
+wd:Q31188935  rdf:type   :Film ;
+        rdfs:label       "Dark Phoenix" ;
+        :crit_consensus  "Dark Phoenix ends an era of the X-Men franchise by taking a second stab at adapting a classic comics arc -- with deeply disappointing results." ;
+        :description     "Jean Grey begins to develop incredible powers that corrupt and turn her into a Dark Phoenix, causing the X-Men to decide if her life is worth more than all of humanity." ;
+        :director        wd:Q219507 ;
+        :distributed_by  "20th Century Studios" , "Disney+" ;
+        :entity          "MARVEL" ;
+        :genre           " Adventure" , " Sci-Fi" , "Action" ;
+        :id              "55" ;
+        :imdb_gross      "65850000" ;
+        :imdb_rating     "5.7" ;
+        :imdb_votes      "164427" ;
+        :mpa_rating      "PG-13" ;
+        :runtime         "113" ;
+        :stars           wd:Q57147 , wd:Q193659 , wd:Q219507 , wd:Q189490 , wd:Q298347 ;
+        :tom_aud_score   "64" ;
+        :tom_ratings     "10000" ;
+        :tomato_meter    "22" ;
+        :tomato_review   "379" ;
+        :year            "2019" .
+
+wd:Q185140  rdf:type    :Star ;
+        rdfs:label      "Joaquin Phoenix" ;
+        :date_of_birth  "1974-10-28T00:00Z"^^xsd:date ;
+        :nationality    "United States of America" ;
+        :sex            "male" .
+
+wd:Q24189388  rdf:type  :Star ;
+        rdfs:label      "Julian Dennison" ;
+        :date_of_birth  "2002-01-01T00:00Z"^^xsd:date , "2002-10-26T00:00Z"^^xsd:date ;
+        :nationality    "New Zealand" ;
+        :sex            "male" .
+
+wd:Q23891  rdf:type     :Star ;
+        rdfs:label      "Andrew Garfield" ;
+        :date_of_birth  "1983-08-20T00:00Z"^^xsd:date ;
+        :nationality    "United Kingdom" , "United States of America" ;
+        :sex            "male" .
+
+wd:Q81649  rdf:type     :Star ;
+        rdfs:label      "Jeffrey Catherine Jones" ;
+        :date_of_birth  "1944-01-10T00:00Z"^^xsd:date ;
+        :nationality    "United States of America" ;
+        :sex            "trans woman" .
+
+wd:Q119798  rdf:type    :Star ;
+        rdfs:label      "Michael Douglas" ;
+        :date_of_birth  "1944-09-25T00:00Z"^^xsd:date ;
+        :nationality    "United States of America" ;
+        :sex            "male" .
+
+wd:Q540422  rdf:type    :Star ;
+        rdfs:label      "J. T. Miller" ;
+        :date_of_birth  "1993-03-14T00:00Z"^^xsd:date ;
+        :nationality    "United States of America" ;
+        :sex            "male" .
+
+wd:Q2521650  rdf:type    :Film ;
+        rdfs:label       "The Return of Swamp Thing" ;
+        :crit_consensus  "A mad scientist's (Louis Jourdan) vegetarian stepdaughter (Heather Locklear) falls in love with one of his leafy failures." ;
+        :description     "In this tongue-in-cheek sequel, the benevolent bog creature falls for the vegetarian, plant-loving daughter of the evil scientist who created him." ;
+        :director        wd:Q145422 ;
+        :distributed_by  "Netflix" ;
+        :entity          "DC" ;
+        :genre           " Comedy" , "Action" , " Adventure" ;
+        :id              "66" ;
+        :imdb_gross      "190000" ;
+        :imdb_rating     "4.6" ;
+        :imdb_votes      "4454" ;
+        :mpa_rating      "PG-13" ;
+        :runtime         "88" ;
+        :stars           wd:Q5272862 , wd:Q458305 , wd:Q229749 , wd:Q364083 ;
+        :tom_aud_score   "55" ;
+        :tom_ratings     "2500" ;
+        :tomato_meter    "44" ;
+        :tomato_review   "9" ;
+        :year            "1989" .
+
+wd:Q192724  rdf:type     :Film ;
+        rdfs:label       "Iron Man" ;
+        :crit_consensus  "Powered by Robert Downey Jr.'s vibrant charm, Iron Man turbo-charges the superhero genre with a deft intelligence and infectious sense of fun." ;
+        :description     "After being held captive in an Afghan cave, billionaire engineer Tony Stark creates a unique weaponized suit of armor to fight evil." ;
+        :director        wd:Q295964 ;
+        :distributed_by  "Paramount Pictures" , "Walt Disney Studios Motion Pictures" , "Disney+" ;
+        :entity          "MARVEL" ;
+        :genre           " Adventure" , " Sci-Fi" , "Action" ;
+        :id              "19" ;
+        :imdb_gross      "318410000" ;
+        :imdb_rating     "7.9" ;
+        :imdb_votes      "964114" ;
+        :mpa_rating      "PG-13" ;
+        :runtime         "126" ;
+        :stars           wd:Q174843 , wd:Q296500 , wd:Q34460 , wd:Q295964 , wd:Q165219 ;
+        :tom_aud_score   "91" ;
+        :tom_ratings     "250000" ;
+        :tomato_meter    "94" ;
+        :tomato_review   "281" ;
+        :year            "2008" .
+
+wd:Q26997611  rdf:type  :Star ;
+        rdfs:label      "Zazie Beetz" ;
+        :date_of_birth  "1991-06-01T00:00Z"^^xsd:date ;
+        :nationality    "Germany" , "United States of America" ;
+        :sex            "female" .
+
+wd:Q190794  rdf:type    :Star ;
+        rdfs:label      "Famke Janssen" ;
+        :date_of_birth  "1964-11-05T00:00Z"^^xsd:date ;
+        :nationality    "Kingdom of the Netherlands" ;
+        :sex            "female" .
+
+wd:Q172678  rdf:type    :Star ;
+        rdfs:label      "Samuel L. Jackson" ;
+        :date_of_birth  "1948-12-21T00:00Z"^^xsd:date ;
+        :nationality    "Gabon" , "United States of America" ;
+        :sex            "male" .
+
+wd:Q978567  rdf:type    :Star ;
+        rdfs:label      "Robert Wuhl" ;
+        :date_of_birth  "1951-10-09T00:00Z"^^xsd:date ;
+        :nationality    "United States of America" ;
+        :sex            "male" .
+
+wd:Q23685878  rdf:type   :Film ;
+        rdfs:label       "Shazam!" ;
+        :crit_consensus  "An effortlessly entertaining blend of humor and heart, Shazam! is a superhero movie that never forgets the genre's real power: joyous wish fulfillment." ;
+        :description     "A newly fostered young boy in search of his mother instead finds unexpected super powers and soon gains a powerful enemy." ;
+        :director        wd:Q16775487 ;
+        :distributed_by  "Warner Bros." , "Netflix" , "InterCom" ;
+        :entity          "DC" ;
+        :genre           " Adventure" , " Comedy" , "Action" ;
+        :id              "87" ;
+        :imdb_gross      "140370000" ;
+        :imdb_rating     "7.0" ;
+        :imdb_votes      "279604" ;
+        :mpa_rating      "PG-13" ;
+        :runtime         "132" ;
+        :stars           wd:Q139638 , wd:Q42833024 , wd:Q26703280 , wd:Q312712 ;
+        :tom_aud_score   "82" ;
+        :tom_ratings     "10000" ;
+        :tomato_meter    "90" ;
+        :tomato_review   "409" ;
+        :year            "2019" .
+
+wd:Q7803979  rdf:type   :Star , :Director ;
+        rdfs:label      "Tim Miller" ;
+        :date_of_birth  "1987-03-06T00:00Z"^^xsd:date ;
+        :nationality    "United States of America" ;
+        :sex            "male" .
+
+wd:Q43416  rdf:type     :Star ;
+        rdfs:label      "Keanu Reeves" ;
+        :date_of_birth  "1964-09-02T00:00Z"^^xsd:date ;
+        :nationality    "Canada" ;
+        :sex            "male" .
+
+wd:Q178166  rdf:type    :Star ;
+        rdfs:label      "Vin Diesel" ;
+        :date_of_birth  "1967-07-18T00:00Z"^^xsd:date ;
+        :nationality    "United States of America" ;
+        :sex            "male" .
+
+wd:Q436620  rdf:type    :Star ;
+        rdfs:label      "Lucy Davis" ;
+        :date_of_birth  "1973-02-17T00:00Z"^^xsd:date ;
+        :nationality    "United Kingdom" ;
+        :sex            "female" .
+
+wd:Q42204  rdf:type     :Star ;
+        rdfs:label      "Hugo Weaving" ;
+        :date_of_birth  "1960-04-04T00:00Z"^^xsd:date ;
+        :nationality    "United Kingdom" ;
+        :sex            "male" .
+
+wd:Q230779  rdf:type    :Star ;
+        rdfs:label      "Annabeth Gish" ;
+        :date_of_birth  "1971-03-13T00:00Z"^^xsd:date ;
+        :nationality    "United States of America" ;
+        :sex            "female" .
+
+wd:Q36949  rdf:type     :Star ;
+        rdfs:label      "Robert De Niro" ;
+        :date_of_birth  "1943-08-17T00:00Z"^^xsd:date ;
+        :nationality    "Italy" , "United States of America" ;
+        :sex            "male" .
+
+wd:Q163872  rdf:type     :Film ;
+        rdfs:label       "The Dark Knight" ;
+        :crit_consensus  "Dark, complex, and unforgettable, The Dark Knight succeeds not just as an entertaining comic book film, but as a richly thrilling crime saga." ;
+        :description     "When the menace known as the Joker wreaks havoc and chaos on the people of Gotham, Batman must accept one of the greatest psychological and physical tests of his ability to fight injustice." ;
+        :director        wd:Q25191 ;
+        :distributed_by  "InterCom" , "Warner Bros." , "Netflix" ;
+        :entity          "DC" ;
+        :genre           " Crime" , "Action" , " Drama" ;
+        :id              "76" ;
+        :imdb_gross      "534860000" ;
+        :imdb_rating     "9.0" ;
+        :imdb_votes      "2369304" ;
+        :mpa_rating      "PG-13" ;
+        :runtime         "152" ;
+        :stars           wd:Q192643 , wd:Q123351 , wd:Q45772 , wd:Q40572 ;
+        :tom_aud_score   "94" ;
+        :tom_ratings     "250000" ;
+        :tomato_meter    "94" ;
+        :tomato_review   "344" ;
+        :year            "2008" .
+
+wd:Q160392  rdf:type    :Star ;
+        rdfs:label      "Evangeline Lilly" ;
+        :date_of_birth  "1979-08-03T00:00Z"^^xsd:date ;
+        :nationality    "Canada" ;
+        :sex            "female" .
+
+wd:Q205707  rdf:type    :Star ;
+        rdfs:label      "Bradley Cooper" ;
+        :date_of_birth  "1975-01-05T00:00Z"^^xsd:date ;
+        :nationality    "United States of America" ;
+        :sex            "male" .
+
+wd:Q372073  rdf:type    :Star ;
+        rdfs:label      "Jackie Cooper" ;
+        :date_of_birth  "1922-09-15T00:00Z"^^xsd:date ;
+        :nationality    "United States of America" ;
+        :sex            "male" .
+
+wd:Q23780734  rdf:type   :Film ;
+        rdfs:label       "Black Panther" ;
+        :crit_consensus  "Black Panther elevates superhero cinema to thrilling new heights while telling one of the MCU's most absorbing stories -- and introducing some of its most fully realized characters." ;
+        :description     "T'Challa, heir to the hidden but advanced kingdom of Wakanda, must step forward to lead his people into a new future and must confront a challenger from his country's past." ;
+        :director        wd:Q7383978 ;
+        :distributed_by  "Disney+" , "Walt Disney Studios Motion Pictures" ;
+        :entity          "MARVEL" ;
+        :genre           " Sci-Fi" , "Action" , " Adventure" ;
+        :id              "48" ;
+        :imdb_gross      "700060000" ;
+        :imdb_rating     "7.3" ;
+        :imdb_votes      "655779" ;
+        :mpa_rating      "PG-13" ;
+        :runtime         "134" ;
+        :stars           wd:Q3308007 , wd:Q636653 , wd:Q3840847 , wd:Q5066520 , wd:Q7383978 ;
+        :tom_aud_score   "79" ;
+        :tom_ratings     "50000" ;
+        :tomato_meter    "96" ;
+        :tomato_review   "523" ;
+        :year            "2018" .
+
+wd:Q133313  rdf:type    :Star ;
+        rdfs:label      "Jake Gyllenhaal" ;
+        :date_of_birth  "1980-12-19T00:00Z"^^xsd:date ;
+        :nationality    "United States of America" ;
+        :sex            "male" .
+
+wd:Q168721  rdf:type    :Star ;
+        rdfs:label      "Faye Dunaway" ;
+        :date_of_birth  "1941-01-14T00:00Z"^^xsd:date ;
+        :nationality    "United States of America" ;
+        :sex            "female" .
+
+wd:Q192682  rdf:type    :Star ;
+        rdfs:label      "Ryan Reynolds" ;
+        :date_of_birth  "1976-10-23T00:00Z"^^xsd:date ;
+        :nationality    "United States of America" , "Canada" ;
+        :sex            "male" .
+
+wd:Q33408623  rdf:type   :Film ;
+        rdfs:label       "Wonder Woman 1984" ;
+        :crit_consensus  "Wonder Woman 1984 struggles with sequel overload, but still offers enough vibrant escapism to satisfy fans of the franchise and its classic central character." ;
+        :description     "Diana must contend with a work colleague and businessman, whose desire for extreme wealth sends the world down a path of destruction, after an ancient artifact that grants wishes goes missing." ;
+        :director        wd:Q456910 ;
+        :distributed_by  "Xfinity Streampix" , "Max" , "Warner Bros." ;
+        :entity          "DC" ;
+        :genre           "Action" , " Adventure" , " Fantasy" ;
+        :id              "90" ;
+        :imdb_gross      "46370000" ;
+        :imdb_rating     "5.4" ;
+        :imdb_votes      "212554" ;
+        :mpa_rating      "PG-13" ;
+        :runtime         "151" ;
+        :stars           wd:Q185654 , wd:Q231382 , wd:Q23466 , wd:Q14752155 ;
+        :tom_aud_score   "73" ;
+        :tom_ratings     "2500" ;
+        :tomato_meter    "59" ;
+        :tomato_review   "431" ;
+        :year            "2020" .
+
+wd:Q816565  rdf:type    :Star ;
+        rdfs:label      "Ben Mendelsohn" ;
+        :date_of_birth  "1969-04-03T00:00Z"^^xsd:date ;
+        :nationality    "Australia" ;
+        :sex            "male" .
+
+wd:Q80938  rdf:type     :Star ;
+        rdfs:label      "John Travolta" ;
+        :date_of_birth  "1954-02-18T00:00Z"^^xsd:date ;
+        :nationality    "United States of America" ;
+        :sex            "male" .
+
+wd:Q80069  rdf:type     :Star ;
+        rdfs:label      "Megan Fox" ;
+        :date_of_birth  "1986-05-16T00:00Z"^^xsd:date ;
+        :nationality    "United States of America" ;
+        :sex            "female" .
+
+wd:Q168763  rdf:type    :Star ;
+        rdfs:label      "Liv Tyler" ;
+        :date_of_birth  "1977-07-01T00:00Z"^^xsd:date ;
+        :nationality    "United States of America" ;
+        :sex            "female" .
+
+wd:Q223992  rdf:type    :Director ;
+        rdfs:label      "Wes Craven" ;
+        :date_of_birth  "1939-08-02T00:00Z"^^xsd:date ;
+        :nationality    "United States of America" ;
+        :sex            "male" .
+
+wd:Q443106  rdf:type    :Star , :Director ;
+        rdfs:label      "Gavin Hood" ;
+        :date_of_birth  "1963-05-12T00:00Z"^^xsd:date ;
+        :nationality    "South Africa" ;
+        :sex            "male" .
+
+wd:Q357998  rdf:type    :Star , :Director ;
+        rdfs:label      "Marc Webb" ;
+        :date_of_birth  "1974-08-31T00:00Z"^^xsd:date ;
+        :nationality    "United States of America" ;
+        :sex            "male" .
+
+wd:Q230605  rdf:type    :Star ;
+        rdfs:label      "Lea Thompson" ;
+        :date_of_birth  "1961-05-31T00:00Z"^^xsd:date ;
+        :nationality    "United States of America" ;
+        :sex            "female" .
+
+wd:Q228871  rdf:type    :Star ;
+        rdfs:label      "Carla Gugino" ;
+        :date_of_birth  "1971-08-29T00:00Z"^^xsd:date ;
+        :nationality    "United States of America" ;
+        :sex            "female" .
+
+wd:Q294912  rdf:type    :Star ;
+        rdfs:label      "Richard Pryor" ;
+        :date_of_birth  "1940-12-01T00:00Z"^^xsd:date ;
+        :nationality    "United States of America" ;
+        :sex            "male" .
+
+wd:Q537747  rdf:type    :Star ;
+        rdfs:label      "Burt Ward" ;
+        :date_of_birth  "1945-07-06T00:00Z"^^xsd:date ;
+        :nationality    "United States of America" ;
+        :sex            "male" .
+
+wd:Q189054  rdf:type     :Film ;
+        rdfs:label       "Batman Returns" ;
+        :crit_consensus  "Director Tim Burton's dark, brooding atmosphere, Michael Keaton's work as the tormented hero, and the flawless casting of Danny DeVito as The Penguin and Christopher Walken as, well, Christopher Walken make the sequel better than the first." ;
+        :description     "While Batman deals with a deformed man calling himself the Penguin wreaking havoc across Gotham with the help of a cruel businessman, a female employee of the latter becomes the Catwoman with her own vendetta." ;
+        :director        wd:Q56008 ;
+        :distributed_by  "InterCom" , "Netflix" , "Warner Bros." ;
+        :entity          "DC" ;
+        :genre           "Action" , " Fantasy" , " Crime" ;
+        :id              "68" ;
+        :imdb_gross      "162830000" ;
+        :imdb_rating     "7.0" ;
+        :imdb_votes      "279545" ;
+        :mpa_rating      "PG-13" ;
+        :runtime         "126" ;
+        :stars           wd:Q185051 , wd:Q159778 , wd:Q26806 , wd:Q138005 ;
+        :tom_aud_score   "73" ;
+        :tom_ratings     "250000" ;
+        :tomato_meter    "80" ;
+        :tomato_review   "84" ;
+        :year            "1992" .
+
+wd:Q25144  rdf:type     :Star ;
+        rdfs:label      "Kevin Spacey" ;
+        :date_of_birth  "1959-07-26T00:00Z"^^xsd:date ;
+        :nationality    "United States of America" ;
+        :sex            "male" .
+
+wd:Q51923835  rdf:type  :Director ;
+        rdfs:label      "Cathy Yan" ;
+        :date_of_birth  "1983-01-25T00:00Z"^^xsd:date ;
+        :nationality    "United States of America" , "People's Republic of China" ;
+        :sex            "female" .
+
+wd:Q138005  rdf:type    :Star ;
+        rdfs:label      "Michael Keaton" ;
+        :date_of_birth  "1951-09-05T00:00Z"^^xsd:date ;
+        :nationality    "United States of America" ;
+        :sex            "male" .
+
+wd:Q1236243  rdf:type   :Star ;
+        rdfs:label      "Tom Holland" ;
+        :date_of_birth  "1968-01-05T00:00Z"^^xsd:date ;
+        :nationality    "United Kingdom" ;
+        :sex            "male" .
+
+wd:Q5273293  rdf:type   :Star ;
+        rdfs:label      "Dick Purcell" ;
+        :date_of_birth  "1905-08-06T00:00Z"^^xsd:date , "1908-08-06T00:00Z"^^xsd:date ;
+        :nationality    "United States of America" ;
+        :sex            "male" .
+
+wd:Q40504  rdf:type     :Star ;
+        rdfs:label      "Jim Carrey" ;
+        :date_of_birth  "1962-01-17T00:00Z"^^xsd:date ;
+        :nationality    "Canada" , "United States of America" ;
+        :sex            "male" .
+
+wd:Q903885  rdf:type     :Film ;
+        rdfs:label       "Green Lantern" ;
+        :crit_consensus  "Noisy, overproduced, and thinly written, Green Lantern squanders an impressive budget and decades of comics mythology." ;
+        :description     "Reckless test pilot Hal Jordan is granted an alien ring that bestows him with otherworldly powers that inducts him into an intergalactic police force, the Green Lantern Corps." ;
+        :director        wd:Q282033 ;
+        :distributed_by  "Netflix" , "Warner Bros." ;
+        :entity          "DC" ;
+        :genre           " Sci-Fi" , " Adventure" , "Action" ;
+        :id              "79" ;
+        :imdb_gross      "116600000" ;
+        :imdb_rating     "5.5" ;
+        :imdb_votes      "270939" ;
+        :mpa_rating      "PG-13" ;
+        :runtime         "114" ;
+        :stars           wd:Q312712 , wd:Q162959 , wd:Q315099 , wd:Q192682 ;
+        :tom_aud_score   "45" ;
+        :tom_ratings     "100000" ;
+        :tomato_meter    "26" ;
+        :tomato_review   "246" ;
+        :year            "2011" .
+
+wd:Q229166  rdf:type    :Star ;
+        rdfs:label      "Amber Heard" ;
+        :date_of_birth  "1986-04-22T00:00Z"^^xsd:date ;
+        :nationality    "United States of America" ;
+        :sex            "female" .
+
+wd:Q103876  rdf:type    :Star ;
+        rdfs:label      "Peter O'Toole" ;
+        :date_of_birth  "1932-08-02T00:00Z"^^xsd:date ;
+        :nationality    "United Kingdom" , "Republic of Ireland" ;
+        :sex            "male" .
+
+wd:Q41396  rdf:type     :Star ;
+        rdfs:label      "Josh Brolin" ;
+        :date_of_birth  "1968-02-12T00:00Z"^^xsd:date ;
+        :nationality    "United States of America" ;
+        :sex            "male" .
+
+wd:Q613136  rdf:type    :Star ;
+        rdfs:label      "Walter Reed" ;
+        :date_of_birth  "1851-09-13T00:00Z"^^xsd:date ;
+        :nationality    "United States of America" ;
+        :sex            "male" .
+
+wd:Q295207  rdf:type    :Director ;
+        rdfs:label      "Joel Schumacher" ;
+        :date_of_birth  "1939-08-29T00:00Z"^^xsd:date ;
+        :nationality    "United States of America" ;
+        :sex            "male" .
+
+wd:Q7383978  rdf:type   :Star , :Director ;
+        rdfs:label      "Ryan Coogler" ;
+        :date_of_birth  "1986-05-23T00:00Z"^^xsd:date ;
+        :nationality    "United States of America" ;
+        :sex            "male" .
+
+wd:Q506778  rdf:type    :Star ;
+        rdfs:label      "Doug Hutchison" ;
+        :date_of_birth  "1960-05-26T00:00Z"^^xsd:date ;
+        :nationality    "United States of America" ;
+        :sex            "male" .
+
+wd:Q360927  rdf:type    :Star ;
+        rdfs:label      "Irrfan Khan" ;
+        :date_of_birth  "1967-01-07T00:00Z"^^xsd:date ;
+        :nationality    "India" ;
+        :sex            "male" .
+
+wd:Q208681  rdf:type    :Star ;
+        rdfs:label      "Kris Kristofferson" ;
+        :date_of_birth  "1936-06-22T00:00Z"^^xsd:date ;
+        :nationality    "United States of America" ;
+        :sex            "male" .
+
+wd:Q346508  rdf:type    :Director ;
+        rdfs:label      "Richard Lester" ;
+        :date_of_birth  "1932-01-19T00:00Z"^^xsd:date ;
+        :nationality    "United States of America" ;
+        :sex            "male" .
+
+wd:Q445302  rdf:type    :Star ;
+        rdfs:label      "Judd Nelson" ;
+        :date_of_birth  "1959-11-28T00:00Z"^^xsd:date ;
+        :nationality    "United States of America" ;
+        :sex            "male" .
+
+wd:Q44158  rdf:type     :Star ;
+        rdfs:label      "Dave Bautista" ;
+        :date_of_birth  "1969-01-18T00:00Z"^^xsd:date ;
+        :nationality    "United States of America" ;
+        :sex            "male" .
+
+wd:Q3429263  rdf:type    :Film ;
+        rdfs:label       "Blade" ;
+        :crit_consensus  "Though some may find the plot a bit lacking, Blade's action is fierce, plentiful, and appropriately stylish for a comic book adaptation." ;
+        :description     "A half-vampire, half-mortal man becomes a protector of the mortal race, while slaying evil vampires." ;
+        :director        wd:Q1346611 ;
+        :distributed_by  "New Line Cinema" , "Netflix" , "Microsoft Store" ;
+        :entity          "MARVEL" ;
+        :genre           "Action" , " Horror" , " Sci-Fi" ;
+        :id              "3" ;
+        :imdb_gross      "70090000" ;
+        :imdb_rating     "7.1" ;
+        :imdb_votes      "251243" ;
+        :mpa_rating      "R" ;
+        :runtime         "120" ;
+        :stars           wd:Q208681 , wd:Q334195 , wd:Q536025 , wd:Q189694 , wd:Q1346611 ;
+        :tom_aud_score   "78" ;
+        :tom_ratings     "250000" ;
+        :tomato_meter    "55" ;
+        :tomato_review   "103" ;
+        :year            "1998" .
+
+wd:Q267175  rdf:type    :Star ;
+        rdfs:label      "Lee Meriwether" ;
+        :date_of_birth  "1935-05-27T00:00Z"^^xsd:date ;
+        :nationality    "United States of America" ;
+        :sex            "female" .
+
+wd:Q3308007  rdf:type   :Star ;
+        rdfs:label      "Michael B. Jordan" ;
+        :date_of_birth  "1987-02-23T00:00Z"^^xsd:date ;
+        :nationality    "brown hair" ;
+        :sex            "male" .
+
+wd:Q76478  rdf:type     :Star ;
+        rdfs:label      "Kirsten Dunst" ;
+        :date_of_birth  "1982-04-30T00:00Z"^^xsd:date ;
+        :nationality    "Germany" , "United States of America" ;
+        :sex            "female" .
+
+wd:Q277978  rdf:type    :Star ;
+        rdfs:label      "Topher Grace" ;
+        :date_of_birth  "1978-07-19T00:00Z"^^xsd:date , "1978-07-12T00:00Z"^^xsd:date ;
+        :nationality    "United States of America" ;
+        :sex            "male" .
+
+wd:Q4985891  rdf:type    :Film ;
+        rdfs:label       "X-Men: Days of Future Past" ;
+        :crit_consensus  "X-Men: Days of Future Past combines the best elements of the series to produce a satisfyingly fast-paced outing that ranks among the franchise's finest installments. " ;
+        :description     "The X-Men send Wolverine to the past in a desperate effort to change history and prevent an event that results in doom for both humans and mutants." ;
+        :director        wd:Q220751 ;
+        :distributed_by  "Disney+" , "20th Century Studios" , "Netflix" , "InterCom" ;
+        :entity          "MARVEL" ;
+        :genre           " Sci-Fi" , "Action" , " Adventure" ;
+        :id              "35" ;
+        :imdb_gross      "233920000" ;
+        :imdb_rating     "7.9" ;
+        :imdb_votes      "671146" ;
+        :mpa_rating      "PG-13" ;
+        :runtime         "132" ;
+        :stars           wd:Q16296 , wd:Q193659 , wd:Q129591 , wd:Q220751 , wd:Q170510 ;
+        :tom_aud_score   "91" ;
+        :tom_ratings     "250000" ;
+        :tomato_meter    "90" ;
+        :tomato_review   "329" ;
+        :year            "2014" .
+
+wd:Q484523  rdf:type    :Star ;
+        rdfs:label      "Jared Leto" ;
+        :date_of_birth  "1971-12-26T00:00Z"^^xsd:date ;
+        :nationality    "United States of America" ;
+        :sex            "male" .
+
+wd:Q622769  rdf:type     :Film ;
+        rdfs:label       "Man of Steel" ;
+        :crit_consensus  "Man of Steel's exhilarating action and spectacle can't fully overcome its detours into generic blockbuster territory." ;
+        :description     "An alien child is evacuated from his dying world and sent to Earth to live among humans. His peace is threatened, when other survivors of his home planet invade Earth." ;
+        :director        wd:Q139890 ;
+        :distributed_by  "Warner Bros." , "Netflix" , "InterCom" ;
+        :entity          "DC" ;
+        :genre           "Action" , " Adventure" , " Sci-Fi" ;
+        :id              "81" ;
+        :imdb_gross      "291050000" ;
+        :imdb_rating     "7.0" ;
+        :imdb_votes      "718956" ;
+        :mpa_rating      "PG-13" ;
+        :runtime         "143" ;
+        :stars           wd:Q255070 , wd:Q295498 , wd:Q41449 , wd:Q481832 ;
+        :tom_aud_score   "75" ;
+        :tom_ratings     "250000" ;
+        :tomato_meter    "56" ;
+        :tomato_review   "338" ;
+        :year            "2013" .
+
+wd:Q191084  rdf:type    :Star ;
+        rdfs:label      "Val Kilmer" ;
+        :date_of_birth  "1959-12-31T00:00Z"^^xsd:date ;
+        :nationality    "United States of America" ;
+        :sex            "male" .
+
+wd:Q223745  rdf:type    :Star ;
+        rdfs:label      "Guy Pearce" ;
+        :date_of_birth  "1967-10-05T00:00Z"^^xsd:date ;
+        :nationality    "Australia" ;
+        :sex            "male" .
+
+wd:Q147077  rdf:type    :Star ;
+        rdfs:label      "Emma Stone" ;
+        :date_of_birth  "1988-11-06T00:00Z"^^xsd:date ;
+        :nationality    "United States of America" ;
+        :sex            "female" .
+
+wd:Q193659  rdf:type    :Star ;
+        rdfs:label      "James McAvoy" ;
+        :date_of_birth  "1979-04-21T00:00Z"^^xsd:date ;
+        :nationality    "Scotland" ;
+        :sex            "male" .
+
+wd:Q297071  rdf:type    :Star ;
+        rdfs:label      "Jamie Bell" ;
+        :date_of_birth  "1986-03-14T00:00Z"^^xsd:date ;
+        :nationality    "United Kingdom" ;
+        :sex            "male" .
+
+wd:Q311615  rdf:type    :Star ;
+        rdfs:label      "Thomas Haden Church" ;
+        :date_of_birth  "1960-06-17T00:00Z"^^xsd:date ;
+        :nationality    "United States of America" ;
+        :sex            "male" .
+
+wd:Q207873  rdf:type    :Star ;
+        rdfs:label      "Mary Elizabeth Winstead" ;
+        :date_of_birth  "1984-11-28T00:00Z"^^xsd:date ;
+        :nationality    "United States of America" ;
+        :sex            "female" .
+
+wd:Q236822  rdf:type    :Star ;
+        rdfs:label      "Kate Bosworth" ;
+        :date_of_birth  "1983-01-02T00:00Z"^^xsd:date ;
+        :nationality    "United States of America" ;
+        :sex            "female" .
+
+wd:Q255070  rdf:type    :Star ;
+        rdfs:label      "Diane Lane" ;
+        :date_of_birth  "1965-01-22T00:00Z"^^xsd:date ;
+        :nationality    "United States of America" ;
+        :sex            "female" .
+
+wd:Q909802  rdf:type     :Film ;
+        rdfs:label       "The Punisher" ;
+        :crit_consensus  "A good cast fails to elevate this overly violent and by-the-numbers revenge flick." ;
+        :description     "An undercover FBI agent becomes a vigilante and sets out to unleash his wrath upon the corrupt businessman who slaughtered his entire family at a reunion." ;
+        :director        wd:Q721446 ;
+        :distributed_by  "Lionsgate Films" , "Netflix" ;
+        :entity          "MARVEL" ;
+        :genre           " Crime" , " Drama" , "Action" ;
+        :id              "10" ;
+        :imdb_gross      "33680000" ;
+        :imdb_rating     "6.4" ;
+        :imdb_votes      "151872" ;
+        :mpa_rating      "R" ;
+        :runtime         "124" ;
+        :stars           wd:Q721446 , wd:Q80938 , wd:Q18938 , wd:Q233536 , wd:Q237190 ;
+        :tom_aud_score   "63" ;
+        :tom_ratings     "250000" ;
+        :tomato_meter    "28" ;
+        :tomato_review   "172" ;
+        :year            "2004" .
+
+wd:Q1810512  rdf:type    :Film ;
+        rdfs:label       "Swamp Thing" ;
+        :crit_consensus  "Unabashedly campy -- often to its detriment -- Swamp Thing is not without its charms, among them Adrienne Barbeau as the damsel in distress." ;
+        :description     "After a violent incident with a special chemical, a research scientist is turned into a swamp plant monster." ;
+        :director        wd:Q223992 ;
+        :distributed_by  "Netflix" , "Embassy Pictures" ;
+        :entity          "DC" ;
+        :genre           " Sci-Fi" , "Horror" ;
+        :id              "62" ;
+        :imdb_gross      "0" ;
+        :imdb_rating     "5.4" ;
+        :imdb_votes      "13328" ;
+        :mpa_rating      "PG" ;
+        :runtime         "91" ;
+        :stars           wd:Q530646 , wd:Q253561 , wd:Q890204 , wd:Q364083 ;
+        :tom_aud_score   "40" ;
+        :tom_ratings     "10000" ;
+        :tomato_meter    "63" ;
+        :tomato_review   "38" ;
+        :year            "1982" .
+
+wd:Q359488  rdf:type    :Star ;
+        rdfs:label      "Michael Peña" ;
+        :date_of_birth  "1976-01-13T00:00Z"^^xsd:date ;
+        :nationality    "United States of America" ;
+        :sex            "male" .
+
+wd:Q203804  rdf:type    :Star ;
+        rdfs:label      "Tim Roth" ;
+        :date_of_birth  "1961-05-14T00:00Z"^^xsd:date ;
+        :nationality    "United Kingdom" ;
+        :sex            "male" .
+
+wd:Q596085  rdf:type     :Film ;
+        rdfs:label       "Jonah Hex" ;
+        :crit_consensus  "Josh Brolin gives it his best shot, but he can't keep the short, unfocused Jonah Hex from collapsing on the screen." ;
+        :description     "The U.S. military makes a scarred bounty hunter with warrants on his own head an offer he cannot refuse: in exchange for his freedom, he must stop a terrorist who is ready to unleash Hell on Earth." ;
+        :director        wd:Q3808425 ;
+        :distributed_by  "Warner Bros." , "Netflix" ;
+        :entity          "DC" ;
+        :genre           "Action" , " Fantasy" , " Drama" ;
+        :id              "78" ;
+        :imdb_gross      "10540000" ;
+        :imdb_rating     "4.7" ;
+        :imdb_votes      "56225" ;
+        :mpa_rating      "PG-13" ;
+        :runtime         "81" ;
+        :stars           wd:Q57147 , wd:Q80069 , wd:Q41396 , wd:Q172261 ;
+        :tom_aud_score   "20" ;
+        :tom_ratings     "100000" ;
+        :tomato_meter    "12" ;
+        :tomato_review   "153" ;
+        :year            "2010" .
+
+wd:Q7436480  rdf:type   :Star ;
+        rdfs:label      "Scott Haze" ;
+        :date_of_birth  "1980-12-30T00:00Z"^^xsd:date ;
+        :nationality    "United States of America" ;
+        :sex            "male" .
+
+wd:Q715505  rdf:type    :Star , :Director ;
+        rdfs:label      "James Gunn" ;
+        :date_of_birth  "1923-07-12T00:00Z"^^xsd:date ;
+        :nationality    "United States of America" ;
+        :sex            "male" .
+
+wd:Q189694  rdf:type    :Star ;
+        rdfs:label      "Wesley Snipes" ;
+        :date_of_birth  "1962-07-31T00:00Z"^^xsd:date ;
+        :nationality    "United States of America" ;
+        :sex            "male" .
+
+wd:Q390063  rdf:type     :Film ;
+        rdfs:label       "Fantastic Four: Rise of the Silver Surfer" ;
+        :crit_consensus  "While an improvement on its predecessor, Fantastic Four: Rise of the Silver Surfer is nevertheless a juvenile, simplistic picture that has little benefit beyond its special effects." ;
+        :description     "The Fantastic Four learn that they aren't the only super-powered beings in the universe when they square off against the powerful Silver Surfer and the planet-eating Galactus." ;
+        :director        wd:Q2005037 ;
+        :distributed_by  "Disney+" , "InterCom" , "Netflix" ;
+        :entity          "MARVEL" ;
+        :genre           "Action" , " Adventure" , " Fantasy" ;
+        :id              "18" ;
+        :imdb_gross      "131920000" ;
+        :imdb_rating     "5.6" ;
+        :imdb_votes      "253897" ;
+        :mpa_rating      "PG" ;
+        :runtime         "92" ;
+        :stars           wd:Q2005037 , wd:Q295974 , wd:Q313653 , wd:Q178348 , wd:Q44077 ;
+        :tom_aud_score   "51" ;
+        :tom_ratings     "250000" ;
+        :tomato_meter    "37" ;
+        :tomato_review   "171" ;
+        :year            "2007" .
+
+wd:Q115735  rdf:type    :Star ;
+        rdfs:label      "Lambert Wilson" ;
+        :date_of_birth  "1958-08-03T00:00Z"^^xsd:date ;
+        :nationality    "France" ;
+        :sex            "male" .
+
+wd:Q34460  rdf:type     :Star ;
+        rdfs:label      "Gwyneth Paltrow" ;
+        :date_of_birth  "1972-09-27T00:00Z"^^xsd:date ;
+        :nationality    "United States of America" ;
+        :sex            "female" .
+
+wd:Q3329808  rdf:type   :Star ;
+        rdfs:label      "Benedict Wong" ;
+        :date_of_birth  "1971-07-03T00:00Z"^^xsd:date ;
+        :nationality    "United Kingdom" ;
+        :sex            "male" .
+
+wd:Q178348  rdf:type    :Star ;
+        rdfs:label      "Chris Evans" ;
+        :date_of_birth  "1981-06-13T00:00Z"^^xsd:date ;
+        :nationality    "United States of America" ;
+        :sex            "male" .
+
+wd:Q190162  rdf:type    :Star ;
+        rdfs:label      "Zoe Saldaña" ;
+        :date_of_birth  "1978-06-19T00:00Z"^^xsd:date ;
+        :nationality    "Dominican Republic" , "United States of America" ;
+        :sex            "female" .
+
+wd:Q221345  rdf:type     :Film ;
+        rdfs:label       "Batman Forever" ;
+        :crit_consensus  "Loud, excessively busy, and often boring, Batman Forever nonetheless has the charisma of Jim Carrey and Tommy Lee Jones to offer mild relief." ;
+        :description     "Batman must battle former district attorney Harvey Dent, who is now Two-Face and Edward Nygma, The Riddler with help from an amorous psychologist and a young circus acrobat who becomes his sidekick, Robin." ;
+        :director        wd:Q295207 ;
+        :distributed_by  "Netflix" , "Warner Bros." , "InterCom" ;
+        :entity          "DC" ;
+        :genre           "Action" , " Adventure" ;
+        :id              "69" ;
+        :imdb_gross      "184030000" ;
+        :imdb_rating     "5.4" ;
+        :imdb_votes      "238230" ;
+        :mpa_rating      "PG-13" ;
+        :runtime         "121" ;
+        :stars           wd:Q37459 , wd:Q170587 , wd:Q191084 , wd:Q40504 ;
+        :tom_aud_score   "32" ;
+        :tom_ratings     "250000" ;
+        :tomato_meter    "38" ;
+        :tomato_review   "68" ;
+        :year            "1995" .
+
+wd:Q317343  rdf:type    :Star ;
+        rdfs:label      "Chiwetel Ejiofor" ;
+        :date_of_birth  "1977-07-10T00:00Z"^^xsd:date ;
+        :nationality    "United Kingdom" ;
+        :sex            "male" .
+
+wd:Q3259602  rdf:type   :Star ;
+        rdfs:label      "Lorna Gray" ;
+        :date_of_birth  "1917-07-26T00:00Z"^^xsd:date ;
+        :nationality    "United States of America" ;
+        :sex            "female" .
+
+wd:Q28912376  rdf:type   :Film ;
+        rdfs:label       "The New Mutants" ;
+        :crit_consensus  "Rendering a list of potentially explosive ingredients mostly inert, The New Mutants is a franchise spinoff that's less than the sum of its super-powered parts." ;
+        :description     "Five young mutants, just discovering their abilities while held in a secret facility against their will, fight to escape their past sins and save themselves." ;
+        :director        wd:Q2529214 ;
+        :distributed_by  "Fórum Hungary" , "Walt Disney Studios Motion Pictures" ;
+        :entity          "MARVEL" ;
+        :genre           " Horror" , "Action" , " Mystery" ;
+        :id              "57" ;
+        :imdb_gross      "0" ;
+        :imdb_rating     "5.3" ;
+        :imdb_votes      "59535" ;
+        :mpa_rating      "PG-13" ;
+        :runtime         "94" ;
+        :stars           wd:Q230903 , wd:Q20882479 , wd:Q234363 , wd:Q20974088 , wd:Q2529214 ;
+        :tom_aud_score   "56" ;
+        :tom_ratings     "2500" ;
+        :tomato_meter    "35" ;
+        :tomato_review   "126" ;
+        :year            "2020" .
+
+wd:Q3808425  rdf:type   :Director ;
+        rdfs:label      "Jimmy Hayward" ;
+        :date_of_birth  "1970-09-19T00:00Z"^^xsd:date ;
+        :nationality    "Canada" , "United States of America" ;
+        :sex            "male" .
+
+wd:Q528095  rdf:type     :Film ;
+        rdfs:label       "Superman III" ;
+        :crit_consensus  "When not overusing sight gags, slapstick, and Richard Pryor, Superman III resorts to plot points rehashed from the previous Superman flicks." ;
+        :description     "Synthetic kryptonite laced with tar splits Superman in two: good Clark Kent and bad Man of Steel." ;
+        :director        wd:Q346508 ;
+        :distributed_by  "Netflix" , "Warner Bros." ;
+        :entity          "DC" ;
+        :genre           " Comedy" , "Action" , " Adventure" ;
+        :id              "63" ;
+        :imdb_gross      "59950000" ;
+        :imdb_rating     "5.0" ;
+        :imdb_votes      "65340" ;
+        :mpa_rating      "PG" ;
+        :runtime         "125" ;
+        :stars           wd:Q174311 , wd:Q372073 , wd:Q234471 , wd:Q294912 ;
+        :tom_aud_score   "23" ;
+        :tom_ratings     "100000" ;
+        :tomato_meter    "30" ;
+        :tomato_review   "53" ;
+        :year            "1983" .
+
+wd:Q23844  rdf:type     :Star ;
+        rdfs:label      "George Clooney" ;
+        :date_of_birth  "1961-05-06T00:00Z"^^xsd:date ;
+        :nationality    "United States of America" ;
+        :sex            "male" .
+
+wd:Q237190  rdf:type    :Star ;
+        rdfs:label      "Samantha Mathis" ;
+        :date_of_birth  "1970-05-12T00:00Z"^^xsd:date ;
+        :nationality    "United States of America" ;
+        :sex            "female" .
+
+wd:Q3186007  rdf:type   :Star , :Director ;
+        rdfs:label      "Josh Trank" ;
+        :date_of_birth  "1984-02-19T00:00Z"^^xsd:date ;
+        :nationality    "United States of America" ;
+        :sex            "male" .
+
+wd:Q1861917  rdf:type   :Star ;
+        rdfs:label      "Riz Ahmed" ;
+        :date_of_birth  "1982-12-01T00:00Z"^^xsd:date ;
+        :nationality    "United Kingdom" ;
+        :sex            "male" .
+
+wd:Q1924847  rdf:type   :Star ;
+        rdfs:label      "Margot Robbie" ;
+        :date_of_birth  "1990-07-02T00:00Z"^^xsd:date ;
+        :nationality    "Australia" ;
+        :sex            "female" .
+
+wd:Q295974  rdf:type    :Star ;
+        rdfs:label      "Ioan Gruffudd" ;
+        :date_of_birth  "1973-10-06T00:00Z"^^xsd:date ;
+        :nationality    "United States of America" , "United Kingdom" ;
+        :sex            "male" .
+
+wd:Q219124  rdf:type    :Star , :Director ;
+        rdfs:label      "Guillermo del Toro" ;
+        :date_of_birth  "1964-10-09T00:00Z"^^xsd:date ;
+        :nationality    "Mexico" ;
+        :sex            "male" .
+
+wd:Q18604504  rdf:type   :Film ;
+        rdfs:label       "Suicide Squad" ;
+        :crit_consensus  "Suicide Squad boasts a talented cast and a little more humor than previous DCEU efforts, but they aren't enough to save the disappointing end result from a muddled plot, thinly written characters, and choppy directing." ;
+        :description     "A secret government agency recruits some of the most dangerous incarcerated super-villains to form a defensive task force. Their first mission: save the world from the apocalypse." ;
+        :director        wd:Q1091339 ;
+        :distributed_by  "InterCom" , "Netflix" , "Warner Bros." ;
+        :entity          "DC" ;
+        :genre           " Fantasy" , " Adventure" , "Action" ;
+        :id              "83" ;
+        :imdb_gross      "325100000" ;
+        :imdb_rating     "5.9" ;
+        :imdb_votes      "622206" ;
+        :mpa_rating      "PG-13" ;
+        :runtime         "123" ;
+        :stars           wd:Q484523 , wd:Q40096 , wd:Q229181 , wd:Q1924847 ;
+        :tom_aud_score   "59" ;
+        :tom_ratings     "100000" ;
+        :tomato_meter    "26" ;
+        :tomato_review   "386" ;
+        :year            "2016" .
+
+wd:Q2005037  rdf:type   :Star , :Director ;
+        rdfs:label      "Tim Story" ;
+        :date_of_birth  "1970-03-13T00:00Z"^^xsd:date ;
+        :nationality    "United States of America" ;
+        :sex            "male" .
+
+wd:Q182212  rdf:type     :Film ;
+        rdfs:label       "Spider-Man 3" ;
+        :crit_consensus  "Though there are more characters and plotlines, and the action sequences still dazzle, Spider-Man 3 nonetheless isn't quite as refined as the first two." ;
+        :description     "A strange black entity from another world bonds with Peter Parker and causes inner turmoil as he contends with new villains, temptations, and revenge." ;
+        :director        wd:Q275402 ;
+        :distributed_by  "Netflix" , "Sony Pictures" , "InterCom" ;
+        :entity          "MARVEL" ;
+        :genre           " Adventure" , "Action" , " Sci-Fi" ;
+        :id              "17" ;
+        :imdb_gross      "336530000" ;
+        :imdb_rating     "6.2" ;
+        :imdb_votes      "510723" ;
+        :mpa_rating      "PG-13" ;
+        :runtime         "139" ;
+        :stars           wd:Q277978 , wd:Q165524 , wd:Q311615 , wd:Q76478 , wd:Q275402 ;
+        :tom_aud_score   "51" ;
+        :tom_ratings     "250000" ;
+        :tomato_meter    "63" ;
+        :tomato_review   "262" ;
+        :year            "2007" .
+
+wd:Q312712  rdf:type    :Star ;
+        rdfs:label      "Mark Strong" ;
+        :date_of_birth  "1963-08-05T00:00Z"^^xsd:date ;
+        :nationality    "United Kingdom" ;
+        :sex            "male" .
+
+wd:Q311314  rdf:type    :Star ;
+        rdfs:label      "Sam Elliott" ;
+        :date_of_birth  "1944-08-09T00:00Z"^^xsd:date ;
+        :nationality    "United States of America" ;
+        :sex            "male" .
+
+wd:Q105825  rdf:type    :Star ;
+        rdfs:label      "William Hurt" ;
+        :date_of_birth  "1950-03-20T00:00Z"^^xsd:date ;
+        :nationality    "United States of America" ;
+        :sex            "male" .
+
+wd:Q235701  rdf:type    :Star ;
+        rdfs:label      "Kirsten Prout" ;
+        :date_of_birth  "1990-09-28T00:00Z"^^xsd:date ;
+        :nationality    "Canada" ;
+        :sex            "female" .
+
+wd:Q188772  rdf:type    :Star ;
+        rdfs:label      "Willem Dafoe" ;
+        :date_of_birth  "1955-07-22T00:00Z"^^xsd:date ;
+        :nationality    "Italy" , "United States of America" ;
+        :sex            "male" .
+
+wd:Q185654  rdf:type    :Star ;
+        rdfs:label      "Gal Gadot" ;
+        :date_of_birth  "1985-04-30T00:00Z"^^xsd:date ;
+        :nationality    "Israel" ;
+        :sex            "female" .
+
+wd:Q315099  rdf:type    :Star ;
+        rdfs:label      "Peter Sarsgaardd" ;
+        :date_of_birth  "1971-03-07T00:00Z"^^xsd:date ;
+        :nationality    "United States of America" ;
+        :sex            "male" .
+
+wd:Q314841  rdf:type    :Star ;
+        rdfs:label      "Jackie Earle Haley" ;
+        :date_of_birth  "1961-07-14T00:00Z"^^xsd:date ;
+        :nationality    "United States of America" ;
+        :sex            "male" .
+
+wd:Q483148  rdf:type    :Star ;
+        rdfs:label      "Michael Clarke Duncan" ;
+        :date_of_birth  "1957-12-10T00:00Z"^^xsd:date ;
+        :nationality    "United States of America" ;
+        :sex            "male" .
+
+wd:Q516690  rdf:type    :Star ;
+        rdfs:label      "Walton Goggins" ;
+        :date_of_birth  "1971-11-10T00:00Z"^^xsd:date ;
+        :nationality    "United States of America" ;
+        :sex            "male" .
+
+wd:Q298682  rdf:type    :Star ;
+        rdfs:label      "Djimon Hounsou" ;
+        :date_of_birth  "1964-04-24T00:00Z"^^xsd:date ;
+        :nationality    "Benin" , "United States of America" ;
+        :sex            "male" .
+
+wd:Q185051  rdf:type    :Star ;
+        rdfs:label      "Christopher Walken" ;
+        :date_of_birth  "1943-03-31T00:00Z"^^xsd:date ;
+        :nationality    "United States of America" ;
+        :sex            "male" .
+
+wd:Q26231  rdf:type     :Star ;
+        rdfs:label      "Corey Stoll" ;
+        :date_of_birth  "1976-03-14T00:00Z"^^xsd:date ;
+        :nationality    "United States of America" ;
+        :sex            "male" .
+
+wd:Q241879  rdf:type    :Star ;
+        rdfs:label      "Helen Slater" ;
+        :date_of_birth  "1963-12-15T00:00Z"^^xsd:date ;
+        :nationality    "United States of America" ;
+        :sex            "female" .
+
+wd:Q115760  rdf:type     :Film ;
+        rdfs:label       "Catwoman" ;
+        :crit_consensus  "Halle Berry is the lone bright spot, but even she can't save this laughable action thriller." ;
+        :description     "A shy woman, endowed with the speed, reflexes, and senses of a cat, walks a thin line between criminal and hero, even as a detective doggedly pursues her, fascinated by both of her personas." ;
+        :director        wd:Q1306771 ;
+        :distributed_by  "Warner Bros. Pictures" , "InterCom" ;
+        :entity          "DC" ;
+        :genre           "Action" , " Fantasy" , " Crime" ;
+        :id              "72" ;
+        :imdb_gross      "40200000" ;
+        :imdb_rating     "3.4" ;
+        :imdb_votes      "112972" ;
+        :mpa_rating      "PG-13" ;
+        :runtime         "104" ;
+        :stars           wd:Q1033016 , wd:Q62975 , wd:Q73362 , wd:Q115735 ;
+        :tom_aud_score   "18" ;
+        :tom_ratings     "250000" ;
+        :tomato_meter    "9" ;
+        :tomato_review   "198" ;
+        :year            "2004" .
+
+wd:Q1421609  rdf:type    :Film ;
+        rdfs:label       "Captain America" ;
+        :crit_consensus  "Find one of these old serials, friend. They're a tonic for the debilitating malady of Superhero Overload." ;
+        :description     "Superhero Captain America battles the evil forces of the archvillain called The Scarab, who poisons his enemies and steals a secret device capable of destroying buildings by sound vibrations." ;
+        :director        wd:Q195029 ;
+        :distributed_by  "Republic Pictures" ;
+        :entity          "MARVEL" ;
+        :genre           "Action" , " Sci-Fi" , " Adventure" ;
+        :id              "1" ;
+        :imdb_gross      "0" ;
+        :imdb_rating     "5.5" ;
+        :imdb_votes      "844" ;
+        :mpa_rating      "Approved" ;
+        :runtime         "244" ;
+        :stars           wd:Q195029 , wd:Q2960351 , wd:Q5273293 , wd:Q575668 , wd:Q3259602 ;
+        :tom_aud_score   "82" ;
+        :tom_ratings     "250" ;
+        :tomato_meter    "0" ;
+        :tomato_review   "1" ;
+        :year            "1944" .
+
+wd:Q483118  rdf:type    :Star ;
+        rdfs:label      "Ben Affleck" ;
+        :date_of_birth  "1972-08-15T00:00Z"^^xsd:date ;
+        :nationality    "United States of America" ;
+        :sex            "male" .
+
+wd:Q215017  rdf:type    :Star ;
+        rdfs:label      "Rhys Ifans" ;
+        :date_of_birth  "1967-07-22T00:00Z"^^xsd:date ;
+        :nationality    "Wales" , "United Kingdom" ;
+        :sex            "male" .
+
+wd:Q1091339  rdf:type   :Director ;
+        rdfs:label      "David Ayer" ;
+        :date_of_birth  "1968-01-18T00:00Z"^^xsd:date ;
+        :nationality    "United States of America" ;
+        :sex            "male" .
+
+wd:Q170587  rdf:type    :Star ;
+        rdfs:label      "Tommy Lee Jones" ;
+        :date_of_birth  "1946-09-15T00:00Z"^^xsd:date ;
+        :nationality    "United States of America" ;
+        :sex            "male" .
+
+wd:Q696042  rdf:type     :Film ;
+        rdfs:label       "Hulk" ;
+        :crit_consensus  "While Ang Lee's ambitious film earns marks for style and an attempt at dramatic depth, there's ultimately too much talking and not enough smashing." ;
+        :description     "Bruce Banner, a genetics researcher with a tragic past, suffers an accident that causes him to transform into a raging green monster when he gets angry." ;
+        :director        wd:Q160726 ;
+        :distributed_by  "Netflix" , "Universal Pictures" ;
+        :entity          "MARVEL" ;
+        :genre           "Action" , " Sci-Fi" ;
+        :id              "9" ;
+        :imdb_gross      "132180000" ;
+        :imdb_rating     "5.6" ;
+        :imdb_votes      "255002" ;
+        :mpa_rating      "PG-13" ;
+        :runtime         "138" ;
+        :stars           wd:Q4440 , wd:Q53651 , wd:Q103343 , wd:Q160726 , wd:Q311314 ;
+        :tom_aud_score   "29" ;
+        :tom_ratings     "250000" ;
+        :tomato_meter    "62" ;
+        :tomato_review   "237" ;
+        :year            "2003" .
+
+wd:Q1311138  rdf:type   :Star ;
+        rdfs:label      "Phyllis Coates" ;
+        :date_of_birth  "1927-01-15T00:00Z"^^xsd:date ;
+        :nationality    "United States of America" ;
+        :sex            "female" .
+
+wd:Q202725  rdf:type    :Star ;
+        rdfs:label      "Mia Farrow" ;
+        :date_of_birth  "1945-02-09T00:00Z"^^xsd:date ;
+        :nationality    "United States of America" ;
+        :sex            "female" .
+
+wd:Q328695  rdf:type     :Film ;
+        rdfs:label       "Superman Returns" ;
+        :crit_consensus  "Bryan Singer's reverent and visually decadent adaptation gives the Man of Steel welcome emotional complexity. The result: a satisfying stick-to-your-ribs adaptation." ;
+        :description     "Superman returns to Earth after spending five years in space examining his homeworld Krypton. But he finds things have changed while he was gone, and he must once again prove himself important to the world." ;
+        :director        wd:Q220751 ;
+        :distributed_by  "Netflix" , "InterCom" ;
+        :entity          "DC" ;
+        :genre           "Action" , " Sci-Fi" ;
+        :id              "75" ;
+        :imdb_gross      "200080000" ;
+        :imdb_rating     "6.0" ;
+        :imdb_votes      "273696" ;
+        :mpa_rating      "PG-13" ;
+        :runtime         "154" ;
+        :stars           wd:Q236822 , wd:Q25144 , wd:Q299324 , wd:Q485901 ;
+        :tom_aud_score   "61" ;
+        :tom_ratings     "250000" ;
+        :tomato_meter    "75" ;
+        :tomato_review   "267" ;
+        :year            "2006" .
+
+wd:Q351156  rdf:type    :Star ;
+        rdfs:label      "Adam West" ;
+        :date_of_birth  "1928-09-19T00:00Z"^^xsd:date ;
+        :nationality    "United States of America" ;
+        :sex            "male" .
+
+wd:Q296028  rdf:type    :Star ;
+        rdfs:label      "Alfred Molina" ;
+        :date_of_birth  "1953-05-24T00:00Z"^^xsd:date ;
+        :nationality    "United States of America" , "United Kingdom" ;
+        :sex            "male" .
+
+wd:Q217020  rdf:type     :Film ;
+        rdfs:label       "Thor" ;
+        :crit_consensus  "A dazzling blockbuster that tempers its sweeping scope with wit, humor, and human drama, Thor is mighty Marvel entertainment." ;
+        :description     "The powerful but arrogant god Thor is cast out of Asgard to live amongst humans in Midgard (Earth), where he soon becomes one of their finest defenders." ;
+        :director        wd:Q55294 ;
+        :distributed_by  "Disney+" , "Paramount Pictures" , "Walt Disney Studios Motion Pictures" ;
+        :entity          "MARVEL" ;
+        :genre           " Fantasy" , " Adventure" , "Action" ;
+        :id              "24" ;
+        :imdb_gross      "181030000" ;
+        :imdb_rating     "7.0" ;
+        :imdb_votes      "767687" ;
+        :mpa_rating      "PG-13" ;
+        :runtime         "115" ;
+        :stars           wd:Q37876 , wd:Q295803 , wd:Q55294 , wd:Q54314 , wd:Q65932 ;
+        :tom_aud_score   "76" ;
+        :tom_ratings     "100000" ;
+        :tomato_meter    "77" ;
+        :tomato_review   "291" ;
+        :year            "2011" .
+
+wd:Q55294  rdf:type     :Star , :Director ;
+        rdfs:label      "Kenneth Branagh" ;
+        :date_of_birth  "1960-12-10T00:00Z"^^xsd:date ;
+        :nationality    "United Kingdom" ;
+        :sex            "male" .
+
+wd:Q34436  rdf:type     :Star ;
+        rdfs:label      "Scarlett Johansson" ;
+        :date_of_birth  "1984-11-22T00:00Z"^^xsd:date ;
+        :nationality    "United States of America" ;
+        :sex            "female" .
+
+wd:Q4766862  rdf:type   :Star , :Director ;
+        rdfs:label      "Anna Boden" ;
+        :date_of_birth  "1979-10-01T00:00Z"^^xsd:date ;
+        :nationality    "United States of America" ;
+        :sex            "female" .
+
+wd:Q16296  rdf:type     :Star ;
+        rdfs:label      "Patrick Stewart" ;
+        :date_of_birth  "1940-07-13T00:00Z"^^xsd:date ;
+        :nationality    "United Kingdom" ;
+        :sex            "male" .
+
+wd:Q169452  rdf:type    :Star ;
+        rdfs:label      "Shaquille O'Neal" ;
+        :date_of_birth  "1972-03-06T00:00Z"^^xsd:date ;
+        :nationality    "United States of America" ;
+        :sex            "male" .
+
+wd:Q298368  rdf:type    :Star ;
+        rdfs:label      "Liev Schreiber" ;
+        :date_of_birth  "1967-10-04T00:00Z"^^xsd:date ;
+        :nationality    "United States of America" ;
+        :sex            "male" .
+
+wd:Q189490  rdf:type    :Star ;
+        rdfs:label      "Yenifee Lawrence" ;
+        :date_of_birth  "1990-08-15T00:00Z"^^xsd:date ;
+        :nationality    "United States of America" ;
+        :sex            "female" .
+
+wd:Q26703280  rdf:type  :Star ;
+        rdfs:label      "Jack Dylan Grazer" ;
+        :date_of_birth  "2003-09-03T00:00Z"^^xsd:date ;
+        :nationality    "United States of America" ;
+        :sex            "male" .
+
+wd:Q41422  rdf:type     :Star ;
+        rdfs:label      "Mark Ruffalo" ;
+        :date_of_birth  "1967-11-22T00:00Z"^^xsd:date ;
+        :nationality    "United States of America" ;
+        :sex            "male" .
+
+wd:Q768685  rdf:type    :Star ;
+        rdfs:label      "Ed Gale" ;
+        :date_of_birth  "1963-08-23T00:00Z"^^xsd:date ;
+        :nationality    "United States of America" ;
+        :sex            "male" .
+
+wd:Q2593  rdf:type      :Star , :Director ;
+        rdfs:label      "Matthew Vaughn" ;
+        :date_of_birth  "1971-03-07T00:00Z"^^xsd:date ;
+        :nationality    "United Kingdom" ;
+        :sex            "male" .
+
+wd:Q1790253  rdf:type    :Film ;
+        rdfs:label       "Steel" ;
+        :crit_consensus  "Steel is a badly-acted movie that indulges not only in superhero cliches, but also the sappy TV-movie-of-the-week ones." ;
+        :description     "A scientist for the military turns himself into a cartoon-like superhero when a version of one of his own weapons is being used against enemies." ;
+        :director        wd:Q1371295 ;
+        :distributed_by  "Warner Bros." ;
+        :entity          "DC" ;
+        :genre           " Crime" , " Adventure" , "Action" ;
+        :id              "71" ;
+        :imdb_gross      "1710000" ;
+        :imdb_rating     "2.9" ;
+        :imdb_votes      "11519" ;
+        :mpa_rating      "PG-13" ;
+        :runtime         "97" ;
+        :stars           wd:Q230779 , wd:Q445302 , wd:Q446493 , wd:Q169452 ;
+        :tom_aud_score   "15" ;
+        :tom_ratings     "5000" ;
+        :tomato_meter    "12" ;
+        :tomato_review   "26" ;
+        :year            "1997" .
+
+wd:Q2529214  rdf:type   :Star , :Director ;
+        rdfs:label      "Josh Boone" ;
+        :date_of_birth  "1984-11-21T00:00Z"^^xsd:date ;
+        :nationality    "United States of America" ;
+        :sex            "male" .
+
+wd:Q209538  rdf:type     :Film ;
+        rdfs:label       "Iron Man 3" ;
+        :crit_consensus  "With the help of its charismatic lead, some impressive action sequences, and even a few surprises, Iron Man 3 is a witty, entertaining adventure and a strong addition to the Marvel canon." ;
+        :description     "When Tony Stark's world is torn apart by a formidable terrorist called the Mandarin, he starts an odyssey of rebuilding and retribution." ;
+        :director        wd:Q726126 ;
+        :distributed_by  "Paramount Pictures" , "Disney+" , "Walt Disney Studios Motion Pictures" ;
+        :entity          "MARVEL" ;
+        :genre           "Action" , " Sci-Fi" , " Adventure" ;
+        :id              "30" ;
+        :imdb_gross      "409010000" ;
+        :imdb_rating     "7.1" ;
+        :imdb_votes      "775425" ;
+        :mpa_rating      "PG-13" ;
+        :runtime         "130" ;
+        :stars           wd:Q726126 , wd:Q223745 , wd:Q34460 , wd:Q272019 , wd:Q165219 ;
+        :tom_aud_score   "78" ;
+        :tom_ratings     "250000" ;
+        :tomato_meter    "79" ;
+        :tomato_review   "328" ;
+        :year            "2013" .
+
+wd:Q313653  rdf:type    :Star ;
+        rdfs:label      "Michael Chiklis" ;
+        :date_of_birth  "1963-08-30T00:00Z"^^xsd:date ;
+        :nationality    "United States of America" ;
+        :sex            "male" .
+
+wd:Q2960351  rdf:type   :Star ;
+        rdfs:label      "Charles Trowbridge" ;
+        :date_of_birth  "1882-01-10T00:00Z"^^xsd:date ;
+        :nationality    "Mexico" , "United States of America" ;
+        :sex            "male" .
+
+wd:Q62975  rdf:type     :Star ;
+        rdfs:label      "Sharon Stone" ;
+        :date_of_birth  "1958-03-10T00:00Z"^^xsd:date ;
+        :nationality    "United States of America" ;
+        :sex            "female" .
+
+wd:Q313020  rdf:type    :Star ;
+        rdfs:label      "Dominic West" ;
+        :date_of_birth  "1969-10-15T00:00Z"^^xsd:date ;
+        :nationality    "United Kingdom" ;
+        :sex            "male" .
+
+wd:Q182218  rdf:type     :Film ;
+        rdfs:label       "The Avengers" ;
+        :crit_consensus  "Thanks to a script that emphasizes its heroes' humanity and a wealth of superpowered set pieces, The Avengers lives up to its hype and raises the bar for Marvel at the movies." ;
+        :description     "Earth's mightiest heroes must come together and learn to fight as a team if they are going to stop the mischievous Loki and his alien army from enslaving humanity." ;
+        :director        wd:Q298025 ;
+        :distributed_by  "Disney+" , "Walt Disney Studios Motion Pictures" ;
+        :entity          "MARVEL" ;
+        :genre           " Sci-Fi" , "Action" , " Adventure" ;
+        :id              "28" ;
+        :imdb_gross      "623280000" ;
+        :imdb_rating     "8.0" ;
+        :imdb_votes      "1286985" ;
+        :mpa_rating      "PG-13" ;
+        :runtime         "143" ;
+        :stars           wd:Q34436 , wd:Q23365 , wd:Q298025 , wd:Q178348 , wd:Q165219 ;
+        :tom_aud_score   "91" ;
+        :tom_ratings     "250000" ;
+        :tomato_meter    "91" ;
+        :tomato_review   "362" ;
+        :year            "2012" .
+
+wd:Q195029  rdf:type    :Star , :Director ;
+        rdfs:label      "Elmer Clifton" ;
+        :date_of_birth  "1890-03-14T00:00Z"^^xsd:date ;
+        :nationality    "United States of America" ;
+        :sex            "male" .
+
+wd:Q73362  rdf:type     :Star ;
+        rdfs:label      "Benjamin Bratt" ;
+        :date_of_birth  "1963-12-16T00:00Z"^^xsd:date ;
+        :nationality    "United States of America" ;
+        :sex            "male" .
+
+wd:Q558806  rdf:type    :Star , :Director ;
+        rdfs:label      "Scott Derrickson" ;
+        :date_of_birth  "1966-07-16T00:00Z"^^xsd:date ;
+        :nationality    "United States of America" ;
+        :sex            "male" .
+
+wd:Q18938  rdf:type     :Star ;
+        rdfs:label      "Thomas Jane" ;
+        :date_of_birth  "1969-02-22T00:00Z"^^xsd:date ;
+        :nationality    "United States of America" ;
+        :sex            "male" .
+
+wd:Q170510  rdf:type    :Star ;
+        rdfs:label      "Ian McKellen" ;
+        :date_of_birth  "1939-05-25T00:00Z"^^xsd:date ;
+        :nationality    "English people" , "United Kingdom" ;
+        :sex            "male" .
+
+wd:Q234471  rdf:type    :Star ;
+        rdfs:label      "Margot Kidder" ;
+        :date_of_birth  "1948-10-17T00:00Z"^^xsd:date ;
+        :nationality    "United States of America" , "Canada" ;
+        :sex            "female" .
+
+wd:Q156796  rdf:type    :Star ;
+        rdfs:label      "Michelle Williams" ;
+        :date_of_birth  "1980-09-09T00:00Z"^^xsd:date ;
+        :nationality    "United States of America" ;
+        :sex            "female" .
+
+wd:Q23010088  rdf:type   :Film ;
+        rdfs:label       "Spider-Man: Homecoming" ;
+        :crit_consensus  "Spider-Man: Homecoming does whatever a second reboot can, delivering a colorful, fun adventure that fits snugly in the sprawling MCU without getting bogged down in franchise-building." ;
+        :description     "Peter Parker balances his life as an ordinary high school student in Queens with his superhero alter-ego Spider-Man, and finds himself on the trail of a new menace prowling the skies of New York City." ;
+        :director        wd:Q18519749 ;
+        :distributed_by  "Sony Pictures" , "InterCom" , "Netflix" ;
+        :entity          "MARVEL" ;
+        :genre           " Adventure" , " Sci-Fi" , "Action" ;
+        :id              "46" ;
+        :imdb_gross      "334200000" ;
+        :imdb_rating     "7.4" ;
+        :imdb_votes      "536012" ;
+        :mpa_rating      "PG-13" ;
+        :runtime         "133" ;
+        :stars           wd:Q18519749 , wd:Q1236243 , wd:Q191828 , wd:Q138005 , wd:Q165219 ;
+        :tom_aud_score   "87" ;
+        :tom_ratings     "100000" ;
+        :tomato_meter    "92" ;
+        :tomato_review   "393" ;
+        :year            "2017" .
+
+wd:Q172035  rdf:type    :Star ;
+        rdfs:label      "Colin Farrell" ;
+        :date_of_birth  "1976-05-31T00:00Z"^^xsd:date ;
+        :nationality    "Republic of Ireland" ;
+        :sex            "male" .
+
+wd:Q27560621  rdf:type  :Star ;
+        rdfs:label      "Dafne Keen" ;
+        :date_of_birth  "2005-01-04T00:00Z"^^xsd:date ;
+        :nationality    "Spain" , "United Kingdom" ;
+        :sex            "female" .
+
+wd:Q42869  rdf:type     :Star ;
+        rdfs:label      "Nicolas Cage" ;
+        :date_of_birth  "1964-01-07T00:00Z"^^xsd:date ;
+        :nationality    "United States of America" ;
+        :sex            "male" .
+
+wd:Q234959  rdf:type    :Star ;
+        rdfs:label      "Hayley Atwell" ;
+        :date_of_birth  "1982-04-05T00:00Z"^^xsd:date ;
+        :nationality    "United States of America" , "United Kingdom" ;
+        :sex            "female" .
+
+wd:Q170606  rdf:type    :Star ;
+        rdfs:label      "Eva Mendes" ;
+        :date_of_birth  "1974-03-05T00:00Z"^^xsd:date ;
+        :nationality    "United States of America" ;
+        :sex            "female" .
+
+wd:Q890204  rdf:type    :Star ;
+        rdfs:label      "David Hess" ;
+        :date_of_birth  "1942-09-19T00:00Z"^^xsd:date , "1936-09-19T00:00Z"^^xsd:date ;
+        :nationality    "United States of America" ;
+        :sex            "male" .
+
+wd:Q116852  rdf:type     :Film ;
+        rdfs:label       "Batman" ;
+        :crit_consensus  "An eerie, haunting spectacle, Batman succeeds as dark entertainment, even if Jack Nicholson's Joker too often overshadows the title character." ;
+        :description     "The Dark Knight of Gotham City begins his war on crime with his first major enemy being Jack Napier, a criminal who becomes the clownishly homicidal Joker." ;
+        :director        wd:Q56008 ;
+        :distributed_by  "InterCom" , "Netflix" , "Warner Bros." ;
+        :entity          "DC" ;
+        :genre           "Action" , " Adventure" ;
+        :id              "67" ;
+        :imdb_gross      "251190000" ;
+        :imdb_rating     "7.5" ;
+        :imdb_votes      "344868" ;
+        :mpa_rating      "PG-13" ;
+        :runtime         "126" ;
+        :stars           wd:Q978567 , wd:Q131380 , wd:Q138005 , wd:Q39792 ;
+        :tom_aud_score   "84" ;
+        :tom_ratings     "250000" ;
+        :tomato_meter    "71" ;
+        :tomato_review   "76" ;
+        :year            "1989" .
+
+wd:Q166262  rdf:type     :Film ;
+        rdfs:label       "Batman Begins" ;
+        :crit_consensus  "Brooding and dark, but also exciting and smart, Batman Begins is a film that understands the essence of one of the definitive superheroes." ;
+        :description     "After training with his mentor, Batman begins his fight to free crime-ridden Gotham City from corruption." ;
+        :director        wd:Q25191 ;
+        :distributed_by  "InterCom" , "Netflix" ;
+        :entity          "DC" ;
+        :genre           "Action" , " Adventure" ;
+        :id              "74" ;
+        :imdb_gross      "206850000" ;
+        :imdb_rating     "8.2" ;
+        :imdb_votes      "1338140" ;
+        :mpa_rating      "PG-13" ;
+        :runtime         "140" ;
+        :stars           wd:Q45772 , wd:Q58444 , wd:Q123351 , wd:Q211553 ;
+        :tom_aud_score   "94" ;
+        :tom_ratings     "250000" ;
+        :tomato_meter    "84" ;
+        :tomato_review   "288" ;
+        :year            "2005" .
+
+wd:Q219776  rdf:type     :Film ;
+        rdfs:label       "X2" ;
+        :crit_consensus  "Tightly scripted, solidly acted, and impressively ambitious, X2: X-Men United is bigger and better than its predecessor -- and a benchmark for comic sequels in general." ;
+        :description     "When anti-mutant Colonel William Stryker kidnaps Professor X and attacks his school, the X-Men must ally with their archenemy Magneto to stop him." ;
+        :director        wd:Q220751 ;
+        :distributed_by  "InterCom" , "Netflix" , "Disney+" ;
+        :entity          "MARVEL" ;
+        :genre           "Action" , " Sci-Fi" , " Thriller" ;
+        :id              "8" ;
+        :imdb_gross      "214950000" ;
+        :imdb_rating     "7.4" ;
+        :imdb_votes      "519747" ;
+        :mpa_rating      "PG-13" ;
+        :runtime         "134" ;
+        :stars           wd:Q1033016 , wd:Q129591 , wd:Q220751 , wd:Q16296 , wd:Q170510 ;
+        :tom_aud_score   "85" ;
+        :tom_ratings     "250000" ;
+        :tomato_meter    "85" ;
+        :tomato_review   "246" ;
+        :year            "2003" .
+
+wd:Q233536  rdf:type    :Star ;
+        rdfs:label      "Laura Harring" ;
+        :date_of_birth  "1964-03-03T00:00Z"^^xsd:date ;
+        :nationality    "Mexico" ;
+        :sex            "female" .
+
+wd:Q39792  rdf:type     :Star ;
+        rdfs:label      "Jack Nicholson" ;
+        :date_of_birth  "1937-04-22T00:00Z"^^xsd:date ;
+        :nationality    "United States of America" ;
+        :sex            "male" .
+
+wd:Q296500  rdf:type    :Star ;
+        rdfs:label      "Terrence Howard" ;
+        :date_of_birth  "1969-03-11T00:00Z"^^xsd:date ;
+        :nationality    "United States of America" ;
+        :sex            "male" .
+
+wd:Q298025  rdf:type    :Star , :Director ;
+        rdfs:label      "Joss Whedon" ;
+        :date_of_birth  "1964-01-23T00:00Z"^^xsd:date , "1964-06-23T00:00Z"^^xsd:date ;
+        :nationality    "United States of America" ;
+        :sex            "male" .
+
+wd:Q20502242  rdf:type   :Film ;
+        rdfs:label       "Wonder Woman" ;
+        :crit_consensus  "Thrilling, earnest, and buoyed by Gal Gadot's charismatic performance, Wonder Woman succeeds in spectacular fashion." ;
+        :description     "When a pilot crashes and tells of conflict in the outside world, Diana, an Amazonian warrior in training, leaves home to fight a war, discovering her full powers and true destiny." ;
+        :director        wd:Q456910 ;
+        :distributed_by  "Xfinity Streampix" , "Warner Bros." , "Netflix" , "InterCom" ;
+        :entity          "DC" ;
+        :genre           " Fantasy" , "Action" , " Adventure" ;
+        :id              "84" ;
+        :imdb_gross      "412560000" ;
+        :imdb_rating     "7.4" ;
+        :imdb_votes      "596901" ;
+        :mpa_rating      "PG-13" ;
+        :runtime         "141" ;
+        :stars           wd:Q185654 , wd:Q436620 , wd:Q272972 , wd:Q23466 ;
+        :tom_aud_score   "83" ;
+        :tom_ratings     "100000" ;
+        :tomato_meter    "93" ;
+        :tomato_review   "466" ;
+        :year            "2017" .
+
+wd:Q40572  rdf:type     :Star ;
+        rdfs:label      "Heath Ledger" ;
+        :date_of_birth  "1979-04-04T00:00Z"^^xsd:date ;
+        :nationality    "Australia" ;
+        :sex            "male" .
+
+wd:Q41754  rdf:type      :Film ;
+        rdfs:label       "Ghost Rider" ;
+        :crit_consensus  "Ghost Rider is a sour mix of morose, glum histrionics amidst jokey puns and hammy dialogue." ;
+        :description     "When motorcycle rider Johnny Blaze sells his soul to the Devil to save his father's life, he is transformed into the Ghost Rider, the Devil's own bounty hunter, and is sent to hunt down sinners." ;
+        :director        wd:Q1320761 ;
+        :distributed_by  "Netflix" , "InterCom" ;
+        :entity          "MARVEL" ;
+        :genre           " Fantasy" , " Thriller" , "Action" ;
+        :id              "16" ;
+        :imdb_gross      "115800000" ;
+        :imdb_rating     "5.3" ;
+        :imdb_votes      "226797" ;
+        :mpa_rating      "PG-13" ;
+        :runtime         "110" ;
+        :stars           wd:Q1320761 , wd:Q960170 , wd:Q311314 , wd:Q170606 , wd:Q42869 ;
+        :tom_aud_score   "48" ;
+        :tom_ratings     "250000" ;
+        :tomato_meter    "26" ;
+        :tomato_review   "141" ;
+        :year            "2007" .
+
+wd:Q5887360  rdf:type    :Film ;
+        rdfs:label       "Guardians of the Galaxy" ;
+        :crit_consensus  "Guardians of the Galaxy is just as irreverent as fans of the frequently zany Marvel comic would expect -- as well as funny, thrilling, full of heart, and packed with visual splendor." ;
+        :description     "A group of intergalactic criminals must pull together to stop a fanatical warrior with plans to purge the universe." ;
+        :director        wd:Q715505 ;
+        :distributed_by  "Disney+" , "Netflix" , "Fórum Hungary" , "Walt Disney Studios Motion Pictures" ;
+        :entity          "MARVEL" ;
+        :genre           " Comedy" , " Adventure" , "Action" ;
+        :id              "36" ;
+        :imdb_gross      "333180000" ;
+        :imdb_rating     "8.0" ;
+        :imdb_votes      "1069895" ;
+        :mpa_rating      "PG-13" ;
+        :runtime         "121" ;
+        :stars           wd:Q205707 , wd:Q190162 , wd:Q178166 , wd:Q503706 , wd:Q715505 ;
+        :tom_aud_score   "92" ;
+        :tom_ratings     "250000" ;
+        :tomato_meter    "92" ;
+        :tomato_review   "332" ;
+        :year            "2014" .
+
+wd:Q160726  rdf:type    :Star , :Director ;
+        rdfs:label      "Ang Lee" ;
+        :date_of_birth  "1954-10-23T00:00Z"^^xsd:date ;
+        :nationality    "Taiwan" ;
+        :sex            "male" .
+
+wd:Q352948  rdf:type    :Star , :Director ;
+        rdfs:label      "Joe Johnston" ;
+        :date_of_birth  "1950-05-13T00:00Z"^^xsd:date ;
+        :nationality    "United States of America" ;
+        :sex            "male" .
+
+wd:Q190386  rdf:type    :Star ;
+        rdfs:label      "Rachel McAdams" ;
+        :date_of_birth  "1978-11-17T00:00Z"^^xsd:date ;
+        :nationality    "Canada" ;
+        :sex            "female" .
+
+wd:Q295498  rdf:type    :Star ;
+        rdfs:label      "Henry Cavill" ;
+        :date_of_birth  "1983-05-05T00:00Z"^^xsd:date ;
+        :nationality    "United Kingdom" ;
+        :sex            "male" .
+
+wd:Q16775487  rdf:type  :Director ;
+        rdfs:label      "David F. Sandberg" ;
+        :date_of_birth  "1981-01-21T00:00Z"^^xsd:date ;
+        :nationality    "Sweden" ;
+        :sex            "male" .
+
+wd:Q351290  rdf:type    :Star ;
+        rdfs:label      "Patrick Wilson" ;
+        :date_of_birth  "1973-07-03T00:00Z"^^xsd:date ;
+        :nationality    "United States of America" ;
+        :sex            "male" .
+
+wd:Q129591  rdf:type    :Star ;
+        rdfs:label      "Hugh Jackman" ;
+        :date_of_birth  "1968-10-12T00:00Z"^^xsd:date ;
+        :nationality    "United Kingdom" , "Australia" ;
+        :sex            "male" .
+
+wd:Q190145  rdf:type     :Film ;
+        rdfs:label       "Spider-Man 2" ;
+        :crit_consensus  "Boasting an entertaining villain and deeper emotional focus, this is a nimble sequel that improves upon the original." ;
+        :description     "Peter Parker is beset with troubles in his failing personal life as he battles a brilliant scientist named Doctor Otto Octavius." ;
+        :director        wd:Q275402 ;
+        :distributed_by  "InterCom" , "Netflix" , "Sony Pictures" ;
+        :entity          "MARVEL" ;
+        :genre           "Action" , " Adventure" , " Sci-Fi" ;
+        :id              "11" ;
+        :imdb_gross      "373590000" ;
+        :imdb_rating     "7.3" ;
+        :imdb_votes      "556980" ;
+        :mpa_rating      "PG-13" ;
+        :runtime         "127" ;
+        :stars           wd:Q76478 , wd:Q165524 , wd:Q275402 , wd:Q306403 , wd:Q296028 ;
+        :tom_aud_score   "82" ;
+        :tom_ratings     "250000" ;
+        :tomato_meter    "93" ;
+        :tomato_review   "274" ;
+        :year            "2004" .
+
+wd:Q230903  rdf:type    :Star ;
+        rdfs:label      "Alice Braga" ;
+        :date_of_birth  "1983-04-15T00:00Z"^^xsd:date ;
+        :nationality    "Brazil" ;
+        :sex            "female" .
+
+wd:Q235913  rdf:type    :Star ;
+        rdfs:label      "Leonor Varela" ;
+        :date_of_birth  "1972-12-29T00:00Z"^^xsd:date ;
+        :nationality    "France" , "Chile" ;
+        :sex            "female" .
+
+wd:Q217008  rdf:type     :Film ;
+        rdfs:label       "Blade: Trinity" ;
+        :crit_consensus  "Louder, campier, and more incoherent than its predecessors, Blade: Trinity seems content to emphasize style over substance and rehash familiar themes." ;
+        :description     "Blade, now a wanted man by the FBI, must join forces with the Nightstalkers to face his most challenging enemy yet: Dracula." ;
+        :director        wd:Q352010 ;
+        :distributed_by  "Microsoft Store" , "New Line Cinema" , "InterCom" , "Netflix" ;
+        :entity          "MARVEL" ;
+        :genre           " Fantasy" , "Action" , " Adventure" ;
+        :id              "12" ;
+        :imdb_gross      "52410000" ;
+        :imdb_rating     "5.8" ;
+        :imdb_votes      "168363" ;
+        :mpa_rating      "R" ;
+        :runtime         "113" ;
+        :stars           wd:Q352010 , wd:Q192682 , wd:Q204586 , wd:Q189694 , wd:Q208681 ;
+        :tom_aud_score   "58" ;
+        :tom_ratings     "250000" ;
+        :tomato_meter    "25" ;
+        :tomato_review   "168" ;
+        :year            "2004" .
+
+wd:Q1383657  rdf:type   :Star , :Director ;
+        rdfs:label      "Willard Huyck" ;
+        :date_of_birth  "1945-09-08T00:00Z"^^xsd:date ;
+        :nationality    "United States of America" ;
+        :sex            "male" .
+
+wd:Q1065829  rdf:type    :Film ;
+        rdfs:label       "Punisher: War Zone" ;
+        :crit_consensus  "Punisher: War Zone recalls the excessively violent, dialogue-challenged actioners of the 1980s, and coincidentally feels two decades out of date." ;
+        :description     "Frank Castle, known as the Punisher, ruthlessly demolishes organized crime, but it starts an even bigger war." ;
+        :director        wd:Q85487 ;
+        :distributed_by  "Lionsgate Films" , "Netflix" ;
+        :entity          "MARVEL" ;
+        :genre           " Crime" , "Action" , " Drama" ;
+        :id              "21" ;
+        :imdb_gross      "7950000" ;
+        :imdb_rating     "5.9" ;
+        :imdb_votes      "60767" ;
+        :mpa_rating      "R" ;
+        :runtime         "103" ;
+        :stars           wd:Q506778 , wd:Q313020 , wd:Q230320 , wd:Q372947 , wd:Q85487 ;
+        :tom_aud_score   "42" ;
+        :tom_ratings     "100000" ;
+        :tomato_meter    "29" ;
+        :tomato_review   "111" ;
+        :year            "2008" .
+
+wd:Q2067465  rdf:type   :Director ;
+        rdfs:label      "Leslie H. Martinson" ;
+        :date_of_birth  "1915-01-16T00:00Z"^^xsd:date ;
+        :nationality    "United States of America" ;
+        :sex            "male" .
+
+wd:Q59215  rdf:type     :Star ;
+        rdfs:label      "Robert Redford" ;
+        :date_of_birth  "1936-08-18T00:00Z"^^xsd:date ;
+        :nationality    "United States of America" ;
+        :sex            "male" .

@@ -37,20 +37,20 @@ show_help() {
     echo "Commands:"
     echo "  start           - Start semua services (production mode)"
     echo "  start-dev       - Start dalam development mode"
-    echo "  start-blazegraph - Start hanya Blazegraph"
+    echo "  start-graphdb   - Start hanya GraphDB"
     echo "  stop            - Stop semua services"
     echo "  restart         - Restart semua services"
     echo "  build           - Build ulang Docker images"
     echo "  logs            - Tampilkan logs semua services"
     echo "  logs-web        - Tampilkan logs web application"
-    echo "  logs-blazegraph - Tampilkan logs Blazegraph"
+    echo "  logs-graphdb    - Tampilkan logs GraphDB"
     echo "  shell-web       - Akses shell web container"
-    echo "  shell-blazegraph - Akses shell Blazegraph container"
+    echo "  shell-graphdb   - Akses shell GraphDB container"
     echo "  status          - Tampilkan status containers"
     echo "  clean           - Stop dan hapus containers, networks, images"
-    echo "  backup          - Backup data Blazegraph"
-    echo "  restore [FILE]  - Restore data Blazegraph dari backup"
-    echo "  setup-namespace - Setup namespace 'kb' di Blazegraph"
+    echo "  backup          - Backup data GraphDB"
+    echo "  restore [FILE]  - Restore data GraphDB dari backup"
+    echo "  setup-repository - Setup repository 'kb' di GraphDB"
     echo "  help            - Tampilkan help ini"
 }
 
@@ -60,7 +60,7 @@ start_services() {
     docker-compose up -d
     print_success "Services started successfully!"
     print_info "Web App: http://localhost:8000"
-    print_info "Blazegraph: http://localhost:9999/blazegraph"
+    print_info "GraphDB: http://localhost:7200"
 }
 
 # Function untuk start development mode
@@ -68,15 +68,15 @@ start_dev() {
     print_info "Starting in development mode..."
     docker-compose -f docker-compose.yml -f docker-compose.dev.yml up -d
     print_success "Development services started!"
-    print_warning "Remember to setup Blazegraph namespace if this is first run"
+    print_warning "Remember to setup GraphDB repository if this is first run"
 }
 
-# Function untuk start hanya Blazegraph
-start_blazegraph() {
-    print_info "Starting Blazegraph only..."
-    docker-compose up blazegraph -d
-    print_success "Blazegraph started!"
-    print_info "Blazegraph Admin: http://localhost:9999/blazegraph"
+# Function untuk start hanya GraphDB
+start_graphdb() {
+    print_info "Starting GraphDB only..."
+    docker-compose up graphdb -d
+    print_success "GraphDB started!"
+    print_info "GraphDB Workbench: http://localhost:7200"
 }
 
 # Function untuk stop services
@@ -109,8 +109,8 @@ show_web_logs() {
     docker-compose logs -f web
 }
 
-show_blazegraph_logs() {
-    docker-compose logs -f blazegraph
+show_graphdb_logs() {
+    docker-compose logs -f graphdb
 }
 
 # Function untuk akses shell
@@ -119,9 +119,9 @@ web_shell() {
     docker-compose exec web bash
 }
 
-blazegraph_shell() {
-    print_info "Accessing Blazegraph container shell..."
-    docker-compose exec blazegraph bash
+graphdb_shell() {
+    print_info "Accessing GraphDB container shell..."
+    docker-compose exec graphdb bash
 }
 
 # Function untuk status
@@ -151,10 +151,10 @@ clean_up() {
 backup_data() {
     print_info "Creating backup..."
     TIMESTAMP=$(date +%Y%m%d_%H%M%S)
-    BACKUP_FILE="blazegraph-backup-${TIMESTAMP}.tar.gz"
+    BACKUP_FILE="graphdb-backup-${TIMESTAMP}.tar.gz"
     
-    docker-compose exec blazegraph tar -czf /tmp/backup.tar.gz /var/lib/blazegraph/data
-    docker cp $(docker-compose ps -q blazegraph):/tmp/backup.tar.gz ./${BACKUP_FILE}
+    docker-compose exec graphdb tar -czf /tmp/backup.tar.gz /opt/graphdb/home
+    docker cp $(docker-compose ps -q graphdb):/tmp/backup.tar.gz ./${BACKUP_FILE}
     
     print_success "Backup created: ${BACKUP_FILE}"
 }
@@ -176,28 +176,29 @@ restore_data() {
     echo
     if [[ $REPLY =~ ^[Yy]$ ]]; then
         print_info "Restoring from backup: $1"
-        docker cp $1 $(docker-compose ps -q blazegraph):/tmp/backup.tar.gz
-        docker-compose exec blazegraph tar -xzf /tmp/backup.tar.gz -C /
-        docker-compose restart blazegraph
+        docker cp $1 $(docker-compose ps -q graphdb):/tmp/backup.tar.gz
+        docker-compose exec graphdb tar -xzf /tmp/backup.tar.gz -C /
+        docker-compose restart graphdb
         print_success "Restore completed!"
     else
         print_info "Restore cancelled"
     fi
 }
 
-# Function untuk setup namespace
-setup_namespace() {
-    print_info "Setting up Blazegraph namespace 'kb'..."
-    print_warning "Please ensure Blazegraph is running and accessible"
-    print_info "1. Open http://localhost:9999/blazegraph"
-    print_info "2. Go to 'Namespaces' tab"
-    print_info "3. Click 'Create Namespace'"
-    print_info "4. Enter name: kb"
-    print_info "5. Select mode: triples"
-    print_info "6. Click 'Create'"
+# Function untuk setup repository
+setup_repository() {
+    print_info "Setting up GraphDB repository 'kb'..."
+    print_warning "Please ensure GraphDB is running and accessible"
+    print_info "1. Open http://localhost:7200"
+    print_info "2. Go to 'Setup' > 'Repositories'"
+    print_info "3. Click 'Create new repository'"
+    print_info "4. Select 'GraphDB Repository'"
+    print_info "5. Enter Repository ID: kb"
+    print_info "6. Enter Repository title: Marvel DC Knowledge Base"
+    print_info "7. Click 'Create'"
     echo ""
     read -p "Press Enter after completing the setup..."
-    print_success "Namespace setup completed!"
+    print_success "Repository setup completed!"
 }
 
 # Main script logic
@@ -208,8 +209,8 @@ case "$1" in
     "start-dev")
         start_dev
         ;;
-    "start-blazegraph")
-        start_blazegraph
+    "start-graphdb")
+        start_graphdb
         ;;
     "stop")
         stop_services
@@ -226,14 +227,14 @@ case "$1" in
     "logs-web")
         show_web_logs
         ;;
-    "logs-blazegraph")
-        show_blazegraph_logs
+    "logs-graphdb")
+        show_graphdb_logs
         ;;
     "shell-web")
         web_shell
         ;;
-    "shell-blazegraph")
-        blazegraph_shell
+    "shell-graphdb")
+        graphdb_shell
         ;;
     "status")
         show_status
@@ -247,8 +248,8 @@ case "$1" in
     "restore")
         restore_data "$2"
         ;;
-    "setup-namespace")
-        setup_namespace
+    "setup-repository")
+        setup_repository
         ;;
     "help"|"--help"|"-h")
         show_help

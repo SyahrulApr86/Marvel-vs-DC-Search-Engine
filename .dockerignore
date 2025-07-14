@@ -57,6 +57,8 @@ docker-compose.yml
 Dockerfile
 .dockerignore
 
-# Blazegraph
-blazegraph.properties
-blazegraph_data/ 
+# GraphDB
+graphdb.properties
+graphdb-repo-config.ttl
+graphdb_data/
+graphdb_import/ 

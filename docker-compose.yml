@@ -1,16 +1,18 @@
 version: '3.8'
 
 services:
-  blazegraph:
-    image: nawer/blazegraph:2.1.5
-    container_name: marvel-dc-blazegraph
+  graphdb:
+    image: ontotext/graphdb:10.6.3
+    container_name: marvel-dc-graphdb
     ports:
-      - "9999:9999"
+      - "7200:7200"
     volumes:
-      - blazegraph_data:/var/lib/blazegraph
-      - ./blazegraph.properties:/var/lib/blazegraph/conf/blazegraph.properties
+      - graphdb_data:/opt/graphdb/home
+      - graphdb_import:/root/graphdb-import
+      - ./graphdb.properties:/opt/graphdb/home/conf/graphdb.properties
     environment:
-      - JAVA_OPTS=-server -Xmx4g -Djava.awt.headless=true
+      - GDB_HEAP_SIZE=4g
+      - GDB_JAVA_OPTS=-Djava.awt.headless=true
     restart: unless-stopped
     networks:
       - marvel-dc-network
@@ -25,10 +27,10 @@ services:
       - .:/app
       - /app/env
     environment:
-      - BLAZEGRAPH_HOST=http://blazegraph:9999
+      - GRAPHDB_HOST=http://graphdb:7200
       - DJANGO_DEBUG=True
     depends_on:
-      - blazegraph
+      - graphdb
     networks:
       - marvel-dc-network
     command: >
@@ -36,7 +38,9 @@ services:
              python manage.py runserver 0.0.0.0:8000"
 
 volumes:
-  blazegraph_data:
+  graphdb_data:
+    driver: local
+  graphdb_import:
     driver: local
 
 networks:

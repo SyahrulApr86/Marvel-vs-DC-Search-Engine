@@ -4,16 +4,17 @@ services:
   web:
     environment:
       - DJANGO_DEBUG=False
-      - BLAZEGRAPH_HOST=http://blazegraph:9999/
+      - GRAPHDB_HOST=http://graphdb:7200/
     command: >
       sh -c "python manage.py collectstatic --noinput &&
              python manage.py migrate &&
              gunicorn project_django.wsgi:application --bind 0.0.0.0:8000 --workers 3"
     restart: unless-stopped
 
-  blazegraph:
+  graphdb:
     environment:
-      - JAVA_OPTS=-server -Xmx8g -Djava.awt.headless=true
+      - GDB_HEAP_SIZE=8g
+      - GDB_JAVA_OPTS=-Djava.awt.headless=true
     restart: unless-stopped
 
   # Optional: Nginx reverse proxy untuk production

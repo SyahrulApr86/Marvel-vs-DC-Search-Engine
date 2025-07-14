@@ -9,7 +9,7 @@ services:
       - .:/app
       - /app/env
     environment:
-      - BLAZEGRAPH_HOST=http://blazegraph:9999/
+      - GRAPHDB_HOST=http://graphdb:7200/
       - DJANGO_DEBUG=True
       - PYTHONUNBUFFERED=1
     command: >

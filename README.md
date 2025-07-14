@@ -50,26 +50,26 @@ Cara menjalankan aplikasi:
 
 ### Quick Start dengan Docker
 
-1. **Jalankan hanya Blazegraph:**
+1. **Jalankan hanya GraphDB:**
    ```shell
-   docker-compose up blazegraph -d
+   docker-compose up graphdb -d
    ```
 
-2. **Jalankan semua services (Blazegraph + Web App):**
+2. **Jalankan semua services (GraphDB + Web App):**
    ```shell
    docker-compose up -d
    ```
 
 3. **Akses aplikasi:**
    - Web Application: http://localhost:8000
-   - Blazegraph Admin: http://localhost:9999/blazegraph
+   - GraphDB Workbench: http://localhost:7200
 
-### Setup Namespace Blazegraph
+### Setup Repository GraphDB
 
-1. Buka http://localhost:9999/blazegraph
-2. Pergi ke tab "Namespaces"
-3. Buat namespace baru dengan nama `kb`
-4. Import data RDF/TTL melalui tab "Update"
+1. Buka http://localhost:7200
+2. Pergi ke "Setup" > "Repositories"
+3. Buat repository baru dengan ID `kb`
+4. Import data RDF/TTL melalui "Import" > "RDF"
 
 Untuk dokumentasi lengkap Docker setup, lihat [DOCKER.md](DOCKER.md)
 
@@ -79,19 +79,19 @@ Untuk dokumentasi lengkap Docker setup, lihat [DOCKER.md](DOCKER.md)
 
 | Variable | Default | Deskripsi |
 |----------|---------|-----------|
-| `BLAZEGRAPH_HOST` | `http://34.124.187.20:8889/` | URL Blazegraph server |
+| `GRAPHDB_HOST` | `http://localhost:7200/` | URL GraphDB server |
 | `DJANGO_DEBUG` | `True` | Mode debug Django |
 
 ### Mode Development vs Production
 
 **Development (lokal):**
 ```shell
-export BLAZEGRAPH_HOST=http://localhost:9999/
+export GRAPHDB_HOST=http://localhost:7200/
 python manage.py runserver
 ```
 
 **Production (Docker):**
 ```shell
-export BLAZEGRAPH_HOST=http://blazegraph:9999/
+export GRAPHDB_HOST=http://graphdb:7200/
 docker-compose up -d
 ```

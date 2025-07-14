@@ -8,14 +8,14 @@ from django.http import JsonResponse
 from datetime import datetime
 import os
 
-namespace = "kb"
-# set host pake url blazegraph local/remote
+repository = "kb"
+# set host pake url GraphDB local/remote
 # Gunakan environment variable atau fallback ke remote server
-host = os.getenv('BLAZEGRAPH_HOST', "http://34.124.187.20:8889/")
+host = os.getenv('GRAPHDB_HOST', "http://localhost:7200/")
 if not host.endswith('/'):
     host += '/'
     
-sparql = SPARQLWrapper(f"{host}bigdata/namespace/"+ namespace + "/sparql")
+sparql = SPARQLWrapper(f"{host}repositories/"+ repository)
 sparql.setReturnFormat(JSON)
 
 
