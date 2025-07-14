@@ -154,7 +154,8 @@
                 <strong>{{ data.0.birth_date.value }}</strong>
               </div>
             </div>
-            {% endif %} {% if data.0.sex.value|length > 0 %}
+            {% endif %}
+        {% if data.0.sex.value|length > 0 %}
             <div class="d-flex align-items-center">
               <i class="icon-enhanced fas fa-venus-mars text-info"></i>
               <div>
@@ -162,7 +163,8 @@
                 <strong>{{ data.0.sex.value }}</strong>
               </div>
             </div>
-            {% endif %} {% if data.0.nationalities.value|length > 0 %}
+            {% endif %}
+        {% if data.0.nationalities.value|length > 0 %}
             <div class="d-flex align-items-center">
               <i class="icon-enhanced fas fa-flag text-success"></i>
               <div>
@@ -196,7 +198,8 @@
               </div>
             </div>
           </div>
-          {% endif %} {% if data.0.occupation.value|length > 0 %}
+          {% endif %}
+        {% if data.0.occupation.value|length > 0 %}
           <div class="col-md-6">
             <div class="d-flex align-items-center">
               <i class="icon-enhanced fas fa-briefcase"></i>
@@ -206,7 +209,8 @@
               </div>
             </div>
           </div>
-          {% endif %} {% if data.0.educated_at.value|length > 0 %}
+          {% endif %}
+        {% if data.0.educated_at.value|length > 0 %}
           <div class="col-md-6">
             <div class="d-flex align-items-center">
               <i class="icon-enhanced fas fa-graduation-cap"></i>
@@ -216,7 +220,8 @@
               </div>
             </div>
           </div>
-          {% endif %} {% if data.0.spouse.value|length > 0 %}
+          {% endif %}
+        {% if data.0.spouse.value|length > 0 %}
           <div class="col-md-6">
             <div class="d-flex align-items-center">
               <i class="icon-enhanced fas fa-heart"></i>
@@ -288,7 +293,8 @@
                 </td>
                 <td class="text-end">{{ data.0.birth_date.value }}</td>
               </tr>
-              {% endif %} {% if data.0.birth_place.value|length > 0 %}
+              {% endif %}
+        {% if data.0.birth_place.value|length > 0 %}
               <tr>
                 <td class="fw-semibold">
                   <i class="fas fa-map-marker-alt me-2 text-danger"></i>Birth
@@ -296,28 +302,32 @@
                 </td>
                 <td class="text-end">{{ data.0.birth_place.value }}</td>
               </tr>
-              {% endif %} {% if data.0.sex.value|length > 0 %}
+              {% endif %}
+        {% if data.0.sex.value|length > 0 %}
               <tr>
                 <td class="fw-semibold">
                   <i class="fas fa-venus-mars me-2 text-info"></i>Gender
                 </td>
                 <td class="text-end">{{ data.0.sex.value }}</td>
               </tr>
-              {% endif %} {% if data.0.nationalities.value|length > 0 %}
+              {% endif %}
+        {% if data.0.nationalities.value|length > 0 %}
               <tr>
                 <td class="fw-semibold">
                   <i class="fas fa-flag me-2 text-success"></i>Nationality
                 </td>
                 <td class="text-end">{{ data.0.nationalities.value }}</td>
               </tr>
-              {% endif %} {% if data.0.occupation.value|length > 0 %}
+              {% endif %}
+        {% if data.0.occupation.value|length > 0 %}
               <tr>
                 <td class="fw-semibold">
                   <i class="fas fa-briefcase me-2 text-warning"></i>Occupation
                 </td>
                 <td class="text-end">{{ data.0.occupation.value }}</td>
               </tr>
-              {% endif %} {% if data.0.educated_at.value|length > 0 %}
+              {% endif %}
+        {% if data.0.educated_at.value|length > 0 %}
               <tr>
                 <td class="fw-semibold">
                   <i class="fas fa-graduation-cap me-2 text-purple"></i
@@ -325,7 +335,8 @@
                 </td>
                 <td class="text-end">{{ data.0.educated_at.value }}</td>
               </tr>
-              {% endif %} {% if data.0.spouse.value|length > 0 %}
+              {% endif %}
+        {% if data.0.spouse.value|length > 0 %}
               <tr>
                 <td class="fw-semibold">
                   <i class="fas fa-heart me-2 text-danger"></i>Spouse

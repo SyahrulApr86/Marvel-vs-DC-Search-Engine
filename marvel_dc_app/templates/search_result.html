@@ -68,7 +68,8 @@
         <p class="mb-0 text-muted">
           {% if search_query %} Results for:
           <strong>"{{ search_query }}"</strong>
-          {% endif %} {% if data %}
+          {% endif %}
+          {% if data %}
           <span class="badge bg-primary ms-2"
             >{{ data|length }} result{{ data|length|pluralize }}</span
           >
@@ -153,12 +154,14 @@
               <i class="bi bi-calendar"></i>
               {{ movie.year.value }}
             </span>
-            {% endif %} {% if movie.mpa_rating.value %}
+            {% endif %}
+          {% if movie.mpa_rating.value %}
             <span class="badge bg-warning text-dark me-2">
               <i class="bi bi-shield-check"></i>
               {{ movie.mpa_rating.value }}
             </span>
-            {% endif %} {% if movie.runtime.value %}
+            {% endif %}
+          {% if movie.runtime.value %}
             <span class="badge bg-info text-dark me-2">
               <i class="bi bi-clock"></i>
               {{ movie.runtime.value }} min
@@ -173,7 +176,8 @@
               {{ movie.genre.value }}
             </small>
           </div>
-          {% endif %} {% if movie.description.value %}
+          {% endif %}
+          {% if movie.description.value %}
           <p class="card-text mt-3">
             {{ movie.description.value|truncatewords:20 }}
           </p>
