@@ -14,6 +14,9 @@ repository = "kb"
 host = os.getenv('GRAPHDB_HOST', "http://localhost:7200/")
 if not host.endswith('/'):
     host += '/'
+
+# Namespace untuk data (sesuai dengan yang ada di RDF file)    
+data_namespace = "http://192.168.31.138:9999/blazegraph/"
     
 sparql = SPARQLWrapper(f"{host}repositories/"+ repository)
 sparql.setReturnFormat(JSON)
@@ -36,7 +39,7 @@ def search_result(request):
         return render(request, 'index.html', {'error_message': 'No search query'})
 
     sparql.setQuery(f"""
-    prefix :      <{host}>
+    prefix :      <{data_namespace}>
     prefix owl:   <http://www.w3.org/2002/07/owl#>
     prefix rdf:   <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
     prefix rdfs:  <http://www.w3.org/2000/01/rdf-schema#>
@@ -62,7 +65,7 @@ def search_result(request):
     # If there are no exact match results, try to find similar movies
     if not response['data']:
         sparql.setQuery(f"""
-        prefix :      <{host}>
+        prefix :      <{data_namespace}>
         prefix owl:   <http://www.w3.org/2002/07/owl#>
         prefix rdf:   <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
         prefix rdfs:  <http://www.w3.org/2000/01/rdf-schema#>
@@ -111,7 +114,7 @@ def get_film_detail(request):
     film_wiki_uri = request.POST['film_wiki_uri']
 
     sparql.setQuery(f"""
-      prefix :      <{host}>
+      prefix :      <{data_namespace}>
       prefix owl:   <http://www.w3.org/2002/07/owl#>
       prefix rdf:   <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
       prefix rdfs:  <http://www.w3.org/2000/01/rdf-schema#>
@@ -121,7 +124,7 @@ def get_film_detail(request):
 
     SELECT DISTINCT ?film_name
     WHERE{{
-        OPTIONAL {{{film_wiki_uri} rdf:type :film;
+        OPTIONAL {{{film_wiki_uri} rdf:type :Film;
                           rdfs:label ?film_name.}}
     }}
     """)
@@ -134,7 +137,7 @@ def get_film_detail(request):
         # return JsonResponse(response, status=404)
     
     sparql.setQuery(f"""
-      prefix :      <{host}>
+      prefix :      <{data_namespace}>
       prefix owl:   <http://www.w3.org/2002/07/owl#>
       prefix rdf:   <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
       prefix rdfs:  <http://www.w3.org/2000/01/rdf-schema#>
@@ -217,7 +220,7 @@ def get_person_detail(request):
     person_wiki_uri = request.POST['person_wiki_uri']
 
     sparql.setQuery(f"""
-      prefix :      <{host}>
+      prefix :      <{data_namespace}>
       prefix owl:   <http://www.w3.org/2002/07/owl#>
       prefix rdf:   <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
       prefix rdfs:  <http://www.w3.org/2000/01/rdf-schema#>
@@ -243,7 +246,7 @@ def get_person_detail(request):
         # return JsonResponse(response, status=404)
     
     sparql.setQuery(f"""
-      prefix :      <{host}>
+      prefix :      <{data_namespace}>
       prefix owl:   <http://www.w3.org/2002/07/owl#>
       prefix rdf:   <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
       prefix rdfs:  <http://www.w3.org/2000/01/rdf-schema#>
@@ -275,7 +278,7 @@ def get_person_detail(request):
     response['data'] = results["results"]["bindings"]
     
     sparql.setQuery(f"""
-    prefix :      <{host}>
+    prefix :      <{data_namespace}>
     prefix owl:   <http://www.w3.org/2002/07/owl#>
     prefix rdf:   <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
     prefix rdfs:  <http://www.w3.org/2000/01/rdf-schema#>
