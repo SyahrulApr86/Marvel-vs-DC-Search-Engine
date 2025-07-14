@@ -270,8 +270,7 @@
       <ul class="list-unstyled">
         {% if data.0.year.value|length > 0 %}
         <li>
-          <i class="fas fa-calendar"></i> <strong>Year:</strong> {{
-          data.0.year.value }}
+          <i class="fas fa-calendar"></i> <strong>Year:</strong> {{ data.0.year.value }}
         </li>
         {% endif %} {% if data.0.film_type.value|length > 0 %}
         <li>
@@ -289,18 +288,15 @@
         </li>
         {% endif %} {% if data.0.runtime.value|length > 0 %}
         <li>
-          <i class="fas fa-clock"></i> <strong>Runtime:</strong> {{
-          data.0.runtime.value }} minutes
+          <i class="fas fa-clock"></i> <strong>Runtime:</strong> {{ data.0.runtime.value }} minutes
         </li>
         {% endif %} {% if data.0.mpa_rating.value|length > 0 %}
         <li>
-          <i class="fas fa-certificate"></i> <strong>MPA Rating:</strong> {{
-          data.0.mpa_rating.value }}
+          <i class="fas fa-certificate"></i> <strong>MPA Rating:</strong> {{ data.0.mpa_rating.value }}
         </li>
         {% endif %} {% if data.0.genres.value|length > 0 %}
         <li>
-          <i class="fas fa-list"></i> <strong>Genres:</strong> {{
-          data.0.genres.value }}
+          <i class="fas fa-list"></i> <strong>Genres:</strong> {{ data.0.genres.value }}
         </li>
         {% endif %}
       </ul>
