@@ -64,12 +64,16 @@ Cara menjalankan aplikasi:
    - Web Application: http://localhost:8000
    - GraphDB Workbench: http://localhost:7200
 
-### Setup Repository GraphDB
+### Setup Otomatis ✨
 
-1. Buka http://localhost:7200
-2. Pergi ke "Setup" > "Repositories"
-3. Buat repository baru dengan ID `kb`
-4. Import data RDF/TTL melalui "Import" > "RDF"
+GraphDB akan setup secara **otomatis** ketika pertama kali dijalankan:
+- ✅ Repository `kb` dibuat otomatis
+- ✅ Data Marvel DC di-import otomatis dari `data/mdc_processed_csv_csv.ttl` 
+- ✅ Siap langsung digunakan!
+
+**Manual Setup (jika diperlukan):**
+1. `./docker-manage.sh setup-repository` - Run setup script manual
+2. Atau buka http://localhost:7200 > "Setup" > "Repositories" > Create `kb`
 
 Untuk dokumentasi lengkap Docker setup, lihat [DOCKER.md](DOCKER.md)
 

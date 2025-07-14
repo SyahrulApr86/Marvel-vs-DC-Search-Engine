@@ -59,6 +59,9 @@ Dockerfile
 
 # GraphDB
 graphdb.properties
-graphdb-repo-config.ttl
 graphdb_data/
-graphdb_import/ 
+graphdb_import/
+
+# Keep these for Docker build
+!scripts/
+!data/ 

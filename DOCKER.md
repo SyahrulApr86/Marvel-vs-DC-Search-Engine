@@ -43,25 +43,44 @@ Anda bisa mengatur environment variables berikut:
 
 ## Konfigurasi GraphDB
 
-### Repository Setup
+### Automatic Setup ✨
+
+**GraphDB sekarang setup secara otomatis!** Ketika menjalankan `docker-compose up` pertama kali:
+
+1. **Repository Creation**: Repository `kb` dibuat otomatis
+2. **Data Import**: File `data/mdc_processed_csv_csv.ttl` di-import otomatis
+3. **Ready to Use**: Langsung siap untuk query SPARQL!
+
+**Proses Initialization:**
+```bash
+# Start GraphDB
+docker-compose up -d graphdb
+
+# Auto-setup (berjalan otomatis)
+docker-compose up graphdb-init
+
+# Logs untuk monitoring
+docker-compose logs graphdb-init
+```
+
+**Manual Setup (jika diperlukan):**
+
+Jika auto-setup gagal, bisa setup manual:
 
 1. Akses GraphDB Workbench di http://localhost:7200
 2. Buat repository baru dengan nama `kb`:
-   - Pergi ke "Setup" > "Repositories"
+   - Pergi ke "Setup" > "Repositories" 
    - Klik "Create new repository"
    - Pilih "GraphDB Repository"
    - Masukkan Repository ID: `kb`
    - Masukkan Repository title: `Marvel DC Knowledge Base`
    - Klik "Create"
 
-### Import Data
-
-Untuk mengimpor data RDF/TTL ke GraphDB:
-
-1. Pergi ke "Import" > "RDF"
-2. Pilih repository `kb`
-3. Upload file data atau paste RDF content
-4. Klik "Import"
+3. Import data manual:
+   - Pergi ke "Import" > "RDF"
+   - Pilih repository `kb`
+   - Upload file `data/mdc_processed_csv_csv.ttl`
+   - Klik "Import"
 
 ## Docker Commands
 
