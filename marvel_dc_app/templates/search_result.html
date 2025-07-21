@@ -11,443 +11,505 @@
 {% endblock meta %}
 
 {% block content %}
-<!-- Enhanced Navbar -->
-<nav class="navbar navbar-expand-lg navbar-enhanced fixed-top">
-  <div class="container">
-    <!-- Brand/logo -->
-    <a
-      class="navbar-brand fw-bold text-decoration-none"
-      href="{% url 'marvel_dc_app:index' %}"
-    >
-      <span class="marvel-text fs-3">Marvel</span>
-      <span class="vs-text fs-3 mx-2">vs</span>
-      <span class="dc-text fs-3">DC</span>
-    </a>
+<div class="main-wrapper" style="flex: 1; display: flex; flex-direction: column;">
+  <!-- Enhanced Navbar -->
+  <nav class="navbar navbar-expand-lg navbar-enhanced">
+    <div class="container">
+      <!-- Brand/logo -->
+      <a
+        class="navbar-brand fw-bold text-decoration-none"
+        href="{% url 'marvel_dc_app:index' %}"
+      >
+        <span class="marvel-text fs-3">Marvel</span>
+        <span class="vs-text fs-3 mx-2">vs</span>
+        <span class="dc-text fs-3">DC</span>
+      </a>
 
-    <!-- Search form -->
-    <form
-      class="d-flex flex-fill mx-3"
-      method="POST"
-      action="{% url 'marvel_dc_app:search_result' %}"
-    >
-      {% csrf_token %}
-      <div class="input-group">
-        <input
-          type="text"
-          name="search_query"
-          class="form-control search-input"
-          placeholder="Search for movies, characters, or stories..."
-          value="{{ search_query }}"
-          autocomplete="off"
-        />
-        <button class="btn btn-search" type="submit">
-          <i class="bi bi-search"></i>
-          Search
-        </button>
-      </div>
-    </form>
+      <!-- Search form -->
+      <form
+        class="d-flex flex-fill mx-3"
+        method="POST"
+        action="{% url 'marvel_dc_app:search_result' %}"
+      >
+        {% csrf_token %}
+        <div class="input-group">
+          <input
+            type="text"
+            name="search_query"
+            class="form-control search-input"
+            placeholder="Search for movies, characters, or stories..."
+            value="{{ search_query }}"
+            autocomplete="off"
+          />
+          <button class="btn btn-search" type="submit">
+            <i class="bi bi-search"></i>
+            Search
+          </button>
+        </div>
+      </form>
 
-    <!-- Home button -->
-    <a
-      href="{% url 'marvel_dc_app:index' %}"
-      class="btn btn-outline-light ms-2"
-      title="Go to Home"
-    >
-      <i class="bi bi-house-fill"></i>
-    </a>
-  </div>
-</nav>
+      <!-- Home button -->
+      <a
+        href="{% url 'marvel_dc_app:index' %}"
+        class="btn btn-outline-light ms-2"
+        title="Go to Home"
+      >
+        <i class="bi bi-house-fill"></i>
+      </a>
+    </div>
+  </nav>
 
-<!-- Main content with top margin to account for fixed navbar -->
-<div class="container-fluid px-4" style="margin-top: 100px">
-  <!-- Search info -->
-  <div class="search-info mb-4">
-    <div class="row align-items-center">
-      <div class="col-md-8">
-        <h1 class="h3 mb-2">Search Results</h1>
-        <p class="mb-0 text-muted">
-          {% if search_query %} Results for:
-          <strong>"{{ search_query }}"</strong>
-          {% endif %}
-        {% if data %}
-          <span class="badge bg-primary ms-2"
-            >{{ data|length }} result{{ data|length|pluralize }}</span
-          >
-          {% endif %}
-        </p>
-      </div>
-      <div class="col-md-4 text-end">
-        <small class="text-muted">
-          <i class="bi bi-clock"></i>
-          Search completed in 0.{{ search_time|floatformat:0 }}s
-        </small>
+  <!-- Main content with top margin to account for fixed navbar -->
+  <div class="container-fluid px-4" style="margin-top: 85px">
+    <!-- Search info -->
+    <div class="search-info mb-4 shadow-sm">
+      <div class="row align-items-center">
+        <div class="col-md-8">
+          <h1 class="h3 mb-2">Search Results</h1>
+          <p class="mb-0 text-muted">
+            {% if search_query %}
+            Results for: <strong>"{{ search_query }}"</strong>
+{% endif %}
+{% if data %}
+            <span class="badge bg-primary ms-2">
+              {{ data|length }} result{{ data|length|pluralize }}
+            </span>
+{% endif %}
+          </p>
+        </div>
+        <div class="col-md-4 text-end">
+          <small class="text-muted">
+            <i class="bi bi-clock"></i>
+            Search completed in 0.{{ search_time|floatformat:0 }}s
+          </small>
+        </div>
       </div>
     </div>
-  </div>
 
-  <!-- Results Grid -->
-  {% if data %}
-  <div class="row g-4">
-    {% for movie in data %}
-    <div
-      class="col-lg-4 col-md-6 fade-in-up"
-      style="animation-delay: {{ forloop.counter0|mul:0.1 }}s;"
-    >
-      <div class="result-card card h-100 border-0">
-        <!-- Movie poster/image -->
-        <div class="position-relative overflow-hidden" style="height: 300px">
-          {% if movie.image.value %}
-          <img
-            src="{{ movie.image.value }}"
-            class="card-img-top w-100 h-100"
-            alt="{{ movie.film_name.value }}"
-            loading="lazy"
-            style="
-              object-fit: contain;
-              object-position: center;
-              background-color: #f8f9fa;
-            "
-          />
-          {% else %}
-          <div
-            class="placeholder-image d-flex align-items-center justify-content-center bg-secondary h-100"
-            style="background-color: #f8f9fa"
-          >
-            <i class="bi bi-film text-white fs-1"></i>
-          </div>
-          {% endif %}
-
-          <!-- Movie type badge -->
-          <div class="position-absolute top-0 start-0 m-3">
-            {% if movie.film_type.value == "Marvel" %}
-            <span class="badge bg-marvel">Marvel</span>
-            {% elif movie.film_type.value == "DC" %}
-            <span class="badge bg-dc">DC</span>
+    <!-- Results Grid -->
+    {% if data %}
+    <div class="row g-4">
+      {% for movie in data %}
+      <div
+        class="col-lg-4 col-md-6 fade-in-up"
+        style="animation-delay: {{ forloop.counter0|mul:0.1 }}s;"
+      >
+        <div class="result-card card h-100 border-0">
+          <!-- Movie poster/image -->
+          <div class="position-relative overflow-hidden" style="height: 300px">
+            {% if movie.image.value %}
+            <img
+              src="{{ movie.image.value }}"
+              class="card-img-top w-100 h-100"
+              alt="{{ movie.film_name.value }}"
+              loading="lazy"
+              style="
+                object-fit: contain;
+                object-position: center;
+                background-color: #f8f9fa;
+              "
+            />
             {% else %}
-            <span class="badge bg-secondary">{{ movie.film_type.value }}</span>
+            <div
+              class="placeholder-image d-flex align-items-center justify-content-center bg-secondary h-100"
+              style="background-color: #f8f9fa"
+            >
+              <i class="bi bi-film text-white fs-1"></i>
+            </div>
             {% endif %}
-          </div>
 
-          <!-- Hover overlay -->
-          <div class="card-hover-overlay">
-            <div class="d-flex align-items-center justify-content-center h-100">
-              <button
-                onclick="viewFilmDetail('{{ movie.film_wiki_uri.value }}')"
-                class="btn btn-primary btn-lg"
+            <!-- Movie type badge -->
+            <div class="position-absolute top-0 start-0 m-3">
+              {% if movie.film_type.value == "Marvel" %}
+              <span class="badge bg-marvel">Marvel</span>
+              {% elif movie.film_type.value == "DC" %}
+              <span class="badge bg-dc">DC</span>
+              {% else %}
+              <span class="badge bg-secondary"
+                >{{ movie.film_type.value }}</span
               >
-                <i class="bi bi-eye"></i>
-                View Details
-              </button>
+              {% endif %}
+            </div>
+
+            <!-- Hover overlay -->
+            <div class="card-hover-overlay">
+              <div
+                class="d-flex align-items-center justify-content-center h-100"
+              >
+                <button
+                  onclick="viewFilmDetail('{{ movie.film_wiki_uri.value }}')"
+                  class="btn btn-primary btn-lg"
+                >
+                  <i class="bi bi-eye"></i>
+                  View Details
+                </button>
+              </div>
             </div>
           </div>
+
+          <!-- Movie details -->
+          <div class="card-body">
+            <h5 class="card-title mb-2">
+              <a
+                href="javascript:void(0)"
+                onclick="viewFilmDetail('{{ movie.film_wiki_uri.value }}')"
+                class="text-decoration-none"
+              >
+                {{ movie.film_name.value }}
+              </a>
+            </h5>
+
+            <div class="movie-info">
+              {% if movie.year.value %}
+              <span class="badge bg-light text-dark me-2">
+                <i class="bi bi-calendar"></i>
+                {{ movie.year.value }}
+              </span>
+{% endif %}
+{% if movie.mpa_rating.value %}
+              <span class="badge bg-warning text-dark me-2">
+                <i class="bi bi-shield-check"></i>
+                {{ movie.mpa_rating.value }}
+              </span>
+{% endif %}
+{% if movie.runtime.value %}
+              <span class="badge bg-info text-dark me-2">
+                <i class="bi bi-clock"></i>
+                {{ movie.runtime.value }} min
+              </span>
+              {% endif %}
+            </div>
+
+            {% if movie.genre.value %}
+            <div class="genres mt-2">
+              <small class="text-muted">
+                <i class="bi bi-tags"></i>
+                {{ movie.genre.value }}
+              </small>
+            </div>
+            {% endif %}
+{% if movie.description.value %}
+            <p class="card-text mt-3">
+              {{ movie.description.value|truncatewords:20 }}
+            </p>
+{% endif %}
+          </div>
         </div>
+      </div>
+      {% endfor %}
+    </div>
+    {% else %}
+    <!-- No results state -->
+    <div class="no-results-state text-center py-5">
+      <div class="mb-4">
+        <i class="bi bi-search text-muted" style="font-size: 4rem"></i>
+      </div>
+      <h3 class="text-muted mb-3">No Results Found</h3>
+      <p class="text-secondary mb-4">
+        We couldn't find any matches for your search. {% if search_query %}Try
+        searching for something else or check your spelling.{% endif %}
+      </p>
 
-        <!-- Movie details -->
-        <div class="card-body">
-          <h5 class="card-title mb-2">
-            <a
-              href="javascript:void(0)"
-              onclick="viewFilmDetail('{{ movie.film_wiki_uri.value }}')"
-              class="text-decoration-none"
-            >
-              {{ movie.film_name.value }}
-            </a>
-          </h5>
-
-          <div class="movie-info">
-            {% if movie.year.value %}
-            <span class="badge bg-light text-dark me-2">
-              <i class="bi bi-calendar"></i>
-              {{ movie.year.value }}
-            </span>
-            {% endif %}
-        {% if movie.mpa_rating.value %}
-            <span class="badge bg-warning text-dark me-2">
-              <i class="bi bi-shield-check"></i>
-              {{ movie.mpa_rating.value }}
-            </span>
-            {% endif %}
-        {% if movie.runtime.value %}
-            <span class="badge bg-info text-dark me-2">
-              <i class="bi bi-clock"></i>
-              {{ movie.runtime.value }} min
-            </span>
-            {% endif %}
-          </div>
-
-          {% if movie.genre.value %}
-          <div class="genres mt-2">
-            <small class="text-muted">
-              <i class="bi bi-tags"></i>
-              {{ movie.genre.value }}
-            </small>
-          </div>
-          {% endif %}
-        {% if movie.description.value %}
-          <p class="card-text mt-3">
-            {{ movie.description.value|truncatewords:20 }}
-          </p>
-          {% endif %}
+      <!-- Quick search suggestions -->
+      <div class="quick-search-suggestions">
+        <h6 class="text-muted mb-3">Try these popular searches:</h6>
+        <div class="d-flex flex-wrap justify-content-center gap-2">
+          <button
+            class="btn btn-outline-primary btn-sm"
+            onclick="quickSearch('Batman')"
+          >
+            Batman
+          </button>
+          <button
+            class="btn btn-outline-primary btn-sm"
+            onclick="quickSearch('Spider-Man')"
+          >
+            Spider-Man
+          </button>
+          <button
+            class="btn btn-outline-primary btn-sm"
+            onclick="quickSearch('Avengers')"
+          >
+            Avengers
+          </button>
+          <button
+            class="btn btn-outline-primary btn-sm"
+            onclick="quickSearch('Superman')"
+          >
+            Superman
+          </button>
+          <button
+            class="btn btn-outline-primary btn-sm"
+            onclick="quickSearch('Wonder Woman')"
+          >
+            Wonder Woman
+          </button>
         </div>
       </div>
     </div>
-    {% endfor %}
+    {% endif %}
   </div>
-  {% else %}
-  <!-- No results state -->
-  <div class="no-results-state text-center py-5">
-    <div class="mb-4">
-      <i class="bi bi-search text-muted" style="font-size: 4rem"></i>
-    </div>
-    <h3 class="text-muted mb-3">No Results Found</h3>
-    <p class="text-secondary mb-4">
-      We couldn't find any matches for your search. {% if search_query %}Try
-      searching for something else or check your spelling.{% endif %}
-    </p>
 
-    <!-- Quick search suggestions -->
-    <div class="quick-search-suggestions">
-      <h6 class="text-muted mb-3">Try these popular searches:</h6>
-      <div class="d-flex flex-wrap justify-content-center gap-2">
-        <button
-          class="btn btn-outline-primary btn-sm"
-          onclick="quickSearch('Batman')"
-        >
-          Batman
-        </button>
-        <button
-          class="btn btn-outline-primary btn-sm"
-          onclick="quickSearch('Spider-Man')"
-        >
-          Spider-Man
-        </button>
-        <button
-          class="btn btn-outline-primary btn-sm"
-          onclick="quickSearch('Avengers')"
-        >
-          Avengers
-        </button>
-        <button
-          class="btn btn-outline-primary btn-sm"
-          onclick="quickSearch('Superman')"
-        >
-          Superman
-        </button>
-        <button
-          class="btn btn-outline-primary btn-sm"
-          onclick="quickSearch('Wonder Woman')"
-        >
-          Wonder Woman
-        </button>
-      </div>
-    </div>
-  </div>
-  {% endif %}
-</div>
+  <script>
+    // Enhanced animations
+    document.addEventListener("DOMContentLoaded", function () {
+      // Scroll reveal animation
+      const observerOptions = {
+        threshold: 0.1,
+        rootMargin: "0px 0px -50px 0px",
+      };
 
-<script>
-  // Enhanced animations
-  document.addEventListener("DOMContentLoaded", function () {
-    // Scroll reveal animation
-    const observerOptions = {
-      threshold: 0.1,
-      rootMargin: "0px 0px -50px 0px",
-    };
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("animate-in");
+          }
+        });
+      }, observerOptions);
 
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add("animate-in");
-        }
+      // Observe all fade-in elements
+      document.querySelectorAll(".fade-in-up").forEach((el) => {
+        observer.observe(el);
       });
-    }, observerOptions);
 
-    // Observe all fade-in elements
-    document.querySelectorAll(".fade-in-up").forEach((el) => {
-      observer.observe(el);
+      // Enhanced card hover effects
+      document.querySelectorAll(".result-card").forEach((card) => {
+        card.addEventListener("mouseenter", function () {
+          this.style.transform = "translateY(-10px)";
+        });
+
+        card.addEventListener("mouseleave", function () {
+          this.style.transform = "translateY(0)";
+        });
+      });
     });
 
-    // Enhanced card hover effects
-    document.querySelectorAll(".result-card").forEach((card) => {
-      card.addEventListener("mouseenter", function () {
-        this.style.transform = "translateY(-10px)";
-      });
-
-      card.addEventListener("mouseleave", function () {
-        this.style.transform = "translateY(0)";
-      });
-    });
-  });
-
-  // Quick search functionality
-  function quickSearch(query) {
-    const searchInput = document.querySelector(".navbar .form-control");
-    searchInput.value = query;
-    searchInput.closest("form").submit();
-  }
-
-  // View film detail functionality
-  function viewFilmDetail(filmWikiUri) {
-    const form = document.createElement("form");
-    form.method = "POST";
-    form.action = "{% url 'marvel_dc_app:get_film_detail' %}";
-
-    const csrfInput = document.createElement("input");
-    csrfInput.type = "hidden";
-    csrfInput.name = "csrfmiddlewaretoken";
-    csrfInput.value = "{{ csrf_token }}";
-
-    const filmUriInput = document.createElement("input");
-    filmUriInput.type = "hidden";
-    filmUriInput.name = "film_wiki_uri";
-    filmUriInput.value = filmWikiUri;
-
-    form.appendChild(csrfInput);
-    form.appendChild(filmUriInput);
-
-    document.body.appendChild(form);
-    form.submit();
-  }
-
-  // Auto-hide navbar on scroll
-  let lastScrollTop = 0;
-  const navbar = document.querySelector(".navbar");
-
-  window.addEventListener("scroll", function () {
-    const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
-
-    if (scrollTop > lastScrollTop && scrollTop > 100) {
-      navbar.style.transform = "translateY(-100%)";
-    } else {
-      navbar.style.transform = "translateY(0)";
+    // Quick search functionality
+    function quickSearch(query) {
+      const searchInput = document.querySelector(".navbar .form-control");
+      searchInput.value = query;
+      searchInput.closest("form").submit();
     }
 
-    lastScrollTop = scrollTop;
-  });
+    // View film detail functionality
+    function viewFilmDetail(filmWikiUri) {
+      const form = document.createElement("form");
+      form.method = "POST";
+      form.action = "{% url 'marvel_dc_app:get_film_detail' %}";
 
-  // Search input focus enhancement
-  document.addEventListener("DOMContentLoaded", function () {
-    const searchInput = document.querySelector(".navbar .form-control");
+      const csrfInput = document.createElement("input");
+      csrfInput.type = "hidden";
+      csrfInput.name = "csrfmiddlewaretoken";
+      csrfInput.value = "{{ csrf_token }}";
 
-    searchInput.addEventListener("focus", function () {
-      this.parentElement.classList.add("focused");
-    });
+      const filmUriInput = document.createElement("input");
+      filmUriInput.type = "hidden";
+      filmUriInput.name = "film_wiki_uri";
+      filmUriInput.value = filmWikiUri;
 
-    searchInput.addEventListener("blur", function () {
-      this.parentElement.classList.remove("focused");
-    });
-  });
+      form.appendChild(csrfInput);
+      form.appendChild(filmUriInput);
 
-  // Keyboard shortcuts
-  document.addEventListener("keydown", function (e) {
-    // Press '/' to focus search
-    if (e.key === "/" && document.activeElement.tagName !== "INPUT") {
-      e.preventDefault();
-      document.querySelector(".navbar .form-control").focus();
+      document.body.appendChild(form);
+      form.submit();
     }
-  });
-</script>
 
-<style>
-  .fade-in-up {
-    opacity: 0;
-    transform: translateY(30px);
-    transition: all 0.6s ease;
-  }
+    // Auto-hide navbar on scroll
+    let lastScrollTop = 0;
+    const navbar = document.querySelector(".navbar");
 
-  .fade-in-up.animate-in {
-    opacity: 1;
-    transform: translateY(0);
-  }
+    window.addEventListener("scroll", function () {
+      const scrollTop =
+        window.pageYOffset || document.documentElement.scrollTop;
 
-  .result-card {
-    transition: all 0.3s ease;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  }
+      if (scrollTop > lastScrollTop && scrollTop > 100) {
+        navbar.style.transform = "translateY(-100%)";
+      } else {
+        navbar.style.transform = "translateY(0)";
+      }
 
-  .result-card:hover {
-    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
-  }
+      lastScrollTop = scrollTop;
+    });
 
-  .card-hover-overlay {
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background: rgba(0, 0, 0, 0.7);
-    opacity: 0;
-    transition: opacity 0.3s ease;
-  }
+    // Search input focus enhancement
+    document.addEventListener("DOMContentLoaded", function () {
+      const searchInput = document.querySelector(".navbar .form-control");
 
-  .result-card:hover .card-hover-overlay {
-    opacity: 1;
-  }
+      searchInput.addEventListener("focus", function () {
+        this.parentElement.classList.add("focused");
+      });
 
-  .placeholder-image {
-    height: 100%;
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-  }
+      searchInput.addEventListener("blur", function () {
+        this.parentElement.classList.remove("focused");
+      });
+    });
 
-  .bg-marvel {
-    background-color: #e23636 !important;
-  }
+    // Keyboard shortcuts
+    document.addEventListener("keydown", function (e) {
+      // Press '/' to focus search
+      if (e.key === "/" && document.activeElement.tagName !== "INPUT") {
+        e.preventDefault();
+        document.querySelector(".navbar .form-control").focus();
+      }
+    });
+  </script>
 
-  .bg-dc {
-    background-color: #0078d4 !important;
-  }
-
-  .movie-info .badge {
-    font-size: 0.75rem;
-  }
-
-  .genres {
-    border-top: 1px solid #eee;
-    padding-top: 0.5rem;
-  }
-
-  .navbar-enhanced {
-    background: rgba(255, 255, 255, 0.95);
-    backdrop-filter: blur(10px);
-    transition: transform 0.3s ease;
-  }
-
-  .search-info {
-    padding: 1.5rem;
-    background: rgba(255, 255, 255, 0.9);
-    border-radius: 15px;
-    backdrop-filter: blur(10px);
-  }
-
-  .no-results-state {
-    min-height: 400px;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-  }
-
-  .quick-search-suggestions button {
-    transition: all 0.3s ease;
-  }
-
-  .quick-search-suggestions button:hover {
-    transform: translateY(-2px);
-  }
-
-  @media (max-width: 768px) {
+  <style>
+    /* Container styles */
     .container-fluid {
-      padding-left: 1rem;
-      padding-right: 1rem;
+      width: 100%;
+      padding-right: 15px;
+      padding-left: 15px;
+      margin-right: auto;
+      margin-left: auto;
+    }
+
+    .fade-in-up {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: all 0.6s ease;
+    }
+
+    .fade-in-up.animate-in {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* Exclude navbar from fade animation */
+    .navbar-enhanced {
+      opacity: 1 !important;
+      transform: none !important;
+    }
+
+    .result-card {
+      transition: all 0.3s ease;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    }
+
+    .result-card:hover {
+      box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+    }
+
+    .card-hover-overlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: rgba(0, 0, 0, 0.7);
+      opacity: 0;
+      transition: opacity 0.3s ease;
+    }
+
+    .result-card:hover .card-hover-overlay {
+      opacity: 1;
+    }
+
+    .placeholder-image {
+      height: 100%;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    }
+
+    .bg-marvel {
+      background-color: #e23636 !important;
+    }
+
+    .bg-dc {
+      background-color: #0078d4 !important;
+    }
+
+    .movie-info .badge {
+      font-size: 0.75rem;
+    }
+
+    .genres {
+      border-top: 1px solid #eee;
+      padding-top: 0.5rem;
+    }
+
+    .navbar-enhanced {
+      background: rgba(255, 255, 255, 0.98);
+      backdrop-filter: blur(10px);
+      transition: all 0.3s ease;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+      padding: 0.75rem 0;
+      z-index: 1030;
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      width: 100%;
+      margin: 0;
+    }
+
+    /* Override any potential Bootstrap margins */
+    .container, 
+    .container-fluid {
+      margin-top: 0;
+      padding-top: 0;
     }
 
     .search-info {
-      padding: 1rem;
-    }
-
-    .search-info .col-md-4 {
-      text-align: center !important;
+      padding: 1.5rem;
+      background: rgba(255, 255, 255, 0.9);
+      border-radius: 15px;
+      backdrop-filter: blur(10px);
       margin-top: 1rem;
     }
-  }
-</style>
+
+    .navbar .search-input {
+      padding: 0.625rem 1.25rem;
+      border-radius: 25px;
+      border: 1px solid rgba(0, 0, 0, 0.1);
+      background: rgba(255, 255, 255, 0.95);
+      transition: all 0.3s ease;
+    }
+
+    .navbar .search-input:focus {
+      box-shadow: 0 0 0 4px rgba(237, 29, 36, 0.1);
+      border-color: #ed1d24;
+    }
+
+    .navbar .btn-search {
+      padding: 0.625rem 1.25rem;
+      border-radius: 25px;
+      background: linear-gradient(45deg, #ed1d24, #dc3545);
+      border: none;
+      color: white;
+      transition: all 0.3s ease;
+    }
+
+    .no-results-state {
+      min-height: 400px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    .quick-search-suggestions button {
+      transition: all 0.3s ease;
+    }
+
+    .quick-search-suggestions button:hover {
+      transform: translateY(-2px);
+    }
+
+    @media (max-width: 768px) {
+      .container-fluid {
+        padding-left: 1rem;
+        padding-right: 1rem;
+      }
+
+      .search-info {
+        padding: 1rem;
+      }
+
+      .search-info .col-md-4 {
+        text-align: center !important;
+        margin-top: 1rem;
+      }
+    }
+  </style>
+</div>
+<!-- end of main-wrapper -->
 {% endblock content %}

@@ -36,6 +36,27 @@
 
     <!-- Custom CSS untuk enhanced UI/UX -->
     <style>
+      /* Reset CSS */
+      *, *::before, *::after {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      html, body {
+        width: 100%;
+        min-height: 100vh;
+        margin: 0;
+        padding: 0;
+        overflow-x: hidden;
+      }
+
+      body {
+        display: flex;
+        flex-direction: column;
+        min-height: 100vh;
+      }
+
       :root {
         --marvel-red: #ed1d24;
         --marvel-red-dark: #c41e3a;
