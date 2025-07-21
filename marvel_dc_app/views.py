@@ -99,8 +99,8 @@ def search_result(request):
     
     response['search'] = request.POST['search']
     end_time = datetime.now()
-    totalTime = end_time - start_time
-    response['totalTime'] = totalTime
+    search_time = (end_time - start_time).total_seconds()
+    response['search_time'] = search_time
     
     
     return render(request, 'search_result.html', response)
