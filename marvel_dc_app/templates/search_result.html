@@ -80,7 +80,7 @@
         <div class="col-md-4 text-end">
           <small class="text-muted">
             <i class="bi bi-clock"></i>
-            Search completed in 0.{{ search_time|floatformat:0 }}s
+            Search completed in {% if search_time %}{{ search_time|floatformat:3 }}{% else %}0.000{% endif %}s
           </small>
         </div>
       </div>
