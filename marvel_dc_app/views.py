@@ -6,7 +6,10 @@ from fuzzywuzzy import process
 from django.views.decorators.csrf import csrf_exempt
 from django.http import JsonResponse
 from datetime import datetime
-import os
+impor        OPTIONAL{{ 
+            <{person_wiki_uri}> wdt:P18 ?image_raw .
+            BIND(IRI(CONCAT("https://commons.wikimedia.org/wiki/Special:FilePath/", SUBSTR(STR(?image_raw), 51))) AS ?image)
+        }}os
 
 repository = "kb"
 # set host pake url GraphDB local/remote
@@ -261,16 +264,23 @@ def get_person_detail(request):
                        :nationality ?nationality; 
                        :sex ?sex .
         
-        OPTIONAL {{?film_wiki_uri :stars <{person_wiki_uri}> ;
-                 				  rdf:type :Film;
-                       	          rdfs:label ?film_name.}}
-        OPTIONAL {{?film_wiki_uri :director <{person_wiki_uri}> ;
-                 				  rdf:type :Film;
-                       	          rdfs:label ?film_name.}}
-        FILTER(bound(?film_wiki_uri))
+        # Get films where person is a star
+        OPTIONAL {{
+            ?film_wiki_uri :stars <{person_wiki_uri}> ;
+                          rdf:type :Film;
+                          rdfs:label ?film_name.
+        }}
+        
+        # Get films where person is a director
+        OPTIONAL {{
+            ?film_wiki_uri_dir :director <{person_wiki_uri}> ;
+                              rdf:type :Film;
+                              rdfs:label ?film_name_dir.
+            BIND(?film_wiki_uri_dir AS ?film_wiki_uri)
+            BIND(?film_name_dir AS ?film_name)
+        }}
     }}
     GROUP BY ?person_name ?date_of_birth ?sex
-    LIMIT 1
     """)
 
     sparql.setReturnFormat(JSON)
@@ -304,7 +314,7 @@ def get_person_detail(request):
                     FILTER(lang(?label_awards) = 'en')}}
         OPTIONAL{{ <{person_wiki_uri}> wdt:P2218 ?net_worth .}}
         OPTIONAL{{ <{person_wiki_uri}> wdt:P18 ?image_raw .
-                   BIND(REPLACE(STR(?image_raw), "http://commons.wikimedia.org/wiki/Special:FilePath/", "https://commons.wikimedia.org/wiki/File:") as ?image) }}
+                   BIND(REPLACE(STR(?image_raw), "http://commons.wikimedia.org/wiki/Special:FilePath/", "https://commons.wikimedia.org/wiki/Special:FilePath/") as ?image) }}
         }}
     GROUP BY ?image ?net_worth                                                         
         }}
