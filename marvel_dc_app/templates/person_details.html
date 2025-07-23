@@ -178,7 +178,11 @@
               <i class="icon-enhanced fas fa-flag text-success"></i>
               <div>
                 <small class="text-muted d-block">Nationality</small>
-                <strong>{{ data.0.nationalities.value }}</strong>
+                <strong>
+                  {% for nationality in data.0.nationalities.value|split:", " %}
+                    <span class="badge bg-success me-1">{{ nationality }}</span>
+                  {% endfor %}
+                </strong>
               </div>
             </div>
             {% endif %}
@@ -325,7 +329,11 @@
                 <td class="fw-semibold">
                   <i class="fas fa-flag me-2 text-success"></i>Nationality
                 </td>
-                <td class="text-end">{{ data.0.nationalities.value }}</td>
+                <td class="text-end">
+                  {% for nationality in data.0.nationalities.value|split:", " %}
+                    <span class="badge bg-success me-1">{{ nationality }}</span>
+                  {% endfor %}
+                </td>
               </tr>
               {% endif %}
         {% if data.0.occupation.value|length > 0 %}

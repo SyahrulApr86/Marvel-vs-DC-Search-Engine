@@ -2350,7 +2350,7 @@ wd:Q138005  rdf:type    :Star ;
         :nationality    "United States of America" ;
         :sex            "male" .
 
-wd:Q1236243  rdf:type   :Star ;
+wd:Q2023710  rdf:type   :Star ;
         rdfs:label      "Tom Holland" ;
         :date_of_birth  "1968-01-05T00:00Z"^^xsd:date ;
         :nationality    "United Kingdom" ;
