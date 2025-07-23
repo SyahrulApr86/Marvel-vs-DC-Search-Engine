@@ -232,13 +232,21 @@ def get_film_detail(request):
         results["results"]["bindings"][0]["image"] = {"value": cached_image}
     
     response['data2'] = results["results"]["bindings"]
+    response['film_wiki_uri'] = film_wiki_uri
     return render(request, 'film_details.html', response)
     # return JsonResponse(response, status=200)
 
 @csrf_exempt
 def get_person_detail(request):
+    from .image_cache import image_cache
     response = {}
-    person_wiki_uri = request.POST['person_wiki_uri']
+    # Handle both GET and POST requests
+    person_wiki_uri = request.POST.get('person_wiki_uri') or request.GET.get('person_wiki_uri')
+    
+    if not person_wiki_uri:
+        response["status_code"] = 400
+        response["error_message"] = "Missing person_wiki_uri parameter"
+        return render(request, 'person_details.html', response)
 
     sparql.setQuery(f"""
       prefix :      <{data_namespace}>
@@ -305,28 +313,34 @@ def get_person_detail(request):
       prefix wd:    <http://www.wikidata.org/entity/>
       prefix xsd:   <http://www.w3.org/2001/XMLSchema#>
 
-    SELECT (group_concat(distinct ?film_name;separator=", ") as ?associated_films) (group_concat(distinct ?film_wiki_uri;separator=", ") as ?associated_film_wiki_uris)
+    SELECT DISTINCT ?film_wiki_uri ?film_name
     WHERE {{
-        {{
-            ?film_wiki_uri rdf:type :Film;
-                          rdfs:label ?film_name;
-                          :stars {person_uri_for_query} .
-        }}
-        UNION
-        {{
-            ?film_wiki_uri rdf:type :Film;
-                          rdfs:label ?film_name;
-                          :director {person_uri_for_query} .
-        }}
+        ?film_wiki_uri :stars {person_uri_for_query} ;
+                      rdfs:label ?film_name .
     }}
     """)
     
     sparql.setReturnFormat(JSON)
     films_results = sparql.query().convert()
     
-    # Merge films data with person data
+    # Process individual results and create concatenated strings (Python approach)
     if films_results["results"]["bindings"]:
-        films_data = films_results["results"]["bindings"][0]
+        film_names = []
+        film_uris = []
+        
+        for result in films_results["results"]["bindings"]:
+            if "film_name" in result:
+                film_names.append(result["film_name"]["value"])
+            if "film_wiki_uri" in result:
+                film_uris.append(result["film_wiki_uri"]["value"])
+        
+        # Create the expected format for the template
+        films_data = {
+            "associated_films": {"type": "literal", "value": ", ".join(film_names)},
+            "associated_film_wiki_uris": {"type": "literal", "value": ", ".join(film_uris)}
+        }
+        
+        # Merge films data with person data
         if response['data']:
             response['data'][0].update(films_data)
         else:
@@ -387,6 +401,7 @@ def get_person_detail(request):
         results["results"]["bindings"][0]["image"] = {"value": cached_person_image}
     
     response['data2'] = results["results"]["bindings"]
+    response['person_wiki_uri'] = person_wiki_uri
     return render(request, 'person_details.html', response)
     # return JsonResponse(response, status=200)
 
