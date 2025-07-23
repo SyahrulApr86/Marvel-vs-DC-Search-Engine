@@ -30,12 +30,19 @@ def search_result(request):
 
     if request.method == 'POST':
         search = request.POST.get('search', '').lower()
+        # Also check for search_query parameter for backward compatibility
+        if not search:
+            search = request.POST.get('search_query', '').lower()
     elif request.method == 'GET':
         search = request.GET.get('search', '').lower()
+        # Also check for search_query parameter for backward compatibility
+        if not search:
+            search = request.GET.get('search_query', '').lower()
     else:
         return JsonResponse({'error': 'Invalid request method'}, status=400)
 
     if not search:
+        print(f"DEBUG: No search query found. POST data: {dict(request.POST)}, GET data: {dict(request.GET)}")
         return render(request, 'index.html', {'error_message': 'No search query'})
 
     sparql.setQuery(f"""
