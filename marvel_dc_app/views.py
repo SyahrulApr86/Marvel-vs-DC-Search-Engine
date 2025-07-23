@@ -62,7 +62,11 @@ def search_result(request):
     results = sparql.query().convert()
     response['data'] = results["results"]["bindings"]
     response['sumDocs'] = len(response['data'])
-    # If there are no exact match results, try to find similar movies
+    
+    # Initialize suggestions and similar arrays
+    response['suggestions'] = []
+    response['similar'] = []
+    # If there are no exact match results, try to find similar movies and suggestions
     if not response['data']:
         sparql.setQuery(f"""
         prefix :      <{data_namespace}>
@@ -75,29 +79,129 @@ def search_result(request):
 
         SELECT DISTINCT ?film_wiki_uri ?film_name ?year ?film_type
         WHERE{{
-            ?film_wiki_uri rdf:type :Film;
-                            rdfs:label ?film_name;
-                            :year ?year; 
-                            :entity ?film_type.
+            ?film_wiki_uri rdf:type :Film .
+            ?film_wiki_uri rdfs:label ?film_name .
+            ?film_wiki_uri :year ?year .
+            ?film_wiki_uri :entity ?film_type .
         }}
         """)
         results_2 = sparql.query().convert()
         data_2 = results_2["results"]["bindings"]
         similar_res = {}
+        suggestions = set()
         
+        # Find similar movies for display
         for i in range(len(data_2)):
-            ratio = fuzz.ratio(search, data_2[i]["film_name"]["value"].lower())
+            film_name = data_2[i]["film_name"]["value"]
+            ratio = fuzz.ratio(search, film_name.lower())
             if ratio >= 50:
-                similar_res[data_2[i]["film_name"]["value"]] = data_2[i]
+                similar_res[film_name] = data_2[i]
+
+        # Generate search term suggestions based on movie titles
+        for i in range(len(data_2)):
+            film_name = data_2[i]["film_name"]["value"]
+            film_name_lower = film_name.lower()
+            
+            # Check for partial word matches and high similarity
+            ratio = fuzz.partial_ratio(search, film_name_lower)
+            if ratio >= 60:  # Lower threshold for more matches
+                # Extract likely search terms from movie titles
+                words = film_name_lower.split()
+                for word in words:
+                    # Remove punctuation and check similarity
+                    clean_word = word.replace('-', '').replace('.', '').replace(':', '')
+                    if len(clean_word) > 3 and fuzz.ratio(search, clean_word) >= 50:
+                        suggestions.add(word.title())
+                
+                # Check for character names like "Spider-Man" -> "spiderman"
+                clean_search = search.replace('-', '').replace(' ', '').replace('.', '')
+                clean_name = film_name_lower.replace('-', '').replace(' ', '').replace('.', '')
+                if fuzz.ratio(clean_search, clean_name) >= 60:
+                    suggestions.add(film_name.title())
+                
+                # Check individual words in film title against search term
+                for word in words:
+                    clean_word = word.replace('-', '').replace('.', '').replace(':', '')
+                    if fuzz.ratio(search, clean_word) >= 70:
+                        # Add the original word with proper formatting
+                        suggestions.add(word.title())
+            
+            # Special case for character-related searches (more aggressive)
+            if 'spider' in search.lower():
+                if 'spider' in film_name_lower:
+                    suggestions.add('Spider-Man')
+                    # Also add any hyphenated variants found in titles
+                    if 'spider-man' in film_name_lower:
+                        suggestions.add('Spider-Man')
+                        
+            if 'spiderman' in search.lower():
+                if 'spider' in film_name_lower:
+                    suggestions.add('Spider-Man')
+                    
+            if 'iron' in search.lower():
+                if 'iron' in film_name_lower:
+                    suggestions.add('Iron Man')
+                    
+            if 'bat' in search.lower():
+                if 'bat' in film_name_lower:
+                    suggestions.add('Batman')
+                    
+            # More general approach - add any word that's very similar
+            for word in film_name.split():
+                clean_word = word.replace('-', '').replace('.', '').replace(':', '').replace(',', '')
+                if len(clean_word) > 3:
+                    if fuzz.ratio(search, clean_word.lower()) >= 65:
+                        suggestions.add(word)
+                    if fuzz.partial_ratio(search, clean_word.lower()) >= 80:
+                        suggestions.add(word)
 
         sorted_similar = sorted(similar_res.items(), key=lambda x: fuzz.ratio(search, x[0].lower()), reverse=True)
         if len(sorted_similar) > 5:
             sorted_similar = sorted_similar[0:5]
 
         response['similar'] = [movie[1] for movie in sorted_similar]
+        response['suggestions'] = list(suggestions)[:5]  # Limit to 5 suggestions
         response['sumDocs'] = len(response['similar'])
+        
+        # Debug info (remove in production)
+        print(f"DEBUG: Search term: '{search}'")
+        print(f"DEBUG: Found {len(data_2)} total movies in fuzzy search")
+        print(f"DEBUG: Similar movies: {len(response['similar'])}")
+        print(f"DEBUG: Suggestions: {response['suggestions']}")
+        if len(data_2) > 0:
+            print(f"DEBUG: Sample movie titles: {[d['film_name']['value'] for d in data_2[:5]]}")
+        else:
+            print("DEBUG: No movies found in fuzzy search query")
+            print(f"DEBUG: GraphDB host: {host}")
+            print(f"DEBUG: Repository: {repository}")
+            print(f"DEBUG: Data namespace: {data_namespace}")
+            
+            # Test a simple query
+            try:
+                test_sparql = SPARQLWrapper(f"{host}repositories/{repository}")
+                test_sparql.setReturnFormat(JSON)
+                test_sparql.setQuery("""
+                    SELECT (COUNT(*) as ?count) WHERE {
+                        ?s ?p ?o .
+                    }
+                """)
+                test_result = test_sparql.query().convert()
+                print(f"DEBUG: Total triples in database: {test_result['results']['bindings'][0]['count']['value']}")
+                
+                # Test film count
+                test_sparql.setQuery(f"""
+                    prefix : <{data_namespace}>
+                    SELECT (COUNT(*) as ?count) WHERE {{
+                        ?film a :Film .
+                    }}
+                """)
+                film_result = test_sparql.query().convert()
+                print(f"DEBUG: Total films in database: {film_result['results']['bindings'][0]['count']['value']}")
+                
+            except Exception as e:
+                print(f"DEBUG: Error in test queries: {e}")
     
-    response['search'] = request.POST['search']
+    response['search_query'] = search
     end_time = datetime.now()
     search_time = (end_time - start_time).total_seconds()
     response['search_time'] = search_time

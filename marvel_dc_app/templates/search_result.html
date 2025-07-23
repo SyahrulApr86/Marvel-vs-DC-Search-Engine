@@ -235,6 +235,161 @@
       </div>
       {% endfor %}
     </div>
+    {% elif similar %}
+    <!-- Similar Results Grid -->
+    <div class="similar-results-notice mb-4">
+      <div class="alert alert-info text-center">
+        <i class="bi bi-info-circle me-2"></i>
+        <strong>No exact matches found.</strong> Here are some similar movies:
+      </div>
+    </div>
+    <div class="row g-4">
+      {% for movie in similar %}
+      <div
+        class="col-lg-4 col-md-6 fade-in-up"
+        style="animation-delay: {{ forloop.counter0|mul:0.1 }}s;"
+      >
+        <div class="result-card card h-100 border-0">
+          <!-- Movie poster/image -->
+          <div class="position-relative overflow-hidden" style="height: 300px" data-film-uri="{{ movie.film_wiki_uri.value }}" data-film-name="{{ movie.film_name.value }}">
+            {% if movie.image.value %}
+            <img
+              src="{{ movie.image.value }}"
+              class="card-img-top w-100 h-100"
+              alt="{{ movie.film_name.value }}"
+              loading="lazy"
+              style="
+                object-fit: contain;
+                object-position: center;
+                background-color: #f8f9fa;
+              "
+            />
+            {% else %}
+            <div class="placeholder-image d-flex flex-column align-items-center justify-content-center h-100 position-relative
+              {% if movie.film_type.value == 'MARVEL' %}marvel-placeholder{% elif movie.film_type.value == 'DC' %}dc-placeholder{% else %}generic-placeholder{% endif %}">
+              
+              <!-- Background pattern -->
+              <div class="placeholder-pattern"></div>
+              
+              <!-- Main content -->
+              <div class="placeholder-content text-center text-white position-relative z-1">
+                {% if movie.film_type.value == 'MARVEL' %}
+                  <div class="brand-logo mb-2">
+                    <i class="bi bi-lightning-charge-fill fs-1"></i>
+                  </div>
+                  <div class="brand-text fw-bold mb-2">MARVEL</div>
+                {% elif movie.film_type.value == 'DC' %}
+                  <div class="brand-logo mb-2">
+                    <i class="bi bi-shield-fill fs-1"></i>
+                  </div>
+                  <div class="brand-text fw-bold mb-2">DC</div>
+                {% else %}
+                  <div class="brand-logo mb-2">
+                    <i class="bi bi-film fs-1"></i>
+                  </div>
+                {% endif %}
+                
+                <!-- Film title overlay -->
+                <div class="film-title-overlay">
+                  <h6 class="mb-0 fw-bold px-2" style="font-size: 0.9rem; line-height: 1.2; color: #ffffff; text-shadow: 0 2px 8px rgba(0,0,0,0.8);">
+                    {{ movie.film_name.value|truncatewords:4 }}
+                  </h6>
+                  {% if movie.year.value %}
+                  <small style="color: #e0e0e0; text-shadow: 0 1px 4px rgba(0,0,0,0.8);">{{ movie.year.value }}</small>
+                  {% endif %}
+                </div>
+              </div>
+              
+              <!-- Loading indicator for lazy loading -->
+              <div class="lazy-loading-indicator position-absolute top-50 start-50 translate-middle d-none">
+                <div class="spinner-border spinner-border-sm text-light" role="status">
+                  <span class="visually-hidden">Loading image...</span>
+                </div>
+              </div>
+            </div>
+            {% endif %}
+
+            <!-- Movie type badge -->
+            <div class="position-absolute top-0 start-0 m-3">
+              {% if movie.film_type.value == "Marvel" %}
+              <span class="badge bg-marvel">Marvel</span>
+              {% elif movie.film_type.value == "DC" %}
+              <span class="badge bg-dc">DC</span>
+              {% else %}
+              <span class="badge bg-secondary"
+                >{{ movie.film_type.value }}</span
+              >
+              {% endif %}
+            </div>
+
+            <!-- Hover overlay -->
+            <div class="card-hover-overlay">
+              <div
+                class="d-flex align-items-center justify-content-center h-100"
+                style="padding-bottom: 60px;"
+              >
+                <button
+                  onclick="viewFilmDetail('{{ movie.film_wiki_uri.value }}')"
+                  class="btn btn-primary btn-lg view-details-btn"
+                >
+                  <i class="bi bi-eye"></i>
+                  View Details
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Movie details -->
+          <div class="card-body">
+            <h5 class="card-title mb-2">
+              <a
+                href="javascript:void(0)"
+                onclick="viewFilmDetail('{{ movie.film_wiki_uri.value }}')"
+                class="text-decoration-none"
+              >
+                {{ movie.film_name.value }}
+              </a>
+            </h5>
+
+            <div class="movie-info">
+              {% if movie.year.value %}
+              <span class="badge bg-light text-dark me-2">
+                <i class="bi bi-calendar"></i>
+                {{ movie.year.value }}
+              </span>
+{% endif %}
+{% if movie.mpa_rating.value %}
+              <span class="badge bg-warning text-dark me-2">
+                <i class="bi bi-shield-check"></i>
+                {{ movie.mpa_rating.value }}
+              </span>
+{% endif %}
+{% if movie.runtime.value %}
+              <span class="badge bg-info text-dark me-2">
+                <i class="bi bi-clock"></i>
+                {{ movie.runtime.value }} min
+              </span>
+              {% endif %}
+            </div>
+
+            {% if movie.genre.value %}
+            <div class="genres mt-2">
+              <small class="text-muted">
+                <i class="bi bi-tags"></i>
+                {{ movie.genre.value }}
+              </small>
+            </div>
+            {% endif %}
+{% if movie.description.value %}
+            <p class="card-text mt-3">
+              {{ movie.description.value|truncatewords:20 }}
+            </p>
+{% endif %}
+          </div>
+        </div>
+      </div>
+      {% endfor %}
+    </div>
     {% else %}
     <!-- No results state -->
     <div class="no-results-state text-center py-5">
@@ -246,6 +401,57 @@
         We couldn't find any matches for your search. {% if search_query %}Try
         searching for something else or check your spelling.{% endif %}
       </p>
+
+      <!-- Did you mean suggestions -->
+      {% if suggestions %}
+      <div class="did-you-mean-suggestions mb-4">
+        <h6 class="text-muted mb-3">
+          <i class="bi bi-lightbulb me-2"></i>Did you mean:
+        </h6>
+        <div class="d-flex flex-wrap justify-content-center gap-2 mb-4">
+          {% for suggestion in suggestions %}
+          <button
+            class="btn btn-outline-success btn-sm suggestion-btn"
+            onclick="quickSearch('{{ suggestion }}')"
+            title="Search for {{ suggestion }}"
+          >
+            <i class="bi bi-arrow-right me-1"></i>{{ suggestion }}
+          </button>
+          {% endfor %}
+        </div>
+      </div>
+      {% endif %}
+
+      <!-- Similar movies found -->
+      {% if similar %}
+      <div class="similar-movies-section mb-4">
+        <h6 class="text-muted mb-3">
+          <i class="bi bi-films me-2"></i>Similar movies found:
+        </h6>
+        <div class="row g-3 justify-content-center">
+          {% for movie in similar %}
+          <div class="col-auto">
+            <div class="card border-0 shadow-sm similar-movie-card" style="width: 200px;">
+              <div class="card-body text-center p-3">
+                <h6 class="card-title mb-2">{{ movie.film_name.value }}</h6>
+                <p class="card-text small text-muted mb-2">{{ movie.year.value }}</p>
+                <span class="badge {% if movie.film_type.value == 'MARVEL' %}bg-danger{% else %}bg-primary{% endif %} mb-2">
+                  {{ movie.film_type.value }}
+                </span>
+                <br>
+                <button
+                  class="btn btn-sm btn-outline-primary"
+                  onclick="viewFilmDetail('{{ movie.film_wiki_uri.value }}')"
+                >
+                  <i class="bi bi-eye me-1"></i>View Details
+                </button>
+              </div>
+            </div>
+          </div>
+          {% endfor %}
+        </div>
+      </div>
+      {% endif %}
 
       <!-- Quick search suggestions -->
       <div class="quick-search-suggestions">
@@ -763,6 +969,48 @@
 
     .quick-search-suggestions button:hover {
       transform: translateY(-2px);
+    }
+
+    /* Did you mean suggestions */
+    .did-you-mean-suggestions {
+      background: rgba(255, 255, 255, 0.9);
+      border-radius: 15px;
+      padding: 1.5rem;
+      margin-bottom: 2rem;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    }
+
+    .suggestion-btn {
+      transition: all 0.3s ease;
+      background: rgba(40, 167, 69, 0.1);
+      border-color: #28a745;
+      color: #28a745;
+    }
+
+    .suggestion-btn:hover {
+      transform: translateY(-2px) scale(1.05);
+      background: #28a745;
+      color: white;
+      box-shadow: 0 4px 12px rgba(40, 167, 69, 0.3);
+    }
+
+    /* Similar movies section */
+    .similar-movies-section {
+      background: rgba(255, 255, 255, 0.9);
+      border-radius: 15px;
+      padding: 1.5rem;
+      margin-bottom: 2rem;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    }
+
+    .similar-movie-card {
+      transition: all 0.3s ease;
+      height: 100%;
+    }
+
+    .similar-movie-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15) !important;
     }
 
     @media (max-width: 768px) {
