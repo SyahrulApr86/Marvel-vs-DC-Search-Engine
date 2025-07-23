@@ -15,32 +15,58 @@ services:
     networks:
       - marvel-dc-network
 
+  redis:
+    image: redis:7-alpine
+    container_name: marvel-dc-redis
+    ports:
+      - "6379:6379"
+    volumes:
+      - redis_data:/data
+    command: redis-server --appendonly yes --maxmemory 256mb --maxmemory-policy allkeys-lru
+    restart: unless-stopped
+    networks:
+      - marvel-dc-network
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 10s
+      timeout: 3s
+      retries: 3
 
 
-  # # Optional: Web app service untuk development
-  # web:
-  #   build: .
-  #   container_name: marvel-dc-webapp
-  #   ports:
-  #     - "8000:8000"
-  #   volumes:
-  #     - .:/app
-  #     - /app/env
-  #   environment:
-  #     - GRAPHDB_HOST=http://graphdb:7200
-  #     - DJANGO_DEBUG=True
-  #   depends_on:
-  #     - graphdb
-  #   networks:
-  #     - marvel-dc-network
-  #   command: >
-  #     sh -c "pip install -r requirements.txt &&
-  #            python manage.py runserver 0.0.0.0:8000"
+
+  # Optional: Web app service untuk development
+  web:
+    build: .
+    container_name: marvel-dc-webapp
+    ports:
+      - "8000:8000"
+    volumes:
+      - .:/app
+      - /app/env
+    environment:
+      - GRAPHDB_HOST=http://graphdb:7200/
+      - REDIS_HOST=redis
+      - REDIS_PORT=6379
+      - REDIS_DB=0
+      - DJANGO_DEBUG=True
+      - IMAGE_CACHE_TTL=86400
+    depends_on:
+      graphdb:
+        condition: service_started
+      redis:
+        condition: service_healthy
+    networks:
+      - marvel-dc-network
+    command: >
+      sh -c "pip install -r requirements.txt &&
+             python manage.py runserver 0.0.0.0:8000"
 
 volumes:
   graphdb_data:
     driver: local
   graphdb_import:
+    driver: local
+  redis_data:
     driver: local
 
 networks:

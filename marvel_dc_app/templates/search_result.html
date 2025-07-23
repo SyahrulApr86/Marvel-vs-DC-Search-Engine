@@ -96,7 +96,7 @@
       >
         <div class="result-card card h-100 border-0">
           <!-- Movie poster/image -->
-          <div class="position-relative overflow-hidden" style="height: 300px">
+          <div class="position-relative overflow-hidden" style="height: 300px" data-film-uri="{{ movie.film_wiki_uri.value }}" data-film-name="{{ movie.film_name.value }}">
             {% if movie.image.value %}
             <img
               src="{{ movie.image.value }}"
@@ -110,11 +110,47 @@
               "
             />
             {% else %}
-            <div
-              class="placeholder-image d-flex align-items-center justify-content-center bg-secondary h-100"
-              style="background-color: #f8f9fa"
-            >
-              <i class="bi bi-film text-white fs-1"></i>
+            <div class="placeholder-image d-flex flex-column align-items-center justify-content-center h-100 position-relative
+              {% if movie.film_type.value == 'MARVEL' %}marvel-placeholder{% elif movie.film_type.value == 'DC' %}dc-placeholder{% else %}generic-placeholder{% endif %}">
+              
+              <!-- Background pattern -->
+              <div class="placeholder-pattern"></div>
+              
+              <!-- Main content -->
+              <div class="placeholder-content text-center text-white position-relative z-1">
+                {% if movie.film_type.value == 'MARVEL' %}
+                  <div class="brand-logo mb-2">
+                    <i class="bi bi-lightning-charge-fill fs-1"></i>
+                  </div>
+                  <div class="brand-text fw-bold mb-2">MARVEL</div>
+                {% elif movie.film_type.value == 'DC' %}
+                  <div class="brand-logo mb-2">
+                    <i class="bi bi-shield-fill fs-1"></i>
+                  </div>
+                  <div class="brand-text fw-bold mb-2">DC</div>
+                {% else %}
+                  <div class="brand-logo mb-2">
+                    <i class="bi bi-film fs-1"></i>
+                  </div>
+                {% endif %}
+                
+                <!-- Film title overlay -->
+                <div class="film-title-overlay">
+                  <h6 class="mb-0 text-white fw-semibold px-2" style="font-size: 0.9rem; line-height: 1.2;">
+                    {{ movie.film_name.value|truncatewords:4 }}
+                  </h6>
+                  {% if movie.year.value %}
+                  <small class="text-white-50">{{ movie.year.value }}</small>
+                  {% endif %}
+                </div>
+              </div>
+              
+              <!-- Loading indicator for lazy loading -->
+              <div class="lazy-loading-indicator position-absolute top-50 start-50 translate-middle d-none">
+                <div class="spinner-border spinner-border-sm text-light" role="status">
+                  <span class="visually-hidden">Loading image...</span>
+                </div>
+              </div>
             </div>
             {% endif %}
 
@@ -251,6 +287,143 @@
   </div>
 
   <script>
+    // Lazy Image Loading System
+    class LazyImageLoader {
+      constructor() {
+        this.cache = new Map();
+        this.loadedImages = new Set();
+        this.initIntersectionObserver();
+      }
+
+      initIntersectionObserver() {
+        const options = {
+          root: null,
+          rootMargin: '50px',
+          threshold: 0.1
+        };
+
+        this.observer = new IntersectionObserver((entries) => {
+          entries.forEach(entry => {
+            if (entry.isIntersecting) {
+              this.loadImage(entry.target);
+              this.observer.unobserve(entry.target);
+            }
+          });
+        }, options);
+      }
+
+      async loadImage(container) {
+        const filmUri = container.dataset.filmUri;
+        const filmName = container.dataset.filmName;
+        
+        if (!filmUri || this.loadedImages.has(filmUri)) return;
+
+        // Show loading state
+        const placeholder = container.querySelector('.placeholder-image');
+        if (placeholder) {
+          placeholder.classList.add('loading');
+        }
+
+        try {
+          // Check cache first
+          let imageUrl = this.cache.get(filmUri);
+          
+          if (!imageUrl) {
+            // Fetch image from backend
+            imageUrl = await this.fetchImageFromBackend(filmUri);
+            if (imageUrl) {
+              this.cache.set(filmUri, imageUrl);
+            }
+          }
+
+          if (imageUrl) {
+            await this.replaceWithRealImage(container, imageUrl, filmName);
+          }
+        } catch (error) {
+          console.warn(`Failed to load image for ${filmName}:`, error);
+        } finally {
+          // Hide loading state
+          if (placeholder) {
+            placeholder.classList.remove('loading');
+          }
+          this.loadedImages.add(filmUri);
+        }
+      }
+
+      async fetchImageFromBackend(filmUri) {
+        try {
+          const response = await fetch('/api/get-film-image/', {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+              'X-CSRFToken': document.querySelector('[name=csrfmiddlewaretoken]').value
+            },
+            body: JSON.stringify({ film_uri: filmUri })
+          });
+
+          if (response.ok) {
+            const data = await response.json();
+            return data.image_url;
+          }
+        } catch (error) {
+          console.error('Error fetching image:', error);
+        }
+        return null;
+      }
+
+      async replaceWithRealImage(container, imageUrl, filmName) {
+        return new Promise((resolve, reject) => {
+          const img = new Image();
+          
+          img.onload = () => {
+            // Create new image element
+            const newImg = document.createElement('img');
+            newImg.src = imageUrl;
+            newImg.className = 'card-img-top w-100 h-100 lazy-loaded';
+            newImg.alt = filmName;
+            newImg.style.cssText = `
+              object-fit: contain;
+              object-position: center;
+              background-color: #f8f9fa;
+              opacity: 0;
+              transition: opacity 0.3s ease;
+            `;
+
+            // Replace placeholder
+            const placeholder = container.querySelector('.placeholder-image');
+            if (placeholder) {
+              container.insertBefore(newImg, placeholder);
+              
+              // Fade in new image
+              requestAnimationFrame(() => {
+                newImg.style.opacity = '1';
+                setTimeout(() => {
+                  placeholder.remove();
+                }, 300);
+              });
+            }
+            resolve();
+          };
+
+          img.onerror = reject;
+          img.src = imageUrl;
+        });
+      }
+
+      observeImages() {
+        const imageContainers = document.querySelectorAll('[data-film-uri]');
+        imageContainers.forEach(container => {
+          // Only observe containers with placeholders (no existing images)
+          if (!container.querySelector('img') && container.querySelector('.placeholder-image')) {
+            this.observer.observe(container);
+          }
+        });
+      }
+    }
+
+    // Initialize lazy loading
+    const lazyLoader = new LazyImageLoader();
+
     // Enhanced animations
     document.addEventListener("DOMContentLoaded", function () {
       // Scroll reveal animation
@@ -282,6 +455,9 @@
           this.style.transform = "translateY(0)";
         });
       });
+
+      // Start lazy loading images
+      lazyLoader.observeImages();
     });
 
     // Quick search functionality
@@ -405,9 +581,79 @@
       opacity: 1;
     }
 
+    /* Enhanced Placeholder Styles */
     .placeholder-image {
       height: 100%;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .marvel-placeholder {
+      background: linear-gradient(135deg, #e23636 0%, #8b0000 100%);
+    }
+
+    .dc-placeholder {
+      background: linear-gradient(135deg, #0078d4 0%, #1e3a8a 100%);
+    }
+
+    .generic-placeholder {
       background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    }
+
+    .placeholder-pattern {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background-image: 
+        radial-gradient(circle at 25% 25%, rgba(255,255,255,0.1) 0%, transparent 50%),
+        radial-gradient(circle at 75% 75%, rgba(255,255,255,0.05) 0%, transparent 50%);
+      background-size: 100px 100px;
+      animation: patternFloat 20s ease-in-out infinite;
+    }
+
+    @keyframes patternFloat {
+      0%, 100% { transform: translate(0, 0) rotate(0deg); }
+      25% { transform: translate(-10px, -10px) rotate(1deg); }
+      50% { transform: translate(5px, -5px) rotate(-1deg); }
+      75% { transform: translate(-5px, 10px) rotate(1deg); }
+    }
+
+    .placeholder-content {
+      z-index: 2;
+    }
+
+    .brand-text {
+      font-size: 1.1rem;
+      letter-spacing: 2px;
+      text-shadow: 0 2px 4px rgba(0,0,0,0.3);
+    }
+
+    .brand-logo i {
+      text-shadow: 0 2px 8px rgba(0,0,0,0.4);
+      filter: drop-shadow(0 2px 4px rgba(0,0,0,0.3));
+    }
+
+    .film-title-overlay {
+      background: rgba(0,0,0,0.4);
+      border-radius: 8px;
+      padding: 8px 12px;
+      backdrop-filter: blur(4px);
+      margin-top: 12px;
+    }
+
+    .film-title-overlay h6 {
+      text-shadow: 0 1px 2px rgba(0,0,0,0.7);
+    }
+
+    /* Lazy loading states */
+    .placeholder-image.loading .placeholder-content {
+      opacity: 0.7;
+    }
+
+    .placeholder-image.loading .lazy-loading-indicator {
+      display: block !important;
     }
 
     .bg-marvel {

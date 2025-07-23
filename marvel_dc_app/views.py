@@ -179,6 +179,10 @@ def get_film_detail(request):
     results = sparql.query().convert()
     response['data'] = results["results"]["bindings"]
     
+    # Try to get cached image first for film details
+    from .image_cache import image_cache
+    cached_image = image_cache.get_cached_image(film_wiki_uri, 'film')
+    
     sparql.setQuery(f"""
     prefix :      <{host}>
     prefix owl:   <http://www.w3.org/2002/07/owl#>
@@ -210,6 +214,21 @@ def get_film_detail(request):
     """)
 
     results = sparql.query().convert()
+    
+    # Cache the image URL if we fetched it and it wasn't cached
+    if results["results"]["bindings"] and results["results"]["bindings"][0].get("image"):
+        image_url = results["results"]["bindings"][0]["image"]["value"]
+        if cached_image is None:
+            image_cache.cache_image(film_wiki_uri, image_url, 'film')
+    elif cached_image is None:
+        image_cache.cache_image(film_wiki_uri, None, 'film')
+        
+    # Use cached image if available and query returned no image
+    if cached_image and (not results["results"]["bindings"] or not results["results"]["bindings"][0].get("image")):
+        if not results["results"]["bindings"]:
+            results["results"]["bindings"] = [{}]
+        results["results"]["bindings"][0]["image"] = {"value": cached_image}
+    
     response['data2'] = results["results"]["bindings"]
     return render(request, 'film_details.html', response)
     # return JsonResponse(response, status=200)
@@ -311,6 +330,9 @@ def get_person_detail(request):
         else:
             response['data'] = [films_data]
     
+    # Check cache for person image first
+    cached_person_image = image_cache.get_cached_image(person_wiki_uri, 'person')
+    
     sparql.setQuery(f"""
     prefix :      <{data_namespace}>
     prefix owl:   <http://www.w3.org/2002/07/owl#>
@@ -347,6 +369,117 @@ def get_person_detail(request):
     """)
 
     results = sparql.query().convert()
+    
+    # Cache person image if fetched and not already cached
+    if results["results"]["bindings"] and results["results"]["bindings"][0].get("image"):
+        person_image_url = results["results"]["bindings"][0]["image"]["value"]
+        if cached_person_image is None:
+            image_cache.cache_image(person_wiki_uri, person_image_url, 'person')
+    elif cached_person_image is None:
+        image_cache.cache_image(person_wiki_uri, None, 'person')
+        
+    # Use cached image if available and query returned no image
+    if cached_person_image and (not results["results"]["bindings"] or not results["results"]["bindings"][0].get("image")):
+        if not results["results"]["bindings"]:
+            results["results"]["bindings"] = [{}]
+        results["results"]["bindings"][0]["image"] = {"value": cached_person_image}
+    
     response['data2'] = results["results"]["bindings"]
     return render(request, 'person_details.html', response)
     # return JsonResponse(response, status=200)
+
+@csrf_exempt
+def get_film_image(request):
+    """
+    API endpoint to fetch film poster image from Wikidata with Redis caching
+    Used for lazy loading in search results
+    """
+    if request.method != 'POST':
+        return JsonResponse({'error': 'Method not allowed'}, status=405)
+    
+    try:
+        import json
+        from .image_cache import image_cache
+        
+        data = json.loads(request.body)
+        film_uri = data.get('film_uri')
+        
+        if not film_uri:
+            return JsonResponse({'error': 'Missing film_uri'}, status=400)
+        
+        # Try to get image from cache first
+        cached_image = image_cache.get_cached_image(film_uri, 'film')
+        if cached_image is not None:
+            return JsonResponse({
+                'success': True,
+                'image_url': cached_image,
+                'film_uri': film_uri,
+                'cached': True
+            })
+        
+        # Query Wikidata for film poster image
+        sparql.setQuery(f"""
+        prefix wd:    <http://www.wikidata.org/entity/>
+        prefix wdt:   <http://www.wikidata.org/prop/direct/>
+        
+        SELECT ?image 
+        WHERE {{
+            SERVICE <https://query.wikidata.org/sparql> {{
+                OPTIONAL{{ <{film_uri}> wdt:P154 ?image .}}
+            }}
+        }}
+        """)
+        
+        sparql.setReturnFormat(JSON)
+        results = sparql.query().convert()
+        
+        image_url = None
+        if results["results"]["bindings"] and results["results"]["bindings"][0].get("image"):
+            image_url = results["results"]["bindings"][0]["image"]["value"]
+        
+        # Cache the result (even if None)
+        image_cache.cache_image(film_uri, image_url, 'film')
+        
+        return JsonResponse({
+            'success': True,
+            'image_url': image_url,
+            'film_uri': film_uri,
+            'cached': False
+        })
+        
+    except Exception as e:
+        return JsonResponse({'error': str(e)}, status=500)
+
+@csrf_exempt
+def cache_stats(request):
+    """
+    API endpoint to get cache statistics and manage cache
+    """
+    from .image_cache import image_cache
+    
+    if request.method == 'GET':
+        # Return cache statistics
+        stats = image_cache.get_cache_stats()
+        return JsonResponse(stats)
+    
+    elif request.method == 'POST':
+        try:
+            import json
+            data = json.loads(request.body)
+            action = data.get('action')
+            
+            if action == 'clear':
+                image_type = data.get('image_type')  # 'film', 'person', or None for all
+                cleared = image_cache.clear_cache(image_type)
+                return JsonResponse({
+                    'success': True,
+                    'message': f'Cleared {cleared} cached images',
+                    'cleared_count': cleared
+                })
+            else:
+                return JsonResponse({'error': 'Unknown action'}, status=400)
+                
+        except Exception as e:
+            return JsonResponse({'error': str(e)}, status=500)
+    
+    return JsonResponse({'error': 'Method not allowed'}, status=405)

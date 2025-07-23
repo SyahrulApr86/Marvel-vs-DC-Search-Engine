@@ -55,14 +55,20 @@ Cara menjalankan aplikasi:
    docker compose up graphdb -d
    ```
 
-2. **Jalankan semua services (GraphDB + Web App):**
+2. **Jalankan GraphDB + Redis (untuk caching):**
+   ```shell
+   docker compose up graphdb redis -d
+   ```
+
+3. **Jalankan semua services (GraphDB + Redis + Web App):**
    ```shell
    docker compose up -d
    ```
 
-3. **Akses aplikasi:**
+4. **Akses aplikasi:**
    - Web Application: http://localhost:8000
    - GraphDB Workbench: http://localhost:7200
+   - Redis Cache Stats: http://localhost:8000/api/cache-stats/
 
 ### Setup Otomatis
 
@@ -97,5 +103,41 @@ python manage.py runserver
 **Production (Docker):**
 ```shell
 export GRAPHDB_HOST=http://graphdb:7200/
+export REDIS_HOST=redis
 docker compose up -d
+```
+
+## Redis Image Caching
+
+Aplikasi ini menggunakan Redis untuk caching gambar dari Wikidata:
+
+### Fitur Caching:
+- **Film posters** - Cache poster film dari Wikidata
+- **Person photos** - Cache foto profil orang dari Wikidata
+- **Lazy loading** - Gambar dimuat secara bertahap saat diperlukan
+- **Automatic fallback** - Jika Redis tidak tersedia, aplikasi tetap berjalan tanpa cache
+
+### Setup Redis:
+```shell
+# Jalankan setup script
+./scripts/setup-redis.sh
+
+# Atau manual dengan Docker Compose
+docker compose up redis -d
+```
+
+### Cache Management:
+```shell
+# Lihat statistik cache
+curl http://localhost:8000/api/cache-stats/
+
+# Clear semua cache
+curl -X POST -H "Content-Type: application/json" \
+  -d '{"action":"clear"}' \
+  http://localhost:8000/api/cache-stats/
+
+# Clear hanya cache film
+curl -X POST -H "Content-Type: application/json" \
+  -d '{"action":"clear","image_type":"film"}' \
+  http://localhost:8000/api/cache-stats/
 ```
