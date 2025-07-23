@@ -360,11 +360,11 @@ def get_person_detail(request):
     prefix wdt:   <http://www.wikidata.org/prop/direct/>
     prefix xsd:   <http://www.w3.org/2001/XMLSchema#>
 
-    SELECT ?image ?net_worth ?occupations ?awarded_for ?nominated_for 
+    SELECT ?image ?net_worth ?occupations ?awarded_for ?nominated_for ?date_of_birth ?place_of_birth
     WHERE {{
         SERVICE <https://query.wikidata.org/sparql> {{
         {{
-    select ?image ?net_worth (group_concat(distinct ?label_occupation;separator=", ") as ?occupations) (group_concat(distinct ?label_awards;separator=", ") as ?awarded_for) (group_concat(distinct ?label_nominations;separator=", ") as ?nominated_for)
+    select ?image ?net_worth (group_concat(distinct ?label_occupation;separator=", ") as ?occupations) (group_concat(distinct ?label_awards;separator=", ") as ?awarded_for) (group_concat(distinct ?label_nominations;separator=", ") as ?nominated_for) ?date_of_birth ?place_of_birth
     where {{
                 OPTIONAL{{ <{person_wiki_uri}> wdt:P106 ?occupation .
                     ?occupation rdfs:label ?label_occupation .
@@ -378,15 +378,18 @@ def get_person_detail(request):
         OPTIONAL{{ <{person_wiki_uri}> wdt:P2218 ?net_worth .}}
         OPTIONAL{{ <{person_wiki_uri}> wdt:P18 ?image_raw .
                    BIND(REPLACE(STR(?image_raw), "http://commons.wikimedia.org/wiki/Special:FilePath/", "https://commons.wikimedia.org/wiki/Special:FilePath/") as ?image) }}
+        OPTIONAL{{ <{person_wiki_uri}> wdt:P569 ?date_of_birth . }}
+        OPTIONAL{{ <{person_wiki_uri}> wdt:P19 ?place_of_birth_uri .
+                  ?place_of_birth_uri rdfs:label ?place_of_birth .
+                  FILTER(lang(?place_of_birth) = 'en')}}
         }}
-    GROUP BY ?image ?net_worth                                                         
+    GROUP BY ?image ?net_worth ?date_of_birth ?place_of_birth                                                         
         }}
         }}
     }}
     """)
 
     results = sparql.query().convert()
-    
     # Cache person image if fetched and not already cached
     if results["results"]["bindings"] and results["results"]["bindings"][0].get("image"):
         person_image_url = results["results"]["bindings"][0]["image"]["value"]
@@ -402,6 +405,21 @@ def get_person_detail(request):
         results["results"]["bindings"][0]["image"] = {"value": cached_person_image}
     
     response['data2'] = results["results"]["bindings"]
+    
+    # Merge Wikidata results into response['data']
+    if response['data'] and results["results"]["bindings"]:
+        wikidata_data = results["results"]["bindings"][0]
+        if 'date_of_birth' in wikidata_data:
+            try:
+                # Parse the date string into a datetime object
+                date_obj = datetime.fromisoformat(wikidata_data['date_of_birth']['value'].replace('Z', '+00:00'))
+                response['data'][0]['date_of_birth'] = {'type': 'literal', 'value': date_obj}
+            except ValueError:
+                # Handle cases where date format might be unexpected
+                response['data'][0]['date_of_birth'] = wikidata_data['date_of_birth']
+        if 'place_of_birth' in wikidata_data:
+            response['data'][0]['place_of_birth'] = wikidata_data['place_of_birth']
+
     response['person_wiki_uri'] = person_wiki_uri
     return render(request, 'person_details.html', response)
     # return JsonResponse(response, status=200)

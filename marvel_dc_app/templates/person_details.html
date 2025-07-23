@@ -155,12 +155,12 @@
           </div>
 
           <div class="d-flex flex-column gap-3">
-            {% if data.0.birth_date.value|length > 0 %}
+            {% if data.0.date_of_birth %}
             <div class="d-flex align-items-center">
               <i class="icon-enhanced fas fa-birthday-cake text-primary"></i>
               <div>
                 <small class="text-muted d-block">Birth Date</small>
-                <strong>{{ data.0.birth_date.value }}</strong>
+                <strong>{{ data.0.date_of_birth.value|date:"d F Y" }}</strong>
               </div>
             </div>
             {% endif %}
@@ -201,13 +201,13 @@
 
         <!-- Person Metadata -->
         <div class="row g-3 mb-4">
-          {% if data.0.birth_place.value|length > 0 %}
+          {% if data.0.place_of_birth %}
           <div class="col-md-6">
             <div class="d-flex align-items-center">
               <i class="icon-enhanced fas fa-map-marker-alt"></i>
               <div>
                 <strong>Birth Place:</strong>
-                <span class="ms-2">{{ data.0.birth_place.value }}</span>
+                <span class="ms-2">{{ data.0.place_of_birth.value }}</span>
               </div>
             </div>
           </div>
@@ -298,22 +298,22 @@
         <div class="table-enhanced">
           <table class="table table-enhanced mb-0">
             <tbody>
-              {% if data.0.birth_date.value|length > 0 %}
+              {% if data.0.date_of_birth %}
               <tr>
                 <td class="fw-semibold">
                   <i class="fas fa-birthday-cake me-2 text-primary"></i>Birth
                   Date
                 </td>
-                <td class="text-end">{{ data.0.birth_date.value }}</td>
+                <td class="text-end">{{ data.0.date_of_birth.value|date:"d F Y" }}</td>
               </tr>
               {% endif %}
-        {% if data.0.birth_place.value|length > 0 %}
+        {% if data.0.place_of_birth %}
               <tr>
                 <td class="fw-semibold">
                   <i class="fas fa-map-marker-alt me-2 text-danger"></i>Birth
                   Place
                 </td>
-                <td class="text-end">{{ data.0.birth_place.value }}</td>
+                <td class="text-end">{{ data.0.place_of_birth.value }}</td>
               </tr>
               {% endif %}
         {% if data.0.sex.value|length > 0 %}
