@@ -136,11 +136,11 @@
                 
                 <!-- Film title overlay -->
                 <div class="film-title-overlay">
-                  <h6 class="mb-0 text-white fw-semibold px-2" style="font-size: 0.9rem; line-height: 1.2;">
+                  <h6 class="mb-0 fw-bold px-2" style="font-size: 0.9rem; line-height: 1.2; color: #ffffff; text-shadow: 0 2px 8px rgba(0,0,0,0.8);">
                     {{ movie.film_name.value|truncatewords:4 }}
                   </h6>
                   {% if movie.year.value %}
-                  <small class="text-white-50">{{ movie.year.value }}</small>
+                  <small style="color: #e0e0e0; text-shadow: 0 1px 4px rgba(0,0,0,0.8);">{{ movie.year.value }}</small>
                   {% endif %}
                 </div>
               </div>
@@ -171,10 +171,11 @@
             <div class="card-hover-overlay">
               <div
                 class="d-flex align-items-center justify-content-center h-100"
+                style="padding-bottom: 60px;"
               >
                 <button
                   onclick="viewFilmDetail('{{ movie.film_wiki_uri.value }}')"
-                  class="btn btn-primary btn-lg"
+                  class="btn btn-primary btn-lg view-details-btn"
                 >
                   <i class="bi bi-eye"></i>
                   View Details
@@ -572,13 +573,34 @@
       left: 0;
       right: 0;
       bottom: 0;
-      background: rgba(0, 0, 0, 0.7);
+      background: rgba(0, 0, 0, 0.6);
       opacity: 0;
       transition: opacity 0.3s ease;
+      z-index: 1;
     }
 
     .result-card:hover .card-hover-overlay {
       opacity: 1;
+    }
+
+    .view-details-btn {
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+      border: none;
+      font-weight: 600;
+      padding: 12px 24px;
+      border-radius: 8px;
+      transform: translateY(10px);
+      transition: all 0.3s ease;
+    }
+
+    .result-card:hover .view-details-btn {
+      transform: translateY(0);
+    }
+
+    /* Ensure film title stays on top */
+    .placeholder-content {
+      z-index: 2;
+      position: relative;
     }
 
     /* Enhanced Placeholder Styles */
@@ -636,15 +658,18 @@
     }
 
     .film-title-overlay {
-      background: rgba(0,0,0,0.4);
+      background: rgba(0,0,0,0.75);
       border-radius: 8px;
-      padding: 8px 12px;
-      backdrop-filter: blur(4px);
+      padding: 10px 14px;
+      backdrop-filter: blur(8px);
       margin-top: 12px;
+      border: 1px solid rgba(255,255,255,0.1);
+      box-shadow: 0 4px 12px rgba(0,0,0,0.3);
     }
 
     .film-title-overlay h6 {
-      text-shadow: 0 1px 2px rgba(0,0,0,0.7);
+      text-shadow: 0 2px 8px rgba(0,0,0,0.8);
+      font-weight: 700 !important;
     }
 
     /* Lazy loading states */

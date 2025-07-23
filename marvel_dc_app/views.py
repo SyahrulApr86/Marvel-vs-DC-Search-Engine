@@ -205,7 +205,9 @@ def get_film_detail(request):
         OPTIONAL{{ <{film_wiki_uri}> wdt:P166 ?awards .
                     ?awards rdfs:label ?label_awards .
                     FILTER(lang(?label_awards) = 'en')}}
-        OPTIONAL{{ <{film_wiki_uri}> wdt:P154 ?image .}}
+        OPTIONAL{{ <{film_wiki_uri}> wdt:P154 ?logo .}}
+        OPTIONAL{{ <{film_wiki_uri}> wdt:P18 ?first_image .}}
+        BIND(COALESCE(?logo, ?first_image) as ?image)
         }}
     GROUP BY ?image                                                               
         }}
@@ -417,7 +419,7 @@ def get_film_image(request):
                 'cached': True
             })
         
-        # Query Wikidata for film poster image
+        # Query Wikidata for film image (logo first, then fallback to first image)
         sparql.setQuery(f"""
         prefix wd:    <http://www.wikidata.org/entity/>
         prefix wdt:   <http://www.wikidata.org/prop/direct/>
@@ -425,7 +427,9 @@ def get_film_image(request):
         SELECT ?image 
         WHERE {{
             SERVICE <https://query.wikidata.org/sparql> {{
-                OPTIONAL{{ <{film_uri}> wdt:P154 ?image .}}
+                OPTIONAL{{ <{film_uri}> wdt:P154 ?logo .}}
+                OPTIONAL{{ <{film_uri}> wdt:P18 ?first_image .}}
+                BIND(COALESCE(?logo, ?first_image) as ?image)
             }}
         }}
         """)
