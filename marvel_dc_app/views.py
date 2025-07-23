@@ -42,7 +42,6 @@ def search_result(request):
         return JsonResponse({'error': 'Invalid request method'}, status=400)
 
     if not search:
-        print(f"DEBUG: No search query found. POST data: {dict(request.POST)}, GET data: {dict(request.GET)}")
         return render(request, 'index.html', {'error_message': 'No search query'})
 
     sparql.setQuery(f"""
@@ -170,43 +169,6 @@ def search_result(request):
         response['suggestions'] = list(suggestions)[:5]  # Limit to 5 suggestions
         response['sumDocs'] = len(response['similar'])
         
-        # Debug info (remove in production)
-        print(f"DEBUG: Search term: '{search}'")
-        print(f"DEBUG: Found {len(data_2)} total movies in fuzzy search")
-        print(f"DEBUG: Similar movies: {len(response['similar'])}")
-        print(f"DEBUG: Suggestions: {response['suggestions']}")
-        if len(data_2) > 0:
-            print(f"DEBUG: Sample movie titles: {[d['film_name']['value'] for d in data_2[:5]]}")
-        else:
-            print("DEBUG: No movies found in fuzzy search query")
-            print(f"DEBUG: GraphDB host: {host}")
-            print(f"DEBUG: Repository: {repository}")
-            print(f"DEBUG: Data namespace: {data_namespace}")
-            
-            # Test a simple query
-            try:
-                test_sparql = SPARQLWrapper(f"{host}repositories/{repository}")
-                test_sparql.setReturnFormat(JSON)
-                test_sparql.setQuery("""
-                    SELECT (COUNT(*) as ?count) WHERE {
-                        ?s ?p ?o .
-                    }
-                """)
-                test_result = test_sparql.query().convert()
-                print(f"DEBUG: Total triples in database: {test_result['results']['bindings'][0]['count']['value']}")
-                
-                # Test film count
-                test_sparql.setQuery(f"""
-                    prefix : <{data_namespace}>
-                    SELECT (COUNT(*) as ?count) WHERE {{
-                        ?film a :Film .
-                    }}
-                """)
-                film_result = test_sparql.query().convert()
-                print(f"DEBUG: Total films in database: {film_result['results']['bindings'][0]['count']['value']}")
-                
-            except Exception as e:
-                print(f"DEBUG: Error in test queries: {e}")
     
     response['search_query'] = search
     end_time = datetime.now()
