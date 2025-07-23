@@ -55,7 +55,7 @@ services:
       - GRAPHDB_HOST=${GRAPHDB_HOST:-http://graphdb:7200/}
       - GRAPHDB_REPOSITORY=${GRAPHDB_REPOSITORY:-kb}
       - REDIS_HOST=${REDIS_HOST:-redis}
-      - REDIS_PORT=${REDIS_PORT:-6379}
+      - REDIS_PORT=${REDIS_PORT:-6380}
       - REDIS_DB=${REDIS_DB:-0}
       - REDIS_PASSWORD=${REDIS_PASSWORD:-}
       - DJANGO_DEBUG=${DJANGO_DEBUG:-False}
