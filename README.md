@@ -70,27 +70,11 @@ Cara menjalankan aplikasi:
    - GraphDB Workbench: http://localhost:7200
    - Redis Cache Stats: http://localhost:8000/api/cache-stats/
 
-### Setup Otomatis
-
-GraphDB akan setup secara **otomatis** ketika pertama kali dijalankan:
-- Repository `kb` dibuat otomatis
-- Data Marvel DC di-import otomatis dari `data/mdc_processed_csv_csv.ttl` 
-- Siap langsung digunakan!
-
-**Manual Setup (jika diperlukan):**
+**Manual Setup:**
 1. `./docker-manage.sh setup-repository` - Run setup script manual
 2. Atau buka http://localhost:7200 > "Setup" > "Repositories" > Create `kb`
 
-Untuk dokumentasi lengkap Docker setup, lihat [DOCKER.md](DOCKER.md)
-
 ## Konfigurasi
-
-### Environment Variables
-
-| Variable | Default | Deskripsi |
-|----------|---------|-----------|
-| `GRAPHDB_HOST` | `http://localhost:7200/` | URL GraphDB server |
-| `DJANGO_DEBUG` | `True` | Mode debug Django |
 
 ### Mode Development vs Production
 
@@ -119,9 +103,6 @@ Aplikasi ini menggunakan Redis untuk caching gambar dari Wikidata:
 
 ### Setup Redis:
 ```shell
-# Jalankan setup script
-./scripts/setup-redis.sh
-
 # Atau manual dengan Docker Compose
 docker compose up redis -d
 ```
