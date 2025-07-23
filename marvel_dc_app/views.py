@@ -6,10 +6,7 @@ from fuzzywuzzy import process
 from django.views.decorators.csrf import csrf_exempt
 from django.http import JsonResponse
 from datetime import datetime
-impor        OPTIONAL{{ 
-            <{person_wiki_uri}> wdt:P18 ?image_raw .
-            BIND(IRI(CONCAT("https://commons.wikimedia.org/wiki/Special:FilePath/", SUBSTR(STR(?image_raw), 51))) AS ?image)
-        }}os
+import os
 
 repository = "kb"
 # set host pake url GraphDB local/remote
@@ -19,7 +16,7 @@ if not host.endswith('/'):
     host += '/'
 
 # Namespace untuk data (sesuai dengan yang ada di RDF file)    
-data_namespace = "http://192.168.31.138:9999/blazegraph/"
+data_namespace = os.getenv('RDF_NAMESPACE', "https://marveldc.rul.blue/")
     
 sparql = SPARQLWrapper(f"{host}repositories/"+ repository)
 sparql.setReturnFormat(JSON)
@@ -246,8 +243,8 @@ def get_person_detail(request):
         response["status_code"] = 404
         response["error_message"] = "URI not found in Marvel DC App Database"
         return render(request, 'person_details.html', response)
-        # return JsonResponse(response, status=404)
     
+    # Get person basic info
     sparql.setQuery(f"""
       prefix :      <{data_namespace}>
       prefix owl:   <http://www.w3.org/2002/07/owl#>
@@ -257,35 +254,62 @@ def get_person_detail(request):
       prefix wd:    <http://www.wikidata.org/entity/>
       prefix xsd:   <http://www.w3.org/2001/XMLSchema#>
 
-    SELECT DISTINCT ?person_name ?date_of_birth ?sex (group_concat(distinct ?nationality;separator=", ") as ?nationalities) (group_concat(distinct ?film_name;separator=", ") as ?associated_films) (group_concat(distinct ?film_wiki_uri;separator=", ") as ?associated_films_wiki_uri)
-    WHERE{{
-        <{person_wiki_uri}> rdfs:label ?person_name; 
-                       :date_of_birth ?date_of_birth; 
-                       :nationality ?nationality; 
-                       :sex ?sex .
-        
-        # Get films where person is a star
-        OPTIONAL {{
-            ?film_wiki_uri :stars <{person_wiki_uri}> ;
-                          rdf:type :Film;
-                          rdfs:label ?film_name.
-        }}
-        
-        # Get films where person is a director
-        OPTIONAL {{
-            ?film_wiki_uri_dir :director <{person_wiki_uri}> ;
-                              rdf:type :Film;
-                              rdfs:label ?film_name_dir.
-            BIND(?film_wiki_uri_dir AS ?film_wiki_uri)
-            BIND(?film_name_dir AS ?film_name)
-        }}
+    SELECT DISTINCT ?person_name ?date_of_birth ?sex ?nationality
+    WHERE {{
+        <{person_wiki_uri}> rdfs:label ?person_name .
+        OPTIONAL {{ <{person_wiki_uri}> :date_of_birth ?date_of_birth }}
+        OPTIONAL {{ <{person_wiki_uri}> :sex ?sex }}
+        OPTIONAL {{ <{person_wiki_uri}> :nationality ?nationality }}
     }}
-    GROUP BY ?person_name ?date_of_birth ?sex
     """)
 
     sparql.setReturnFormat(JSON)
     results = sparql.query().convert()
     response['data'] = results["results"]["bindings"]
+    
+    # Get associated films where person is either a star or director
+    # Convert full URI to prefixed format if needed
+    person_uri_for_query = person_wiki_uri
+    if person_wiki_uri.startswith('http://www.wikidata.org/entity/'):
+        # Extract the entity ID and use prefixed format
+        entity_id = person_wiki_uri.split('/')[-1]
+        person_uri_for_query = f"wd:{entity_id}"
+    
+    sparql.setQuery(f"""
+      prefix :      <{data_namespace}>
+      prefix owl:   <http://www.w3.org/2002/07/owl#>
+      prefix rdf:   <http://www.w3.org/2000/01/rdf-syntax-ns#>
+      prefix rdfs:  <http://www.w3.org/2000/01/rdf-schema#>
+      prefix vcard: <http://www.w3.org/2006/vcard/ns#>
+      prefix wd:    <http://www.wikidata.org/entity/>
+      prefix xsd:   <http://www.w3.org/2001/XMLSchema#>
+
+    SELECT (group_concat(distinct ?film_name;separator=", ") as ?associated_films) (group_concat(distinct ?film_wiki_uri;separator=", ") as ?associated_film_wiki_uris)
+    WHERE {{
+        {{
+            ?film_wiki_uri rdf:type :Film;
+                          rdfs:label ?film_name;
+                          :stars {person_uri_for_query} .
+        }}
+        UNION
+        {{
+            ?film_wiki_uri rdf:type :Film;
+                          rdfs:label ?film_name;
+                          :director {person_uri_for_query} .
+        }}
+    }}
+    """)
+    
+    sparql.setReturnFormat(JSON)
+    films_results = sparql.query().convert()
+    
+    # Merge films data with person data
+    if films_results["results"]["bindings"]:
+        films_data = films_results["results"]["bindings"][0]
+        if response['data']:
+            response['data'][0].update(films_data)
+        else:
+            response['data'] = [films_data]
     
     sparql.setQuery(f"""
     prefix :      <{data_namespace}>
